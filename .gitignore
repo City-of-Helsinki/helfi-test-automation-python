@@ -1,0 +1,6 @@
+robotframework-reports
+libspecs
+.settings
+.project
+.classpath
+*.class
