@@ -38,7 +38,7 @@ Add Picture Content To Page
 	Run Keyword If  '${content}'=='Picture'   Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Picture}
 	Run Keyword If  '${content}'=='Mixed'     Wait Until Keyword Succeeds  5x  200ms  Click Element  name:field_image-media-library-open-button-field_content-2-subform
 	Wait Until Keyword Succeeds  5x  100ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
-	Wait Until Keyword Succeeds  5x  100ms  Focus  ${Inp_Pic_Name}
+	#Wait Until Keyword Succeeds  5x  100ms  Focus  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja

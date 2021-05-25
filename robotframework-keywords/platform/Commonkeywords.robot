@@ -7,6 +7,7 @@ Library			  String
 *** Variables ***
 ${REPORTS_PATH}    ${EXECDIR}/robotframework-reports
 ${CONTENT_PATH}    ${EXECDIR}/robotframework-resources/content
+${KEYWORDS_PATH}    ${EXECDIR}/robotframework-keywords
 ${IMAGES_PATH}    ${EXECDIR}/robotframework-resources/images
 ${SCREENSHOTS_PATH}    ${EXECDIR}/robotframework-resources/screenshots
 

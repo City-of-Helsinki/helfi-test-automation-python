@@ -39,7 +39,7 @@ Add Content To Text Subcategory
 Add SubContent To Accordion 
 	[Arguments]   ${content}
 	Wait Until Element Is Visible   ${Ddn_Accordion_AddContent}   timeout=3
-	Focus   ${Ddn_Accordion_AddContent}
+	#Focus   ${Ddn_Accordion_AddContent}
 	Click Element	${Ddn_Accordion_AddContent}
 	Run Keyword If  '${content}'=='Text'  Click Element   ${Opt_Accordion_Content_Text}
 	Run Keyword If  '${content}'=='Columns'  Click Element   ${Opt_Accordion_Content_Columns}

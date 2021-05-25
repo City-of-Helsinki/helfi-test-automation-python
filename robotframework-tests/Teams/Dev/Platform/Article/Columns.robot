@@ -14,7 +14,7 @@ ${division}
 
 *** Test Cases ***
 50-50
-	[Tags]  CRITICAL
+	[Tags]  CRITICAL   TODO
 	Given User Goes To New Article Site
 	And User Starts Creating Article With 50-50 Division And Text Content
 	And User Adds Text to Left Column
@@ -115,7 +115,6 @@ Picture on ${side} Has Original Aspect Ratio Enabled	Use Original Aspect Ratio o
 
 Layout Should Not Have Changed
 	${excludeneeded}=  Image Comparison Needs To Exclude Areas
-	@{arealist}=  Run Keyword If   ${excludeneeded}    Add Excluded Areas To List
 	${contenttype}=  Convert To Lower Case   ${contenttype}
 	${originalpic} =  Set Variable If  
 	...  '${contenttype}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_COLUMNS_${division}_picture_${picsize}_${BROWSER}.png
@@ -124,7 +123,7 @@ Layout Should Not Have Changed
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_COLUMNS_${division}_text_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Run Keyword If  ${excludeneeded}   Compared Pictures Match   ${originalpic}    ${comparisonpic}    ${arealist}
+	Run Keyword If  ${excludeneeded}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${KEYWORDS_PATH}\\platform\\variables\\pic_comparison_excludes.json
 	Run Keyword Unless   ${excludeneeded}   Compared Pictures Match   ${originalpic}    ${comparisonpic}
 
 Page Should Have ${lang_input} Translation

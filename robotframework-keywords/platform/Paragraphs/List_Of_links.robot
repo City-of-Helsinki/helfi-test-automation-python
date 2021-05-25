@@ -25,7 +25,7 @@ Add Picture To Link
 	...		 	ELSE IF  not(${islandingpage})  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_ListOfLinks_Link_Picture}
 	...			ELSE     Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_ListOfLinks_Link_Picture_Landingpage}
 	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
-	Wait Until Keyword Succeeds  5x  100ms  Focus  ${Inp_Pic_Name}
+	#Wait Until Keyword Succeeds  5x  100ms  Focus  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
@@ -62,7 +62,7 @@ List Of Links Is Working Correctly
 	${contentpageurl}=   Get Location
 	Click Element   //a[contains(@href, '/fi/linkkiesimerkit')]
 	New Window Should Be Opened    Linkkiesimerkit | Drush Site-Install
-	Wait Until Element Is Clickable   //a[contains(@href, '/fi/esimerkkisivu')]
+	Wait Until Element Is Visible   //a[contains(@href, '/fi/esimerkkisivu')]
 	Click Element   //a[contains(@href, '/fi/esimerkkisivu')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   esimerkkisivu

@@ -3,33 +3,26 @@
 Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
 
-*** Variables ***
-${color}	 		 ${EMPTY}
-
 *** Keywords ***
 
-Create Service With Language
-	[Documentation]   Parent Service Is Optional. Leave empty if not needed.
-	[Arguments]  ${language}
-	Set Language Pointer   ${language}
-	Input Title To Paragraph   ${Inp_Service_Title}
-	Input Text   ${Inp_Service_Visible_Title}   Test Automation: ${TEST NAME}
-	Service.Select Language   ${language}
-	Input Description To Paragraph   ${Frm_Content}
-	Input Text Content
+Publish The ${nth} Service In The Service List
+	Goto  https://helfi.docker.sh/fi/admin/content/integrations/tpr-service/${nth}/edit
+	${ispublished}=   Run Keyword And Return Status   Checkbox Should Be Selected  id:edit-status
+	Run Keyword Unless   ${ispublished}   Set Content As Published
+	Submit New Content
+
+Open Service With Name
+	[Arguments]	   ${name}
+	Goto  https://helfi.docker.sh/fi/${name}
 	
-Add ${service} as Parent Service
-	Input Text  ${Inp_Service_ParentService}   Esimerkkipalvelu
-	Wait Until Keyword Succeeds  5x  200ms  Click Element   //a[contains(text(),'Esimerkkipalvelu')]
-		
-Select Language
-	[Arguments]     ${value}
-	[Documentation]  fi = Finnish , sv = Swedish , en = English , ru = Russian
-	Run Keyword If  '${value}'=='Finnish'  Select From List By Value  id:edit-langcode-0-value  fi
-	Run Keyword If  '${value}'=='Swedish'  Select From List By Value  id:edit-langcode-0-value  sv
-	Run Keyword If  '${value}'=='English'  Select From List By Value  id:edit-langcode-0-value  en
-	Run Keyword If  '${value}'=='Russian'  Select From List By Value  id:edit-langcode-0-value  ru
+Get Service Title
+	${title}=   Get Text   css:.service__title
+	[Return]   ${title}
 	
-Input Text Content
-	${content}=  Return Correct Content   ${language}
-	Input Text To Frame   ${Frm_Content2}   //body   ${content}
+Get Service Short Description
+	${shortdesc}=   Get Text   css:.service__short-desc
+	[Return]   ${shortdesc}
+	
+Get Service Long Description
+	${longdesc}=   Get Text   css:.service__long-desc
+	[Return]   ${longdesc}	

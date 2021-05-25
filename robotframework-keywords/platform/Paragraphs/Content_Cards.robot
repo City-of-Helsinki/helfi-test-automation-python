@@ -41,7 +41,7 @@ ContentCards Are Working Correctly
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   linkkiesimerkit
 	Go To   ${contentpageurl}
-	Wait Until Element Is Clickable   //a[contains(@href, '/fi/esimerkkisivu')]
+	Wait Until Element Is Visible   //a[contains(@href, '/fi/esimerkkisivu')]
 	Click Element   //a[contains(@href, '/fi/esimerkkisivu')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   esimerkkisivu

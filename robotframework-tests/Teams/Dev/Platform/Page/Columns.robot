@@ -14,7 +14,7 @@ ${contenttype}
 
 *** Test Cases ***
 50-50
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Goes To New Page -Site
 	And User Starts Creating Page With 50-50 Division And Text Content
 	And User Adds Text to Left Column

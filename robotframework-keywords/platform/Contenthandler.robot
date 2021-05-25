@@ -13,20 +13,12 @@ Documentation   Handler class for several content handling keywords.
 ...				gallery:  is gallery paragraph used in this test.  
 Resource        Commonkeywords.robot
 Resource		  ./variables/create_content.robot
-Resource		  ./variables/picture_comparison.robot
+#Resource		  ./variables/picture_comparison.robot
 Library           DocTest.VisualTest
 Library           OperatingSystem
 Library			  Collections
 
 *** Variables ***
-${USEORIGINALNAME}    
-${BROWSER}    
-${ADMIN_URL}    
-${CI}    
-${excludetag}    
-${DEBUG}    
-${PROTOCOL}    
-${BASE_URL}    
 ${submitted}								false
 ${picalign} 		 						${EMPTY}
 ${picture} 			 						nopicture
@@ -36,7 +28,8 @@ ${picsize}									cropped
 ${linkstyle} 		 						${EMPTY}
 ${language}	 		 						fi
 ${gallery}									false
-
+${serviceispublished}						false
+@{excludetaglist}     					    ARTICLE
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
 ${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media		
 *** Keywords ***
@@ -44,7 +37,6 @@ ${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media
 Open Paragraph For Edit
 	[Arguments]   ${paragraph}
 	Wait Until Element Is Visible   ${Ddn_AddContent}   timeout=3
-	#Focus   ${Ddn_AddContent}
 	Click Element	${Ddn_AddContent}
 	Click Element   ${paragraph}
 
@@ -83,7 +75,6 @@ Go To Translations Tab
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
 	Click Element   //a[contains(@href, 'translations/add/fi/${language_pointer}')]
-	Sleep   5
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
@@ -94,7 +85,14 @@ Cleanup and Close Browser
 	FOR    ${i}    IN RANGE    ${picsadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
     END
+    ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
+    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished
 	Close Browser	
+	
+Set Service Back To Unpublished
+	Goto  https://helfi.docker.sh/fi/admin/content/integrations/tpr-service/1/edit
+	Set Content As Published
+	Submit New Content
 	
 Image Comparison Needs To Exclude Areas
 	[Documentation]   Image Comparison needs to exclude some parts of the picture in case of for example changing date
@@ -110,12 +108,6 @@ Image Comparison Needs To Exclude Areas
            Exit For Loop If   '${status}'=='True'   
     END
     [Return]   ${status}
-		
-Add Excluded Areas To List
-	[Documentation]    We get list of areas needed to be excluded from the picture compare and add them into list.
-	@{content} =	Split String	@{${excludetag}}   |
-	[Return]   @{content}	
-
 
 Click Content Link From Notification Banner
 	Wait Until Element Is Visible   css:div.messages__content > em > a
@@ -159,9 +151,9 @@ Set Language Pointer
 	
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
-	[Arguments]	   ${pic1}   ${pic2}
-	${results}=  Compare Images      ${pic1}   ${pic2}
-   Run keyword if  ${results}==False   fail    "Pictures are different"
+	[Arguments]	   ${pic1}   ${pic2}    ${excludefilepath}=${EMPTY}
+	Run Keyword If  '${excludefilepath}'!='${EMPTY}'  Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}
+	Run Keyword Unless   '${excludefilepath}'!='${EMPTY}'  Compare Images      ${pic1}   ${pic2}
     
 
 Go To New Article Site
@@ -224,7 +216,8 @@ Submit New Content
 	[Documentation]  User submits new page and it is saved and appears in content view
 	Wait Until Keyword Succeeds  5x  100ms  Click Button   ${Btn_Submit}
 	Wait Until Keyword Succeeds  5x  100ms  Element Should Not Be Visible   ${Btn_Submit}
-	Set Test Variable  ${pagesadded}    ${pagesadded}+1
+	${isserviceandunit}=  Suite Name Contains Text  ServiceAndUnit
+	Run Keyword Unless  ${isserviceandunit}  Set Test Variable  ${pagesadded}    ${pagesadded}+1
 		
 Go To New ${pagetype} -View For ${language} Translation
 	Go To Translate Selection Page
@@ -253,6 +246,10 @@ Get Admin Url
    [Documentation]   Gets URL needed in localhost testing.
    ${admin_url} =   Run  ${ADMIN_URL}
    Set Test Variable   ${admin_url}
+
+Set Content As Published
+	Click Element   id:edit-status
+	Set Test Variable  ${serviceispublished}   true
 
 Select Language
 	[Arguments]     ${value}
@@ -306,22 +303,10 @@ Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page. Also accepts cookies here.
 	Get Admin Url
-    Run Keyword If   ${CI}   No_Sandbox Chrome - Open Browser   ${admin_url}
-	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
+	Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}
 	Set Window Size   1296   696
 	
-	
-No_Sandbox Chrome - Open Browser
-    [Arguments]   ${url}
-    ${chrome_options}    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${chrome_options}   add_argument    no-sandbox
-    Call Method    ${chrome_options}   add_argument    headless
-    Call Method    ${chrome_options}   add_argument    disable-dev-shm-usage
-    ${options}    Call Method     ${chrome_options}    to_capabilities     
-
-    Open Browser    ${url}    browser=${BROWSER}    desired_capabilities=${options}
-
 Rename Picture With New Name
 	[Documentation]   Idea is to Replace Reports file picture with new name in order to help in 
 	...				  maintenance of comparison pictures
@@ -352,7 +337,6 @@ Add ${content} to Left Column
 	...				 so that picture compare assertion works. Also long, snowdrops picture is used in the case because
 	...				 pictures with longer width value does not get cropped. Only long pictures do.
 	${content}=  Convert To Lower Case   ${content}
-	#Focus   ${Ddn_Column_Left_AddContent}
 	Wait Until Keyword Succeeds  5x  100ms  Click Button  ${Ddn_Column_Left_AddContent}
 	Run Keyword If  '${content}'=='picture'  Add Picture to Column   Left    train   @{pic_1_texts_${language}}
 	Run Keyword If  '${content}'=='original picture'  Add Picture to Column   Left    snowdrops   @{pic_1_texts_${language}}
@@ -422,7 +406,7 @@ Click And Select Text As ${side} Content Type
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
-#	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	Compared Pictures Match   ${originalpic}    ${comparisonpic}
 	Run Keyword Unless   ${USEORIGINALNAME}   Copy Original Screenshot To Reports Folder   ${originalpic}
 	
 Input Non-paragraph Related Content
