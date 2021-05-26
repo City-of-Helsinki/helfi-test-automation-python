@@ -1,5 +1,5 @@
 *** Settings ***
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Content_Cards.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Content_Cards.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   CONTENTCARDS
@@ -28,7 +28,7 @@ Large Cards
 	And ContentCards Should Work Correctly
 	
 Small Grey Cards
-	[Tags] 
+	[Tags]
 	Given User Goes To New Page -Site
 	And User Starts Creating Page With Small Grey Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content

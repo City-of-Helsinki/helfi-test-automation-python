@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   Mainly contains some cases which do not fall under any parent paragraph like Hero, Columns. Some text,
 ...				links and pictures still are supported and could be tested here.
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Uncategorized.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Uncategorized.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		ARTICLE
@@ -9,7 +9,7 @@ Force Tags		ARTICLE
 *** Test Cases ***
 
 Only Text
-	[Tags]
+	[Tags] 
 	Given User Goes To New Article Site
 	And User Starts Creating a New Article With Text Content  
 	When User Submits The New Article
@@ -25,7 +25,7 @@ Only Picture
 	Then Layout Should Not Have Changed
 
 Text And Picture
-	[Tags] 
+	[Tags]
 	Given User Goes To New Article Site
 	And User Starts Creating a New Article With Mixed Content  
 	When User Submits The New Article

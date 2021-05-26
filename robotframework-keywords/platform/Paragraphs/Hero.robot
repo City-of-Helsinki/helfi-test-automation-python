@@ -34,7 +34,6 @@ Start Creating a ${value} Aligned Page With Hero Block
 	Input Title  Test Automation: ${value} Aligned Hero Block Page
 	${titleisvisible}=  Run Keyword And Return Status   Element Should Be Enabled   ${Inp_Hero_Title}
 	Run Keyword Unless  ${titleisvisible} 	Click Element   ${Swh_HeroOnOff}
-	#Wait Until Keyword Succeeds  5x  100ms  Focus   ${Ddn_Hero_Alignment}
 	Wait Until Keyword Succeeds  5x  100ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
 	Run Keyword If  '${value}'=='Center'  Click Element   ${Opt_Hero_Alignment_Center} 
 	Wait Until Keyword Succeeds  5x  100ms   Input Title To Paragraph   ${Inp_Hero_Title}
@@ -62,12 +61,10 @@ Start Creating Hero Block Page with ${picalign} Picture
 	Run Keyword If  '${picalign}'=='Bottom'  Click Element   ${Opt_Hero_Picture_On_Bottom}
 	Run Keyword If  '${picalign}'=='Background'  Click Element   ${Opt_Hero_Picture_On_Background}
 	Run Keyword If  '${picalign}'=='Diagonal'  Click Element   ${Opt_Hero_Diagonal}
-	#Wait Until Keyword Succeeds  5x  100ms  Focus   ${Btn_Hero_Picture}
 	Wait Until Keyword Succeeds  5x  100ms  Run Keyword If  ('${BROWSER}'=='chromeheadless')  Execute javascript  window.scrollTo(0, 400)
 	Wait Until Keyword Succeeds  5x  100ms  Click Button   ${Btn_Hero_Picture}
 	Wait Until Keyword Succeeds  5x  100ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
-	#Wait Until Keyword Succeeds  5x  100ms  Focus  ${Inp_Pic_Name}
-	Input Text    ${Inp_Pic_Name}   Juna sillalla
+	Wait Until Keyword Succeeds  5x  100ms  Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}
@@ -86,7 +83,6 @@ Add ${style} Link In Hero Content Paragraph
 	Click Button   ${Btn_Hero_AddLink}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Hero_Link_URL}   https://fi.wikipedia.org/wiki/Rautatie_(romaani)    
 	Input Text   ${Inp_Hero_Link_Title}    ${link_title_${language}}
-	#Focus   ${Ddn_Hero_Link_Design}
 	Click Element  ${Ddn_Hero_Link_Design}
 	Run Keyword If  '${style}'=='Fullcolor'  Click Element   ${Opt_Hero_Link_ButtonFullcolor}
 	Run Keyword If  '${style}'=='Framed'  Click Element   ${Opt_Hero_Link_ButtonFramed}
@@ -96,11 +92,10 @@ Add ${style} Link In Hero Content Paragraph
 Add ${style} Link In Text Editor
 	${cke}=   Set Variable If  ${islandingpage}   id:cke_24 
 	...		  id:cke_81
-	#Focus   ${cke}
+	Set Focus To Element  ${cke}
 	Click Element   ${cke}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Hero_Link_Texteditor_URL}   https://fi.wikipedia.org/wiki/Rautatie_(romaani)    
 	Input Text   ${Inp_Hero_Link_Texteditor_Title}    ${link_title_${language}}
-	#Focus   ${Ddn_Hero_Link_Texteditor_Design}
 	Click Element  ${Ddn_Hero_Link_Texteditor_Design}
 	
 	Run Keyword If  '${style}'=='Fullcolor'  Click Element   ${Opt_Hero_Link_Texteditor_ButtonFullcolor}
@@ -110,7 +105,6 @@ Add ${style} Link In Text Editor
 
 Add ${color} As Background Color
 	Set Test Variable   ${color}  ${color}
-	#Focus    ${Ddn_Hero_Color}
 	Click Element Using JavaScript Xpath  ${Ddn_Hero_Color}
 	Click Element With Value   ${color}
 

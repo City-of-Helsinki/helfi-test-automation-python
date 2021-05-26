@@ -1,9 +1,8 @@
 *** Settings ***
-Resource        ../../../robotframework-keywords/platform/Paragraphs/List_Of_Links.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/List_Of_Links.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		LANDINGPAGE   LISTOFLINKS
-*** Variables ***
 
 *** Test Cases ***
 Without Picture

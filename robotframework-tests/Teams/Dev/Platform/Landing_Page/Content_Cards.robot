@@ -4,10 +4,6 @@ Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		LANDINGPAGE   CONTENTCARDS
 
-*** Variables ***
-${cardsize}   
-
-
 *** Test Cases ***
 Small Cards
 	[Tags]  CRITICAL

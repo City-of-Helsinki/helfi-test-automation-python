@@ -23,7 +23,7 @@ Create ${pagetype} With ${division} Division And ${contenttype} Content in ${lan
 	Run Keyword If  '${lang_selection}'!='Finnish'	Add Text Content To Column on Right
 	Submit The New ${pagetype}
 	Open Created Content
-	Take Screenshot Of Content
+	Columns.Take Screenshot Of Content
 
 Add ${linkstyle} Link To ${side} Column
 	${linkstyle}=  Remove String And Strip Text   ${linkstyle}   "
@@ -41,7 +41,6 @@ Add ${linkstyle} Link To ${side} Column
 Use Original Aspect Ratio on ${side}
 	#Element is behind another. --> Scroll it into view so we can click it
 	Execute javascript  window.scrollTo(0, 400)
-	#Focus   ${Swh_Column_${side}_Picture_Orig_Aspect_Ratio}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Swh_Column_${side}_Picture_Orig_Aspect_Ratio}
 	Set Test Variable  ${picsize}   original
 

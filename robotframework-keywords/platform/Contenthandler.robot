@@ -13,7 +13,6 @@ Documentation   Handler class for several content handling keywords.
 ...				gallery:  is gallery paragraph used in this test.  
 Resource        Commonkeywords.robot
 Resource		  ./variables/create_content.robot
-#Resource		  ./variables/picture_comparison.robot
 Library           DocTest.VisualTest
 Library           OperatingSystem
 Library			  Collections
@@ -126,6 +125,7 @@ Open Created Content
 Open Content In Non CI Environments
 	[Documentation]   Goes to content view of created content through content list page (since local environment errors prevent
 	...				  viewing it directly after creation)
+	
 	Go To   ${URL_content_page}
 	Wait Until Keyword Succeeds  5x  200ms  Click Content Link From Notification Banner
 	Run Keyword If  '${language}'=='fi'  	Accept Cookies
@@ -282,11 +282,7 @@ Return Content From Page
 
 Title Should Match Current Language Selection
 	[Arguments]   ${string}
-	${encoded}=   Encode String To Bytes   ${string}   UTF-8   errors=replace
-	${replaced}=  Replace String   b'${encoded}'   \\xc2\\xad    ${EMPTY}
-	${replaced}=  Replace String Using Regexp   ${replaced}   ^.{0,2}   ${EMPTY}
-	${string}=  Replace String Using Regexp   ${replaced}   .{0,1}$   ${EMPTY}
-
+	${string}=  Replace Encoded Characters From String   ${string}   ${EMPTY}    UTF-8    \\xc2\\xad
 	Run Keyword If  '${language}'=='fi'  Should Match Regexp   ${string}   Juhani Aho: Rautatie
 	Run Keyword If  '${language}'=='en'  Should Match Regexp   ${string}   Emily Bronte: Wuthering Heights
 	Run Keyword If  '${language}'=='sv'  Should Match Regexp   ${string}   Selma Lagerlof: Bannlyst  
@@ -320,7 +316,6 @@ Rename Picture With New Name
 
 Select Icon With Name
 	[Arguments]   ${icon_name}
-	#Focus   ${Ddn_Icon}
 	Click Element With Value   ${icon_name}
 	
 Take Screenshot Of Content
@@ -354,7 +349,6 @@ Add ${content:[^"]+} to Right Column
 	${content}=  Convert To Lower Case   ${content}
 	Set Test Variable  ${content2}   ${content}
 	Wait Until Element Is Visible  ${Ddn_Column_Right_AddContent}   timeout=3
-	#Focus   ${Ddn_Column_Right_AddContent}
 	Wait Until Keyword Succeeds  10x  500ms  Click Button  ${Ddn_Column_Right_AddContent}
 	Run Keyword If  '${content}'=='picture'  Add Picture to Column   Right    temple   @{pic_2_texts_${language}}
 	Run Keyword If  '${content}'=='text'  Add Text Content To Column on Right
@@ -370,7 +364,6 @@ Add Picture to Column
 	${picdescription}=  Get From List  ${content}   1
 	${pgrapher}=  Get From List  ${content}   2
 	Wait Until Element Is Visible  ${Btn_Column_${side}_Picture}   timeout=3
-	#Focus   ${Btn_Column_${side}_Picture}
 	Wait Until Keyword Succeeds  10x  500ms  Click Element  ${Btn_Column_${side}_Picture}
 	Wait Until Keyword Succeeds  10x  500ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${selection}.jpg
 	Wait Until Keyword Succeeds  10x  500ms  Input Text    ${Inp_Pic_Name}   ${pictitle}

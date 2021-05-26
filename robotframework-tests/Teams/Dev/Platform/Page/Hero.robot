@@ -2,7 +2,7 @@
 Documentation   Testing Hero Block Settings in Platform. Tests are created with different text alignatiotions like
 ...				Left, Center. For pictures there are more alignation options. Also differentlink icon styles are 
 ...				tested with default pictureless layout. Also Background color options are tested in several testcases
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Hero.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Hero.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   HERO

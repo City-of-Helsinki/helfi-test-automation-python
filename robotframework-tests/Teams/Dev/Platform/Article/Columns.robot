@@ -5,16 +5,10 @@ Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Colum
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser
 Force Tags		ARTICLE   COLUMNS
-*** Variables ***
-${contenttype}    
-${content2}    
-${content1}    
-${division}    
-
 
 *** Test Cases ***
 50-50
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Goes To New Article Site
 	And User Starts Creating Article With 50-50 Division And Text Content
 	And User Adds Text to Left Column
@@ -123,7 +117,7 @@ Layout Should Not Have Changed
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_COLUMNS_${division}_text_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Run Keyword If  ${excludeneeded}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${KEYWORDS_PATH}\\platform\\variables\\pic_comparison_excludes.json
+	Run Keyword If  ${excludeneeded}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${KEYWORDS_PATH}\\platform\\variables\\excluded_areas\\ARTICLE-${TEST NAME}.json
 	Run Keyword Unless   ${excludeneeded}   Compared Pictures Match   ${originalpic}    ${comparisonpic}
 
 Page Should Have ${lang_input} Translation

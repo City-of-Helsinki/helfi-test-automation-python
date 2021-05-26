@@ -38,6 +38,16 @@ Remove String And Strip Text
 	${value}=  Run Keyword And Continue On Failure   Remove String   ${value}   ${string}
 	${value}=  Strip String   ${value}
 	[Return]    ${value}
+
+
+Replace Encoded Characters From String
+	[Documentation]   Removes Hidden characters from strings which are not seen in log files. 
+	[Arguments]	   ${string}  ${replacewith}  ${charset}  ${charstoremove}
+	${encoded}=   Encode String To Bytes   ${string}   ${charset}
+	${replaced}=  Replace String   b'${encoded}'   ${charstoremove}    ${replacewith}
+	${replaced}=  Replace String Using Regexp   ${replaced}   ^.{0,2}   ${EMPTY}
+	${string}=  Replace String Using Regexp   ${replaced}   .{0,1}$   ${EMPTY}
+	[Return]    ${string}
 	
 Suite Name Contains Text
 	[Arguments]  ${text}

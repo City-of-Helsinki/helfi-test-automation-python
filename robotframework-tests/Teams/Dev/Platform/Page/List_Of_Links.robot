@@ -1,9 +1,8 @@
 *** Settings ***
-Resource        ../../../robotframework-keywords/platform/Paragraphs/List_Of_Links.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/List_Of_Links.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   LISTOFLINKS
-*** Variables ***
 
 *** Test Cases ***
 Without Picture
@@ -17,7 +16,7 @@ Without Picture
 	And List Of Links Should Work Correctly
 
 With Picture
-	[Tags]  CRITICAL
+	[Tags]  CRITICAL 
 	Given User Goes To New Page -Site
 	And User Creates List Of Links With Picture
 	And User Adds Second Link For Esimerkkisivu Content

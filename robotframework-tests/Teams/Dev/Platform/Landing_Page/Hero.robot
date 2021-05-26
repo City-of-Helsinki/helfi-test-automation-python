@@ -3,9 +3,6 @@ Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Hero.
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		LANDINGPAGE   HERO
-*** Variables ***
-
-
 
 *** Test Cases ***
 
@@ -242,10 +239,11 @@ Page Content Matches Language
 	Content Should Match Current Language Selection   ${Content}
 	
 Layout Should Not Have Changed
-	${originalpic} =  Set Variable If  '${picalign}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${picalign}_vaakuna_${picture}_${BROWSER}.png
-ELSE IF  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_vaakuna_nopicture_${linkstyle}link_${BROWSER}.png
-ELSE IF   '${color}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_${color}_nopicture_${BROWSER}.png
-ELSE IF   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${value}_vaakuna_nopicture_${BROWSER}.png
+	${originalpic} =  Set Variable If
+...  '${picalign}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${picalign}_vaakuna_${picture}_${BROWSER}.png
+...  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_vaakuna_nopicture_${linkstyle}link_${BROWSER}.png
+...  '${color}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_${color}_nopicture_${BROWSER}.png
+...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${value}_vaakuna_nopicture_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData	  ${originalpic}   ${comparisonpic}
 	

@@ -1,6 +1,6 @@
 *** Settings ***
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Service.robot
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Unit.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Service.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Unit.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		SERVICE   UNIT
@@ -33,8 +33,7 @@ User Opens Unit With Name ${name}
 	
 Service Contents Should Be Correct
 	${title}=  Get Service Title
-	${title}=   Encode String To Bytes   ${title}   UTF-8
-	${title}=  Set Variable  ${title.replace('\xc2\xad', '')}
+	${title}=   Replace Encoded Characters From String   ${title}   ${EMPTY}    UTF-8    \\xc2\\xad
 	${shortdesc}=  Get Service Short Description
 	${longdesc}=  Get Service Long Description
 	Should Be Equal   ${title}   Service fi 1
@@ -44,11 +43,9 @@ Service Contents Should Be Correct
 Unit Contents Should Be Correct
 	Accept Cookies
 	${title}=  Get Unit Title
-	${title}=   Encode String To Bytes   ${title}   UTF-8
-	${title}=  Set Variable  ${title.replace('\xc2\xad', '')}
+	${title}=  Replace Encoded Characters From String   ${title}   ${EMPTY}    UTF-8    \\xc2\\xad
 	${ccardtitle}=  Get Contact Card Title
-	${ccardtitle}=   Encode String To Bytes   ${ccardtitle}   UTF-8
-	${ccardtitle}=  Set Variable  ${ccardtitle.replace('\xc2\xad', '')}
+	${ccardtitle}=  Replace Encoded Characters From String   ${ccardtitle}   ${EMPTY}    UTF-8    \\xc2\\xad
 	${addrmain}=  Get Address Main Title
 	${addrline1}=  Get Address Line 1
 	${postcode}=  Get Postal Code
@@ -57,8 +54,7 @@ Unit Contents Should Be Correct
 	${phonemain}=  Get Phone Main Title
 	#${phone}=  Get Phone
 	${servicetitle}=  Get Units Service Title
-	${servicetitle}=   Encode String To Bytes   ${servicetitle}   UTF-8
-	${servicetitle}=  Set Variable  ${servicetitle.replace('\xc2\xad', '')}
+	${servicetitle}=  Replace Encoded Characters From String   ${servicetitle}   ${EMPTY}    UTF-8    \\xc2\\xad
 	${servicedesc}=  Get Units Service Description
 
 	Should Be Equal   ${title}   Name fi 1

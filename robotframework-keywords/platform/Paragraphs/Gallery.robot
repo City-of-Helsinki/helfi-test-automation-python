@@ -14,7 +14,6 @@ Start Creating ${pagetype} With Gallery
 
 Click Edit Paragraph
 	Execute javascript  window.scrollTo(0, 1000)
-	#Focus   name:field_content_0_edit
 	Click Element   name:field_content_0_edit
 
 Add Picture '${name}' And Caption To ${number}:th Picture
@@ -43,9 +42,8 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 Open Add Picture To Gallery Window
 	[Arguments]   ${number}
 	Wait Until Element Is Visible   ${Btn_Gallery_Picture}${number-1}-subform   timeout=4
-	#Focus  ${Btn_Gallery_Picture}${number-1}-subform
 	Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Gallery_Picture}${number-1}-subform
-	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Clickable   name:files[upload] 
+	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 
 Take Screenshot Of Content

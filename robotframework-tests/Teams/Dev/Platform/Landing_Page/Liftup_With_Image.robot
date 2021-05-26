@@ -3,9 +3,6 @@ Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Liftu
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		LANDINGPAGE   LIFTUPWITHIMAGE
-*** Variables ***
-
-
 
 *** Test Cases ***
 Left Picture

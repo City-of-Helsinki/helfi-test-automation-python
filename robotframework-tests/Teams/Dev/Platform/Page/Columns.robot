@@ -5,12 +5,6 @@ Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Colum
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   COLUMNS
-*** Variables ***
-${content2}    
-${content1}    
-${division}    
-${contenttype}    
-
 
 *** Test Cases ***
 50-50
@@ -44,7 +38,7 @@ ${contenttype}
 	Then Layout Should Not Have Changed	
 
 50-50 with picture
-	[Tags]  CRITICAL
+	[Tags]  CRITICAL 
 	Given User Goes To New Page -Site  
 	And User Starts Creating Page With 50-50 Division And Picture Content
 	And User Adds Picture to Left Column

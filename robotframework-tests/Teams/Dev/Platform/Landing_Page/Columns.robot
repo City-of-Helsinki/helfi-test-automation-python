@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation   Testing Columns Settings in Platform by comparing layout to default picture. Testing is performed with
 ...				Different text deviation like 50-50, 30-70 and with pictures and links added.
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Columns.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Columns.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		LANDINGPAGE   COLUMNS

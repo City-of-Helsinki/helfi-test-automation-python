@@ -1,15 +1,12 @@
 *** Settings ***
-Resource        ../../../robotframework-keywords/platform/Paragraphs/Accordion.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Accordion.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   ACCORDION
-*** Variables ***
-
-
 
 *** Test Cases ***
 White Accordion
-	[Tags]  CRITICAL
+	[Tags]  CRITICA
 	Given User Goes To New Page -Site
 	And User Starts Creating White Accordion With h2 Heading And Text Content
 	And User Adds Content to Text Subcategory
