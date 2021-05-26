@@ -282,10 +282,14 @@ Return Content From Page
 
 Title Should Match Current Language Selection
 	[Arguments]   ${string}
-	${string}=   Encode String To Bytes   ${string}   UTF-8
-	Run Keyword If  '${language}'=='fi'  Should Match   ${string.replace('\xc2\xad', '')}	Juhani Aho: Rautatie
-	Run Keyword If  '${language}'=='en'  Should Match   ${string.replace('\xc2\xad', '')}   Emily Bronte: Wuthering Heights
-	Run Keyword If  '${language}'=='sv'  Should Match   ${string.replace('\xc2\xad', '')}   Selma Lagerlof: Bannlyst  
+	${encoded}=   Encode String To Bytes   ${string}   UTF-8   errors=replace
+	${replaced}=  Replace String   b'${encoded}'   \\xc2\\xad    ${EMPTY}
+	${replaced}=  Replace String Using Regexp   ${replaced}   ^.{0,2}   ${EMPTY}
+	${string}=  Replace String Using Regexp   ${replaced}   .{0,1}$   ${EMPTY}
+
+	Run Keyword If  '${language}'=='fi'  Should Match Regexp   ${string}   Juhani Aho: Rautatie
+	Run Keyword If  '${language}'=='en'  Should Match Regexp   ${string}   Emily Bronte: Wuthering Heights
+	Run Keyword If  '${language}'=='sv'  Should Match Regexp   ${string}   Selma Lagerlof: Bannlyst  
 
 Description Should Match Current Language Selection
 	[Arguments]   ${string}
