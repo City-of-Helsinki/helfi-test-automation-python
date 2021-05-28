@@ -84,6 +84,7 @@ Cleanup and Close Browser
 	FOR    ${i}    IN RANGE    ${picsadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
     END
+    # in case of service/unit testcases
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
     Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished
 	Close Browser	
@@ -301,7 +302,7 @@ Content Should Match Current Language Selection
 
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
-	...				  page. Also accepts cookies here.
+	...				  page.
 	Get Admin Url
 	Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}

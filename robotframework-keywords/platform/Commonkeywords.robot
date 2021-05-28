@@ -13,6 +13,8 @@ ${SCREENSHOTS_PATH}    ${EXECDIR}/robotframework-resources/screenshots
 
 *** Keywords ***
 Debug Error
+	[Documentation]   If debug is set on, will capture screenshot of error and save the html page. The data will be 
+	...				  in debug folder of test results.
 	Maximize Browser Window   
 	Execute javascript  document.body.style.zoom="30%"
 	Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
@@ -69,6 +71,7 @@ Rename Reports Picture To Use Original Picture Name
 	Move File  ${fullpath}  ${newname}
 	
 Zoom Out And Capture Page Screenshot
+	[Documentation]   Used for debugging purposes during test development
 	Execute javascript  document.body.style.zoom="25%"
 	Capture Page Screenshot
 	Execute javascript  document.body.style.zoom="100%"

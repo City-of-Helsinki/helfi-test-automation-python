@@ -22,14 +22,16 @@ Start Creating a New ${pagetype} With ${content} Content
 	Run Keyword If  '${content}'=='Mixed'	Add Text And Picture To Page
 
 Add Text And Picture To Page
-	Add Text Content To Page
+	Add Text Content To Page   cke_66_contents
 	Add Picture Content To Page
 	
 	
 Add Text Content To Page
+	[Arguments]   ${cke}=cke_66_contents
 	Run Keyword If  '${language}'=='fi'  Click Element   ${Opt_AddText}
 	${TextFileContent}=  Return Correct Content   ${language}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text Content   ${TextFileContent}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text Content   ${TextFileContent}   ${cke}
+
 
 Add Picture Content To Page
 	${addpicturevisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  ${Opt_AddPicture}   timeout=1
@@ -50,6 +52,6 @@ Add Picture Content To Page
 		
 
 Input Text Content
-	[Arguments]   ${content}
-	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#cke_67_contents > iframe   //body   ${content}
-	Run Keyword If  '${language}'!='fi'   Input Text To Frame   css:#cke_67_contents > iframe   //body   ${content}
+	[Arguments]   ${content}    ${cke}
+	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#${cke} > iframe   //body   ${content}
+	Run Keyword If  '${language}'!='fi'   Input Text To Frame   css:#${cke} > iframe   //body   ${content}

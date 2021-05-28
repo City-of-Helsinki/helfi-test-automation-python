@@ -4,7 +4,7 @@ Documentation   Mainly contains some cases which do not fall under any parent pa
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Uncategorized.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
-Force Tags		PAGE
+Force Tags		PAGE    UNCATEGORIZED
 
 *** Test Cases ***
 
