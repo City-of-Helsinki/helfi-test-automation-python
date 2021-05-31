@@ -24,6 +24,7 @@ Browse Robotframework
 	   Log   Starting Browser
 	   Open Website   http://robotframework.org
 	   Set Window Size   1296   696
+	   Capture Page Screenshot
 	   Page Should Contain   ROBOT FRAME WORK/
 	   Sleep   2
    
