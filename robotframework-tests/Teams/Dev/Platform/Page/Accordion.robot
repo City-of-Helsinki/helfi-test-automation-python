@@ -6,7 +6,7 @@ Force Tags		PAGE   ACCORDION
 
 *** Test Cases ***
 White Accordion
-	[Tags]  CRITICA
+	[Tags]  CRITICAL
 	Given User Goes To New Page -Site
 	And User Starts Creating White Accordion With h2 Heading And Text Content
 	And User Adds Content to Text Subcategory
