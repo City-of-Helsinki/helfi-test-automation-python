@@ -6,7 +6,6 @@ ARG archive_name=ghostpcl-9.52-linux-x86_64
 RUN mkdir robotframework-doctestlibrary
 WORKDIR robotframework-doctestlibrary
 RUN git clone https://github.com/manykarim/robotframework-doctestlibrary.git
-
 RUN pip install --no-cache-dir numpy
 WORKDIR robotframework-doctestlibrary
 RUN python setup.py install
@@ -45,14 +44,13 @@ RUN apt-get update -y
 RUN apt-get install -y google-chrome-stable
 
 # Set up Chromedriver Environment variables
-ENV CHROMEDRIVER_VERSION 90.0.4430.24
+ENV CHROMEDRIVER_VERSION 91.0.4472.19
 ENV CHROMEDRIVER_DIR /chromedriver
 RUN mkdir $CHROMEDRIVER_DIR
 
 # Download and install Chromedriver
 RUN wget -q --continue -P $CHROMEDRIVER_DIR "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
 RUN unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
-
 # Put Chromedriver into the PATH
 ENV PATH $CHROMEDRIVER_DIR:$PATH
 
