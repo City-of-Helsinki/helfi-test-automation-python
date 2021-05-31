@@ -2,7 +2,6 @@
 Documentation   Just a small demo
 Library           SeleniumLibrary
 Library           OperatingSystem
-Test Setup      Get Admin Url
 Test Teardown	Close Browser
 
 *** Variables ***
@@ -10,19 +9,32 @@ ${language}    fi
 ${CONTENT_PATH}    
 ${RESOURCES_ROOT}    
 ${PROJECT_ROOT}    
-${admin_url} =  ${ADMIN_URL}
 ${browser} =  ${BROWSER}
 
 
 *** Test Cases ***
 
 Browse Content Item
-	[Tags]  DEMO
+	[Tags]
     Go To Content Site
     Open First Item	
  
+Browse Robotframework
+	[Tags]   DEMO
+	   Log   Starting Browser
+	   Open Website   http://robotframework.org
+	   Set Window Size   1296   696
+	   Page Should Contain   ROBOT FRAME WORK/
+	   Sleep   2
    
 *** Keywords ***
+Open Website
+	[Arguments]   ${url}
+    ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --headless
+    Open Browser    ${url}    chrome    options=${chrome_options}
+
 Get Admin Url
    ${admin_url} =   Run  ${admin_url}
    Set Test Variable   ${admin_url}

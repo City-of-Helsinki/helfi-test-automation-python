@@ -304,9 +304,17 @@ Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
 	Get Admin Url
-	Open Browser  ${admin_url}  ${BROWSER}
+	Run Keyword If   ${CI}   Open Website In CI Environment   ${admin_url}
+	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}
 	Set Window Size   1296   696
+	
+Open Website In CI Environment
+	[Arguments]   ${url}
+    ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --headless
+    Open Browser    ${url}    chrome    options=${chrome_options}
 	
 Rename Picture With New Name
 	[Documentation]   Idea is to Replace Reports file picture with new name in order to help in 
