@@ -11,7 +11,20 @@ In order to work with this robot framework repo locally, you need:
     
 **3)**  [Robot Framework](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installation-instructions) Installed
     
-**4)**  [DoctestLibrary](https://pypi.org/project/robotframework-doctestlibrary/) (for picture compare assertions) Installed.  
+**4)**  [DoctestLibrary](https://pypi.org/project/robotframework-doctestlibrary/) Installed.  
 
-**5)**  [SeleniumLibrary](https://pypi.org/project/robotframework-seleniumlibrary/) (for picture compare assertions) Installed. 
+    needed for picture compare assertions
+
+**5)**  [SeleniumLibrary](https://pypi.org/project/robotframework-seleniumlibrary/) Installed. 
+
+    needed for running the testcases
+            
+You can propably use the latest versions of the libraries, but might need to do some small refactoring if for example same keyword would have become outdated or if some structures like classic if-else pattern is no longer supported.
+
+Currently used (6/2021) versions are:
+
+    Robot Framework 4.0.2
+    Seleniumlibrary 5.1.3
+    Doctestlibrary  0.1.2
+     
 
