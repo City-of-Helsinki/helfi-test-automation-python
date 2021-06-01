@@ -38,19 +38,19 @@ Start Creating a ${value} Aligned Page With Hero Block
 	Run Keyword If  '${value}'=='Center'  Click Element   ${Opt_Hero_Alignment_Center} 
 	Wait Until Keyword Succeeds  5x  100ms   Input Title To Paragraph   ${Inp_Hero_Title}
 	${TextFileContent}=  Return Correct Content   ${language}
+	@{content} =	Split String	${TextFileContent}   .,.
+	${content_up}=  Get From List  ${content}   0
+	${content_down}=  Get From List  ${content}   1
 	${TextFileDescription}=  Return Correct Description   ${language}
 	# In case of link we need to add some linebreaks
 	# main content
-	Run Keyword Unless  ${containslink}  Input Text Content   ${TextFileContent}
-	Run Keyword If      ${containslink}  Input Text Content   ${TextFileContent}\n
+	Run Keyword Unless  ${containslink}  Input Text Content To Frame   ${content_up}   cke_1_contents
+	Run Keyword If      ${containslink}  Input Text Content To Frame   ${content_up}\n   cke_1_contents
+	Input Text Content To Frame   ${content_down}   cke_2_contents
+	
 	# description
 	Run Keyword Unless   ${containslink} | ${islandingpage}   Input Hero Description   ${TextFileDescription}
 	Run Keyword If   ${containslink} & (${islandingpage}!=True)  Input Hero Description   ${TextFileDescription}\n
-
-Input Text Content
-	[Arguments]   ${content}
-	Run Keyword If  '${language}'=='fi'	Input Text To Frame   ${Frm_Content}   //body   ${content}
-	Run Keyword If  '${language}'!='fi'   Input Text To Frame   ${Frm_Content2}   //body   ${content}
 
 Start Creating Hero Block Page with ${picalign} Picture 
 	Start Creating a Left Aligned Page With Hero Block
@@ -92,7 +92,7 @@ Add ${style} Link In Hero Content Paragraph
 
 Add ${style} Link In Text Editor
 	${cke}=   Set Variable If  ${islandingpage}   id:cke_24 
-	...		  id:cke_81
+	...		  id:cke_136
 	Set Focus To Element  ${cke}
 	Click Element   ${cke}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Hero_Link_Texteditor_URL}   https://fi.wikipedia.org/wiki/Rautatie_(romaani)    
@@ -112,7 +112,7 @@ Add ${color} As Background Color
 Input Hero Description
 	[Arguments]   ${description}
 	[Documentation]	  Here. In translation cases cke -identifier numbers have changed. Thus some if else is needed.
-	Run Keyword If  '${language}'=='fi'	Input Text To Frame   ${Frm_Content_Description}   //body   ${description}
+	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#cke_113_contents > iframe   //body   ${description}
 	Run Keyword If  '${language}'!='fi'   Input Text To Frame   ${Frm_Content}   //body   ${description}
 
 

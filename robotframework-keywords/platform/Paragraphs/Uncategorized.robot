@@ -30,7 +30,7 @@ Add Text Content To Page
 	[Arguments]   ${cke}=cke_66_contents
 	Run Keyword If  '${language}'=='fi'  Click Element   ${Opt_AddText}
 	${TextFileContent}=  Return Correct Content   ${language}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text Content   ${TextFileContent}   ${cke}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text Content To Frame   ${TextFileContent}   ${cke}
 
 
 Add Picture Content To Page
@@ -51,7 +51,4 @@ Add Picture Content To Page
 	Set Test Variable  ${picsadded}    ${picsadded}+1
 		
 
-Input Text Content
-	[Arguments]   ${content}    ${cke}
-	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#${cke} > iframe   //body   ${content}
-	Run Keyword If  '${language}'!='fi'   Input Text To Frame   css:#${cke} > iframe   //body   ${content}
+

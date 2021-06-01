@@ -77,6 +77,7 @@ Go To ${language} Translation Page
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
+	Set Selenium Speed   0
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    ${pagesadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item on Content Menu List
@@ -308,6 +309,7 @@ Login And Go To Content Page
 	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}
 	Set Window Size   1296   696
+	#Set Selenium Speed   0.5
 	
 Open Website In CI Environment
 	[Arguments]   ${url}
@@ -414,6 +416,11 @@ Compare Pictures And Handle PictureData
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	Compared Pictures Match   ${originalpic}    ${comparisonpic}
 	Run Keyword Unless   ${USEORIGINALNAME}   Copy Original Screenshot To Reports Folder   ${originalpic}
+
+Input Text Content To Frame
+	[Arguments]   ${content}    ${cke}
+	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#${cke} > iframe   //body   ${content}
+	Run Keyword If  '${language}'!='fi'   Input Text To Frame   css:#${cke} > iframe   //body   ${content}
 	
 Input Non-paragraph Related Content
 	[Arguments]   ${pagetype}
