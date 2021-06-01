@@ -40,6 +40,9 @@ which will run all tests with GALLERY tag. Other arguments are:
   
 For Full list of commands available run *robot --help* in command prompt
 
+# Docker and CI
+You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform.
+
 # Useful information:
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
             
