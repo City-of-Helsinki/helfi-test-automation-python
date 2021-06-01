@@ -41,14 +41,14 @@ which will run all tests with GALLERY tag. Other arguments are:
 For Full list of commands available run *robot --help* in command prompt
 
 # Useful information:
-## For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
+### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
             
-            /c del /S /Q <full path to reports folder>
+            del /S /Q <full path to reports folder>
 and full command example is:
 
-            /c del /S /Q C:\TA\helfi\robotframework-reports & robot -i GALLERY -A ./environments/local.args -d robotframework-reports 
+            del /S /Q C:\TA\helfi\robotframework-reports & robot -i DEMO -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
            
-## For cleaning up reports folder for easier readability you can transfer selenium-screenshots to subfolder by:
+### For cleaning up reports folder for easier readability you can transfer selenium-screenshots to subfolder by:
 
             mkdir <reports folder>\screenshots\selenium-screenshots & move /Y <reports folder>\sele*.png <reports folder>\screenshots\selenium-screenshots
             
@@ -58,8 +58,13 @@ and full command example is:
             
 full command with both reports folder cleaning before run and screenshots relocating after the run example here:
             
-            /c del /S /Q C:\TA\helfi_python\robotframework-reports &
+            del /S /Q C:\TA\helfi_python\robotframework-reports &
             robot -i DEMO -A ./environments/local.args -d robotframework-reports  . & mkdir C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots & move             /Y C:\TA\helfi_python\robotframework-reports\sele*.png C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots
 
 ## Eclipse user tips:
-You can use external tools configuration feature to run command prompt command in eclipse directly
+You can use external tools configuration feature to run command prompt command in eclipse directly. Command prompt needs /c argument to run command through it. For example:
+
+      /c del /S /Q C:\TA\helfi_python\robotframework-reports
+      
+      
+You can also configure shortcut key to run tests with one keyboard button press by setting: Preferences -> General -> Keys -> Run last launched external Tool
