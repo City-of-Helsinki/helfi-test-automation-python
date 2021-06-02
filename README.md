@@ -63,7 +63,7 @@ full command with both reports folder cleaning before run and screenshots reloca
             
             del /S /Q C:\TA\helfi_python\robotframework-reports &
             robot -i DEMO -A ./environments/local.args -d robotframework-reports  . & mkdir C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots & move             /Y C:\TA\helfi_python\robotframework-reports\sele*.png C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots
-
+however note that some screenshots in log -file might not be shown correctly since pictures are now relocated.
 ## Eclipse user tips:
 You can use external tools configuration feature to run command prompt command in eclipse directly. Command prompt needs /c argument to run command through it. For example:
 
