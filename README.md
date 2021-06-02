@@ -33,7 +33,7 @@ Currently used (6/2021) versions are:
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
 
-            robot -i DEMO -A ./environments/local.args -d robotframework-reports
+            robot -i DEMO -A ./environments/local.args -d robotframework-reports .
 which will run all tests with DEMO tag. Other arguments are:
 - Argument file for setting up some variables related to local environment (**optional**)
 - Report folder for run logs (related to project folder root)  (**optional**)
