@@ -40,7 +40,7 @@ which will run all tests with DEMO tag. Other arguments are:
   
 For Full list of commands available run *robot --help* in command prompt
 ## Run profiles:
-Robot Framework Uses profile files to run correct settings in CI and local runs. These settings files can be found from environments -folder
+Robot Framework Uses argument files to run correct settings in CI and local runs. These settings files can be found from environments -folder
 
 # Docker and CI
 You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform.
