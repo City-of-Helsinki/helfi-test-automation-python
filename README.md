@@ -48,6 +48,14 @@ You can use Dockerfile to create container for Robot Framework. However Dockerfi
 # Useful information:
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
             
+            RMDIR /S /Q <full path to reports folder>
+and full command example is:            
+            
+            RMDIR /S /Q C:\TA\helfi_python\robotframework-reports & robot -i DEMO -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
+
+If you want to clear files from the folder only, do as follows:            
+
+
             del /S /Q <full path to reports folder>
 and full command example is:
 
