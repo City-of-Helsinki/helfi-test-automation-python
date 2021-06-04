@@ -131,7 +131,8 @@ ${Btn_Gallery_Picture_Addmore}				name:field_content_1_subform_field_gallery_sli
 # PAGE VIEW
 ${Txt_Hero_Title}								css:.hero__title
 ${Txt_Hero_Description}							css:.hero__description
-${Txt_Content}									css:.text__text-content
+#${Txt_Content}									css:.text__text-content
+${Txt_Content}									//div[@class='text__text-content']/p
 ${Txt_Column_Title}								css:.columns__title
 ${Txt_Column_Description}						xpath://p[1]
 ${Txt_Column_Content}							xpath://div[@class='columns columns--default columns--50-50']//p

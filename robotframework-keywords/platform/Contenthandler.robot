@@ -196,6 +196,7 @@ Click Add Landing Page
 	Wait Until Element Is Visible  //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']   timeout=3
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']
 	Element Should Not Be Visible   //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']
+
 	
 Click Add Article
 	[Documentation]   Add Article ('Artikkeli') click in Add Content('Lisää sisältöä') -menu
@@ -297,9 +298,9 @@ Description Should Match Current Language Selection
 
 Content Should Match Current Language Selection
 	[Arguments]   ${string}
-	Run Keyword If  '${language}'=='fi'  Should Match Regexp  ${string}   Viittatie teki niemen nenässä polvekkeen
-	Run Keyword If  '${language}'=='en'  Should Match Regexp  ${string}   If all else perished, and he remained
-	Run Keyword If  '${language}'=='sv'  Should Match Regexp  ${string}   Det är bara synd, att han inte är
+	Run Keyword If  '${language}'=='fi'  Should Match Regexp  ${string}   Sitä Matti ajatteli, mitä rovastin ja ruustinnan kanssa oli puhunut
+	Run Keyword If  '${language}'=='en'  Should Match Regexp  ${string}   “It is not,” retorted she
+	Run Keyword If  '${language}'=='sv'  Should Match Regexp  ${string}   På Grimön i den västra skärgården bodde
 
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
@@ -309,7 +310,7 @@ Login And Go To Content Page
 	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}
 	Set Window Size   1296   696
-	#Set Selenium Speed   0.5
+#	Set Selenium Speed  0.5
 	
 Open Website In CI Environment
 	[Arguments]   ${url}
@@ -419,9 +420,8 @@ Compare Pictures And Handle PictureData
 
 Input Text Content To Frame
 	[Arguments]   ${content}    ${cke}
-	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#${cke} > iframe   //body   ${content}
-	Run Keyword If  '${language}'!='fi'   Input Text To Frame   css:#${cke} > iframe   //body   ${content}
-	
+	Input Text To Frame   css:#${cke} > iframe   //body   ${content}
+		
 Input Non-paragraph Related Content
 	[Arguments]   ${pagetype}
 	Input Title  Test Automation: ${TEST NAME}
