@@ -15,14 +15,14 @@ Return Hero Title From Page
 Return Hero Description From Page
 	${description}=	Get Text    ${Txt_Hero_Description}
 	[Return]		${description}
-	
-Create a ${value} Aligned Page With Hero Block In ${lang_selection} Language
+#LandingPage
+Create a ${value} Aligned ${pagetype} With Hero Block In ${lang_selection} Language
 	${language_pointer}=   Get Language Pointer   ${lang_selection}
 	Set Test Variable   ${language}   ${language_pointer}
-	Run Keyword If  '${lang_selection}'=='Finnish'  Go To New Page Site
-	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New Page -View For ${lang_selection} Translation
+	Run Keyword If  '${lang_selection}'=='Finnish'  Go To New ${pagetype} Site
+	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Start Creating a ${value} Aligned Page With Hero Block
-	Submit The New Page
+	Submit The New ${pagetype}
 	Open Created Content
 	Take Screenshot Of Content
  
@@ -42,16 +42,43 @@ Start Creating a ${value} Aligned Page With Hero Block
 	${content_up}=  Get From List  ${content}   0
 	${content_down}=  Get From List  ${content}   1
 	${TextFileDescription}=  Return Correct Description   ${language}
-	# In case of link we need to add some linebreaks
-	# main content
-	Run Keyword Unless  ${containslink}  Input Text Content To Frame   ${content_up}   cke_1_contents
-	Run Keyword If      ${containslink}  Input Text Content To Frame   ${content_up}\n   cke_1_contents
-	Input Text Content To Frame   ${content_down}   cke_2_contents
-	
-	# description
-	Run Keyword Unless   ${containslink} | ${islandingpage}   Input Hero Description   ${TextFileDescription}
-	Run Keyword If   ${containslink} & (${islandingpage}!=True)  Input Hero Description   ${TextFileDescription}\n
 
+    IF    ${islandingpage} & ('${TEST NAME}'!='Finnish English Swedish Translations')
+        Handle LandingPage Content And Description   ${content_up}
+    ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==False)
+        Handle Page Translation Test Description   ${TextFileDescription}   ${content_up}   ${content_down}
+    ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==True)
+        Handle LandingPage Translation Test Description   ${content_up}
+    ELSE
+    	Handle Page Content And Description   ${TextFileDescription}   ${content_up}   ${content_down}
+    END
+
+Handle Page Content And Description
+	[Arguments]   ${TextFileDescription}   ${content_up}   ${content_down}=${EMPTY}
+	# In case of link we need to add some linebreaks '\n'
+	Input Text Content To Frame   ${TextFileDescription}\n   cke_113_contents
+	Input Text Content To Frame   ${content_up}\n   cke_1_contents
+	Input Text Content To Frame   ${content_down}\n   cke_2_contents
+
+Handle LandingPage Content And Description
+	[Arguments]   ${content_up}
+	# In case of link we need to add some linebreaks '\n'
+	Input Text Content To Frame   ${content_up}\n   cke_1_contents
+
+Handle Page Translation Test Description
+	[Arguments]   ${description}   ${content_up}   ${content_down}
+	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${description}   cke_113_contents
+	...	  ELSE		Input Text Content To Frame   ${description}   cke_1_contents
+	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${content_up}   cke_1_contents
+	...	  ELSE		Input Text Content To Frame   ${content_up}   cke_2_contents
+	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${content_down}   cke_2_contents
+	...	  ELSE		Input Text Content To Frame   ${content_down}   cke_3_contents
+	
+Handle LandingPage Translation Test Description
+	[Arguments]   ${content_up}
+	Input Text Content To Frame   ${content_up}   cke_1_contents
+
+	
 Start Creating Hero Block Page with ${picalign} Picture 
 	Start Creating a Left Aligned Page With Hero Block
     Set Test Variable   ${picture}  picture
@@ -110,9 +137,9 @@ Add ${color} As Background Color
 	Click Element With Value   ${color}
 
 Input Hero Description
-	[Arguments]   ${description}
+	[Arguments]   ${description}   ${cke}
 	[Documentation]	  Here. In translation cases cke -identifier numbers have changed. Thus some if else is needed.
-	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#cke_113_contents > iframe   //body   ${description}
+	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#${cke}_contents > iframe   //body   ${description}
 	Run Keyword If  '${language}'!='fi'   Input Text To Frame   ${Frm_Content}   //body   ${description}
 
 
