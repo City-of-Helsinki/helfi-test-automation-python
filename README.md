@@ -60,20 +60,7 @@ If you want to clear files from the folder only, do as follows:
 and full command example is:
 
             del /S /Q C:\TA\helfi\robotframework-reports & robot -i DEMO -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
-           
-### For cleaning up reports folder for easier readability you can transfer selenium-screenshots to subfolder by:
 
-            mkdir <reports folder>\screenshots\selenium-screenshots & move /Y <reports folder>\sele*.png <reports folder>\screenshots\selenium-screenshots
-            
-and full command example is:
-            
-            robot -i DEMO -A ./environments/local.args -d robotframework-reports  . & mkdir C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots & move             /Y C:\TA\helfi_python\robotframework-reports\sele*.png C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots
-            
-full command with both reports folder cleaning before run and screenshots relocating after the run example here:
-            
-            del /S /Q C:\TA\helfi_python\robotframework-reports &
-            robot -i DEMO -A ./environments/local.args -d robotframework-reports  . & mkdir C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots & move             /Y C:\TA\helfi_python\robotframework-reports\sele*.png C:\TA\helfi_python\robotframework-reports\screenshots\selenium-screenshots
-however note that some screenshots in log -file might not be shown correctly since pictures are now relocated.
 ## Eclipse user tips:
 You can use external tools configuration feature to run command prompt command in eclipse directly. Command prompt needs /c argument to run command through it. For example:
 
