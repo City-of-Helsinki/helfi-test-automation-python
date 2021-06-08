@@ -2,6 +2,7 @@
 Documentation   Just a small demo
 Library           SeleniumLibrary
 Library           OperatingSystem
+Library           DocTest.VisualTest   take_screenshots=${true}
 Test Teardown	Close Browser
 
 *** Variables ***
@@ -20,13 +21,17 @@ Browse Content Item
     Open First Item	
  
 Browse Robotframework
-	[Tags]   DEMO
+	[Tags]
 	   Log   Starting Browser
 	   Open Website   http://robotframework.org
 	   Set Window Size   1296   696
 	   Capture Page Screenshot
 	   Page Should Contain   ROBOT FRAME WORK/
 	   Sleep   2
+
+Picture Compare
+	[Tags]   DEMO
+	Compare Images      C:\\TA\\helfi_python//robotframework-resources//screenshots//chrome//fi_short_COLUMNS_50-50_text_chrome.png    C:\\TA\\helfi_python//robotframework-resources//screenshots//chrome//fi_short_HERO_LANDINGPAGE_left_Engel_nopicture_chrome.png
    
 *** Keywords ***
 Open Website
