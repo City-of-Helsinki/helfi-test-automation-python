@@ -414,8 +414,8 @@ Click And Select Text As ${side} Content Type
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}
+#	Compared Pictures Match   ${originalpic}    ${comparisonpic}
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
 	Run Keyword Unless   ${USEORIGINALNAME}   Copy Original Screenshot To Reports Folder   ${originalpic}
 
 Input Text Content To Frame
