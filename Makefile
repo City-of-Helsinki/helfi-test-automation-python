@@ -28,4 +28,9 @@ start-stonehenge:
 start-docker-compose:
 	docker-compose up -d
 
-create-project: $(PROJECT_DIR)/.git $(STONEHENGE_PATH)/.git start-stonehenge start-docker-compose
+$(PROJECT_DIR)/.setup-done:
+	cd $(PROJECT_DIR) && make new && touch .setup-done
+
+setup-drupal: $(PROJECT_DIR)/.setup-done
+
+create-project: $(PROJECT_DIR)/.git $(STONEHENGE_PATH)/.git start-stonehenge start-docker-compose $(PROJECT_DIR)/.setup-done
