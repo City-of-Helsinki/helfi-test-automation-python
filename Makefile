@@ -33,5 +33,7 @@ $(PROJECT_DIR)/.setup-done:
 
 setup-dependencies: $(PROJECT_DIR)/.git $(STONEHENGE_PATH)/.git
 setup-drupal: $(PROJECT_DIR)/.setup-done
+set-permissions:
+	chmod 777 $(PROJECT_DIR) -R
 
-create-project: setup-dependencies start-stonehenge start-docker-compose setup-drupal
+create-project: setup-dependencies start-stonehenge start-docker-compose set-permissions setup-drupal
