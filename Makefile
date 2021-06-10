@@ -2,7 +2,7 @@ RELEASE_NAME ?= gs952
 ARCHIVE_NAME ?= ghostpcl-9.52-linux-x86_64
 DOCKER_REPOSITORY = ghcr.io/city-of-helsinki/helfi-test-automation-python
 DOCKER_TAG ?= 1.0
-PROJECT_GIT ?= git@github.com:City-of-Helsinki/drupal-helfi.git
+PROJECT_GIT ?= https://github.com/City-of-Helsinki/drupal-helfi.git
 PROJECT_DIR ?= build/project
 STONEHENGE_PATH ?= /stonehenge
 
