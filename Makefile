@@ -6,7 +6,7 @@ PROJECT_GIT ?= https://github.com/City-of-Helsinki/drupal-helfi.git
 PROJECT_DIR ?= build/project
 STONEHENGE_PATH ?= build/stonehenge
 
-.PHONY: build-docker-image push-docker-image release-docker-image
+.PHONY: build-docker-image push-docker-image release-docker-image start-stonehenge
 
 build-docker-image:
 	docker build -t $(DOCKER_REPOSITORY):$(DOCKER_TAG) --build-arg release_name=$(RELEASE_NAME) --build-arg archive_name=$(ARCHIVE_NAME) ./
@@ -14,7 +14,7 @@ build-docker-image:
 push-docker-image:
 	docker push $(DOCKER_REPOSITORY):$(DOCKER_TAG)
 
-release-docker-image: build push
+release-docker-image: build-docker-image push-docker-image
 
 $(PROJECT_DIR)/.git:
 	git clone $(PROJECT_GIT) $(PROJECT_DIR)
@@ -31,6 +31,7 @@ start-docker-compose:
 $(PROJECT_DIR)/.setup-done:
 	cd $(PROJECT_DIR) && make new && touch .setup-done
 
+setup-dependencies: $(PROJECT_DIR)/.git $(STONEHBENGE_PATH)/.git
 setup-drupal: $(PROJECT_DIR)/.setup-done
 
-create-project: $(PROJECT_DIR)/.git $(STONEHENGE_PATH)/.git start-stonehenge start-docker-compose $(PROJECT_DIR)/.setup-done
+create-project: setup-dependencies start-stonehenge start-docker-compose setup-drupal

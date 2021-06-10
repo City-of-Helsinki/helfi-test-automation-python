@@ -1,10 +1,6 @@
 on: [push]
 name: CI
 env:
-  DRUPAL_HOSTNAME: "project.docker.so"
-  DRUPAL_IMAGE: druidfi/drupal:8.0-web
-  DRUPAL_WEBROOT: public
-  COMPOSE_PROJECT_NAME: "helfi-test"
   TEST_AUTOMATION_REPOSITORY: "ghcr.io/city-of-helsinki/helfi-test-automation-python:1.0"
 
 jobs:
