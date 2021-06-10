@@ -29,7 +29,7 @@ start-docker-compose:
 	docker-compose up -d
 
 $(PROJECT_DIR)/.setup-done:
-	cd $(PROJECT_DIR) && make new && touch .setup-done
+	cd $(PROJECT_DIR) && make up && make new && touch .setup-done
 
 setup-dependencies: $(PROJECT_DIR)/.git $(STONEHENGE_PATH)/.git
 setup-drupal: $(PROJECT_DIR)/.setup-done
