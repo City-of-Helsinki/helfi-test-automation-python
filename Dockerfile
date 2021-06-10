@@ -1,7 +1,7 @@
 FROM python:3
 
-ARG release_name=gs952
-ARG archive_name=ghostpcl-9.52-linux-x86_64
+ARG release_name
+ARG archive_name
 
 RUN mkdir robotframework-doctestlibrary
 WORKDIR robotframework-doctestlibrary
@@ -28,7 +28,6 @@ RUN wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download
 
 RUN pip install --upgrade robotframework-seleniumlibrary
 
-
 #COPY policy.xml /etc/ImageMagick-6/
 COPY ./ /helfi-robotframework
 RUN apt-get update
@@ -54,5 +53,5 @@ RUN unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
 # Put Chromedriver into the PATH
 ENV PATH $CHROMEDRIVER_DIR:$PATH
 
-WORKDIR    /
+WORKDIR /
 

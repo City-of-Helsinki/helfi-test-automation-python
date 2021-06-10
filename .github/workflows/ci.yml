@@ -1,0 +1,19 @@
+on: [push]
+name: CI
+env:
+  DRUPAL_HOSTNAME: "project.docker.so"
+  DRUPAL_IMAGE: druidfi/drupal:8.0-web
+  DRUPAL_WEBROOT: public
+  COMPOSE_PROJECT_NAME: "helfi-test"
+  TEST_AUTOMATION_REPOSITORY: "ghcr.io/city-of-helsinki/helfi-test-automation-python:1.0"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Build the project
+        run: make create-project

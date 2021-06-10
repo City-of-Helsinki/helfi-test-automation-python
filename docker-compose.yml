@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+
+  app:
+    hostname: "${DRUPAL_HOSTNAME}"
+    container_name: "${COMPOSE_PROJECT_NAME}-app"
+    image: "${DRUPAL_IMAGE}"
+    volumes:
+      - .:/app:build/project
+    environment:
+      APP_ENV: "${APP_ENV:-dev}"
+      DRUSH_OPTIONS_URI: "https://${DRUPAL_HOSTNAME}"
+    networks:
+      - internal
+      - stonehenge-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-app.entrypoints=https"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-app.rule=Host(`${DRUPAL_HOSTNAME}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-app.tls=true"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}-app.loadbalancer.server.port=8080"
+      - "traefik.docker.network=stonehenge-network"
+
+  robo:
+    container_name: "${COMPOSE_PROJECT_NAME}-python-automation"
+    image: "${TEST_AUTOMATION_REPOSITORY}"
+    networks:
+      - internal
+      - stonehenge-network
+  db:
+    container_name: "${COMPOSE_PROJECT_NAME}-db"
+    image: druidfi/db:mysql5.7-drupal
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 3306
+    networks:
+      - internal
+
+networks:
+  internal:
+    external: false
+  stonehenge-network:
+    external: true
+
+volumes:
+  db_data:
