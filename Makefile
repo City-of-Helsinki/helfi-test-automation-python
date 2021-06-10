@@ -4,7 +4,7 @@ DOCKER_REPOSITORY = ghcr.io/city-of-helsinki/helfi-test-automation-python
 DOCKER_TAG ?= 1.0
 PROJECT_GIT ?= https://github.com/City-of-Helsinki/drupal-helfi.git
 PROJECT_DIR ?= build/project
-STONEHENGE_PATH ?= /stonehenge
+STONEHENGE_PATH ?= build/stonehenge
 
 .PHONY: build-docker-image push-docker-image release-docker-image
 
