@@ -7,7 +7,7 @@ services:
     container_name: "${COMPOSE_PROJECT_NAME}-app"
     image: "${DRUPAL_IMAGE}"
     volumes:
-      - .:/app:build/project
+      - .:/app:./build/project
     environment:
       APP_ENV: "${APP_ENV:-dev}"
       DRUSH_OPTIONS_URI: "https://${DRUPAL_HOSTNAME}"
