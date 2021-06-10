@@ -13,3 +13,6 @@ jobs:
 
       - name: Build the project
         run: make create-project
+
+      - name: Run tests
+        run: docker-compose exec python-automation /bin/bash -c "robot -i GALLERY -A /helfi-robotframework/environments/ci.args -d robotframework-reports /helfi-robotframework/robotframework-tests/Teams/Dev/Platform/Article/Gallery.robot"
