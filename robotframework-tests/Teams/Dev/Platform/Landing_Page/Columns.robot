@@ -16,7 +16,6 @@ Force Tags		LANDINGPAGE   COLUMNS
 	And User Adds Text to Left Column
 	And User Adds Text to Right Column
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 	
 30-70
@@ -26,7 +25,6 @@ Force Tags		LANDINGPAGE   COLUMNS
 	And User Adds Text to Left Column
 	And User Adds Text to Right Column
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 70-30
@@ -36,7 +34,6 @@ Force Tags		LANDINGPAGE   COLUMNS
 	And User Adds Text to Left Column
 	And User Adds Text to Right Column
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 50-50 with picture
@@ -46,7 +43,6 @@ Force Tags		LANDINGPAGE   COLUMNS
 	And User Adds Picture to Left Column
 	And User Adds Picture to Right Column
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 50-50 with picture and text
@@ -56,7 +52,6 @@ Force Tags		LANDINGPAGE   COLUMNS
 	And User Adds Picture to Left Column
 	And User Adds Text to Right Column
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 70-30 with original size picture and text
@@ -67,7 +62,6 @@ Force Tags		LANDINGPAGE   COLUMNS
 	And Picture on Left Has Original Aspect Ratio Enabled
 	And User Adds Text to Right Column
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Finnish English Swedish Translations
@@ -102,22 +96,19 @@ User Adds Link Button With ${linkstyle} Style into ${side} Column
 	Run Keyword If  '${side}'=='right'  Add Link to Right Column
 	Run Keyword If  '${side}'=='left'  Add Link to Left Column
 
-User Opens Created Content
-	 Open Created Content
-	 Columns.Take Screenshot Of Content
-
 Picture on ${side} Has Original Aspect Ratio Enabled
 	Use Original Aspect Ratio on ${side}
 
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Columns.Take Screenshot Of Content
 	${contenttype}=  Convert To Lower Case   ${contenttype}
 	${originalpic} =  Set Variable If  
 	...  '${contenttype}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_COLUMNS_${division}_picture_${picsize}_${BROWSER}.png
 	...  '${contenttype}'=='mixed'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_COLUMNS_${division}_left_${content1}_right_${content2}_${picsize}_${BROWSER}.png
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_COLUMNS_${division}_text_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
 
 Page Should Have ${lang_input} Translation
 	Set Language Pointer   ${lang_input}

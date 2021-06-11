@@ -13,7 +13,6 @@ Only Text
 	Given User Goes To New Page Site
 	And User Starts Creating a New Page With Text Content  
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Only Picture
@@ -21,7 +20,6 @@ Only Picture
 	Given User Goes To New Page Site
 	And User Starts Creating a New Page With Picture Content  
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Text And Picture
@@ -29,15 +27,12 @@ Text And Picture
 	Given User Goes To New Page Site
 	And User Starts Creating a New Page With Mixed Content  
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 	
 *** Keywords ***
 User Opens Created Content
 	 Open Created Content
-	 Uncategorized.Take Screenshot Of Content
-	
 
 User Submits The New Page
 	Submit The New Page  
@@ -48,7 +43,8 @@ User Starts Creating a New Page With ${content} Content
 	Start Creating a New Page With ${content} Content
 	
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies	
+	Uncategorized.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_${content}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

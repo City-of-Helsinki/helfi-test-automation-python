@@ -11,7 +11,6 @@ Small Cards
 	And User Starts Creating Landingpage With Small Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -21,7 +20,6 @@ Large Cards
 	And User Starts Creating Landingpage With Large Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -31,7 +29,6 @@ Small Grey Cards
 	And User Starts Creating Landingpage With Small Grey Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -41,7 +38,6 @@ Large Grey Cards
 	And User Starts Creating Landingpage With Large Grey Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -57,12 +53,9 @@ ContentCards Should Work Correctly
 	
 User Goes To New LandingPage Site   Go To New LandingPage Site
 New Landingpage is Submitted	Submit The New Landingpage
-	
-User Opens Created Content
-	 Open Created Content
-	 Take Screenshot Of Content
-	 
+
 Layout Should Not Have Changed
+	Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_CONTENTCARDS_${cardsize}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

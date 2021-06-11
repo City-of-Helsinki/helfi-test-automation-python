@@ -49,6 +49,7 @@ Take Screenshot Of Content
 	Execute javascript  document.body.style.zoom="40%"
 	Run keyword if  ('${picsize}'=='original') & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
 	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+		
 	Execute javascript  document.body.style.zoom="100%"
 
 ${pagetype} Content Matches Language

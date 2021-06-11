@@ -56,8 +56,7 @@ User Adds ${content} Content to Columns Subcategory
 User Adds Content to Text Subcategory
 	Add Content To Text Subcategory
 
-User Opens Created Content
-	 Open Created Content
+Capture Screenshot Of Accordion Contents
 	 Click Element  ${Btn_Accordion_View}
 	 Sleep  1
 	 Take Screenshot Of Content
@@ -70,10 +69,10 @@ User Starts Creating ${color} Accordion With ${heading} Heading And ${contenttyp
 	Create Page With ${color} Color , ${heading} Heading And ${contenttype} With ${subcontent} Content
 	
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Capture Screenshot Of Accordion Contents
 	${contenttype}=  Convert To Lower Case   ${contenttype}
 	${originalpic} =  Set Variable If  '${picture}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${picture}_${heading}_${BROWSER}.png   
 	...				${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${heading}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
-	Run Keyword Unless   ${USEORIGINALNAME}   Copy Original Screenshot To Reports Folder   ${originalpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

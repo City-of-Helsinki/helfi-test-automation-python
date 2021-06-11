@@ -23,10 +23,6 @@ User Submits The New Page
 
 User Starts Creating Page With Gallery  Start Creating Page With Gallery
 
-User Opens Created Content
-	 #Open Created Content
-	 Gallery.Take Screenshot Of Content
-
 Layout Should Not Have Changed
 	Wait Until Keyword Succeeds  5x   200ms   Accept Cookies
 	Gallery.Take Screenshot Of Content

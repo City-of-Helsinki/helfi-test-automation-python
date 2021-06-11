@@ -35,7 +35,7 @@ Force Tags		PAGE   COLUMNS
 	Then Layout Should Not Have Changed	
 
 50-50 with picture
-	[Tags]  CRITICAL    TODO
+	[Tags]  CRITICAL 
 	Given User Goes To New Page -Site  
 	And User Starts Creating Page With 50-50 Division And Picture Content
 	And User Adds Picture to Left Column
@@ -94,10 +94,6 @@ User Adds Link Button With ${linkstyle} Style into ${side} Column
 	${side}=  Convert To Lower Case   ${side}
 	Run Keyword If  '${side}'=='right'  Add Link to Right Column
 	Run Keyword If  '${side}'=='left'  Add Link to Left Column
-
-User Opens Created Content
-	 Open Created Content
-	 Columns.Take Screenshot Of Content
 
 Picture on ${side} Has Original Aspect Ratio Enabled
 	Use Original Aspect Ratio on ${side}

@@ -12,7 +12,6 @@ Browse Gallery Images
 	Given User Goes To New Article Site
 	And User Starts Creating Page With Gallery
 	When User Submits The New Article
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And Moving Between Gallery Images Works
 	
@@ -24,12 +23,9 @@ User Starts Creating Page With Gallery  Start Creating Article With Gallery
 	 						
 User Goes To New Article Site  Go To New Article Site
 
-User Opens Created Content
-	 Open Created Content
-	 Gallery.Take Screenshot Of Content
-
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Gallery.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_GALLERY_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

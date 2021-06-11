@@ -13,7 +13,6 @@ Small Cards
 	And User Starts Creating Page With Small Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -23,7 +22,6 @@ Large Cards
 	And User Starts Creating Page With Large Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -33,7 +31,6 @@ Small Grey Cards
 	And User Starts Creating Page With Small Grey Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -43,7 +40,6 @@ Large Grey Cards
 	And User Starts Creating Page With Large Grey Content Card For Linkkiesimerkit Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
@@ -60,12 +56,12 @@ ContentCards Should Work Correctly
 User Goes To New Page -Site		Go To New Page Site
 User Submits The New Page
 	Submit The New Page
-	
-User Opens Created Content
-	 Open Created Content
-	 Take Screenshot Of Content
+
+
 	 
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_CONTENTCARDS_${cardsize}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

@@ -34,11 +34,6 @@ Text And Picture
 
 	
 *** Keywords ***
-User Opens Created Content
-	 Open Created Content
-	 Uncategorized.Take Screenshot Of Content
-	
-
 User Submits The New Article
 	Submit The New Article  
 	
@@ -48,7 +43,8 @@ User Starts Creating a New Article With ${content} Content
 	Start Creating a New Article With ${content} Content
 	
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Uncategorized.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_${content}_ARTICLE_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

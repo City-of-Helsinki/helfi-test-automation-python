@@ -29,6 +29,7 @@ ${language}	 		 						fi
 ${gallery}									false
 ${serviceispublished}						false
 @{excludetaglist}     					    ARTICLE
+${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
 ${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media		
 *** Keywords ***
@@ -123,6 +124,11 @@ Open Created Content
 	Run Keyword If   (${CI}) & ('${language}'=='fi')  	Accept Cookies
 	Run Keyword If   ${CI}  Reload Page
 	  
+Log In
+	Go To  ${URL_login_page}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text   id:edit-name   <name>
+	Wait Until Keyword Succeeds  5x  200ms  Input Password   id:edit-pass   <password>
+	
 
 Open Content In Non CI Environments
 	[Documentation]   Goes to content view of created content through content list page (since local environment errors prevent
@@ -413,10 +419,10 @@ Click And Select Text As ${side} Content Type
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}
 	
 Compare Pictures And Handle PictureData
-	[Arguments]   ${originalpic}   ${comparisonpic}
-#	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}	
+	Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
-	Run Keyword Unless   ${USEORIGINALNAME}   Copy Original Screenshot To Reports Folder   ${originalpic}
+	Copy Original Screenshot To Reports Folder   ${originalpic}
 
 Input Text Content To Frame
 	[Arguments]   ${content}    ${cke}

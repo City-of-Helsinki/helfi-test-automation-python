@@ -17,7 +17,6 @@ Left Aligned
 	Given User Goes To New Page -Site
 	And User Starts Creating a Left Aligned Page With Hero Block
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 Center Aligned
@@ -25,7 +24,6 @@ Center Aligned
 	Given User Goes To New Page -Site
 	And User Starts Creating a Center Aligned Page With Hero Block
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 Left Aligned Picture
@@ -34,7 +32,6 @@ Left Aligned Picture
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Left Picture
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 Right Aligned Picture
@@ -42,7 +39,6 @@ Right Aligned Picture
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Right Picture
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Bottom Aligned Picture
@@ -50,15 +46,13 @@ Bottom Aligned Picture
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Bottom Picture
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Background Picture
-	[Tags]  
+	[Tags] 
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Background Picture
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed			
 
 Diagonal Picture
@@ -66,7 +60,6 @@ Diagonal Picture
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Diagonal Picture
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed	
 
 Fullcolor Link
@@ -76,7 +69,6 @@ Fullcolor Link
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Hero Link Button With Fullcolor Style
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Framed Link
@@ -85,7 +77,6 @@ Framed Link
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Hero Link Button With Framed Style
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Transparent Link
@@ -94,7 +85,6 @@ Transparent Link
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Hero Link Button With Transparent Style
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Gold Background Color
@@ -104,7 +94,6 @@ Gold Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Gold As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Silver Background Color
@@ -113,7 +102,6 @@ Silver Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Silver As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Brick Background Color
@@ -122,7 +110,6 @@ Brick Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Brick As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Bus Background Color
@@ -131,7 +118,6 @@ Bus Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Bus As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Copper Background Color
@@ -140,7 +126,6 @@ Copper Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Copper As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Engel Background Color
@@ -149,7 +134,6 @@ Engel Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Engel As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Fog Background Color
@@ -158,7 +142,6 @@ Fog Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Fog As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Metro Background Color
@@ -167,7 +150,6 @@ Metro Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Metro As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Summer Background Color
@@ -176,7 +158,6 @@ Summer Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Summer As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Suomenlinna Background Color
@@ -185,7 +166,6 @@ Suomenlinna Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Suomenlinna As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 	
 Tram Background Color
@@ -194,7 +174,6 @@ Tram Background Color
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Tram As Background Color
 	When User Submits The New Page
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Finnish English Swedish Translations
@@ -249,14 +228,15 @@ Page Content Matches Language
 	Content Should Match Current Language Selection   ${Content}
 	
 Layout Should Not Have Changed
+	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Take Screenshot Of Content
 	${originalpic} =  Set Variable If
 ...  '${picalign}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_HERO_${picalign}_vaakuna_${picture}_${BROWSER}.png
 ...  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_HERO_left_vaakuna_nopicture_${linkstyle}link_${BROWSER}.png
 ...  '${color}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_HERO_left_${color}_nopicture_${BROWSER}.png
 ...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_HERO_${value}_vaakuna_nopicture_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
 
 	
 	
