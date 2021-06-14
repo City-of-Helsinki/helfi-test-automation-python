@@ -78,7 +78,6 @@ Go To ${language} Translation Page
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
-	Set Selenium Speed   0
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    ${pagesadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item on Content Menu List
@@ -125,10 +124,9 @@ Open Created Content
 	Run Keyword If   ${CI}  Reload Page
 	  
 Log In
-	Go To  ${URL_login_page}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text   id:edit-name   <name>
-	Wait Until Keyword Succeeds  5x  200ms  Input Password   id:edit-pass   <password>
-	
+	Wait Until Keyword Succeeds  5x  200ms  Input Text   id:edit-name   helfi-admin
+	Input Password   id:edit-pass   Test_Automation
+	Click Button   id:edit-submit
 
 Open Content In Non CI Environments
 	[Documentation]   Goes to content view of created content through content list page (since local environment errors prevent
@@ -312,18 +310,17 @@ Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
 	Get Admin Url
-	Run Keyword If   ${CI}   Open Website In CI Environment   ${admin_url}
+	Run Keyword If   ${CI}   Log-In In CI Environment
 	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}
 	Set Window Size   1296   696
-#	Set Selenium Speed  0.5
 	
-Open Website In CI Environment
-	[Arguments]   ${url}
+Log-In In CI Environment
     ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --headless
-    Open Browser    ${url}    chrome    options=${chrome_options}
+    Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
+    Log In
 	
 Rename Picture With New Name
 	[Documentation]   Idea is to Replace Reports file picture with new name in order to help in 
