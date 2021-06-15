@@ -1,7 +1,7 @@
 --variable ADMIN_URL:docker exec helfi-app drush uli
---variable BASE_URL:helfi.docker.so
+--variable BASE_URL:mysite-app.mysite_internal:8080
 --variable BROWSER:headlesschrome
---variable PROTOCOL:https
+--variable PROTOCOL:http
 --variable CI:$true
 --variable DEBUG:$true
 --variable USEORIGINALNAME:$false
