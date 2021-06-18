@@ -13,10 +13,14 @@ Create ${pagetype} With ${number} Remote Video(s) Content
 
 	
 Add Remote Video
-	[Arguments]   ${number}   ${url}=https://www.youtube.com/watch?v=nl5jKA6MMVg    
+	[Arguments]   ${number}   ${url}=https://www.youtube.com/watch?v=nl5jKA6MMVg
+	${landingpagenumber}=   Evaluate  ${number}-1    
 	Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
-	Wait Until Element Is Visible  name:field_remote_video-media-library-open-button-field_content-${number}-subform   timeout=3
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  name:field_remote_video-media-library-open-button-field_content-${number}-subform
+	${islandingpage}=  Suite Name Contains Text   Landing Page
+	Run Keyword Unless   ${islandingpage}   Wait Until Element Is Visible  name:field_remote_video-media-library-open-button-field_content-${number}-subform   timeout=3
+	Run Keyword Unless   ${islandingpage}  Wait Until Keyword Succeeds  5x  200ms  Click Element  name:field_remote_video-media-library-open-button-field_content-${number}-subform
+	Run Keyword If   ${islandingpage}   Wait Until Element Is Visible  name:field_remote_video-media-library-open-button-field_content-0-subform   timeout=3
+	Run Keyword If   ${islandingpage}   Wait Until Keyword Succeeds  5x  200ms  Click Element  name:field_remote_video-media-library-open-button-field_content-${landingpagenumber}-subform
 	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
@@ -41,11 +45,21 @@ Remote Video Play Begins Correctly
 
 
 Video 2 Plays Correctly
-	Capture Element Screenshot   css:article > div > div:nth-child(3) > div > iframe   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
+	${isarticle}=  Suite Name Contains Text   Article
+	${islandingpage}=  Suite Name Contains Text   Landing Page
+	Run Keyword If   ${isarticle}   Capture Element Screenshot   ${Itm_Article_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
+	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png   
+	Run Keyword Unless   ${isarticle} | ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
 	${video2start} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
-	Click Element   ${Itm_Video2}
+		
+	Run Keyword If   ${islandingpage}   Click Element   ${Itm_Landingpage_Video2}
+	Run Keyword If   ${isarticle}   Click Element   ${Itm_Article_Video2}   
+	Run Keyword Unless   ${isarticle} | ${islandingpage}   Click Element   ${Itm_Video2}
+	
 	Sleep   5
-	Capture Element Screenshot   css:article > div > div:nth-child(3) > div > iframe   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
+	Run Keyword If   ${isarticle}   Capture Element Screenshot   ${Itm_Article_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
+	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
+	Run Keyword Unless   ${isarticle} | ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
 	${video2end} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${video2start}   ${video2end}
 	

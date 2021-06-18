@@ -207,4 +207,7 @@ ${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-
 
 ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > button
 ${Itm_Video}										css:#mm-0 > div.dialog-off-canvas-main-canvas > div > main > div.main-content
-${Itm_Video2}  										css:#mm-0 > div.dialog-off-canvas-main-canvas > div > main > div.main-content > div > article > div > div:nth-child(3)
+${Itm_Video2}  										css:article > div > div:nth-child(3) > div > iframe
+${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
+${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe
+
