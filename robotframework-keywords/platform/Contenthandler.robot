@@ -22,6 +22,7 @@ ${submitted}								false
 ${picalign} 		 						${EMPTY}
 ${picture} 			 						nopicture
 ${picsadded}								0
+${videosadded}								0
 ${pagesadded}								0
 ${picsize}									cropped
 ${linkstyle} 		 						${EMPTY}
@@ -83,6 +84,9 @@ Cleanup and Close Browser
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item on Content Menu List
     END
 	FOR    ${i}    IN RANGE    ${picsadded}
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
+    END
+    FOR    ${i}    IN RANGE    ${videosadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
     END
     # in case of service/unit testcases
@@ -157,9 +161,16 @@ Set Language Pointer
 	
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
-	[Arguments]	   ${pic1}   ${pic2}    ${excludefilepath}=${EMPTY}
-	Run Keyword If  '${excludefilepath}'!='${EMPTY}'  Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}
-	Run Keyword Unless   '${excludefilepath}'!='${EMPTY}'  Compare Images      ${pic1}   ${pic2}
+	[Arguments]	   ${pic1}   ${pic2}    ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}
+	IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
+        Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}   move_tolerance=${movetolerance}
+    ELSE IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'=='${EMPTY}')
+        Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}
+    ELSE IF    ('${excludefilepath}'=='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
+        Compare Images      ${pic1}   ${pic2}   move_tolerance=${movetolerance}
+    ELSE
+    	Compare Images      ${pic1}   ${pic2}
+    END 
     
 
 Go To New Article Site
@@ -217,7 +228,7 @@ Go To Translate Selection Page
 Submit The New ${pagetype}
 	[Documentation]   Sleeps 1 second in case of pictures added so that they have time to load into content view.
 	Run Keyword If  ${picsadded} > 0   Sleep  1
-	Wait Until Keyword Succeeds  5x  1  Submit New Content
+	Wait Until Keyword Succeeds  2x  1  Submit New Content
 
 Submit New Content
 	[Documentation]  User submits new page and it is saved and appears in content view
@@ -416,10 +427,11 @@ Click And Select Text As ${side} Content Type
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}
 	
 Compare Pictures And Handle PictureData
-	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}	
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}
-	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
+	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}	
 	Copy Original Screenshot To Reports Folder   ${originalpic}
+	Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}   ${movetolerance}
+	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
+	
 
 Input Text Content To Frame
 	[Arguments]   ${content}    ${cke}

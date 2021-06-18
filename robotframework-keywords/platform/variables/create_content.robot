@@ -8,7 +8,7 @@
 #				 Input      = Inp
 #				 Button     = Btn
 #				 Menu-item  = Mtm
-#				 Item		= Itm
+#				 Item		= Itm    (For example div elements or page view components)
 
 *** Variables ***
 #LISTS
@@ -44,6 +44,8 @@ ${Opt_AddBanner}   							name:field_content_banner_add_more
 ${Opt_AddAccordion}   						name:field_content_accordion_add_more
 ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
+${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
+
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
 ${Inp_Pic_AltText}							css:[data-drupal-selector=edit-media-0-fields-field-media-image-0-alt]
@@ -197,3 +199,12 @@ ${Inp_LiftupWithImage_Design}						name:field_content[0][subform][field_liftup_w
 ${Inp_Service_Title}								name:title[0][value]
 ${Inp_Service_Visible_Title}						name:field_service_visible_title[0][value]
 ${Inp_Service_ParentService}						name:field_service_parent_service[0][target_id]
+
+# REMOTE VIDEO
+${Btn_RemoteVideo_Add}								name:field_remote_video-media-library-open-button-field_content-1-subform
+${Inp_RemoteVideo_Url}								name:url
+${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-submit']
+
+${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > button
+${Itm_Video}										css:#mm-0 > div.dialog-off-canvas-main-canvas > div > main > div.main-content
+${Itm_Video2}  										css:#mm-0 > div.dialog-off-canvas-main-canvas > div > main > div.main-content > div > article > div > div:nth-child(3)
