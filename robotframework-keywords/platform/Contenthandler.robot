@@ -22,6 +22,7 @@ ${submitted}								false
 ${picalign} 		 						${EMPTY}
 ${picture} 			 						nopicture
 ${picsadded}								0
+${paragraphsadded}							0
 ${videosadded}								0
 ${pagesadded}								0
 ${picsize}									cropped
@@ -32,7 +33,10 @@ ${serviceispublished}						false
 @{excludetaglist}     					    ARTICLE
 ${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
-${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media		
+${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media
+${URL_paragraphs_page}						${PROTOCOL}://${BASE_URL}/fi/admin/content/paragraphs
+${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi/admin/content/paragraphs/add/default
+		
 *** Keywords ***
 
 Open Paragraph For Edit
@@ -89,6 +93,10 @@ Cleanup and Close Browser
     FOR    ${i}    IN RANGE    ${videosadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
     END
+    FOR    ${i}    IN RANGE    ${paragraphsadded}
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Paragraphs List
+    END
+    
     # in case of service/unit testcases
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
     Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished
@@ -256,6 +264,13 @@ Delete Newly Created Item from Content Media List
 	Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_media_page}	
 	
+Delete Newly Created Item from Paragraphs List
+	Go To   ${URL_paragraphs_page}
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_Dropbutton}
+	Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
+	Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
+	Go To   ${URL_paragraphs_page}	
+	
 Copy Original Screenshot To Reports Folder
 	[Arguments]     ${source}
 	Copy File    ${source}    ${REPORTS_PATH}/originals/
@@ -272,10 +287,11 @@ Set Content As Published
 Select Language
 	[Arguments]     ${value}
 	[Documentation]  fi = Finnish , sv = Swedish , en = English , ru = Russian
-	Run Keyword If  '${value}'=='Finnish'  Click Element  css:[lang|=fi]
-	Run Keyword If  '${value}'=='Swedish'  Click Element  css:[lang|=sv]
-	Run Keyword If  '${value}'=='English'  Click Element  css:[lang|=en]
-	Run Keyword If  '${value}'=='Russian'  Click Element  css:[lang|=ru]
+	${value}=  Convert To Lower Case   ${value}
+	Run Keyword If  '${value}'=='finnish'  Click Element  css:[lang|=fi]
+	Run Keyword If  '${value}'=='swedish'  Click Element  css:[lang|=sv]
+	Run Keyword If  '${value}'=='english'  Click Element  css:[lang|=en]
+	Run Keyword If  '${value}'=='russian'  Click Element  css:[lang|=ru]
 
 Return Correct Title
 	[Arguments]     ${language}
@@ -410,6 +426,8 @@ Add Picture Caption to ${side}
 	
 Add Text Content To Column on ${side}
 	[Documentation]   Adds text content to selected column by selecting content type first and then inserting text
+	${isaddfromlibrary}=  Suite Name Contains Text    Add From Library
+	Run Keyword If  ${isaddfromlibrary} & ('${language}'!='fi')   Click And Select Text As ${side} Content Type
 	Run Keyword If  '${language}'=='fi'  Click And Select Text As ${side} Content Type
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	@{content} =	Split String	${TextFileContent}   .,.
@@ -420,7 +438,9 @@ Add Text Content To Column on ${side}
 	... 	 '${side}'=='Right'	${content_right}
 	${editpicturevisible}=  Run Keyword And Return Status    Element Should Not Be Visible  ${Btn_Column_${side}_Edit}   timeout=1
 	Run Keyword Unless   ${editpicturevisible}   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Column_${side}_Edit}
-	Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Column_${side}_Text}   //body   ${content_text}
+	
+	Run Keyword Unless  ${isaddfromlibrary}   Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Column_${side}_Text}   //body   ${content_text}
+	Run Keyword If  ${isaddfromlibrary}   Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Paragraph_Column_${side}_Text}   //body   ${content_text}
 	
 Click And Select Text As ${side} Content Type
 	Wait Until Element Is Visible  ${Opt_Column_${side}_AddContent_Text}   timeout=3

@@ -45,6 +45,7 @@ ${Opt_AddAccordion}   						name:field_content_accordion_add_more
 ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
+${Opt_AddFromLibrary}						name:field_content_from_library_add_more
 
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
@@ -211,3 +212,18 @@ ${Itm_Video2}  										css:article > div > div:nth-child(3) > div > iframe
 ${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
 ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe
 
+# ADD FROM LIBRARY
+${Inp_Paragraph_Title}								name:label[0][value]
+${Inp_Paragraph_Columns_Title}						name:paragraphs[0][subform][field_columns_title][0][value]
+${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
+${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
+${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
+${Opt_Paragraph_AddText}							name:paragraphs_text_add_more
+${Opt_Paragraph_AddLink}							name:paragraphs_link_add_more
+${Opt_Paragraph_AddBanner}   						name:paragraphs_banner_add_more
+${Opt_Paragraph_AddAccordion}   					name:paragraphs_accordion_add_more
+${Opt_Paragraph_AddContentCards} 					name:paragraphs_content_cards_add_more
+${Opt_Paragraph_AddLiftupWithImage}					name:paragraphs_liftup_with_image_add_more
+${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
+${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
+${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
