@@ -215,6 +215,11 @@ ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > ifr
 # ADD FROM LIBRARY
 ${Inp_Paragraph_Title}								name:label[0][value]
 ${Inp_Paragraph_Columns_Title}						name:paragraphs[0][subform][field_columns_title][0][value]
+${Inp_Paragraph_Banner_Title}						name:paragraphs[0][subform][field_banner_title][0][value]
+${Inp_Paragraph_Banner_Link_Uri}					name:paragraphs[0][subform][field_banner_link][0][uri]
+${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_link][0][title]
+
+
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
 ${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
@@ -227,3 +232,6 @@ ${Opt_Paragraph_AddLiftupWithImage}					name:paragraphs_liftup_with_image_add_mo
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
 ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
+${Txt_Banner_Title}									css:.banner__title
+${Txt_Banner_Description}							css:div.banner__content-wrapper > div > div > p
+${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span

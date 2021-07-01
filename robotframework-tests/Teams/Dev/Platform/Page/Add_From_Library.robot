@@ -10,21 +10,18 @@ Force Tags		PAGE   ADDFROMLIBRARY
 Columns
 	[Tags]
 	Given User Creates New Columns Paragraphs To Library
-	And User Starts Creating Page With Add From Library Content For Columns -Paragraph in Finnish Language
+	When User Starts Creating Page With Add From Library Content For Columns -Paragraph in Finnish Language
 	And User Starts Creating Page With Add From Library Content For Columns -Paragraph in English Language
 	And User Starts Creating Page With Add From Library Content For Columns -Paragraph in Swedish Language
 	Then Page Should Have Finnish Translation
 	Then Page Should Have English Translation
 	Then Page Should Have Swedish Translation
-
-
 	
 *** Keywords ***
 User Creates New Columns Paragraphs To Library	
 	Create New Finnish Columns Paragraph To Library
 	Create New English Columns Paragraph To Library
 	Create New Swedish Columns Paragraph To Library
-	
 
 User Goes To New Page -Site
 		Go To  ${URL_content_page}
@@ -36,11 +33,3 @@ User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} 
 	Go To  ${URL_content_page}
 	Go To New Page Site
 	Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content
-	
-Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
-	Take Screenshot Of Content
-	${paragraph}=  Convert To Lower Case   ${paragraph}
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ADDFROMLIBRARY_${paragraph}_text_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
