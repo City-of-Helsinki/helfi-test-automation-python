@@ -50,6 +50,22 @@ Create New ${lang_selection} Accordion Paragraph To Library
 	Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1  
+
+Create New ${lang_selection} ContentCards Paragraph To Library
+	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	Set Test Variable   ${language}   ${language_pointer}
+	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_ContentCards_${language}  
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_AddContentCards}
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph  ${Inp_Paragraph_ContentCards_Title}
+	Run Keyword If  '${lang_selection}'=='Finnish'  Input Text   ${Inp_Paragraph_ContentCard_TargetId}   Esimerkkisivu
+	Run Keyword If  '${lang_selection}'=='Finnish'  Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'Esimerkkisivu')]
+	Run Keyword If  '${lang_selection}'=='English'  Input Text   ${Inp_Paragraph_ContentCard_TargetId}   example
+	Run Keyword If  '${lang_selection}'=='English'  Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'example')]
+	Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
  
 Add SubContent To Accordion 
 	[Arguments]   ${content}
@@ -88,15 +104,15 @@ Page Content Matches Language
 	Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
 	${Title}=  Return Title From Page
 	${Description}=  Return Description From Page
-	 ${Content}=  Run Keyword Unless  '${TEST NAME}'=='Banner'  Add_From_Library.Return Content From Page
+	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards')  Add_From_Library.Return Content From Page
 	 ${Linktext}=  Run Keyword If  '${TEST NAME}'=='Banner'  Return Link Text From Page
 	Title Should Match Current Language Selection   ${Title}
 	Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
-	Run Keyword Unless  '${TEST NAME}'=='Banner'  Content Should Match Current Language Selection   ${Content}
+	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards')  Content Should Match Current Language Selection   ${Content}
 	
-	Run Keyword If  '${TEST NAME}'=='Banner'   LinkText Is Correct   ${Linktext}
+	Run Keyword If  '${TEST NAME}'=='Banner'    LinkText Is Correct   ${Linktext}
 	
 Return Title From Page
 	IF    '${TEST NAME}'=='Columns'
@@ -106,6 +122,8 @@ Return Title From Page
     ELSE IF    '${TEST NAME}'=='Accordion'
     	Wait Until Element Is Visible   ${Txt_Accordion_Title}
     	${title}=   Get Text    ${Txt_Accordion_Title}
+    ELSE IF  '${TEST NAME}'=='ContentCards'
+    	${title}=   Get Text    ${Txt_ContentCards_Title}
     END
 	[Return]		${title}
 

@@ -217,9 +217,12 @@ ${Inp_Paragraph_Title}								name:label[0][value]
 ${Inp_Paragraph_Columns_Title}						name:paragraphs[0][subform][field_columns_title][0][value]
 ${Inp_Paragraph_Banner_Title}						name:paragraphs[0][subform][field_banner_title][0][value]
 ${Inp_Paragraph_Accordion_Title}						name:paragraphs[0][subform][field_accordion_title][0][value]
+${Inp_Paragraph_ContentCards_Title}					name:paragraphs[0][subform][field_content_cards_title][0][value]
 ${Inp_Paragraph_Banner_Link_Uri}					name:paragraphs[0][subform][field_banner_link][0][uri]
 ${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_link][0][title]
 ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
+${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
+
 
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
@@ -238,3 +241,6 @@ ${Txt_Banner_Description}							css:div.banner__content-wrapper > div > div > p
 ${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span
 ${Txt_Accordion_Title}								//button[@class='accordion-item__button accordion-item__button--toggle handorgel__header__button']
 ${Txt_Accordion_Content}							//*[@id="handorgel1-fold1-content"]/div/div/div/div/p
+${Txt_ContentCards_Title}							css:.content-cards__title
+${Txt_ContentCards_Description}						css:div.text.text--default > div > div > p
+
