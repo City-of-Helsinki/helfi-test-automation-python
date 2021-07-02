@@ -1,6 +1,4 @@
 *** Settings ***
-Documentation   Testing Columns Settings in Platform by comparing layout to default picture. Testing is performed with
-...				Different text deviation like 50-50, 30-70 and with pictures and links added.
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Add_From_Library.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
@@ -8,7 +6,7 @@ Force Tags		LANDINGPAGE   ADDFROMLIBRARY
 
 *** Test Cases ***
 Columns
-	[Tags]
+	[Tags] 
 	Given User Creates New Columns Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in Finnish Language
 	And User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in English Language
@@ -18,7 +16,7 @@ Columns
 	Then Page Should Have Swedish Translation
 	
 Banner
-	[Tags] 
+	[Tags]
 	Given User Creates New Banner Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph in Finnish Language
 	And User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph in English Language

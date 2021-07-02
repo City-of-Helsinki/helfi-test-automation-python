@@ -289,7 +289,9 @@ Select Language
 	[Documentation]  fi = Finnish , sv = Swedish , en = English , ru = Russian
 	${value}=  Convert To Lower Case   ${value}
 	Run Keyword If  '${value}'=='finnish'  Click Element  css:[lang|=fi]
+	Run Keyword If  '${value}'=='swedish'  Set Focus To Element  css:[lang|=sv]
 	Run Keyword If  '${value}'=='swedish'  Click Element  css:[lang|=sv]
+	Run Keyword If  '${value}'=='english'  Set Focus To Element  css:[lang|=en]
 	Run Keyword If  '${value}'=='english'  Click Element  css:[lang|=en]
 	Run Keyword If  '${value}'=='russian'  Click Element  css:[lang|=ru]
 

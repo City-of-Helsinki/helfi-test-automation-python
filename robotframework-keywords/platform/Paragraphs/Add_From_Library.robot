@@ -35,6 +35,33 @@ Create New ${lang_selection} Banner Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1 
  
+Create New ${lang_selection} Accordion Paragraph To Library
+	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	Set Test Variable   ${language}   ${language_pointer}
+	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Accordion_${language}
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_AddAccordion}
+	Wait Until Element Is Visible   ${Inp_Paragraph_Accordion_Accordion1_Text}
+	Input Title To Paragraph   ${Inp_Paragraph_Accordion_Accordion1_Text}
+	Select Icon With Name   cogwheel
+	Add SubContent To Accordion   Text
+	Add Content To Text Subcategory
+	Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1  
+ 
+Add SubContent To Accordion 
+	[Arguments]   ${content}
+	Wait Until Element Is Visible   ${Ddn_Accordion_AddContent}   timeout=3
+	Click Element	${Ddn_Accordion_AddContent}
+	Run Keyword If  '${content}'=='Text'  Click Element   ${Opt_Accordion_Content_Text}
+	Run Keyword If  '${content}'=='Columns'  Click Element   ${Opt_Accordion_Content_Columns}
+
+Add Content To Text Subcategory
+	${TextFileContent}=  Return Correct Content   ${language}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Content}   //body   ${TextFileContent}
+	 
 Open Paragraph Add Page With Given Language
 	[Arguments]   ${language}
 	Go To   ${URL_paragraphs_add_page}
@@ -57,6 +84,8 @@ Page Should Have ${lang_input} Translation
 
 Page Content Matches Language
 	${islandingpage}=  Suite Name Contains Text    Landing Page
+	Run Keyword If  ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  Accept Cookies
+	Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
 	${Title}=  Return Title From Page
 	${Description}=  Return Description From Page
 	 ${Content}=  Run Keyword Unless  '${TEST NAME}'=='Banner'  Add_From_Library.Return Content From Page
@@ -74,6 +103,9 @@ Return Title From Page
         ${title}=   Get Text    ${Txt_Column_Title}
     ELSE IF    '${TEST NAME}'=='Banner'
         ${title}=   Get Text    ${Txt_Banner_Title}
+    ELSE IF    '${TEST NAME}'=='Accordion'
+    	Wait Until Element Is Visible   ${Txt_Accordion_Title}
+    	${title}=   Get Text    ${Txt_Accordion_Title}
     END
 	[Return]		${title}
 
@@ -82,7 +114,12 @@ Return Description From Page
 	[Return]		${description}
 
 Return Content From Page
-	${content}=	Get Text    ${Txt_Column_Content}
+	IF    '${TEST NAME}'=='Columns'
+		${content}=	Get Text    ${Txt_Column_Content}
+	ELSE IF   '${TEST NAME}'=='Accordion'
+		Sleep  2
+		${content}=	Get Text   ${Txt_Accordion_Content}
+	END
 	[Return]		${content}
 	
 Return Link Text From Page

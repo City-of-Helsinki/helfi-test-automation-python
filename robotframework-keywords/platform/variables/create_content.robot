@@ -216,9 +216,10 @@ ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > ifr
 ${Inp_Paragraph_Title}								name:label[0][value]
 ${Inp_Paragraph_Columns_Title}						name:paragraphs[0][subform][field_columns_title][0][value]
 ${Inp_Paragraph_Banner_Title}						name:paragraphs[0][subform][field_banner_title][0][value]
+${Inp_Paragraph_Accordion_Title}						name:paragraphs[0][subform][field_accordion_title][0][value]
 ${Inp_Paragraph_Banner_Link_Uri}					name:paragraphs[0][subform][field_banner_link][0][uri]
 ${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_link][0][title]
-
+${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
 
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
@@ -235,3 +236,5 @@ ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0
 ${Txt_Banner_Title}									css:.banner__title
 ${Txt_Banner_Description}							css:div.banner__content-wrapper > div > div > p
 ${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span
+${Txt_Accordion_Title}								//button[@class='accordion-item__button accordion-item__button--toggle handorgel__header__button']
+${Txt_Accordion_Content}							//*[@id="handorgel1-fold1-content"]/div/div/div/div/p
