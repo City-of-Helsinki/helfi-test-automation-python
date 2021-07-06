@@ -9,6 +9,7 @@
 #				 Button     = Btn
 #				 Menu-item  = Mtm
 #				 Item		= Itm    (For example div elements or page view components)
+#				 TextArea	= Tar
 
 *** Variables ***
 #LISTS
@@ -227,6 +228,7 @@ ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_a
 ${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
 
 ${Btn_Paragraph_Gallery_Picture}					name:field_gallery_slide_media-media-library-open-button-paragraphs-0-subform-field_gallery_slides-
+${Btn_Paragraph_Image_Picture}						name:field_image-media-library-open-button-paragraphs-0-subform
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
 ${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
@@ -240,6 +242,9 @@ ${Opt_Paragraph_AddLiftupWithImage}					name:paragraphs_liftup_with_image_add_mo
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
 ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
+${Tar_Paragraph_Picture_Image_Caption}				name:paragraphs[0][subform][field_image_caption][0][value]
+${Tar_Paragraph_Gallery_Image_Caption}				name:paragraphs[0][subform][field_gallery_slides][0][subform][field_gallery_slide_caption][0][value]
+
 ${Txt_Banner_Title}									css:.banner__title
 ${Txt_Banner_Description}							css:div.banner__content-wrapper > div > div > p
 ${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span
