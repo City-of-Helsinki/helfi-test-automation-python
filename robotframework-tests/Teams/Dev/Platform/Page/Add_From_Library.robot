@@ -26,12 +26,22 @@ Accordion
 	Then Page Should Have Swedish Translation
 
 ContentCards
-	[Tags] 
+	[Tags]
 	Given User Creates New ContentCards Paragraphs To Library
 	When User Starts Creating Page With Add From Library Content For ContentCards -Paragraph in Finnish Language
 	And User Starts Creating Page With Add From Library Content For ContentCards -Paragraph in English Language
 	Then Page Should Have Finnish Translation
 	Then Page Should Have English Translation
+
+Gallery
+	[Tags]
+	Given User Creates New Gallery Paragraphs To Library
+	When User Starts Creating Page With Add From Library Content For Gallery -Paragraph in Finnish Language
+	And User Starts Creating Page With Add From Library Content For Gallery -Paragraph in English Language
+	And User Starts Creating Page With Add From Library Content For Gallery -Paragraph in Swedish Language
+	Then Page Should Have Finnish Translation
+	Then Page Should Have English Translation
+	Then Page Should Have Swedish Translation
 		
 *** Keywords ***
 User Creates New Columns Paragraphs To Library	
@@ -47,6 +57,11 @@ User Creates New Accordion Paragraphs To Library
 User Creates New ContentCards Paragraphs To Library	
 	Create New Finnish ContentCards Paragraph To Library
 	Create New English ContentCards Paragraph To Library
+
+User Creates New Gallery Paragraphs To Library	
+	Create New Finnish Gallery Paragraph To Library
+	Create New English Gallery Paragraph To Library
+	Create New Swedish Gallery Paragraph To Library
 
 User Goes To New Page -Site
 		Go To  ${URL_content_page}

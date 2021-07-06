@@ -51,6 +51,19 @@ Create New ${lang_selection} Accordion Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1  
 
+Create New ${lang_selection} Gallery Paragraph To Library
+	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	Set Test Variable   ${language}   ${language_pointer}
+	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Gallery_${language}
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_AddGallery}
+	Add Picture 'train' And Caption To 1:th Picture
+	Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1 
+
+
 Create New ${lang_selection} ContentCards Paragraph To Library
 	${language_pointer}=   Get Language Pointer   ${lang_selection}
 	Set Test Variable   ${language}   ${language_pointer}
@@ -89,9 +102,42 @@ Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content
 	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Set Test Variable   ${paragraph}   ${paragraph}
 	Input Non-paragraph Related Content   ${pagetype}
-	Open Paragraph For Edit   ${Opt_AddFromLibrary}
+	Run Keyword If  '${lang_selection}'=='Finnish'  Open Paragraph For Edit   ${Opt_AddFromLibrary}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element   //option[text()='Test_Automation_Add_From_Library_${paragraph}_${language}']
 	Wait Until Keyword Succeeds  5x  200ms  Submit The New ${pagetype}
+
+Add Picture '${name}' And Caption To ${number}:th Picture
+	${number}=   Convert To Integer   ${number}
+	Run Keyword If  ${number}>=2   Click Element   ${Btn_Gallery_Picture_Addmore}
+	${editgalleryvisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  name:field_content_0_edit   timeout=1
+	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  500ms  Click Edit Paragraph
+	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Gallery_Picture_Addmore}
+	Run Keyword If  '${name}'=='tulips'   Sleep   1    # Sleep due issues of missing paragraph in page
+	Wait Until Keyword Succeeds  5x  500ms   Open Add Picture To Gallery Window   ${number}
+	@{content}=  Set Variable  @{pic_1_texts_${language}}
+	${pictitle}=  Get From List  ${content}   0
+	${picdescription}=  Get From List  ${content}   1
+	${pgrapher}=  Get From List  ${content}   2
+	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${name}.jpg
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Pic_Name}   ${pictitle}
+	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
+	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
+	Run Keyword If  '${language}'=='fi'   Click Button   ${Btn_Save}
+	Run Keyword If  '${language}'=='en'   Click Button   ${Btn_Save_En}
+	Run Keyword If  '${language}'=='sv'   Click Button   ${Btn_Save_Sv}
+	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
+	Run Keyword If  '${language}'=='en'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+	Run Keyword If  '${language}'=='sv'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+	${pic_caption_locator}=   Set Variable  name:paragraphs[0][subform][field_gallery_slides][0][subform][field_gallery_slide_caption][0][value]
+	Wait Until Keyword Succeeds  5x  200ms   Input Text      ${pic_caption_locator}   ${pic_1_caption_${language}}
+	Set Test Variable  ${picsadded}    ${picsadded}+1
+	Set Test Variable  ${picture}    picture
+
+Open Add Picture To Gallery Window
+	[Arguments]   ${number}
+	Wait Until Element Is Visible   ${Btn_Paragraph_Gallery_Picture}${number-1}-subform   timeout=4
+	Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Gallery_Picture}${number-1}-subform
+	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 Page Should Have ${lang_input} Translation
 	Set Language Pointer   ${lang_input}
@@ -102,17 +148,18 @@ Page Content Matches Language
 	${islandingpage}=  Suite Name Contains Text    Landing Page
 	Run Keyword If  ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  Accept Cookies
 	Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
-	${Title}=  Return Title From Page
+	${Title}=  Run Keyword Unless  '${TEST NAME}'=='Gallery'   Return Title From Page
 	${Description}=  Return Description From Page
-	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards')  Add_From_Library.Return Content From Page
+	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery')  Add_From_Library.Return Content From Page
 	 ${Linktext}=  Run Keyword If  '${TEST NAME}'=='Banner'  Return Link Text From Page
-	Title Should Match Current Language Selection   ${Title}
+	 ${Piccaption}=  Run Keyword If  '${TEST NAME}'=='Gallery'  Return Picture Caption From Page
+	Run Keyword Unless  '${TEST NAME}'=='Gallery'  Title Should Match Current Language Selection   ${Title}
 	Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
-	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards')  Content Should Match Current Language Selection   ${Content}
-	
+	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery')  Content Should Match Current Language Selection   ${Content}
 	Run Keyword If  '${TEST NAME}'=='Banner'    LinkText Is Correct   ${Linktext}
+	Run Keyword If  '${TEST NAME}'=='Gallery'   Picture Caption Is Correct   ${Piccaption}
 	
 Return Title From Page
 	IF    '${TEST NAME}'=='Columns'
@@ -143,6 +190,14 @@ Return Content From Page
 Return Link Text From Page
 	${linktxt}=	 Get Text    ${Txt_Banner_Link}
 	[Return]		${linktxt}
+
+Return Picture Caption From Page
+	${caption}=	 Get Text    ${Txt_Gallery_Image_Caption}
+	[Return]		${caption}
+
+Picture Caption Is Correct
+	[Arguments]   ${caption}
+	Should Contain    ${caption}    ${pic_1_caption_${language}}
 	
 LinkText Is Correct
 	[Arguments]   ${linktext}

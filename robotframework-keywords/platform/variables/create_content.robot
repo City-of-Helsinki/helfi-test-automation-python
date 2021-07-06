@@ -35,6 +35,8 @@ ${link_title_ru}							О книге
 
 #SHARED
 ${Btn_Save}									//button[contains(text(),'Tallenna')]
+${Btn_Save_En}								//button[contains(text(),'Save')]
+${Btn_Save_Sv}								//button[contains(text(),'Spara')]
 ${Ddn_AddContent}							//ul[@data-drupal-selector='edit-field-content-add-more-operations']//li[2]/button
 ${Opt_AddColumns}						    name:field_content_columns_add_more
 ${Opt_AddPicture}						    name:field_content_image_add_more
@@ -52,6 +54,7 @@ ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-valu
 ${Inp_Pic_AltText}							css:[data-drupal-selector=edit-media-0-fields-field-media-image-0-alt]
 ${Inp_Pic_Photographer}						css:[data-drupal-selector=edit-media-0-fields-field-photographer-0-value]
 ${Btn_Insert_Pic}							//button[contains(text(),'Poimi valitut mediatiedostot')]
+${Btn_Insert_Pic_Alt}						//button[contains(text(),'Insert selected')]
 ${Ddn_SelectLanguage}						//select[@id='edit-langcode-0-value']
 ${Inp_Title}								//input[@id='edit-title-0-value']
 ${Frm_Content}							    css:#cke_1_contents > iframe
@@ -223,7 +226,7 @@ ${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_l
 ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
 ${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
 
-
+${Btn_Paragraph_Gallery_Picture}					name:field_gallery_slide_media-media-library-open-button-paragraphs-0-subform-field_gallery_slides-
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
 ${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
@@ -232,6 +235,7 @@ ${Opt_Paragraph_AddLink}							name:paragraphs_link_add_more
 ${Opt_Paragraph_AddBanner}   						name:paragraphs_banner_add_more
 ${Opt_Paragraph_AddAccordion}   					name:paragraphs_accordion_add_more
 ${Opt_Paragraph_AddContentCards} 					name:paragraphs_content_cards_add_more
+${Opt_Paragraph_AddGallery} 					    name:paragraphs_gallery_add_more
 ${Opt_Paragraph_AddLiftupWithImage}					name:paragraphs_liftup_with_image_add_more
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
@@ -242,5 +246,5 @@ ${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span
 ${Txt_Accordion_Title}								//button[@class='accordion-item__button accordion-item__button--toggle handorgel__header__button']
 ${Txt_Accordion_Content}							//*[@id="handorgel1-fold1-content"]/div/div/div/div/p
 ${Txt_ContentCards_Title}							css:.content-cards__title
-${Txt_ContentCards_Description}						css:div.text.text--default > div > div > p
-
+${Txt_Gallery_Title}								css:.gallery__title
+${Txt_Gallery_Image_Caption}						css:.media--image__caption
