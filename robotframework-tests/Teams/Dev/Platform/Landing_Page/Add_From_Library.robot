@@ -28,10 +28,20 @@ Banner
 ContentCards
 	[Tags]
 	Given User Creates New ContentCards Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For ContentCards -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For ContentCards -Paragraph in English Language
+	When User Starts Creating LandingPage With Add From Library Content For ContentCards -Paragraph in Finnish Language
+	And User Starts Creating LandingPage With Add From Library Content For ContentCards -Paragraph in English Language
 	Then Page Should Have Finnish Translation
 	Then Page Should Have English Translation
+
+LiftupWithImage
+	[Tags]   TODO
+	Given User Creates New LiftupWithImage Paragraphs To Library
+	When User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Finnish Language
+	And User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in English Language
+	And User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Swedish Language
+	Then Page Should Have Finnish Translation
+	Then Page Should Have English Translation
+	Then Page Should Have Swedish Translation
 	
 *** Keywords ***
 User Creates New Columns Paragraphs To Library	
@@ -47,6 +57,11 @@ User Creates New Banner Paragraphs To Library
 User Creates New ContentCards Paragraphs To Library	
 	Create New Finnish ContentCards Paragraph To Library
 	Create New English ContentCards Paragraph To Library
+
+User Creates New LiftupWithImage Paragraphs To Library	
+	Create New Finnish LiftupWithImage Paragraph To Library
+	Create New English LiftupWithImage Paragraph To Library
+	Create New Swedish LiftupWithImage Paragraph To Library
 
 User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
 	Go To  ${URL_content_page}

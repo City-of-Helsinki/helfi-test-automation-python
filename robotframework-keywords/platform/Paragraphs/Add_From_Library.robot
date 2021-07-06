@@ -91,6 +91,20 @@ Create New ${lang_selection} Picture Paragraph To Library
 	Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
+
+Create New ${lang_selection} LiftupWithImage Paragraph To Library
+	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	Set Test Variable   ${language}   ${language_pointer}
+	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_LiftupWithImage_${language}  
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_AddLiftupWithImage}
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph    ${Inp_LiftupWithImage_Title}
+	Add Picture 'train' And Caption To 1:th Picture
+	Input Description To Paragraph   ${Frm_Content}
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
  
 Add SubContent To Accordion 
 	[Arguments]   ${content}
@@ -150,8 +164,10 @@ Open Add Picture
 	[Arguments]   ${number}
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Element Is Visible   ${Btn_Paragraph_Gallery_Picture}${number-1}-subform   timeout=4
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Element Is Visible   ${Btn_Paragraph_Image_Picture}   timeout=4
+	Run Keyword If  '${TEST NAME}'=='LiftupWithImage'  Wait Until Element Is Visible   ${Btn_Paragraph_LiftupWithImage_Picture}   timeout=4
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Gallery_Picture}${number-1}-subform
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Image_Picture}
+	Run Keyword If  '${TEST NAME}'=='LiftupWithImage'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_LiftupWithImage_Picture}
 	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 Page Should Have ${lang_input} Translation
@@ -165,14 +181,14 @@ Page Content Matches Language
 	Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
 	${Title}=  Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Return Title From Page
 	${Description}=  Return Description From Page
-	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Add_From_Library.Return Content From Page
+	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage')  Add_From_Library.Return Content From Page
 	 ${Linktext}=  Run Keyword If  '${TEST NAME}'=='Banner'  Return Link Text From Page
 	 ${Piccaption}=  Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Return Picture Caption From Page
 	Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Title Should Match Current Language Selection   ${Title}
 	Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
-	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Content Should Match Current Language Selection   ${Content}
+	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage')  Content Should Match Current Language Selection   ${Content}
 	Run Keyword If  '${TEST NAME}'=='Banner'    LinkText Is Correct   ${Linktext}
 	Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Picture Caption Is Correct   ${Piccaption}
 	
@@ -186,6 +202,8 @@ Return Title From Page
     	${title}=   Get Text    ${Txt_Accordion_Title}
     ELSE IF  '${TEST NAME}'=='ContentCards'
     	${title}=   Get Text    ${Txt_ContentCards_Title}
+    ELSE IF  '${TEST NAME}'=='LiftupWithImage'	
+    	${title}=   Get Text    ${Txt_LiftupWithImage_Title}
     END
 	[Return]		${title}
 
@@ -217,3 +235,4 @@ Picture Caption Is Correct
 LinkText Is Correct
 	[Arguments]   ${linktext}
 	Should Match    ${linktext}    Test Automation Banner Link
+	

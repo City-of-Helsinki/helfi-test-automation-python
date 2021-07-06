@@ -227,8 +227,11 @@ ${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_l
 ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
 ${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
 
+
+
 ${Btn_Paragraph_Gallery_Picture}					name:field_gallery_slide_media-media-library-open-button-paragraphs-0-subform-field_gallery_slides-
 ${Btn_Paragraph_Image_Picture}						name:field_image-media-library-open-button-paragraphs-0-subform
+${Btn_Paragraph_LiftupWithImage_Picture}            name:field_liftup_with_image_image-media-library-open-button-paragraphs-0-subform
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
 ${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
@@ -253,3 +256,4 @@ ${Txt_Accordion_Content}							//*[@id="handorgel1-fold1-content"]/div/div/div/d
 ${Txt_ContentCards_Title}							css:.content-cards__title
 ${Txt_Gallery_Title}								css:.gallery__title
 ${Txt_Gallery_Image_Caption}						css:.media--image__caption
+${Txt_LiftupWithImage_Title}						css:.liftup-with-image__title
