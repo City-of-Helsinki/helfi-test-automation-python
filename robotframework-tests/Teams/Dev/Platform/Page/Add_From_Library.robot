@@ -62,13 +62,7 @@ User Creates New Gallery Paragraphs To Library
 	Create New Finnish Gallery Paragraph To Library
 	Create New English Gallery Paragraph To Library
 	Create New Swedish Gallery Paragraph To Library
-
-User Goes To New Page -Site
-		Go To  ${URL_content_page}
-		Go To New Page Site
 		
-User Submits The New Page	Submit The New Page
-
 User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
 	Go To  ${URL_content_page}
 	Go To New Page Site
