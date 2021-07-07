@@ -120,6 +120,18 @@ Create New ${lang_selection} ListOfLinks Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
+
+Create New ${lang_selection} Text Paragraph To Library
+	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	Set Test Variable   ${language}   ${language_pointer}
+	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Text_${language}  
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_AddText}
+	Wait Until Keyword Succeeds  5x  200ms  Input Description To Paragraph   ${Frm_Content}
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
  
 Add SubContent To Accordion 
 	[Arguments]   ${content}
@@ -197,16 +209,16 @@ Page Content Matches Language
 	${islandingpage}=  Suite Name Contains Text    Landing Page
 	Run Keyword If  ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  Accept Cookies
 	Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
-	${Title}=  Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Return Title From Page
+	${Title}=  Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')   Return Title From Page
 	${Description}=  Return Description From Page
-	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks')  Add_From_Library.Return Content From Page
+	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Add_From_Library.Return Content From Page
 	 ${Linktext}=  Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')  Return Link Text From Page
 	 ${Piccaption}=  Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Return Picture Caption From Page
-	Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Title Should Match Current Language Selection   ${Title}
+	Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')  Title Should Match Current Language Selection   ${Title}
 	Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
 	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
-	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks')  Content Should Match Current Language Selection   ${Content}
+	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Content Should Match Current Language Selection   ${Content}
 	Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')    LinkText Is Correct   ${Linktext}
 	Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Picture Caption Is Correct   ${Piccaption}
 	

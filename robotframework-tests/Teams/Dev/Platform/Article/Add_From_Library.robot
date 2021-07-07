@@ -53,6 +53,16 @@ ListOfLinks
 	Then Page Should Have English Translation
 	Then Page Should Have Swedish Translation
 
+Text
+	[Tags]   TODO
+	Given User Creates New Text Paragraphs To Library
+	When User Starts Creating Article With Add From Library Content For Text -Paragraph in Finnish Language
+	And User Starts Creating Article With Add From Library Content For Text -Paragraph in English Language
+	And User Starts Creating Article With Add From Library Content For Text -Paragraph in Swedish Language
+	Then Page Should Have Finnish Translation
+	Then Page Should Have English Translation
+	Then Page Should Have Swedish Translation
+
 *** Keywords ***
 User Creates New Columns Paragraphs To Library	
 	Create New Finnish Columns Paragraph To Library
@@ -82,6 +92,11 @@ User Creates New ListOfLinks Paragraphs To Library
 	Create New Finnish ListOfLinks Paragraph To Library
 	Create New English ListOfLinks Paragraph To Library
 	Create New Swedish ListOfLinks Paragraph To Library
+
+User Creates New Text Paragraphs To Library	
+	Create New Finnish Text Paragraph To Library
+	Create New English Text Paragraph To Library
+	Create New Swedish Text Paragraph To Library
 
 User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
 	Go To  ${URL_content_page}
