@@ -34,11 +34,21 @@ ContentCards
 	Then Page Should Have English Translation
 
 LiftupWithImage
-	[Tags]   TODO
+	[Tags]
 	Given User Creates New LiftupWithImage Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Finnish Language
 	And User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in English Language
 	And User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Swedish Language
+	Then Page Should Have Finnish Translation
+	Then Page Should Have English Translation
+	Then Page Should Have Swedish Translation
+
+ListOfLinks
+	[Tags]
+	Given User Creates New ListOfLinks Paragraphs To Library
+	When User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in Finnish Language
+	And User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in English Language
+	And User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in Swedish Language
 	Then Page Should Have Finnish Translation
 	Then Page Should Have English Translation
 	Then Page Should Have Swedish Translation
@@ -62,6 +72,11 @@ User Creates New LiftupWithImage Paragraphs To Library
 	Create New Finnish LiftupWithImage Paragraph To Library
 	Create New English LiftupWithImage Paragraph To Library
 	Create New Swedish LiftupWithImage Paragraph To Library
+
+User Creates New ListOfLinks Paragraphs To Library	
+	Create New Finnish ListOfLinks Paragraph To Library
+	Create New English ListOfLinks Paragraph To Library
+	Create New Swedish ListOfLinks Paragraph To Library
 
 User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
 	Go To  ${URL_content_page}

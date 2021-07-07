@@ -226,12 +226,14 @@ ${Inp_Paragraph_Banner_Link_Uri}					name:paragraphs[0][subform][field_banner_li
 ${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_link][0][title]
 ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
 ${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
-
+${Inp_Paragraph_ListOfLinks_Title}					name:paragraphs[0][subform][field_list_of_links_title][0][value]
 
 
 ${Btn_Paragraph_Gallery_Picture}					name:field_gallery_slide_media-media-library-open-button-paragraphs-0-subform-field_gallery_slides-
 ${Btn_Paragraph_Image_Picture}						name:field_image-media-library-open-button-paragraphs-0-subform
 ${Btn_Paragraph_LiftupWithImage_Picture}            name:field_liftup_with_image_image-media-library-open-button-paragraphs-0-subform
+${Btn_Paragraph_ListOfLinks_Picture}   				name:field_list_of_links_image-media-library-open-button-paragraphs-0-subform-field_list_of_links_links-0-subform
+#${Btn_Paragraph_ListOfLinks_Picture}            	//input[@name='field_list_of_links_image-media-library-open-button-paragraphs-0-subform-field_list_of_links_links-0-subform']
 ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
 ${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
@@ -242,6 +244,7 @@ ${Opt_Paragraph_AddAccordion}   					name:paragraphs_accordion_add_more
 ${Opt_Paragraph_AddContentCards} 					name:paragraphs_content_cards_add_more
 ${Opt_Paragraph_AddGallery} 					    name:paragraphs_gallery_add_more
 ${Opt_Paragraph_AddLiftupWithImage}					name:paragraphs_liftup_with_image_add_more
+${Opt_Paragraph_AddListOfLinks}						name:paragraphs_list_of_links_add_more
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
 ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
@@ -257,3 +260,5 @@ ${Txt_ContentCards_Title}							css:.content-cards__title
 ${Txt_Gallery_Title}								css:.gallery__title
 ${Txt_Gallery_Image_Caption}						css:.media--image__caption
 ${Txt_LiftupWithImage_Title}						css:.liftup-with-image__title
+${Txt_ListOfLinks_Title}							css:.list-of-links__title
+${Txt_ListOfLinks_Link}								css:.list-of-links__item__title
