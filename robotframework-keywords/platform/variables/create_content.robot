@@ -165,9 +165,12 @@ ${Btn_Picture}								name:field_image-media-library-open-button-field_content-1
 #ACCORDION
 ${Inp_Accordion_Title}	  					//input[contains(@data-drupal-selector, 'subform-field-accordion-item-heading-0-value')]
 ${Ddn_Accordion_AddContent}					//ul[contains(@data-drupal-selector, 'subform-field-accordion-item-content-add-more-operations')]//li[2]/button
+${Ddn_Accordion2_AddContent}				(//ul[contains(@data-drupal-selector, 'subform-field-accordion-item-content-add-more-operations')]//li[2]/button)[2]
 ${Opt_Accordion_Content_Text}				//input[contains(@name, 'subform_field_accordion_item_content_text_add_more')]
+${Opt_Accordion2_Content_Text}				(//input[contains(@name, 'subform_field_accordion_item_content_text_add_more')])[2]
 ${Opt_Accordion_Content_Columns}			//input[contains(@name, 'subform_field_accordion_item_content_columns_add_more')]
-${Frm_Accordion_Content}					css:#cke_121_contents > iframe	
+${Frm_Accordion_Content}					css:#cke_177_contents > iframe
+${Frm_Accordion2_Content}					css:#cke_354_contents > iframe	
 ${Btn_Accordion_View}						css:#handorgel1-fold1-header > button
 ${Opt_Accordion_Column_Left_AddContent_Text}	//ul[contains(@data-drupal-selector, 'subform-field-columns-left-column-add-more-operations')]//input[contains(@name,'subform_field_accordion_item_content_text_add_more')]
 ${Opt_Accordion_Column_Right_AddContent_Text}	//ul[contains(@data-drupal-selector, 'subform-field-columns-right-column-add-more-operations')]//input[contains(@name,'subform_field_accordion_item_content_text_add_more')]

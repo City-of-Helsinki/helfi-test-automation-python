@@ -17,6 +17,21 @@ Create ${pagetype} With ${color} Color , ${heading} Heading And ${contenttype} C
 	Input Title To Paragraph   ${Inp_Accordion_Title}
 	Select Icon With Name   cogwheel
 	Add SubContent To Accordion   ${contenttype}
+
+Add Second Accordion
+	Set Test Variable  ${pagetype}  ${pagetype}
+	Set Test Variable  ${contenttype}  ${contenttype}
+	Set Test Variable  ${color}  ${color}
+	Set Test Variable  ${heading}  ${heading}
+	Open Paragraph For Edit   ${Opt_AddAccordion}
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   name:field_content[2][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
+	Click Element  (//option[@value="check"])[2]
+	
+	#Wait Until Element Is Visible   ${Ddn_Accordion2_AddContent}   timeout=3
+	Click Element	${Ddn_Accordion2_AddContent}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Accordion2_Content_Text}
+	${TextFileContent}=  Return Correct Content   ${language}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Accordion2_Content}   //body   ${TextFileContent} To Text Subcategory
 	
 Add ${content} Content to Columns Subcategory
 	${content}=  Convert To Lower Case   ${content}
@@ -42,6 +57,8 @@ Add SubContent To Accordion
 	Click Element	${Ddn_Accordion_AddContent}
 	Run Keyword If  '${content}'=='Text'  Click Element   ${Opt_Accordion_Content_Text}
 	Run Keyword If  '${content}'=='Columns'  Click Element   ${Opt_Accordion_Content_Columns}
+	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  200ms  Add Content To Text Subcategory
+	
 	
 Accordion Component Works As Expected
 	Click Element  ${Btn_Accordion_View}
