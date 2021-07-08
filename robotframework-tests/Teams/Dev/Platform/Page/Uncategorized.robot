@@ -31,9 +31,6 @@ Text And Picture
 
 	
 *** Keywords ***
-User Opens Created Content
-	 Open Created Content
-
 User Submits The New Page
 	Submit The New Page  
 	

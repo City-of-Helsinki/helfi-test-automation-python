@@ -190,10 +190,6 @@ User Adds ${color} As Background Color
 User Goes To New LandingPage Site   Go To New LandingPage Site
 New Landingpage is Submitted	Submit The New Landingpage
 
-User Opens Created Content
-	 Open Created Content
-
-
 User Adds Hero Link Button With ${style} Style
 	Add Hero Link Button With ${style} Style
 

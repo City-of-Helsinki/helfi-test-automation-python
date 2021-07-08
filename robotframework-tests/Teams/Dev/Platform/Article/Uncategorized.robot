@@ -13,7 +13,6 @@ Only Text
 	Given User Goes To New Article Site
 	And User Starts Creating a New Article With Text Content  
 	When User Submits The New Article
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Only Picture
@@ -21,7 +20,6 @@ Only Picture
 	Given User Goes To New Article Site
 	And User Starts Creating a New Article With Picture Content  
 	When User Submits The New Article
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 Text And Picture
@@ -29,7 +27,6 @@ Text And Picture
 	Given User Goes To New Article Site
 	And User Starts Creating a New Article With Mixed Content  
 	When User Submits The New Article
-	And User Opens Created Content
 	Then Layout Should Not Have Changed
 
 	

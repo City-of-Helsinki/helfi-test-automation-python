@@ -46,10 +46,6 @@ User Adds Second Link For ${content} Content
 
 List Of Links Should Work Correctly
 	List Of Links Is Working Correctly
-	
-User Opens Created Content
-	 Open Created Content
-	 
 	 
 Layout Should Not Have Changed
 	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies

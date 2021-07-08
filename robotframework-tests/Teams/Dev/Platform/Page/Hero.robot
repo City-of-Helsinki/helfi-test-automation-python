@@ -195,10 +195,6 @@ User Adds ${color} As Background Color
 User Submits The New Page
 	Submit The New Page
 
-User Opens Created Content
-	 Open Created Content
-	 Take Screenshot Of Content
-
 User Adds Hero Link Button With ${style} Style
 	Add Hero Link Button With ${style} Style
 
