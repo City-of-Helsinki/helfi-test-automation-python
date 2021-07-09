@@ -32,7 +32,7 @@ Add Remote Video
 	Set Test Variable  ${videosadded}    ${videosadded}+1
 	
 Remote Video Play Begins Correctly
-	Wait Until Element Is Visible  css:#mm-0 > div.dialog-off-canvas-main-canvas > div > main > div.main-content   timeout=3
+	Wait Until Element Is Visible  ${Itm_Video}
 	Capture Element Screenshot   css:div.remote-video.remote-video--default > div > iframe   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video1start.png
 	${videostart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video1start.png
 	Click Element   ${Itm_Video}
