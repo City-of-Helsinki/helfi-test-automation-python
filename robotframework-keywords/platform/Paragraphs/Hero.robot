@@ -23,7 +23,6 @@ Create a ${value} Aligned ${pagetype} With Hero Block In ${lang_selection} Langu
 	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Start Creating a ${value} Aligned Page With Hero Block
 	Submit The New ${pagetype}
-	Open Created Content
 	Take Screenshot Of Content
  
 Start Creating a ${value} Aligned Page With Hero Block 
@@ -48,7 +47,10 @@ Start Creating a ${value} Aligned Page With Hero Block
     ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==False)
         Handle Page Translation Test Description   ${TextFileDescription}   ${content_up}   ${content_down}
     ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==True)
-        Handle LandingPage Translation Test Description   ${content_up}
+     	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   css:#cke_113_contents > iframe
+    	Run Keyword If  '${language}'!='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   ${Frm_Content}
+        Run Keyword If  '${language}'=='fi'   Handle LandingPage Translation Test Description   ${content_up}    cke_1_contents
+        Run Keyword If  '${language}'!='fi'   Handle LandingPage Translation Test Description   ${content_up}    cke_2_contents
     ELSE
     	Handle Page Content And Description   ${TextFileDescription}   ${content_up}   ${content_down}
     END
@@ -75,8 +77,8 @@ Handle Page Translation Test Description
 	...	  ELSE		Input Text Content To Frame   ${content_down}   cke_3_contents
 	
 Handle LandingPage Translation Test Description
-	[Arguments]   ${content_up}
-	Input Text Content To Frame   ${content_up}   cke_1_contents
+	[Arguments]   ${content_up}    ${cke}
+	Input Text Content To Frame   ${content_up}   ${cke}
 
 	
 Start Creating Hero Block Page with ${picalign} Picture 
