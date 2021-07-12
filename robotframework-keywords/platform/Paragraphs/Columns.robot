@@ -22,7 +22,6 @@ Create ${pagetype} With ${division} Division And ${contenttype} Content in ${lan
 	Run Keyword If  '${lang_selection}'=='Finnish'  Add Text to Right Column
 	Run Keyword If  '${lang_selection}'!='Finnish'	Add Text Content To Column on Right
 	Submit The New ${pagetype}
-	Open Created Content
 	Columns.Take Screenshot Of Content
 
 Add ${linkstyle} Link To ${side} Column
@@ -60,9 +59,15 @@ ${pagetype} Content Matches Language
 	${Author}=  Run Keyword If  '${pagetype}'=='Article'   Return Author From Article
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
-	Content Should Match Current Language Selection   ${Content}
+	Columns.Content Should Match Current Language Selection   ${Content}
 	Run Keyword If  '${pagetype}'=='Article'  Lead Should Match Current Language Selection   ${Lead}
 	Run Keyword If  '${pagetype}'=='Article'  Author Should Be Correct   ${Author}
+
+Content Should Match Current Language Selection
+	[Arguments]   ${string}
+	Run Keyword If  '${language}'=='fi'  Should Match Regexp  ${string}   Viittatie teki niemen nenässä polvekkeen
+	Run Keyword If  '${language}'=='en'  Should Match Regexp  ${string}   If all else perished, and he remained
+	Run Keyword If  '${language}'=='sv'  Should Match Regexp  ${string}   Det är bara synd, att han inte är
 	
 Return Title From ${pagetype}
 	${title}=	Get Text    ${Txt_Column_Title}

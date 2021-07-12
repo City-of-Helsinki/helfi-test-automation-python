@@ -95,6 +95,8 @@ ${Opt_Hero_Link_Texteditor_ButtonFramed}		//option[@value='hds-button hds-button
 ${Opt_Hero_Link_Texteditor_ButtonTransparent}	//option[@value='hds-button hds-button--supplementary']
 ${Ddn_Hero_Color}							//select[@data-drupal-selector='edit-field-hero-0-subform-field-hero-bg-color']
 
+
+
 #COLUMNS
 ${Inp_Column_Title}	  						//input[contains(@data-drupal-selector, 'subform-field-columns-title-0-value')]
 ${Ddn_Column_Left_AddContent}               //ul[contains(@data-drupal-selector, 'subform-field-columns-left-column-add-more-operations')]//button
@@ -143,7 +145,6 @@ ${Txt_Content}									//div[@class='text__text-content']/p
 ${Txt_Column_Title}								css:.columns__title
 ${Txt_Column_Description}						xpath://p[1]
 ${Txt_Column_Content}							xpath://div[@class='columns columns--default columns--50-50']//p
-${Txt_Column_Content}
 ${Itm_Gallery_Slidetrack}						id:splide01-track
 # ARTICLE SPESIFIC
 ${Inp_Author}								name:field_author[0][value]
@@ -214,7 +215,7 @@ ${Inp_RemoteVideo_Url}								name:url
 ${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-submit']
 
 ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > button
-${Itm_Video}										css:#mm-0 > div.dialog-off-canvas-main-canvas > div > main > div.main-content
+${Itm_Video}										css:body > div.dialog-off-canvas-main-canvas > div > main > div.main-content
 ${Itm_Video2}  										css:article > div > div:nth-child(3) > div > iframe
 ${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
 ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe

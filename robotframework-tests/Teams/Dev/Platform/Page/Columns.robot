@@ -133,4 +133,4 @@ Page Content Matches Language
 	${Content}=  Return Content From Page
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
-	Content Should Match Current Language Selection   ${Content}
+	Columns.Content Should Match Current Language Selection   ${Content}

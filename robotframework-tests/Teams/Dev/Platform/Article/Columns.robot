@@ -108,7 +108,6 @@ Layout Should Not Have Changed
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_COLUMNS_${division}_text_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
-	#${KEYWORDS_PATH}\\platform\\variables\\excluded_areas\\ARTICLE-${TEST NAME}.json
 
 Page Should Have ${lang_input} Translation
 	Set Language Pointer   ${lang_input}
