@@ -10,8 +10,8 @@ Create ${pagetype} With List Of Links ${style}
 	Open Paragraph For Edit   ${Opt_AddListOfLinks}
 	${style}=   Resolve Style Variable   ${style}
 	Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_ListOfLinks_Design}  ${style}
-	Input Text  ${Inp_ListOfLinks_Link_Uri}   /fi/linkkiesimerkit
-	Input Text  ${Inp_ListOfLinks_Link_Title}   Linkkiesimerkit
+	Input Text  ${Inp_ListOfLinks_Link_Uri}   /en/link-examples
+	Input Text  ${Inp_ListOfLinks_Link_Title}   Link Examples
 	Click Element   ${Swh_ListOfLinks_Link_OpenInNewTab}
 	Run Keyword If   '${TEST NAME}'=='With Picture'   Add Picture To Link   train
 	...   ELSE IF   '${TEST NAME}'!='Without Picture And Description'   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
@@ -58,10 +58,10 @@ Add Second Link For Content
 	
 		
 List Of Links Is Working Correctly
-	[Documentation]   Linkkiesimerkit is opened in new window when Esimerkkisivu opens in current.
+	[Documentation]   Link Examples is opened in new window when Esimerkkisivu opens in current.
 	${contentpageurl}=   Get Location
-	Click Element   //a[contains(@href, '/fi/linkkiesimerkit')]
-	New Window Should Be Opened    Linkkiesimerkit | Drush Site-Install
+	Click Element   //a[contains(@href, '/en/link-examples')]
+	New Window Should Be Opened    Link examples | Drush Site-Install
 	Wait Until Element Is Visible   //a[contains(@href, '/fi/esimerkkisivu')]
 	Click Element   //a[contains(@href, '/fi/esimerkkisivu')]
 	${currenturl}=   Get Location
