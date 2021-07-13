@@ -80,8 +80,8 @@ Column Texts Matches To Expected Content
 	
 
 Columns Paragraph With Pictures Exist In Created Accordion
-	${pic1}=  Get Element Attribute  //picture//img@src
-	${pic2}=  Get Element Attribute  //picture//following::picture//img@src
+	${pic1}=  Get Element Attribute  //picture//img   src
+	${pic2}=  Get Element Attribute  //picture//following::picture//img   src
 	Should Contain   ${pic1}    train
 	Should Contain   ${pic2}    temple
 			
