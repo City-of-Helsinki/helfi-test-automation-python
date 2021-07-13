@@ -27,7 +27,13 @@ Add Text And Picture To Page
 	
 	
 Add Text Content To Page
-	[Arguments]   ${cke}=cke_66_contents
+	[Arguments]   ${cke}=cke_67_contents
+	${ispage}=  Suite Name Contains Text   Page
+	${cke}=  Run Keyword If   ${ispage}   Set Variable  cke_122_contents
+	...		ELSE IF  ('${TEST NAME}'=='Text And Picture') & ('${ispage}'=='False')   Set Variable   cke_66_contents
+	...		ELSE 	Set Variable   cke_67_contents
+	
+	
 	Run Keyword If  '${language}'=='fi'  Click Element   ${Opt_AddText}
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text Content To Frame   ${TextFileContent}   ${cke}
