@@ -8,7 +8,7 @@ Force Tags		LANDINGPAGE   CONTENTCARDS
 Small Cards
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
-	And User Starts Creating Landingpage With Small Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Landingpage With Small Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
@@ -17,16 +17,16 @@ Small Cards
 Large Cards
 	[Tags]  
 	Given User Goes To New LandingPage Site
-	And User Starts Creating Landingpage With Large Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Landingpage With Large Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
 Small Grey Cards
-	[Tags]
+	[Tags]   TODO
 	Given User Goes To New LandingPage Site
-	And User Starts Creating Landingpage With Small Grey Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Landingpage With Small Grey Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
@@ -35,7 +35,7 @@ Small Grey Cards
 Large Grey Cards
 	[Tags]
 	Given User Goes To New LandingPage Site
-	And User Starts Creating Landingpage With Large Grey Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Landingpage With Large Grey Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
@@ -49,7 +49,8 @@ User Adds New ContentCard For ${contentname} Content
 	Add New ContentCard For ${contentname} Content
 
 ContentCards Should Work Correctly
-	ContentCards Are Working Correctly
+    Wait Until Keyword Succeeds  5x  200ms  Accept Cookies
+	Wait Until Keyword Succeeds  5x  200ms  ContentCards Are Working Correctly
 	
 User Goes To New LandingPage Site   Go To New LandingPage Site
 New Landingpage is Submitted	Submit The New Landingpage

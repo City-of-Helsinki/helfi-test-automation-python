@@ -8,7 +8,7 @@ Force Tags		ARTICLE   GALLERY
 
 *** Test Cases ***
 Browse Gallery Images
-	[Tags]  CRITICAL  
+	[Tags]  CRITICAL   TODO
 	Given User Goes To New Article Site
 	And User Starts Creating Page With Gallery
 	When User Submits The New Article

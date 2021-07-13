@@ -37,9 +37,9 @@ Add New ContentCard For ${contentname} Content
 	
 ContentCards Are Working Correctly
 	${contentpageurl}=   Get Location
-	Click Element   //a[contains(@href, '/fi/linkkiesimerkit')]
+	Click Element   //a[contains(@href, '/en/link-examples')]
 	${currenturl}=   Get Location
-	Should Contain   ${currenturl}   linkkiesimerkit
+	Should Contain   ${currenturl}   link-examples
 	Go To   ${contentpageurl}
 	Wait Until Element Is Visible   //a[contains(@href, '/fi/esimerkkisivu')]
 	Click Element   //a[contains(@href, '/fi/esimerkkisivu')]

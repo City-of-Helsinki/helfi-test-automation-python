@@ -58,9 +58,9 @@ Take Screenshot Of Content
 Moving Between Gallery Images Works
 	Click Element   //button[@class='splide__arrow splide__arrow--next']
 	Sleep   1   # Sleep so that element attribute value is changed
-	${value}=  Get Element Attribute  //li[contains(@class, 'is-active is-visible')]//img@src
+	${value}=  Get Element Attribute  //li[contains(@class, 'is-active is-visible')]//img   src
 	Should Contain   ${value}   temple
 	Click Element   //button[@class='splide__arrow splide__arrow--prev']
 	Sleep   1   # Sleep so that element attribute value is changed
-	${value}=  Get Element Attribute  //li[contains(@class, 'is-active is-visible')]//img@src
+	${value}=  Get Element Attribute  //li[contains(@class, 'is-active is-visible')]//img   src
 	Should Contain   ${value}   train	

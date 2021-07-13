@@ -10,7 +10,7 @@ Force Tags		PAGE   CONTENTCARDS
 Small Cards
 	[Tags]  CRITICAL
 	Given User Goes To New Page -Site
-	And User Starts Creating Page With Small Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Page With Small Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
@@ -19,7 +19,7 @@ Small Cards
 Large Cards
 	[Tags]  
 	Given User Goes To New Page -Site
-	And User Starts Creating Page With Large Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Page With Large Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
@@ -28,7 +28,7 @@ Large Cards
 Small Grey Cards
 	[Tags]
 	Given User Goes To New Page -Site
-	And User Starts Creating Page With Small Grey Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Page With Small Grey Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
@@ -37,7 +37,7 @@ Small Grey Cards
 Large Grey Cards
 	[Tags]
 	Given User Goes To New Page -Site
-	And User Starts Creating Page With Large Grey Content Card For Linkkiesimerkit Content Page
+	And User Starts Creating Page With Large Grey Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
