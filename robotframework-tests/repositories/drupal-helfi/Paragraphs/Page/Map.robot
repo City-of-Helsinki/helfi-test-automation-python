@@ -13,13 +13,15 @@ Kartta Map
 	User Adds Map Using kartta.hel.fi Map Location
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Map Paragraph Works Correctly
 	
-palvelukartta Map
+Palvelukartta Map
 	[Tags]  CRITICAL
 	Given User Goes To New Page -Site
 	User Adds Map Using palvelukartta.hel.fi Map Location
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Map Paragraph Works Correctly
 	
 *** Keywords ***
 
