@@ -24,7 +24,7 @@ Large Cards
 	And ContentCards Should Work Correctly
 	
 Small Grey Cards
-	[Tags]   TODO
+	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Landingpage With Small Grey Content Card For Link examples Content Page
 	And User Adds New ContentCard For Esimerkkisivu Content

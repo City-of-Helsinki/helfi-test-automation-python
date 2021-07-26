@@ -54,7 +54,7 @@ ListOfLinks
 	Then Page Should Have Swedish Translation
 
 Text
-	[Tags]   TODO
+	[Tags]
 	Given User Creates New Text Paragraphs To Library
 	When User Starts Creating Article With Add From Library Content For Text -Paragraph in Finnish Language
 	And User Starts Creating Article With Add From Library Content For Text -Paragraph in English Language

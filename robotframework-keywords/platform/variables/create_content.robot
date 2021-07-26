@@ -49,6 +49,7 @@ ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
+${Opt_AddMap}								name:field_content_map_add_more
 
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
@@ -266,3 +267,8 @@ ${Txt_Gallery_Image_Caption}						css:.media--image__caption
 ${Txt_LiftupWithImage_Title}						css:.liftup-with-image__title
 ${Txt_ListOfLinks_Title}							css:.list-of-links__title
 ${Txt_ListOfLinks_Link}								css:.list-of-links__item__title
+
+#MAP
+${Inp_Map_Title}									name:field_content[1][subform][field_map_title][0][value]
+${Btn_Map_Add}										name:field_map_map-media-library-open-button-field_content-1-subform
+${Btn_Map_Url_Add}									(//input[@data-drupal-selector='edit-submit'])[3]
