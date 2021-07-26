@@ -28,6 +28,7 @@ Map Paragraph Works Correctly
 	Wait Until Element Is Visible  ${Itm_Map}
 	Select Frame   ${Itm_Map}
 	Run Keyword Unless   ${ispalvelukartta}   Scroll Element Into View   css:#mapcontainer > div.ol-viewport > canvas
+	Run Keyword If   ${ispalvelukartta}   Scroll Element Into View   css:#app > div > div > div:nth-child(3) > div
 	Sleep  2
 	Run Keyword If   ${ispalvelukartta}   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
 	IF    ${ispalvelukartta}
