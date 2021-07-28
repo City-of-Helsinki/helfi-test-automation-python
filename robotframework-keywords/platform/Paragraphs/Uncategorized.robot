@@ -51,10 +51,10 @@ Add Picture Content To Page
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}
-	Wait Until Keyword Succeeds  5x  100ms  Click Button   ${Btn_Insert_Pic}
+	Submit New Media
 	Run Keyword If  '${content}'=='Picture'  Wait Until Element Is Visible  name:field_image-0-media-library-remove-button-field_content-1-subform   timeout=3
 	Run Keyword If  '${content}'=='Mixed'  Wait Until Element Is Visible  name:field_image-0-media-library-remove-button-field_content-2-subform   timeout=3
-	Set Test Variable  ${picsadded}    ${picsadded}+1
+	
 		
 
 

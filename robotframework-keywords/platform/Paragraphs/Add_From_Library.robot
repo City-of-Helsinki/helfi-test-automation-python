@@ -178,13 +178,10 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	Run Keyword If  '${language}'=='fi'   Click Button   ${Btn_Save}
 	Run Keyword If  '${language}'=='en'   Click Button   ${Btn_Save_En}
 	Run Keyword If  '${language}'=='sv'   Click Button   ${Btn_Save_Sv}
-	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
-	Run Keyword If  '${language}'=='en'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
-	Run Keyword If  '${language}'=='sv'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+	Submit New Media
 
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Tar_Paragraph_Gallery_Image_Caption}   ${pic_1_caption_${language}}
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Tar_Paragraph_Picture_Image_Caption}   ${pic_1_caption_${language}}
-	Set Test Variable  ${picsadded}    ${picsadded}+1
 	Set Test Variable  ${picture}    picture
 
 Open Add Picture

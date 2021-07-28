@@ -37,7 +37,6 @@ Add Picture
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}
-	Wait Until Keyword Succeeds  5x  100ms  Click Button   ${Btn_Insert_Pic}
+	Submit New Media
 	Wait Until Element Is Visible  //input[contains(@data-drupal-selector, 'remove-button')]   timeout=3
-	Set Test Variable  ${picsadded}    ${picsadded}+1 
 	Set Test Variable  ${picture}   picture

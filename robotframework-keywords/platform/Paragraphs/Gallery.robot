@@ -33,10 +33,9 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Click Button   ${Btn_Save}
-	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
+	Submit New Media
 	${pic_caption_locator}=   Set Variable  name:field_content[1][subform][field_gallery_slides][${number-1}][subform][field_gallery_slide_caption][0][value]
 	Wait Until Keyword Succeeds  5x  200ms   Input Text      ${pic_caption_locator}   ${pic_1_caption_${language}}
-	Set Test Variable  ${picsadded}    ${picsadded}+1
 	Set Test Variable  ${picture}    picture
 	
 Open Add Picture To Gallery Window

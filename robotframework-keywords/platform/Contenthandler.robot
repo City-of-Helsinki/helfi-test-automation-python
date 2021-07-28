@@ -21,9 +21,8 @@ Library			  Collections
 ${submitted}								false
 ${picalign} 		 						${EMPTY}
 ${picture} 			 						nopicture
-${picsadded}								0
+${mediaadded}								0
 ${paragraphsadded}							0
-${videosadded}								0
 ${pagesadded}								0
 ${picsize}									cropped
 ${linkstyle} 		 						${EMPTY}
@@ -87,10 +86,7 @@ Cleanup and Close Browser
 	FOR    ${i}    IN RANGE    ${pagesadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item on Content Menu List
     END
-	FOR    ${i}    IN RANGE    ${picsadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
-    END
-    FOR    ${i}    IN RANGE    ${videosadded}
+	FOR    ${i}    IN RANGE    ${mediaadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
     END
     FOR    ${i}    IN RANGE    ${paragraphsadded}
@@ -235,7 +231,7 @@ Go To Translate Selection Page
 
 Submit The New ${pagetype}
 	[Documentation]   Sleeps 1 second in case of pictures added so that they have time to load into content view.
-	Run Keyword If  ${picsadded} > 0   Sleep  1
+	Run Keyword If  ${mediaadded} > 0   Sleep  1
 	Wait Until Keyword Succeeds  2x  1  Submit New Content
 
 Submit New Content
@@ -244,6 +240,16 @@ Submit New Content
 	Wait Until Keyword Succeeds  5x  100ms  Element Should Not Be Visible   ${Btn_Submit}
 	${isserviceandunit}=  Suite Name Contains Text  ServiceAndUnit
 	Run Keyword Unless  ${isserviceandunit}  Set Test Variable  ${pagesadded}    ${pagesadded}+1
+
+Submit New Media
+	[Documentation]  User submits new media content and it is saved and appears in media view
+	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
+	Run Keyword If  '${language}'=='en'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+	Run Keyword If  '${language}'=='sv'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+		Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic}
+	Run Keyword If  '${language}'=='en'  Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic_Alt}
+	Run Keyword If  '${language}'=='sv'  Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic_Alt}
+	Set Test Variable  ${mediaadded}    ${mediaadded}+1
 		
 Go To New ${pagetype} -View For ${language} Translation
 	Go To Translate Selection Page
@@ -414,11 +420,9 @@ Add Picture to Column
 	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Click Button   ${Btn_Save}
-	Set Test Variable  ${picsadded}    ${picsadded}+1
-	Set Test Variable  ${picture}    picture   
-	Wait Until Keyword Succeeds  10x  500ms  Click Button   ${Btn_Insert_Pic}
+	Submit New Media
 	Wait Until Keyword Succeeds  10x  500ms   Add Picture Caption to ${side}  
-	
+	Set Test Variable  ${picture}    picture   
 
 Add Picture Caption to ${side}
 	${editpicturevisible}=  Run Keyword And Return Status    Element Should Not Be Visible  ${Btn_Column_${side}_Edit}   timeout=1

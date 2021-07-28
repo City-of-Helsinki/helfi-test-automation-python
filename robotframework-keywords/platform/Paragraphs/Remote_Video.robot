@@ -29,7 +29,7 @@ Add Remote Video
 	Sleep  1
 	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
 	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm} 
-	Set Test Variable  ${videosadded}    ${videosadded}+1
+	Set Test Variable  ${mediaadded}    ${mediaadded}+1
 	
 Remote Video Play Begins Correctly
 	Wait Until Element Is Visible  ${Itm_Video}

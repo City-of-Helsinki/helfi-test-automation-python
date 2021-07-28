@@ -18,9 +18,7 @@ Create Map With Given Url
 	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element	  ${Btn_Map_Url_Add}
 	Wait Until Keyword Succeeds  5x  100ms  Click Button  ${Btn_Map_Url_Add}
 	Wait Until Keyword Succeeds  5x  100ms  Click Button  ${Btn_Save}
-	Wait Until Keyword Succeeds  5x  100ms  Click Button  ${Btn_Insert_Pic}
-	Wait Until Keyword Succeeds  5x  100ms  Element Should Not Be Visible   ${Btn_Insert_Pic}
-	Set Test Variable  ${picsadded}    ${picsadded}+1
+	Submit New Media
 	
 Map Paragraph Works Correctly
 	Wait Until Keyword Succeeds  5x   200ms   Accept Cookies
