@@ -156,7 +156,8 @@ Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content
 	Set Test Variable   ${paragraph}   ${paragraph}
 	Input Non-paragraph Related Content   ${pagetype}
 	Run Keyword If  '${lang_selection}'=='Finnish'  Open Paragraph For Edit   ${Opt_AddFromLibrary}
-	Wait Until Keyword Succeeds  5x  200ms  Click Element   //option[text()='Test_Automation_Add_From_Library_${paragraph}_${language}']
+	
+	Wait Until Keyword Succeeds  5x  200ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_${paragraph}_${language}')]
 	Wait Until Keyword Succeeds  5x  200ms  Submit The New ${pagetype}
 
 Add Picture '${name}' And Caption To ${number}:th Picture
