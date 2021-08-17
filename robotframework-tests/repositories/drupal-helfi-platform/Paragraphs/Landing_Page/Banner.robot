@@ -13,6 +13,20 @@ Left Aligned Banner With Fullcolor Link
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 
+Left Aligned Banner Secondary Color
+	[Tags]  CRITICAL
+	Given User Goes To New LandingPage Site
+	And User Starts Creating Left Aligned Banner With Fullcolor Link And Secondary Color
+	When New Landingpage is Submitted
+	Then Layout Should Not Have Changed
+
+Center Aligned Banner Secondary Color
+	[Tags]
+	Given User Goes To New LandingPage Site
+	And User Starts Creating Center Aligned Banner With Fullcolor Link And Secondary Color
+	When New Landingpage is Submitted
+	Then Layout Should Not Have Changed
+	
 Left Aligned Banner With Transparent Link
 	[Tags]  
 	Given User Goes To New LandingPage Site
@@ -60,7 +74,8 @@ Link Opens In New Window
 *** Keywords ***
 User Goes To New LandingPage Site   Go To New LandingPage Site
 New Landingpage is Submitted	Submit The New Landingpage
-User Starts Creating ${alignment} Aligned Banner With ${linkstyle} Link   Create LandingPage With ${alignment} Aligned Banner And With ${linkstyle} Link
+User Starts Creating ${alignment} Aligned Banner With ${linkstyle} Link   Create Banner   LandingPage   ${alignment}   ${linkstyle}
+User Starts Creating ${alignment} Aligned Banner With ${linkstyle} Link And Secondary Color   Create Banner   LandingPage   ${alignment}   ${linkstyle}   secondary
 
 User Clicks The Content Link   
 	Wait Until Keyword Succeeds  5x  200ms  Click Link In Content
@@ -70,7 +85,9 @@ Link Should Be Opened In New Window   New Window Should Be Opened   Rautatie (ro
 Layout Should Not Have Changed
 	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
 	Banner.Take Screenshot Of Content
-	${originalpic} =  Set Variable If  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_${linkstyle}link_${BROWSER}.png
+	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner Secondary Color') | ('${TEST NAME}'=='Center Aligned Banner Secondary Color')   Capture Element Screenshot  css:.banner__content-wrapper   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${originalpic} =  Set Variable If  ('${linkstyle}'!='${EMPTY}') & ('${coloroption}'=='${EMPTY}')  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_${linkstyle}link_${BROWSER}.png
+	...	  '${coloroption}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${TEST NAME}_${BROWSER}.png
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_text_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

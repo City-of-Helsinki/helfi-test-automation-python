@@ -156,6 +156,8 @@ ${Txt_Author}								css:.article__author
 
 # BANNER
 ${Opt_Banner_Left}							css:[value=align-left]
+${Opt_Banner_Left_Secondary}				css:[value=align-left-secondary]
+${Opt_Banner_Center_Secondary}				css:[value=align-center-secondary]
 ${Inp_Banner_Title}							name:field_content[0][subform][field_banner_title][0][value]
 
 ${Inp_Banner_Link_Uri}						name:field_content[0][subform][field_banner_link][0][uri]

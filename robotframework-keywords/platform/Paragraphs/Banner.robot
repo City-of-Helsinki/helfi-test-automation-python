@@ -3,14 +3,18 @@ Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
 
 *** Keywords ***
-Create ${pagetype} With ${alignment} Aligned Banner And With ${linkstyle} Link
+Create Banner
+	[Arguments]   ${pagetype}   ${alignment}   ${linkstyle}   ${coloroption}=${EMPTY}
 	Set Test Variable   ${alignment}   ${alignment}
 	Set Test Variable   ${linkstyle}   ${linkstyle}
+	Set Test Variable   ${coloroption}   ${coloroption}
 	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddBanner}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_Banner_Title}
-	Run Keyword If  '${alignment}'=='Left'   Click Element   ${Opt_Banner_Left}
-	Run Keyword If  '${alignment}'=='Left'   Select Icon With Name   ticket
+	Run Keyword If  ('${alignment}'=='Left') & ('${coloroption}'=='${EMPTY}')   Click Element   ${Opt_Banner_Left}
+	Run Keyword If  ('${alignment}'=='Left') & ('${coloroption}'!='${EMPTY}')  Click Element   ${Opt_Banner_Left_Secondary}
+	Run Keyword If  ('${alignment}'=='Center') & ('${coloroption}'!='${EMPTY}')  Click Element   ${Opt_Banner_Center_Secondary}
+	Run Keyword If  ('${alignment}'=='Left') | ('${alignment}'=='Center') & ('${coloroption}'=='${EMPTY}')   Wait Until Keyword Succeeds  5x  100ms  Select Icon With Name   ticket
 	
 	Input Description To Paragraph   ${Frm_Content}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Banner_Link_Uri}   https://fi.wikipedia.org/wiki/Rautatie_(romaani) 
@@ -20,6 +24,7 @@ Create ${pagetype} With ${alignment} Aligned Banner And With ${linkstyle} Link
 	Run Keyword If  '${linkstyle}'=='Fullcolor'  Click Element   ${Opt_Link_Fullcolor}
 	Run Keyword If  '${linkstyle}'=='Framed'  Click Element   ${Opt_Link_Framed}
 	Run Keyword If  '${linkstyle}'=='Transparent'  Click Element   ${Opt_Link_Transparent}
+
 	
 Take Screenshot Of Content
 	Maximize Browser Window
