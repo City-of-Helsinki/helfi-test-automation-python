@@ -4,8 +4,10 @@ Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
 
 *** Keywords ***
-Create ${pagetype} With ${design} Design
+Create LiftUpWithImage
+	[Arguments]  ${pagetype}   ${design}   ${coloroption}=${EMPTY}
 	Set Test Variable  ${design}  ${design}
+	Set Test Variable   ${coloroption}   ${coloroption}
 	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddLiftupWithImage}
 	${design}=   Resolve Design Variable   ${design}
@@ -16,12 +18,13 @@ Create ${pagetype} With ${design} Design
 	Add Picture   train
 	Input Description To Paragraph   ${Frm_Content}
 	
-	
 Resolve Design Variable
 	[Arguments]  ${design}
 	${design}=  Convert To Lower Case   ${design}
-	${designvariable}=   Set Variable If   '${design}'=='right picture'    image-on-right
-	...			'${design}'=='left picture'    image-on-left
+	${designvariable}=   Set Variable If   ('${design}'=='right picture') & ('${coloroption}'=='${EMPTY}')    image-on-right
+	...			('${design}'=='left picture') & ('${coloroption}'=='${EMPTY}')    image-on-left
+	...			('${design}'=='right picture') & ('${coloroption}'!='${EMPTY}')   image-on-right-secondary
+	...			('${design}'=='left picture') & ('${coloroption}'!='${EMPTY}')   image-on-left-secondary
 	...			'${design}'=='background picture and text on right'    background-text-on-right
 	...			'${design}'=='background picture and text on left'    background-text-on-left
 	[Return]   ${designvariable}
