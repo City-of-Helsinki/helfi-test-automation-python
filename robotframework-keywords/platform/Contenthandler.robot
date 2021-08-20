@@ -288,7 +288,7 @@ Get Admin Url
 
 Run Insert Example Content
    [Documentation]  Inserts Example content since some testcases are dependent of it existing.
-   ${output} =   Run  docker exec hel-platform-app drush en -y helfi_example_content
+   ${output} =   Run Keyword Unless  ${CI}  Run  docker exec hel-platform-app drush en -y helfi_example_content
 
 Set Content As Published
 	Click Element   id:edit-status
