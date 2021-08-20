@@ -1,6 +1,6 @@
 *** Settings ***
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/List_Of_Links.robot
-Test Setup      Login And Go To Content Page
+Test Setup      Prepare Test, Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		ARTICLE   LISTOFLINKS
 *** Variables ***
@@ -34,6 +34,10 @@ Without Picture And Description
 	And List Of Links Should Work Correctly
 	
 *** Keywords ***
+Prepare Test, Login And Go To Content Page
+	Run Insert Example Content
+	Login And Go To Content Page
+
 User Creates List Of Links ${style}
 	Create Article With List Of Links ${style}
 

@@ -286,6 +286,10 @@ Get Admin Url
    ${admin_url} =   Run  ${ADMIN_URL}
    Set Test Variable   ${admin_url}
 
+Run Insert Example Content
+   [Documentation]  Inserts Example content since some testcases are dependent of it existing.
+   ${output} =   Run  docker exec hel-platform-app drush en -y helfi_example_content
+
 Set Content As Published
 	Click Element   id:edit-status
 	Set Test Variable  ${serviceispublished}   true
