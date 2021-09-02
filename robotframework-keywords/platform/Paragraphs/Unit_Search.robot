@@ -41,26 +41,26 @@ The Search Bar Is Working Correctly
 	Clear Element Text   ${Inp_UnitSearch_SearchField}
 	Click Button   ${Inp_UnitSearch_SearchButton}
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/tapanilan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/8359')]
 
 Search Bar Works By Unit Name
 	Input Text  ${Inp_UnitSearch_SearchField}   Tapa
 	Click Button   ${Inp_UnitSearch_SearchButton}
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/tapanilan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/8359')]
 	
 Search Bar Works By Unit Address
 	Input Text  ${Inp_UnitSearch_SearchField}   hiiden
 	Click Button   ${Inp_UnitSearch_SearchButton}
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/tapanilan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/8359')]
 
 Search Bar Works By Unit Post Number
 	Sleep  0.2
 	Input Text  ${Inp_UnitSearch_SearchField}   00670
 	Click Button   ${Inp_UnitSearch_SearchButton}
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/tapanilan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/tpr-unit/8359')]
 	
 Unit Address And Phone Data Is Correct
 	${addressline1}=  Get Text   css:.address-line1
