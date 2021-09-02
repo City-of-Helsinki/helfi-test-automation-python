@@ -29,6 +29,7 @@ ${linkstyle} 		 						${EMPTY}
 ${language}	 		 						fi
 ${gallery}									false
 ${serviceispublished}						false
+${unitispublished}							false
 @{excludetaglist}     					    ARTICLE
 ${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
@@ -95,13 +96,34 @@ Cleanup and Close Browser
     
     # in case of service/unit testcases
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
-    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished
+    ${unitispublished}=   Convert To Boolean   ${unitispublished}
+    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   
+    Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Paloheinän kirjasto
+    Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Tapanilan kirjasto
 	Close Browser	
 	
 Set Service Back To Unpublished
 	Goto  https://helfi.docker.sh/fi/admin/content/integrations/tpr-service/1/edit
-	Set Content As Published
+	Set Service As Published
 	Submit New Content
+
+Set Unit Back To Unpublished
+	[Documentation]   Publishing function works other way too so it can unpublish with the same keyword
+	[Arguments]   ${name}
+	${ispublished}=  Run Keyword And Return Status   Element Should Be Visible  //input[@id='edit-status'][@checked='checked']
+	Run Keyword If   ${ispublished}  Publish Unit With Name   ${name}
+	
+Publish Unit With Name
+	[Arguments]   ${unitname}
+	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-unit
+	Click Link   ${unitname}
+	Run Keyword And Ignore Error   Accept Cookies
+	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Set Unit As Published
+	Click Button   ${Btn_Submit}
+
+	
+
 	
 Image Comparison Needs To Exclude Areas
 	[Documentation]   Image Comparison needs to exclude some parts of the picture in case of for example changing date
@@ -178,10 +200,12 @@ Compared Pictures Match
     
 
 Go To New Article Site
+	GoTo   ${URL_content_page}
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Article
 
 Go To New Page Site
+	GoTo   ${URL_content_page}
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Page
 
@@ -190,6 +214,7 @@ Go To New Service Site
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Service
 
 Go To New LandingPage Site
+	GoTo   ${URL_content_page}
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Landing Page
 
@@ -290,9 +315,14 @@ Run Insert Example Content
    [Documentation]  Inserts Example content since some testcases are dependent of it existing.
    ${output} =   Run Keyword Unless  ${CI}  Run  docker exec hel-platform-app drush en -y helfi_example_content
 
-Set Content As Published
+Set Service As Published
 	Click Element   id:edit-status
 	Set Test Variable  ${serviceispublished}   true
+
+Set Unit As Published
+	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  //input[@id='edit-status'][@checked='checked']   1
+	Run Keyword Unless  ${isalreadypublished}  Click Element   id:edit-status
+	Run Keyword Unless  ${isalreadypublished}  Set Test Variable  ${unitispublished}   true
 
 Select Language
 	[Arguments]     ${value}

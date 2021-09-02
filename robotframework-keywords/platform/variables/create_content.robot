@@ -50,6 +50,7 @@ ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
+${Opt_UnitSearch}							name:field_content_unit_search_add_more
 
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
@@ -277,3 +278,10 @@ ${Btn_Map_Url_Add}									(//input[@data-drupal-selector='edit-submit'])[3]
 ${Itm_Map}											css:body > div.dialog-off-canvas-main-canvas > div > main > div.main-content > div > article > div > div.map.map--default > div > div.map__wrapper > div > iframe
 ${Btn_Map_ZoomOut}									css:.custom-zoom-out
 ${Btn_Map_Palvelukartta_AllowCookies}				//button[contains(text(),'Salli kaikki evästeet')]
+
+#UNIT SEARCH
+${Inp_UnitSearch_Title}								name:field_content[1][subform][field_unit_search_title][0][value]
+${Inp_UnitSearch_Title_Landingpage}					name:field_content[0][subform][field_unit_search_title][0][value]
+${Frm_UnitSearch_Content}							css:#cke_124_contents > iframe
+${Inp_UnitSearch_SearchField}						css:[data-drupal-selector=edit-unit-search]
+${Inp_UnitSearch_SearchButton}						css:[data-drupal-selector=edit-actions] > input
