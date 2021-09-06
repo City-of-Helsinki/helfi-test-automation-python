@@ -53,7 +53,7 @@ Go To Content Site
 #	${description}=	Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 #	Sleep   5
 #    Log   ${RESOURCE_PATH}
-	Go To   https://helfi.docker.sh/fi/user/1
+	Go To   https://helfi.docker.so/fi/user/1
 #	Sleep   5
 	Set Focus To Element   //span[contains(text(), 'Hyväksy kaikki evästeet')]
 	Wait Until Keyword Succeeds  5x  400ms  Click Button  //button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']

@@ -97,21 +97,25 @@ Cleanup and Close Browser
     # in case of service/unit testcases
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
     ${unitispublished}=   Convert To Boolean   ${unitispublished}
-    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   
+    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   Digituki
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Paloheinän kirjasto
-    Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Tapanilan kirjasto
 	Close Browser	
 	
 Set Service Back To Unpublished
-	Goto  https://helfi.docker.sh/fi/admin/content/integrations/tpr-service/1/edit
-	Set Service As Published
-	Submit New Content
+	[Arguments]   ${name}
+	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  //input[@id='edit-status'][@checked='checked']
+	Run Keyword If   ${ispublished}  Click Element   id:edit-status
+	Click Button   ${Btn_Submit}
+	
 
 Set Unit Back To Unpublished
 	[Documentation]   Publishing function works other way too so it can unpublish with the same keyword
 	[Arguments]   ${name}
-	${ispublished}=  Run Keyword And Return Status   Element Should Be Visible  //input[@id='edit-status'][@checked='checked']
-	Run Keyword If   ${ispublished}  Publish Unit With Name   ${name}
+	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  //input[@id='edit-status'][@checked='checked']
+	Run Keyword If   ${ispublished}  Click Element   id:edit-status
+	Click Button   ${Btn_Submit}
 	
 Publish Unit With Name
 	[Arguments]   ${unitname}
@@ -122,7 +126,16 @@ Publish Unit With Name
 	Set Unit As Published
 	Click Button   ${Btn_Submit}
 
-	
+
+Publish Service With Name
+	[Arguments]   ${servicename}
+	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-service
+	Click Link   ${servicename}
+	Run Keyword And Ignore Error   Accept Cookies
+	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Set Service As Published
+	Click Button   ${Btn_Submit}	
 
 	
 Image Comparison Needs To Exclude Areas
@@ -316,7 +329,8 @@ Run Insert Example Content
    ${output} =   Run Keyword Unless  ${CI}  Run  docker exec hel-platform-app drush en -y helfi_example_content
 
 Set Service As Published
-	Click Element   id:edit-status
+	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  //input[@id='edit-status'][@checked='checked']   1
+	Run Keyword Unless  ${isalreadypublished}  Click Element   id:edit-status
 	Set Test Variable  ${serviceispublished}   true
 
 Set Unit As Published

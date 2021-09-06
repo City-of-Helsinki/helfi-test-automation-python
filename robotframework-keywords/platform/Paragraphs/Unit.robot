@@ -6,13 +6,14 @@ Resource        ../Commonkeywords.robot
 *** Keywords ***
 
 Publish The ${nth} Unit In The Unit List
-	Goto  https://helfi.docker.sh/fi/admin/content/integrations/tpr-unit/${nth}/edit
+	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-unit/${nth}/edit
 	Set Content As Published
 	Submit New Content
 
 Open Unit With Name
 	[Arguments]	   ${name}
-	Goto  https://helfi.docker.sh/fi/${name}
+	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-unit
+	Click Link   ${name}
 	
 Get Unit Title
 	${value}=   Get Text   css:.unit__title
