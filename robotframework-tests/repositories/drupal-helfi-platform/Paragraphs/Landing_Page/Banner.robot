@@ -49,7 +49,7 @@ Center Aligned Banner With Fullcolor Link
 	Then Layout Should Not Have Changed
 
 Center Aligned Banner With Transparent Link
-	[Tags]  
+	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Center Aligned Banner With Transparent Link
 	When New Landingpage is Submitted
@@ -70,6 +70,14 @@ Link Opens In New Window
 	And User Clicks The Content Link
 	Then Link Should Be Opened In New Window
 	
+Left Aligned Banner With Color Palette
+	[Documentation]   Uses one 'if' in 'Create Banner' method that changes color. Test then checks if color is changed.
+	[Tags]  CRITICAL
+	Given User Goes To New LandingPage Site
+	And User Starts Creating Left Aligned Banner With Fullcolor Link
+	When New Landingpage is Submitted
+	Then Layout Should Not Have Changed
+
 	
 *** Keywords ***
 User Goes To New LandingPage Site   Go To New LandingPage Site
@@ -85,7 +93,7 @@ Link Should Be Opened In New Window   New Window Should Be Opened   Rautatie (ro
 Layout Should Not Have Changed
 	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
 	Banner.Take Screenshot Of Content
-	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner Secondary Color') | ('${TEST NAME}'=='Center Aligned Banner Secondary Color')   Capture Element Screenshot  css:.banner__content-wrapper   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner Secondary Color') | ('${TEST NAME}'=='Center Aligned Banner Secondary Color') | ('${TEST NAME}'=='Left Aligned Banner With Color Palette')   Capture Element Screenshot  css:.banner__content-wrapper   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	${originalpic} =  Set Variable If  ('${linkstyle}'!='${EMPTY}') & ('${coloroption}'=='${EMPTY}')  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_${linkstyle}link_${BROWSER}.png
 	...	  '${coloroption}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${TEST NAME}_${BROWSER}.png
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_text_${BROWSER}.png

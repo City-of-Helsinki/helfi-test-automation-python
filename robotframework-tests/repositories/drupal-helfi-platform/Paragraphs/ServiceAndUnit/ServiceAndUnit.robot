@@ -2,13 +2,13 @@
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Service.robot
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Unit.robot
 Test Setup      Login And Go To Content Page
-Test Teardown   Cleanup and Close Browser	
+Test Teardown   Delete Banners And Do Other Teardown Actions	
 Force Tags		SERVICE   UNIT
 
 
 *** Test Cases ***
 Service
-	[Tags]
+	[Tags] 
 	When User Opens Service With Name Digituki
 	Then Service Contents Should Be Correct
 
@@ -19,8 +19,17 @@ Unit With Service
 	Then Unit Contents Should Be Correct
 	And Units Service Link Works Correctly
 
+Unit With Color Palette
+	[Tags]
+	Given User Edits Unit With Name Roihuvuoren kirjasto
+	And User Adds Banner To Unit With 'silver' Color Selection
+	When User Submits The Unit Changes
+	Then Banner Paragraph Should Have Selected Color
 
 *** Keywords ***
+
+User Submits The Unit Changes
+	Submit Unit Changes
 
 Service Is Set as Published
 	Publish Service With Name   Digituki
@@ -28,8 +37,12 @@ Service Is Set as Published
 User Opens Service With Name ${name}
 	Open Service With Name   ${name}
 
-User Opens Unit With Name ${name}
+User ${action} Unit With Name ${name}
 	Open Unit With Name   ${name}
+	Run Keyword And Ignore Error   Accept Cookies
+	
+User Adds Banner To Unit With '${color}' Color Selection
+	Add Banner For Unit With Name And Color   Roihuvuoren kirjasto   ${color}
 	
 Service Contents Should Be Correct
 	${title}=  Get Service Title
@@ -72,3 +85,15 @@ Units Service Link Works Correctly
 	Click Element   //a[contains(@href, 'https://helfi.docker.so/fi/digituki')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   digituki
+
+Banner Paragraph Should Have Selected Color
+	Open Unit With Name   Roihuvuoren kirjasto
+	Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.has-sidebar   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${originalpic} =   Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_SERVICEANDUNIT_${BROWSER}.png
+	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	
+Delete Banners And Do Other Teardown Actions
+	Run Keyword If  '${TEST NAME}'=='Unit With Color Palette'  Delete Banner For Unit With Name   Roihuvuoren kirjasto
+	Cleanup and Close Browser
+	

@@ -14,8 +14,7 @@ Create Banner
 	Run Keyword If  ('${alignment}'=='Left') & ('${coloroption}'=='${EMPTY}')   Click Element   ${Opt_Banner_Left}
 	Run Keyword If  ('${alignment}'=='Left') & ('${coloroption}'!='${EMPTY}')  Click Element   ${Opt_Banner_Left_Secondary}
 	Run Keyword If  ('${alignment}'=='Center') & ('${coloroption}'!='${EMPTY}')  Click Element   ${Opt_Banner_Center_Secondary}
-	Run Keyword If  ('${alignment}'=='Left') | ('${alignment}'=='Center') & ('${coloroption}'=='${EMPTY}')   Wait Until Keyword Succeeds  5x  100ms  Select Icon With Name   ticket
-	
+	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner With Color Palette')   Select From List By Value   name:color_palette[0]   summer
 	Input Description To Paragraph   ${Frm_Content}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Banner_Link_Uri}   https://fi.wikipedia.org/wiki/Rautatie_(romaani) 
 	Input Text   ${Inp_Banner_Link_Title}    ${link_title_${language}}
