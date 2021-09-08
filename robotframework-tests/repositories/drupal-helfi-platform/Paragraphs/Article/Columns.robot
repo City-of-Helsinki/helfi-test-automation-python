@@ -71,7 +71,37 @@ Finnish English Swedish Translations
 	And Page Should Have English Translation
 	And Page Should Have Swedish Translation
 
+Keywords
+	[Tags]  CRITICAL
+	Given User Creates Two Column Content Pages
+	When User Clicks The Added Keyword On Page
+	Then There Should Be Two Articles With The Given Keyword
+
 *** Keywords ***
+
+User Creates Two Column Content Pages
+	#ARTICLE1
+	User Goes To New Article Site
+	User Starts Creating Article With 50-50 Division And Text Content
+	User Adds Text to Left Column
+	User Adds Text to Right Column
+	User Submits The New Article
+	#ARTICLE2
+	User Goes To New Article Site
+	User Starts Creating Article With 50-50 Division And Text Content
+	User Adds Text to Left Column
+	User Adds Text to Right Column
+	User Submits The New Article
+	
+
+User Clicks The Added Keyword On Page
+	Click Link   Test-Automation
+
+There Should Be Two Articles With The Given Keyword
+	${count}=  Get Element Count  css:.content-card__title
+	${count}=  Convert To String   ${count}
+	Should Be Equal   ${count}   2
+	
 User Goes To New Article Site  Go To New Article Site
 
 User Creates ${pagetype} With ${division} Division And ${contenttype} Content in ${lang_selection} Language
@@ -80,11 +110,16 @@ User Creates ${pagetype} With ${division} Division And ${contenttype} Content in
 User Starts Creating ${pagetype} With ${division} Division And ${contenttype} Content
 	Create ${pagetype} With ${division} Division And ${contenttype} Content
 
+
 User Adds ${content} to Left Column
 	${content}=  Convert To Lower Case   ${content}
 	Add ${content} to Left Column
 
-User Adds ${content} to Right Column	Add ${content} to Right Column
+User Adds ${content} to Right Column	
+	Add ${content} to Right Column
+	Run Keyword If  ('${TEST NAME}'=='Keywords')   Input Text  css:.select2-search__field   Test-Automation
+	Run Keyword If  ('${TEST NAME}'=='Keywords')   Press Keys    None    RETURN
+	Run Keyword If  ('${TEST NAME}'=='Keywords')   Sleep  0.5    #Little sleep so that keyword gets in content
 
 User Adds Link Button With ${linkstyle} Style into ${side} Column
 	Set Test Variable   ${linkstyle}   ${linkstyle}
