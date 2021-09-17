@@ -103,7 +103,9 @@ Cleanup and Close Browser
 	
 Set Service Back To Unpublished
 	[Arguments]   ${name}
-	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-service
+	Click Link   ${name}
+	Wait Until Keyword Succeeds  5x  200ms 	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
 	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  //input[@id='edit-status'][@checked='checked']
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
@@ -119,7 +121,7 @@ Set Unit Back To Unpublished
 	
 Publish Unit With Name
 	[Arguments]   ${unitname}
-	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-unit
+	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 	Click Link   ${unitname}
 	Run Keyword And Ignore Error   Accept Cookies
 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
@@ -129,7 +131,7 @@ Publish Unit With Name
 
 Publish Service With Name
 	[Arguments]   ${servicename}
-	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-service
+	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-service
 	Click Link   ${servicename}
 	Run Keyword And Ignore Error   Accept Cookies
 	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a

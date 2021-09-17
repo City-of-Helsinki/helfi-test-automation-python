@@ -49,6 +49,7 @@ ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
+${Opt_ServiceList}							name:field_content_service_list_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 
@@ -285,3 +286,6 @@ ${Inp_UnitSearch_Title_Landingpage}					name:field_content[0][subform][field_uni
 ${Frm_UnitSearch_Content}							css:#cke_124_contents > iframe
 ${Inp_UnitSearch_SearchField}						css:[data-drupal-selector=edit-unit-search]
 ${Inp_UnitSearch_SearchButton}						css:[data-drupal-selector=edit-actions] > input
+
+#SERVICELIST
+${Inp_ServiceList_Title}							name:field_content[0][subform][field_service_list_title][0][value]
