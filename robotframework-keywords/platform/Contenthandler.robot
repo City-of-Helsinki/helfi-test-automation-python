@@ -98,7 +98,7 @@ Cleanup and Close Browser
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
     ${unitispublished}=   Convert To Boolean   ${unitispublished}
     Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   Digituki
-    Run Keyword If  '${TEST NAME}'=='Two Units'  Set Service Back To Unpublished   Parkletit
+    Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Paloheinän kirjasto
 	Close Browser	
 	

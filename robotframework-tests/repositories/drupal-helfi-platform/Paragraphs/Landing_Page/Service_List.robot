@@ -1,20 +1,20 @@
 *** Settings ***
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Service_List.robot
-Documentation	This Paragraph requires some units and tpr_config module enabled as prerequisite.
+Documentation	This Paragraph requires some services and tpr_config module enabled as prerequisite.
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		LANDINGPAGE   SERVICELIST
 
 *** Test Cases ***
 
-One Unit
+One Service
 	[Tags]
 	Given Service Is Published
 	When User Adds Content With Service List
 	Then Layout Should Not Have Changed
 	And ServiceList Paragraph Works Correctly
 
-Two Units
+Two Services
 	[Tags]
 	Given Services Are Published
 	When User Adds Content With Service List
@@ -45,9 +45,9 @@ ServiceList Paragraph Works Correctly
 	Click Link   css:.service__link
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   digituki
-	GoTo   ${contentpage}
-	Click Link   css:div.views-element-container > div > div > div:nth-child(2) > div > a
-	${currenturl}=   Get Location
-	Should Contain   ${currenturl}   parkletit
+	Run Keyword If  '${TEST NAME}'=='Two Services'   GoTo   ${contentpage}
+	Run Keyword If  '${TEST NAME}'=='Two Services'  Click Link   css:div.views-element-container > div > div > div:nth-child(2) > div > a
+	${currenturl}=   Run Keyword If  '${TEST NAME}'=='Two Services'  Get Location
+	Run Keyword If  '${TEST NAME}'=='Two Services'  Should Contain   ${currenturl}   parkletit
 
 	
