@@ -14,11 +14,19 @@ One Unit
 	Then Layout Should Not Have Changed
 	And ServiceList Paragraph Works Correctly
 
-
+Two Units
+	[Tags]
+	Given Services Are Published
+	When User Adds Content With Service List
+	Then Layout Should Not Have Changed
+	And ServiceList Paragraph Works Correctly
+	
 *** Keywords ***
 
-Service Is Published
+Service Is Published	Publish Service With Name   Digituki
+Services Are Published	
 	Publish Service With Name   Digituki
+	Publish Service With Name   Parkletit
 	
 User Adds Content With Service List
 	Go To New LandingPage Site
@@ -33,6 +41,13 @@ Layout Should Not Have Changed
 	Compare Pictures And Handle PictureData	  ${originalpic}   ${comparisonpic}
 	
 ServiceList Paragraph Works Correctly
+	${contentpage}=   Get Location
 	Click Link   css:.service__link
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   digituki
+	GoTo   ${contentpage}
+	Click Link   css:div.views-element-container > div > div > div:nth-child(2) > div > a
+	${currenturl}=   Get Location
+	Should Contain   ${currenturl}   parkletit
+
+	
