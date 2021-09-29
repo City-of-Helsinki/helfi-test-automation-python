@@ -71,8 +71,9 @@ Input Lead
 	Input Text  ${Inp_Lead}   ${lead} 
 
 Input Content Header Title
-	[Arguments]   ${content}
-	Input Text To Frame   ${Frm_Content}   //body   ${content}
+	[Arguments]   ${content}   ${pagetype}
+	Run Keyword If   '${pagetype}'=='Page'   Input Text  name:field_lead_in[0][value]   ${content}
+	Run Keyword Unless   '${pagetype}'=='Page'  Input Text To Frame   ${Frm_Content}   //body   ${content}
 	
 Go To Translations Tab
 	Click Button   //a[contains(text(),'Translate')]	
@@ -520,7 +521,7 @@ Input Non-paragraph Related Content
 	Run Keyword If  '${pagetype}'=='Article'   Set Article Spesific Values
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Name Contains Text    Landing Page
-	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}	
+	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
 	
 Set Article Spesific Values
 	Input Author   Test Automation Author
