@@ -40,9 +40,11 @@ ${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi/admin/content/paragr
 *** Keywords ***
 
 Open Paragraph For Edit
-	[Arguments]   ${paragraph}
+	[Arguments]   ${paragraph}    ${paragraphlist}=${EMPTY}
+	[Documentation]  'paragraphlist' can be given if list should be some other than default paragraph list.  
 	Wait Until Element Is Visible   ${Ddn_AddContent}   timeout=3
-	Click Element	${Ddn_AddContent}
+	Run Keyword If  '${paragraphlist}'=='${EMPTY}'  Click Element	${Ddn_AddContent}
+	Run Keyword Unless  '${paragraphlist}'=='${EMPTY}'   Click Element	${paragraphlist}
 	Click Element   ${paragraph}
 
 Input Title To Paragraph
