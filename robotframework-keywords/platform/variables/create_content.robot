@@ -39,6 +39,7 @@ ${Btn_Save}									//button[contains(text(),'Tallenna')]
 ${Btn_Save_En}								//button[contains(text(),'Save')]
 ${Btn_Save_Sv}								//button[contains(text(),'Spara')]
 ${Ddn_AddContent}							//ul[@data-drupal-selector='edit-field-content-add-more-operations']//li[2]/button
+${Ddn_AddContent_Sidebar}					css:#edit-field-sidebar-content-add-more > div > div > ul > li.dropbutton-toggle > button
 ${Opt_AddColumns}						    name:field_content_columns_add_more
 ${Opt_AddPicture}						    name:field_content_image_add_more
 ${Opt_AddText}								name:field_content_text_add_more
@@ -50,6 +51,8 @@ ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
 ${Opt_ServiceList}							name:field_content_service_list_add_more
+${Opt_SideBarText}							name:field_sidebar_content_sidebar_text_add_more
+${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 
@@ -236,6 +239,7 @@ ${Inp_Paragraph_Banner_Link_Text}					name:paragraphs[0][subform][field_banner_l
 ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
 ${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
 ${Inp_Paragraph_ListOfLinks_Title}					name:paragraphs[0][subform][field_list_of_links_title][0][value]
+${Inp_Paragraph_SidebarText_Title}					name:paragraphs[0][subform][field_sidebar_text_title][0][value]
 
 
 ${Btn_Paragraph_Gallery_Picture}					name:field_gallery_slide_media-media-library-open-button-paragraphs-0-subform-field_gallery_slides-
@@ -247,6 +251,7 @@ ${Btn_Paragraph_Submit}							    //input[@id='edit-submit']
 ${Opt_Paragraph_AddColumns}						    name:paragraphs_columns_add_more
 ${Opt_Paragraph_AddPicture}						    name:paragraphs_image_add_more
 ${Opt_Paragraph_AddText}							name:paragraphs_text_add_more
+${Opt_Paragraph_AddSidebarText}						name:paragraphs_sidebar_text_add_more
 ${Opt_Paragraph_AddLink}							name:paragraphs_link_add_more
 ${Opt_Paragraph_AddBanner}   						name:paragraphs_banner_add_more
 ${Opt_Paragraph_AddAccordion}   					name:paragraphs_accordion_add_more
@@ -289,3 +294,6 @@ ${Inp_UnitSearch_SearchButton}						css:[data-drupal-selector=edit-actions] > in
 
 #SERVICELIST
 ${Inp_ServiceList_Title}							name:field_content[0][subform][field_service_list_title][0][value]
+
+# SIDEBAR
+${Inp_Sidebar_Text}									name:field_sidebar_content[0][subform][field_sidebar_text_title][0][value]

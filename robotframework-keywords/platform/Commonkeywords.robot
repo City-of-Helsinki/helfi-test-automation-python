@@ -56,6 +56,11 @@ Suite Name Contains Text
 	${containstext}=    Run Keyword And Return Status    Should Contain    ${SUITE NAME}    ${text}
 	[Return]   ${containstext}
 
+Test Name Contains Text
+	[Arguments]  ${text}
+	${containstext}=    Run Keyword And Return Status    Should Contain    ${TEST NAME}    ${text}
+	[Return]   ${containstext}
+
 Click Element Using JavaScript Xpath
 	[Arguments]  ${xpath}
     Execute JavaScript    document.evaluate("${xpath}",document.body,null,9,null).singleNodeValue.click();

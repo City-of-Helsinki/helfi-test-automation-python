@@ -132,6 +132,20 @@ Create New ${lang_selection} Text Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
+
+Create New ${lang_selection} SidebarText Paragraph To Library
+	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	Set Test Variable   ${language}   ${language_pointer}
+	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_SidebarText_${language}  
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_AddSidebarText}
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph    ${Inp_Paragraph_SidebarText_Title}
+	Wait Until Keyword Succeeds  5x  200ms  Input Description To Paragraph   ${Frm_Content}
+	
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
  
 Add SubContent To Accordion 
 	[Arguments]   ${content}

@@ -487,6 +487,7 @@ Add Picture Caption to ${side}
 Add Text Content To Column on ${side}
 	[Documentation]   Adds text content to selected column by selecting content type first and then inserting text
 	${isaddfromlibrary}=  Suite Name Contains Text    Add From Library
+	${issidebar}=  Test Name Contains Text    Sidebar
 	Run Keyword If  ${isaddfromlibrary} & ('${language}'!='fi')   Click And Select Text As ${side} Content Type
 	Run Keyword If  '${language}'=='fi'  Click And Select Text As ${side} Content Type
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
@@ -499,9 +500,14 @@ Add Text Content To Column on ${side}
 	${editpicturevisible}=  Run Keyword And Return Status    Element Should Not Be Visible  ${Btn_Column_${side}_Edit}   timeout=1
 	Run Keyword Unless   ${editpicturevisible}   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Column_${side}_Edit}
 	
-	Run Keyword Unless  ${isaddfromlibrary}   Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Column_${side}_Text}   //body   ${content_text}
-	Run Keyword If  ${isaddfromlibrary}   Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Paragraph_Column_${side}_Text}   //body   ${content_text}
-	
+	IF    (${issidebar})
+        Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   css:#cke_1_contents > iframe   //body   ${content_text}
+    ELSE IF    (${isaddfromlibrary})
+        Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Paragraph_Column_${side}_Text}   //body   ${content_text}
+    ELSE
+    	Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   ${Frm_Column_${side}_Text}   //body   ${content_text}
+    END 
+		
 Click And Select Text As ${side} Content Type
 	Wait Until Element Is Visible  ${Opt_Column_${side}_AddContent_Text}   timeout=3
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}

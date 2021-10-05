@@ -2,6 +2,7 @@
 Documentation   Testing Columns Settings in Platform by comparing layout to default picture. Testing is performed with
 ...				Different text deviation like 50-50, 30-70 and with pictures and links added.
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Columns.robot
+Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Add_From_Library.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   COLUMNS
@@ -71,6 +72,28 @@ Finnish English Swedish Translations
 	And Page Should Have English Translation
 	And Page Should Have Swedish Translation
 
+
+50-50 With Sidebar Text
+	[Tags]  CRITICAL   SIDEBAR
+	Given User Goes To New Page -Site
+	And User Starts Creating Page With 50-50 Division And Text Content
+	And User Adds Text to Left Column
+	And User Adds Text to Right Column
+	And User Adds Text to Sidebar
+	When User Submits The New Page
+	Then Layout Should Not Have Changed
+
+50-50 With Sidebar Content From Library
+	[Tags]  SIDEBAR
+	Given User Creates New SidebarText Paragraphs To Library
+	Given User Goes To New Page -Site
+	And User Starts Creating Page With 50-50 Division And Text Content
+	And User Adds Text to Left Column
+	And User Adds Text to Right Column
+	And User Adds Content From Library to Sidebar
+	When User Submits The New Page
+	Then Layout Should Not Have Changed
+
 *** Keywords ***
 User Goes To New Page -Site		Go To New Page Site
 User Submits The New Page
@@ -88,6 +111,19 @@ User Adds ${content} to Left Column
 
 User Adds ${content} to Right Column
 	Add ${content} to Right Column
+
+User Creates New SidebarText Paragraphs To Library
+	Create New Finnish SidebarText Paragraph To Library
+
+User Adds ${content} to Sidebar
+	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
+	Run Keyword If  '${content}'=='Text'  Open Paragraph For Edit   ${Opt_SideBarText}   ${Ddn_AddContent_Sidebar}
+	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_Sidebar_Text}    
+	Run Keyword If  '${content}'=='Text'  Input Text Content To Frame   ${TextFileContent}    cke_126_contents
+	
+	#Run Keyword If  '${content}'=='Content From Library'   Create New Finnish Columns Paragraph To Library
+	Run Keyword If  '${content}'=='Content From Library'   Open Paragraph For Edit   ${Opt_SideBarContentFromLibrary}   ${Ddn_AddContent_Sidebar}
+	Run Keyword If  '${content}'=='Content From Library'   Wait Until Keyword Succeeds  5x  200ms  Select From List By Index   name:field_sidebar_content[0][subform][field_reusable_paragraph]   1
 
 User Adds Link Button With ${linkstyle} Style into ${side} Column
 	Set Test Variable   ${linkstyle}   ${linkstyle}
