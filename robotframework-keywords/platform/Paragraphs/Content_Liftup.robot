@@ -8,7 +8,7 @@ Resource        ../Commonkeywords.robot
 Add Content Liftup For Unit
 	[Arguments]   ${pagetype}   ${unitname}
 	Wait Until Keyword Succeeds  5x  200ms   Open Paragraph For Edit   ${Opt_ContentLiftup}
-	Sleep  3
+	Sleep  0.5		# Small sleep so that text is inserted correctly
 	Wait Until Keyword Succeeds  5x  200ms   Input Text   ${Inp_UnitId_Text}   ${unitname}
 	Capture Page Screenshot
 
