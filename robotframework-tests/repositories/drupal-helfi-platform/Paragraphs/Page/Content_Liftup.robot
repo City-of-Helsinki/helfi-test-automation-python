@@ -1,5 +1,7 @@
 *** Settings ***
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Content_Liftup.robot
+Documentation	For These testcases to work units with names Lippulaivan kirjasto and Otaniemen kirjasto should be imported.
+...				(Should appear when importing 50 tpr_units). Also tpr_config -module should be enabled. 
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
 Force Tags		PAGE   CONTENTLIFTUP
