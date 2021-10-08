@@ -53,6 +53,7 @@ ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
 ${Opt_ServiceList}							name:field_content_service_list_add_more
 ${Opt_SideBarText}							name:field_sidebar_content_sidebar_text_add_more
 ${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_more
+${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 
@@ -297,3 +298,7 @@ ${Inp_ServiceList_Title}							name:field_content[0][subform][field_service_list
 
 # SIDEBAR
 ${Inp_Sidebar_Text}									name:field_sidebar_content[0][subform][field_sidebar_text_title][0][value]
+
+#CONTENT-LIFTUP
+#${Inp_UnitId_Text}									name:field_content[0][subform][field_content_liftup_unit][0][target_id]
+${Inp_UnitId_Text} 									(//input[contains(@id,'edit-field-content')][contains(@id,'target-id')])[last()]

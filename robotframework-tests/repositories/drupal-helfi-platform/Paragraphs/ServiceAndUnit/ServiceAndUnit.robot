@@ -15,7 +15,7 @@ Service
 Unit With Service
 	[Tags]
 	Given Service Is Set as Published
-	When User Opens Unit With Name Paloheinän kirjasto
+	When User Opens Unit With Name Lippulaivan kirjasto
 	Then Unit Contents Should Be Correct
 	And Units Service Link Works Correctly
 
@@ -69,12 +69,12 @@ Unit Contents Should Be Correct
 	${servicetitle}=  Replace Encoded Characters From String   ${servicetitle}   ${EMPTY}    UTF-8    \\xc2\\xad
 	${servicedesc}=  Get Units Service Description
 
-	Should Be Equal   ${title}   Paloheinän kirjasto
+	Should Be Equal   ${title}   Lippulaivan kirjasto
 	Should Be Equal   ${ccardtitle}   Yhteystiedot
 	Should Be Equal   ${addrmain}   Käyntiosoite:
-	Should Be Equal   ${addrline1}   Paloheinäntie 22
-	Should Be Equal   ${postcode}   00670
-	Should Be Equal   ${locality}   Helsinki
+	Should Be Equal   ${addrline1}   Merikarhunkuja 11
+	Should Be Equal   ${postcode}   02320
+	Should Be Equal   ${locality}   Espoo
 	Should Be Equal   ${phonemain}   Puhelinnumero:
 	${hasservicelink}=  Unit Has Service Link
 	Should Be True   ${hasservicelink}

@@ -40,26 +40,26 @@ The Search Bar Is Working Correctly
 	Search Bar Works By Unit Post Number
 	Clear Element Text   ${Inp_UnitSearch_SearchField}
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/8359')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/63115')]
 
 Search Bar Works By Unit Name
-	Input Text  ${Inp_UnitSearch_SearchField}   Tapa
+	Input Text  ${Inp_UnitSearch_SearchField}   Otan
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/8359')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/63115')]
 	
 Search Bar Works By Unit Address
 	Input Text  ${Inp_UnitSearch_SearchField}   hiiden
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/8359')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/63115')]
 
 Search Bar Works By Unit Post Number
 	Sleep  0.2
 	Input Text  ${Inp_UnitSearch_SearchField}   00670
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/tpr-unit/8359')]
 	
 Unit Address And Phone Data Is Correct
@@ -67,7 +67,7 @@ Unit Address And Phone Data Is Correct
 	${postalcode}=  Get Text   css:.postal-code
 	${city}=  Get Text   css:.locality
 	${phone}=  Get Text   css:.phones > a
-	Click Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
+	Click Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   paloheinan-kirjasto
 	${addressline1_unitsite}=  Get Text   css:.address-line1

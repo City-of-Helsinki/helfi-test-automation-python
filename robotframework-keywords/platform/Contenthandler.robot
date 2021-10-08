@@ -102,7 +102,8 @@ Cleanup and Close Browser
     ${unitispublished}=   Convert To Boolean   ${unitispublished}
     Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   Digituki
     Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
-    Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Paloheinän kirjasto
+    Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
+    Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
 	Close Browser	
 	
 Set Service Back To Unpublished
@@ -119,6 +120,9 @@ Set Service Back To Unpublished
 Set Unit Back To Unpublished
 	[Documentation]   Publishing function works other way too so it can unpublish with the same keyword
 	[Arguments]   ${name}
+	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
+	Click Link   ${name}
+	Wait Until Keyword Succeeds  5x  200ms 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
 	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  //input[@id='edit-status'][@checked='checked']
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
 	Click Button   ${Btn_Submit}

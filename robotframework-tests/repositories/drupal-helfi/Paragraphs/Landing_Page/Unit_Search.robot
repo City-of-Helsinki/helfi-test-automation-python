@@ -20,8 +20,8 @@ Two Units
 *** Keywords ***
 
 Units Are Published
-	Publish Unit With Name   Paloheinän kirjasto
-	Publish Unit With Name   Tapanilan kirjasto
+	Publish Unit With Name   Lippulaivan kirjasto
+	Publish Unit With Name   Otaniemen kirjasto
 	
 User Starts Creating UnitSearch Paragraph
 	Create Unit Search Paragraph   LandingPage
