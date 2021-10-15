@@ -33,6 +33,8 @@ ${unitispublished}							false
 @{excludetaglist}     					    ARTICLE
 ${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
+${URL_unit_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-unit
+${URL_service_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-service
 ${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media
 ${URL_paragraphs_page}						${PROTOCOL}://${BASE_URL}/fi/admin/content/paragraphs
 ${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi/admin/content/paragraphs/add/default
@@ -78,7 +80,11 @@ Input Content Header Title
 	Run Keyword Unless   '${pagetype}'=='Page'  Input Text To Frame   ${Frm_Content}   //body   ${content}
 	
 Go To Translations Tab
-	Click Button   //a[contains(text(),'Translate')]	
+	Click Element   //a[contains(text(),'Translate')]
+	
+Go To Modify Tab
+	Scroll Element Into View   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Click Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
 	
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
@@ -227,6 +233,11 @@ Go To New Article Site
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Article
 
+Go To New Annoucement Site
+	GoTo   ${URL_content_page}
+	Click Add Content
+	Wait Until Keyword Succeeds  5x  200ms  Click Add Announcement
+
 Go To New Page Site
 	GoTo   ${URL_content_page}
 	Click Add Content
@@ -264,6 +275,11 @@ Click Add Landing Page
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']
 	Element Should Not Be Visible   //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']
 
+Click Add Announcement
+	[Documentation]   Add Annoucement ('Poikkeusilmoitus') click in Add Content('Lisää sisältöä') -menu
+	Wait Until Element Is Visible  //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']   timeout=3
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']
+	Element Should Not Be Visible   //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']
 	
 Click Add Article
 	[Documentation]   Add Article ('Artikkeli') click in Add Content('Lisää sisältöä') -menu

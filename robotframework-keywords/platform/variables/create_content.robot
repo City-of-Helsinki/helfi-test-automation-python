@@ -214,7 +214,6 @@ ${Inp_LiftupWithImage_Picture}		    			//input[contains(@name, 'liftup_with_imag
 ${Inp_LiftupWithImage_Design}						name:field_content[0][subform][field_liftup_with_image_design][0]
 
 #SERVICE
-${Inp_Service_Title}								name:title[0][value]
 ${Inp_Service_Visible_Title}						name:field_service_visible_title[0][value]
 ${Inp_Service_ParentService}						name:field_service_parent_service[0][target_id]
 
@@ -300,5 +299,12 @@ ${Inp_ServiceList_Title}							name:field_content[0][subform][field_service_list
 ${Inp_Sidebar_Text}									name:field_sidebar_content[0][subform][field_sidebar_text_title][0][value]
 
 #CONTENT-LIFTUP
-#${Inp_UnitId_Text}									name:field_content[0][subform][field_content_liftup_unit][0][target_id]
 ${Inp_UnitId_Text} 									(//input[contains(@id,'edit-field-content')][contains(@id,'target-id')])[last()]
+
+#ANNOUNCEMENTS
+${Inp_Announcement_Title}								name:title[0][value]
+${Inp_Announcement_Type}								name:field_announcement_type
+${Ddn_Announcement_Language}							name:langcode[0][value]
+${Swh_Announcement_Visibility}							name:field_announcement_all_pages[value]
+${Inp_Announcement_Link_Url}					 	  	name:edit-field-announcement-link-0-uri
+${Inp_Announcement_Link_Title}							name:field_announcement_link[0][title]

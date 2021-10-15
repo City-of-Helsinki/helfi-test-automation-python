@@ -7,7 +7,7 @@ Resource        ../Commonkeywords.robot
 
 Publish The ${nth} Unit In The Unit List
 	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-unit/${nth}/edit
-	Set Content As Published
+	Set Unit As Published
 	Submit New Content
 
 Open Unit With Name
