@@ -1,5 +1,5 @@
 *** Settings ***
-Resource        ../../../../robotframework-keywords/platform/Paragraphs/Announcements.robot
+Resource        ../../../../robotframework-keywords/platform/Others/Announcements.robot
 Documentation	For units and services used in these testcases to appear, about 50 units and services should be imported.
 ...				Also following modules should be enabled/imported:
 ...				helfi_announcements, tpr_errand_service, tpr_service, tpr_service_channel, helfi_example_content
