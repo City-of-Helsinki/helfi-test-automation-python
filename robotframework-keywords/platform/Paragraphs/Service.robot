@@ -14,7 +14,7 @@ Publish The ${nth} Service In The Service List
 
 Open Service With Name
 	[Arguments]	   ${name}
-	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-service
+	Goto  ${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-service
 	Click Link   ${name}
 	
 Get Service Title
