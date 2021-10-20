@@ -7,7 +7,7 @@ Force Tags		PAGE   UNITSEARCH
 *** Test Cases ***
 
 Two Units
-	[Tags]   TODO
+	[Tags]
 	Given Units Are Published
 	When User Goes To New Page -Site
 	And User Starts Creating UnitSearch Paragraph
