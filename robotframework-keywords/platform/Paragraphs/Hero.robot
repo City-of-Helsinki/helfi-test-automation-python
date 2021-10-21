@@ -34,7 +34,7 @@ Start Creating a ${value} Aligned Page With Hero Block
 	${titleisvisible}=  Run Keyword And Return Status   Element Should Be Enabled   ${Inp_Hero_Title}
 	Run Keyword Unless  ${titleisvisible} 	Click Element   ${Swh_HeroOnOff}
 	Wait Until Keyword Succeeds  5x  100ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
-	Run Keyword If  '${value}'=='Center'  Click Element   ${Opt_Hero_Alignment_Center} 
+	Run Keyword If  '${value}'=='Center'  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Hero_Alignment_Center} 
 	Wait Until Keyword Succeeds  5x  100ms   Input Title To Paragraph   ${Inp_Hero_Title}
 	${TextFileContent}=  Return Correct Content   ${language}
 	@{content} =	Split String	${TextFileContent}   .,.
@@ -47,10 +47,10 @@ Start Creating a ${value} Aligned Page With Hero Block
     ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==False)
         Handle Page Translation Test Description   ${TextFileDescription}   ${content_up}   ${content_down}
     ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==True)
-     	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   css:#cke_113_contents > iframe
+     	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   css:#cke_1_contents > iframe
     	Run Keyword If  '${language}'!='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   ${Frm_Content}
-        Run Keyword If  '${language}'=='fi'   Handle LandingPage Translation Test Description   ${content_up}    cke_1_contents
-        Run Keyword If  '${language}'!='fi'   Handle LandingPage Translation Test Description   ${content_up}    cke_2_contents
+    	Add Lead-In Text   name:field_lead_in[0][value]		${content_up}    
+        #Run Keyword If  '${language}'!='fi'   Add Lead-In Text   ${content_up}    cke_2_contents
     ELSE
     	Handle Page Content And Description   ${TextFileDescription}   ${content_up}   ${content_down}
     END
@@ -76,9 +76,9 @@ Handle Page Translation Test Description
 	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${content_down}   cke_2_contents
 	...	  ELSE		Input Text Content To Frame   ${content_down}   cke_3_contents
 	
-Handle LandingPage Translation Test Description
-	[Arguments]   ${content_up}    ${cke}
-	Input Text Content To Frame   ${content_up}   ${cke}
+Add Lead-In Text
+	[Arguments]   ${locator}   ${content}    
+	Input Text    ${locator}   ${content}
 
 	
 Start Creating Hero Block Page with ${picalign} Picture 

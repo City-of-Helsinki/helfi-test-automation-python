@@ -15,7 +15,7 @@ Left Aligned
 	Then Layout Should Not Have Changed	
 
 Center Aligned
-	[Tags]  
+	[Tags] 
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Center Aligned Page With Hero Block
 	When New Landingpage is Submitted
@@ -209,7 +209,7 @@ Page Should Have ${lang_input} Translation
 
 Page Content Matches Language
 	${Title}=  Return Hero Title From Page
-	${Content}=  Return Content From Page
+	${Content}=  Return Lead-in From Page
 	Title Should Match Current Language Selection   ${Title}
 	Content Should Match Current Language Selection   ${Content}
 	

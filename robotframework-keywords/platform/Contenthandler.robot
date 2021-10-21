@@ -392,8 +392,8 @@ Return Correct Content
 	${content}=	Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	[Return]		${content}
 
-Return Content From Page	
-	${content}=	Get Text    ${Txt_Content}
+Return Lead-in From Page	
+	${content}=	Get Text    ${Txt_Leadin_Content}
 	[Return]		${content}
 
 Title Should Match Current Language Selection
@@ -534,8 +534,8 @@ Click And Select Text As ${side} Content Type
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}	
-	Copy Original Screenshot To Reports Folder   ${originalpic}
-	Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}   ${movetolerance}
+	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
+	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}   ${movetolerance}
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	
 
