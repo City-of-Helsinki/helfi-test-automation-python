@@ -65,6 +65,7 @@ ${Btn_Insert_Pic}							//button[contains(text(),'Poimi valitut mediatiedostot')
 ${Btn_Insert_Pic_Alt}						//button[contains(text(),'Insert selected')]
 ${Ddn_SelectLanguage}						//select[@id='edit-langcode-0-value']
 ${Inp_Title}								//input[@id='edit-title-0-value']
+${Tar_Page_LeadIn}							name:field_lead_in[0][value]
 ${Frm_Content}							    css:#cke_1_contents > iframe
 ${Frm_Content2}								css:#cke_2_contents > iframe
 ${Frm_Content_Description}				    css:#cke_58_contents > iframe
@@ -147,7 +148,7 @@ ${Btn_Gallery_Picture_Addmore}				name:field_content_1_subform_field_gallery_sli
 # PAGE VIEW
 ${Txt_Hero_Title}								css:.hero__title
 ${Txt_Hero_Description}							css:.hero__description
-${Txt_Leadin_Content}									//div[@class='container lead-in__container']
+${Txt_Leadin_Content}							//div[@class='container lead-in__container']
 ${Txt_Column_Title}								css:.columns__title
 ${Txt_Column_Description}						xpath://p[1]
 ${Txt_Column_Content}							xpath://div[@class='columns columns--default columns--50-50']//p

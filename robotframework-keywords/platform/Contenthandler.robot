@@ -94,7 +94,9 @@ Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    ${pagesadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item on Content Menu List
+		   #BECAUSE REMOVING FINNISH TRANSLATION SEEMINGLY ALSO REMOVES SWEDISH ONE, WE CAN EXIT LOOP AT THIS POINT
+		   Run Keyword If  ('${i}'=='2') & ('${TEST NAME}'=='Finnish English Swedish Translations')   Exit For Loop   
+           Wait Until Keyword Succeeds  5x  300ms 	Delete Newly Created Item on Content Menu List
     END
 	FOR    ${i}    IN RANGE    ${mediaadded}
            Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
@@ -326,6 +328,7 @@ Delete Newly Created Item on Content Menu List
 	Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
 	Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_content_page}
+
 	
 Delete Newly Created Item from Content Media List
 	Go To   ${URL_media_page}

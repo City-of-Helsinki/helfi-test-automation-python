@@ -45,36 +45,32 @@ Start Creating a ${value} Aligned Page With Hero Block
     IF    ${islandingpage} & ('${TEST NAME}'!='Finnish English Swedish Translations')
         Handle LandingPage Content And Description   ${content_up}
     ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==False)
-        Handle Page Translation Test Description   ${TextFileDescription}   ${content_up}   ${content_down}
+        Insert Description and Lead-In For Page   ${TextFileDescription}   ${content_up}
     ELSE IF    ('${TEST NAME}'=='Finnish English Swedish Translations') & (${islandingpage}==True)
      	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   css:#cke_1_contents > iframe
     	Run Keyword If  '${language}'!='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   ${Frm_Content}
-    	Add Lead-In Text   name:field_lead_in[0][value]		${content_up}    
+    	Add Lead-In Text   ${Tar_Page_LeadIn}	${content_up}    
         #Run Keyword If  '${language}'!='fi'   Add Lead-In Text   ${content_up}    cke_2_contents
     ELSE
-    	Handle Page Content And Description   ${TextFileDescription}   ${content_up}   ${content_down}
+    	Insert Description and Lead-In For Page   ${TextFileDescription}   ${content_up} 
     END
 
 Handle Page Content And Description
-	[Arguments]   ${TextFileDescription}   ${content_up}   ${content_down}=${EMPTY}
+	[Arguments]   ${TextFileDescription}   ${content_up}
 	# In case of link we need to add some linebreaks '\n'
-	Input Text Content To Frame   ${TextFileDescription}\n   cke_113_contents
-	Input Text Content To Frame   ${content_up}\n   cke_1_contents
-	Input Text Content To Frame   ${content_down}\n   cke_2_contents
+	Input Text Content To Frame   ${TextFileDescription}\n   cke_1_contents
+	Add Lead-In Text  ${Tar_Page_LeadIn}   ${content_up}
+	
 
 Handle LandingPage Content And Description
 	[Arguments]   ${content_up}
 	# In case of link we need to add some linebreaks '\n'
 	Input Text Content To Frame   ${content_up}\n   cke_1_contents
 
-Handle Page Translation Test Description
-	[Arguments]   ${description}   ${content_up}   ${content_down}
-	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${description}   cke_113_contents
-	...	  ELSE		Input Text Content To Frame   ${description}   cke_1_contents
-	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${content_up}   cke_1_contents
-	...	  ELSE		Input Text Content To Frame   ${content_up}   cke_2_contents
-	Run Keyword If  ('${language}'=='fi')  Input Text Content To Frame   ${content_down}   cke_2_contents
-	...	  ELSE		Input Text Content To Frame   ${content_down}   cke_3_contents
+Insert Description and Lead-In For Page
+	[Arguments]   ${description}   ${content}
+	Input Text Content To Frame   ${description}   cke_1_contents
+	Add Lead-In Text   ${Tar_Page_LeadIn}	${content}
 	
 Add Lead-In Text
 	[Arguments]   ${locator}   ${content}    
@@ -120,8 +116,7 @@ Add ${style} Link In Hero Content Paragraph
 
 
 Add ${style} Link In Text Editor
-	${cke}=   Set Variable If  ${islandingpage}   id:cke_24 
-	...		  id:cke_136
+	${cke}=   Set Variable    id:cke_24 
 	Set Focus To Element  ${cke}
 	Click Element   ${cke}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Hero_Link_Texteditor_URL}   https://fi.wikipedia.org/wiki/Rautatie_(romaani)    

@@ -177,7 +177,7 @@ Tram Background Color
 	Then Layout Should Not Have Changed
 
 Finnish English Swedish Translations
-	[Tags]   CRITICAL
+	[Tags]   CRITICAL   TODO
 	Given User Creates a Left Aligned Page With Hero Block In Finnish Language
 	And User Creates a Left Aligned Page With Hero Block In English Language
 	And User Creates a Left Aligned Page With Hero Block In Swedish Language
@@ -218,7 +218,7 @@ Page Should Have ${lang_input} Translation
 Page Content Matches Language
 	${Title}=  Return Hero Title From Page
 	${Description}=  Return Hero Description From Page
-	${Content}=  Return Content From Page
+	${Content}=  Return Lead-in From Page
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
 	Content Should Match Current Language Selection   ${Content}
