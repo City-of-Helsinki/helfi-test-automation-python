@@ -177,7 +177,7 @@ Tram Background Color
 	Then Layout Should Not Have Changed
 
 Finnish English Swedish Translations
-	[Tags]   CRITICAL   TODO
+	[Tags]   CRITICAL
 	Given User Creates a Left Aligned Page With Hero Block In Finnish Language
 	And User Creates a Left Aligned Page With Hero Block In English Language
 	And User Creates a Left Aligned Page With Hero Block In Swedish Language
