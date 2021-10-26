@@ -502,8 +502,10 @@ Add Picture to Column
 	Set Test Variable  ${picture}    picture   
 
 Add Picture Caption to ${side}
-	${editpicturevisible}=  Run Keyword And Return Status    Element Should Not Be Visible  ${Btn_Column_${side}_Edit}   timeout=1
-	Run Keyword Unless   ${editpicturevisible}   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Column_${side}_Edit}
+	${editpicturevisible}=  Run Keyword And Return Status    Element Should Be Visible  ${Btn_Column_${side}_Edit}   timeout=1
+	Run Keyword If   ${editpicturevisible}   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Column_${side}_Edit}
+	
+	Wait Until Keyword Succeeds  5x  200ms  Scroll Element Into View   ${Inp_Column_${side}_Picture_Caption}
 	Run Keyword If  '${side}'=='Left'	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Column_Left_Picture_Caption}   ${pic_1_caption_${language}}
 	Run Keyword If  '${side}'=='Right'	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Column_Right_Picture_Caption}   ${pic_2_caption_${language}}
 	

@@ -64,7 +64,7 @@ Force Tags		PAGE   COLUMNS
 	Then Layout Should Not Have Changed
 
 Finnish English Swedish Translations
-	[Tags]  CRITICAL
+	[Tags]  CRITICAL   TODO
 	Given User Creates Page With 50-50 Division And Mixed Content in Finnish Language
 	And User Creates Page With 50-50 Division And Mixed Content in English Language
 	And User Creates Page With 50-50 Division And Mixed Content in Swedish Language
@@ -118,10 +118,8 @@ User Creates New SidebarText Paragraphs To Library
 User Adds ${content} to Sidebar
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	Run Keyword If  '${content}'=='Text'  Open Paragraph For Edit   ${Opt_SideBarText}   ${Ddn_AddContent_Sidebar}
-	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_Sidebar_Text}    
-	Run Keyword If  '${content}'=='Text'  Input Text Content To Frame   ${TextFileContent}    cke_126_contents
-	
-	#Run Keyword If  '${content}'=='Content From Library'   Create New Finnish Columns Paragraph To Library
+	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_Sidebar_Text}
+	Run Keyword If  '${content}'=='Text'  Input Text To Frame   ${Frm_Sidebar_Text}   //body   ${TextFileContent}    
 	Run Keyword If  '${content}'=='Content From Library'   Open Paragraph For Edit   ${Opt_SideBarContentFromLibrary}   ${Ddn_AddContent_Sidebar}
 	Run Keyword If  '${content}'=='Content From Library'   Wait Until Keyword Succeeds  5x  200ms  Select From List By Index   name:field_sidebar_content[0][subform][field_reusable_paragraph]   1
 
@@ -156,7 +154,7 @@ Return Title From Page
 	[Return]		${title}
 
 Return Description From Page
-	${description}=	Get Text    ${Txt_Column_Description}
+	${description}=	Get Text    ${Txt_Leadin_Content}
 	[Return]		${description}
 
 Return Content From Page

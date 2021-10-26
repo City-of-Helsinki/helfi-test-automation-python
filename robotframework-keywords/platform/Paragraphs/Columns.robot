@@ -74,7 +74,11 @@ Return Title From ${pagetype}
 	[Return]		${title}
 
 Return Description From ${pagetype}
-	${description}=	Get Text    ${Txt_Column_Description}
+	IF    ('${pagetype}'=='Page')
+        ${description}=  Get Text    ${Txt_Leadin_Content}
+    ELSE
+    	${description}=  Get Text    ${Txt_Column_Description}
+    END 
 	[Return]		${description}
 
 Return Content From ${pagetype}

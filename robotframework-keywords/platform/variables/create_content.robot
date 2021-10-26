@@ -122,8 +122,8 @@ ${Frm_Column_Left_Text}						//div[contains(@id,'cke_edit-field-content')][conta
 ${Frm_Column_Right_Text}					//div[contains(@id,'cke_edit-field-content')][contains(@id,'right')]//iframe
 ${Btn_Column_Left_Picture}					//input[contains(@data-drupal-selector, 'subform-field-image-open-button')][contains(@data-drupal-selector, 'left')]
 ${Btn_Column_Right_Picture}					//input[contains(@data-drupal-selector, 'subform-field-image-open-button')][contains(@data-drupal-selector, 'right')]
-${Btn_Column_Right_Edit}					name:field_content_1_subform_field_columns_right_column_0_edit
-${Btn_Column_Left_Edit}						name:field_content_1_subform_field_columns_left_column_0_edit
+${Btn_Column_Left_Edit}						//input[contains(@name, 'subform_field_columns_left_column')][contains(@name, 'edit')]
+${Btn_Column_Right_Edit}					//input[contains(@name, 'subform_field_columns_right_column')][contains(@name, 'edit')]
 ${Inp_Column_Left_Picture_Caption}			//textarea[contains(@data-drupal-selector, 'subform-field-image-caption')][contains(@data-drupal-selector, 'left')]
 ${Inp_Column_Right_Picture_Caption}			//textarea[contains(@data-drupal-selector, 'subform-field-image-caption')][contains(@data-drupal-selector, 'right')]
 ${Swh_Column_Left_Picture_Orig_Aspect_Ratio}   //input[contains(@data-drupal-selector, 'field-original-aspect-ratio-value')][contains(@data-drupal-selector, 'left')]
@@ -152,7 +152,7 @@ ${Txt_Leadin_Content}							//div[@class='container lead-in__container']
 ${Txt_Column_Title}								css:.columns__title
 ${Txt_Column_Description}						xpath://p[1]
 ${Txt_Column_Content}							xpath://div[@class='columns columns--default columns--50-50']//p
-${Itm_Gallery_Slidetrack}						id:splide01-track
+${Itm_Gallery_Slidetrack}						id:splide01-track  
 # ARTICLE SPESIFIC
 ${Inp_Author}								name:field_author[0][value]
 ${Inp_Lead}									name:field_lead[0][value]
@@ -297,6 +297,8 @@ ${Inp_ServiceList_Title}							name:field_content[0][subform][field_service_list
 
 # SIDEBAR
 ${Inp_Sidebar_Text}									name:field_sidebar_content[0][subform][field_sidebar_text_title][0][value]
+${Frm_Sidebar_Text}									//div[contains(@id,'cke_edit-field-sidebar-content')] >> css:div > div > iframe
+
 
 #CONTENT-LIFTUP
 ${Inp_UnitId_Text} 									(//input[contains(@id,'edit-field-content')][contains(@id,'target-id')])[last()]

@@ -115,21 +115,9 @@ Page Should Have ${lang_input} Translation
 	Select Language   ${lang_input}
 	Page Content Matches Language
 
-Return Title From Page
-	${title}=	Get Text    ${Txt_Column_Title}
-	[Return]		${title}
-
-Return Description From Page
-	${description}=	Get Text    ${Txt_Column_Description}
-	[Return]		${description}
-
-Return Content From Page
-	${content}=	Get Text    ${Txt_Column_Content}
-	[Return]		${content}
-
 Page Content Matches Language
-	${Title}=  Return Title From Page
-	${Description}=  Return Description From Page
-	${Content}=  Return Content From Page
+	${Title}=  Return Title From LandingPage
+	${Description}=  Return Description From LandingPage
+	${Content}=  Return Content From LandingPage
 	Title Should Match Current Language Selection   ${Title}
 	Columns.Content Should Match Current Language Selection   ${Content}
