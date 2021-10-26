@@ -143,8 +143,9 @@ ${Opt_Column_Right_Link_ButtonTransparent}	//select[@data-drupal-selector='edit-
 
 #GALLERY
 ${Opt_AddGallery}						    name:field_content_gallery_add_more
-${Btn_Gallery_Picture}						name:field_gallery_slide_media-media-library-open-button-field_content-1-subform-field_gallery_slides-
-${Btn_Gallery_Picture_Addmore}				name:field_content_1_subform_field_gallery_slides_gallery_slide_add_more
+${Btn_Gallery_Picture}						(//input[contains(@name, 'field_gallery_slide_media-media-library-open-button-field_content')][contains(@name, 'subform-field_gallery_slides')])[last()]
+${Btn_Gallery_Picture_Caption}				//textarea[contains(@name, '[subform][field_gallery_slides]')][contains(@name, '[subform][field_gallery_slide_caption]')]
+${Btn_Gallery_Picture_Addmore}				//input[contains(@name, 'subform_field_gallery_slides_gallery_slide_add_more')]
 # PAGE VIEW
 ${Txt_Hero_Title}								css:.hero__title
 ${Txt_Hero_Description}							css:.hero__description

@@ -19,7 +19,7 @@ Browse Gallery Images
 User Submits The New Article
 	Submit The New Article
 	 		
-User Starts Creating Page With Gallery  Start Creating Article With Gallery
+User Starts Creating Page With Gallery  Create Article With Gallery
 	 						
 User Goes To New Article Site  Go To New Article Site
 

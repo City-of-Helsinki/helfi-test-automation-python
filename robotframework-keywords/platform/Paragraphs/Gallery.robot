@@ -5,7 +5,7 @@ Resource        ../Commonkeywords.robot
 
 *** Keywords ***
 
-Start Creating ${pagetype} With Gallery
+Create ${pagetype} With Gallery
 	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddGallery}
 	Add Picture 'train' And Caption To 1:th Picture
@@ -34,14 +34,13 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Click Button   ${Btn_Save}
 	Submit New Media
-	${pic_caption_locator}=   Set Variable  name:field_content[1][subform][field_gallery_slides][${number-1}][subform][field_gallery_slide_caption][0][value]
-	Wait Until Keyword Succeeds  5x  200ms   Input Text      ${pic_caption_locator}   ${pic_1_caption_${language}}
+	Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Btn_Gallery_Picture_Caption}   ${pic_1_caption_${language}}
 	Set Test Variable  ${picture}    picture
 	
 Open Add Picture To Gallery Window
 	[Arguments]   ${number}
-	Wait Until Element Is Visible   ${Btn_Gallery_Picture}${number-1}-subform   timeout=4
-	Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Gallery_Picture}${number-1}-subform
+	Wait Until Element Is Visible   ${Btn_Gallery_Picture}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Gallery_Picture}
 	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 

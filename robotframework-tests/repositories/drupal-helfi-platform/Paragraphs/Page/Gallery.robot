@@ -21,7 +21,7 @@ User Goes To New Page -Site  	Go To New Page Site
 User Submits The New Page   	
 	Submit The New Page 
 
-User Starts Creating Page With Gallery  Start Creating Page With Gallery
+User Starts Creating Page With Gallery  Create Page With Gallery
 
 Layout Should Not Have Changed
 	Wait Until Keyword Succeeds  5x   200ms   Accept Cookies
