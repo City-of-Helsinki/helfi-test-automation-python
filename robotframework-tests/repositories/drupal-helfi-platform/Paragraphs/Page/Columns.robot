@@ -64,7 +64,7 @@ Force Tags		PAGE   COLUMNS
 	Then Layout Should Not Have Changed
 
 Finnish English Swedish Translations
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Creates Page With 50-50 Division And Mixed Content in Finnish Language
 	And User Creates Page With 50-50 Division And Mixed Content in English Language
 	And User Creates Page With 50-50 Division And Mixed Content in Swedish Language
