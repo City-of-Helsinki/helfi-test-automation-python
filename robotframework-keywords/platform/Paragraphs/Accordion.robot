@@ -24,15 +24,14 @@ Add Second Accordion
 	Set Test Variable  ${color}  ${color}
 	Set Test Variable  ${heading}  ${heading}
 	Open Paragraph For Edit   ${Opt_AddAccordion}
-	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   name:field_content[2][subform][field_accordion_items][0][subform][field_accordion_item_heading][0][value]
-	Click Element  (//option[@value="check"])[2]
-	
-	#Wait Until Element Is Visible   ${Ddn_Accordion2_AddContent}   timeout=3
-	Click Element	${Ddn_Accordion2_AddContent}
+	Sleep  1			# LETS WAIT A BIT SO THAT NEW ACCORDION IS ADDED 
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_Accordion_Title}
+	Wait Until Keyword Succeeds  5x  200ms  Select From List By Label   ${Ddn_Accordion2_Icon}   check
+	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Ddn_Accordion_AddContent}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Accordion2_Content_Text}
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Accordion2_Content}   //body   ${TextFileContent} To Text Subcategory
-	
+		
 Add ${content} Content to Columns Subcategory
 	${content}=  Convert To Lower Case   ${content}
 	Run Keyword If  '${content}'=='picture'	 Wait Until Keyword Succeeds  5x  200ms  Add Pictures to Column
@@ -66,10 +65,17 @@ Accordion Component Works As Expected
 	Run Keyword If  '${picture}'=='picture'  Wait Until Keyword Succeeds  5x  200ms  Columns Paragraph With Pictures Exist In Created Accordion
 
 Text Content Exists In Created Accordion
-	${content}=  Run Keyword If  '${TEST NAME}'=='Columns With Text'   Return Content From Accordion Column Text Content
-	...			 ELSE   Accordion.Return Content From Page
-	Run Keyword If  '${TEST NAME}'=='Columns With Text'    Column Texts Matches To Expected Content  ${content}
-	...			 ELSE      Content Should Match Current Language Selection   ${content}
+	IF    '${TEST NAME}'=='Columns With Text'
+        ${content}=  Return Content From Accordion Column Text Content
+        Column Texts Matches To Expected Content  ${content}
+    ELSE
+    	${content}=  Accordion.Return Content From Page
+    	Content Should Match Current Language Selection   ${content}
+    END 
+	#${content}=  Run Keyword If  '${TEST NAME}'=='Columns With Text'   Return Content From Accordion Column Text Content
+	#...			 ELSE   Accordion.Return Content From Page
+	#Run Keyword If  '${TEST NAME}'=='Columns With Text'    Column Texts Matches To Expected Content  ${content}
+	#...			 ELSE      Content Should Match Current Language Selection   ${content}
 
 Column Texts Matches To Expected Content
 	[Arguments]   ${contentlist} 
