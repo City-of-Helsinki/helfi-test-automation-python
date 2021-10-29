@@ -15,7 +15,7 @@ One Video
 	And Remote Video Play Begins Correctly
 
 Two Videos
-	[Tags]   TODO
+	[Tags]
 	Given User Goes To New Article -Site
 	And User Adds Content With 2 Remote Video(s)
 	When User Submits The New Article
