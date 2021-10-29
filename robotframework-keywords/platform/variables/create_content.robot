@@ -188,11 +188,11 @@ ${Opt_Accordion_Column_Left_AddContent_Text}	//ul[contains(@data-drupal-selector
 ${Opt_Accordion_Column_Right_AddContent_Text}	//ul[contains(@data-drupal-selector, 'subform-field-columns-right-column-add-more-operations')]//input[contains(@name,'subform_field_accordion_item_content_text_add_more')]
 
 # CONTENT_CARDS
-${Inp_ContentCard_Title}							name:field_content[1][subform][field_content_cards_title][0][value]
+${Inp_ContentCard_Title}							//input[contains(@name, 'field_content_cards_title')][contains(@name, 'value')]
+
 ${Inp_ContentCard_Landingpage_Title}				name:field_content[0][subform][field_content_cards_title][0][value]
-${Inp_ContentCard_Design}							name:field_content[1][subform][field_content_cards_design][0]
-${Inp_ContentCard_Landingpage_Design}				name:field_content[0][subform][field_content_cards_design][0]
-${Inp_ContentCard_TargetId}							//input[contains(@name, 'target_id')]
+${Inp_ContentCard_Design}							//select[contains(@name, 'field_content_cards_design')][contains(@name, 'subform')]
+${Inp_ContentCard_TargetId}							(//input[contains(@name, 'target_id')][contains(@name, 'field_content_cards_content')])[last()]
 ${Inp_ContentCard_Addnew}							//input[contains(@name, 'subform_field_content_cards_content_add_more')]
 
 #LIST-OF-LINKS
@@ -220,13 +220,15 @@ ${Inp_Service_Visible_Title}						name:field_service_visible_title[0][value]
 ${Inp_Service_ParentService}						name:field_service_parent_service[0][target_id]
 
 # REMOTE VIDEO
-${Btn_RemoteVideo_Add}								name:field_remote_video-media-library-open-button-field_content-1-subform
+#${Btn_RemoteVideo_Add}								name:field_remote_video-media-library-open-button-field_content-1-subform
+${Btn_RemoteVideo_Add}								(//input[contains(@name, 'field_remote_video-media-library-open-button-field_content')][contains(@name, 'subform')])[last()]
 ${Inp_RemoteVideo_Url}								name:url
 ${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-submit']
 
 ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > button
-${Itm_Video}										css:body > div.dialog-off-canvas-main-canvas > div > main > div.main-content
-${Itm_Video2}  										css:article > div > div:nth-child(3) > div > iframe
+													
+${Itm_Video}										css:div.remote-video.remote-video--default > div > iframe
+${Itm_Video2}  										(//div[contains(@class,'remote-video remote-video--default')])[last()] >> css:div > iframe
 ${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
 ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe
 

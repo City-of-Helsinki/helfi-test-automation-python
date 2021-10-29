@@ -219,20 +219,49 @@ Page Should Have ${lang_input} Translation
 
 Page Content Matches Language
 	${islandingpage}=  Suite Name Contains Text    Landing Page
-	Run Keyword If  ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  Accept Cookies
-	Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
-	${Title}=  Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')   Return Title From Page
 	${Description}=  Return Description From Page
-	 ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Add_From_Library.Return Content From Page
-	 ${Linktext}=  Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')  Return Link Text From Page
-	 ${Piccaption}=  Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Return Picture Caption From Page
-	Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')  Title Should Match Current Language Selection   ${Title}
-	Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
-	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
-	Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
-	Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Content Should Match Current Language Selection   ${Content}
-	Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')    LinkText Is Correct   ${Linktext}
-	Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Picture Caption Is Correct   ${Piccaption}
+	IF    ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  
+		Accept Cookies
+    ELSE IF  '${TEST NAME}'=='Accordion'
+        Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
+    ELSE IF    (not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='Text'))
+    	${Title}=  Return Title From Page
+    ELSE IF  (not('${TEST NAME}'=='Banner')) | (not('${TEST NAME}'=='ContentCards')) | (not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='LiftupWithImage')) | (not('${TEST NAME}'=='ListOfLinks')) | (not('${TEST NAME}'=='Text'))
+    	${Content}=  Add_From_Library.Return Content From Page
+    ELSE IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
+    	${Linktext}=  Return Link Text From Page
+    ELSE IF  	('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
+    	${Piccaption}=   Return Picture Caption From Page
+    ELSE IF  	(not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='Text'))
+    	Title Should Match Current Language Selection   ${Title}
+    ELSE IF    not(${islandingpage})
+    	  Description Should Match Current Language Selection   ${Description}  	
+    ELSE IF   ${islandingpage} & ('${TEST NAME}'=='Banner')
+    	  Description Should Match Current Language Selection   ${Description}
+    ELSE IF   ${islandingpage} & ('${TEST NAME}'=='Columns')
+    	  Content Should Match Current Language Selection   ${Description}
+    ELSE IF   (not('${TEST NAME}'=='Banner')) | (not('${TEST NAME}'=='ContentCards')) | (not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='LiftupWithImage')) | (not('${TEST NAME}'=='ListOfLinks')) | (not('${TEST NAME}'=='Text'))
+    	  Content Should Match Current Language Selection   ${Content}
+    ELSE IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
+    	  LinkText Is Correct   ${Linktext}
+    ELSE IF   ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
+    	  Picture Caption Is Correct   ${Piccaption}
+    END
+	
+	#Run Keyword If  ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  Accept Cookies
+	#Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
+	#${Title}=  Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')   Return Title From Page
+	#${Description}=  Return Description From Page
+	# ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Add_From_Library.Return Content From Page
+	# ${Linktext}=  Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')  Return Link Text From Page
+	# ${Piccaption}=  Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Return Picture Caption From Page
+	#Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')  Title Should Match Current Language Selection   ${Title}
+	#Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
+	#Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
+	#Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
+	#Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Content Should Match Current Language Selection   ${Content}
+	#Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')    LinkText Is Correct   ${Linktext}
+	#Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Picture Caption Is Correct   ${Piccaption}
 	
 Return Title From Page
 	IF    '${TEST NAME}'=='Columns'

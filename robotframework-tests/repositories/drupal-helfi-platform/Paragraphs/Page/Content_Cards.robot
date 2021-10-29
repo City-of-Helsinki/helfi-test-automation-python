@@ -55,6 +55,7 @@ ContentCards Should Work Correctly
 	
 User Goes To New Page -Site		Go To New Page Site
 User Submits The New Page
+	Sleep  1
 	Submit The New Page
 
 

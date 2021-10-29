@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation   For these testcases to work  'helfi_example_content' module should be enabled
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Add_From_Library.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	

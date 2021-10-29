@@ -22,8 +22,7 @@ Create ${pagetype} With ${cardsize} Cards For ${contentname} Content
 	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Title}
 	Run Keyword If  ${islandingpage}  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Landingpage_Title}
 	${cardsizevalue}=  Resolve Card-Size Variable   ${cardsize}
-	Run Keyword Unless  ${islandingpage}   Select From List By Value  ${Inp_ContentCard_Design}  ${cardsizevalue}
-	Run Keyword If  ${islandingpage}     Select From List By Value  ${Inp_ContentCard_Landingpage_Design}  ${cardsizevalue}
+	Select From List By Value  ${Inp_ContentCard_Design}  ${cardsizevalue}
 	Input Text   ${Inp_ContentCard_TargetId}   ${contentname}
 	Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'${contentname}')]
 	
@@ -32,8 +31,9 @@ Add New ContentCard For ${contentname} Content
 	Wait Until Keyword Succeeds  5x  100ms  Click Element  ${Inp_ContentCard_Addnew}
 	# Better locators does not match correct element. For some reason only first is returned
 	# So Only works for second content card. 
-	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'edit-field-content-1-subform-field-content-cards-content-1-target-id')]   ${contentname}
-	Run Keyword If  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'edit-field-content-0-subform-field-content-cards-content-1-target-id')]   ${contentname}
+	Sleep  3
+	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_ContentCard_TargetId}   ${contentname}
+	
 	
 ContentCards Are Working Correctly
 	${contentpageurl}=   Get Location
