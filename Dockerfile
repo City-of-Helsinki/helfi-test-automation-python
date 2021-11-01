@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.9
 
 ARG release_name=gs952
 ARG archive_name=ghostpcl-9.52-linux-x86_64
@@ -8,7 +8,8 @@ WORKDIR robotframework-doctestlibrary
 RUN git clone https://github.com/manykarim/robotframework-doctestlibrary.git
 RUN pip install --no-cache-dir numpy
 WORKDIR robotframework-doctestlibrary
-RUN python setup.py install
+#RUN python setup.py install
+RUN pip install --no-cache-dir robotframework-doctestlibrary
 WORKDIR    /
 RUN apt-get update && apt-get install -y \
     imagemagick \
