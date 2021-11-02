@@ -2,6 +2,7 @@
 --variable BASE_URL:mysite-app.mysite_internal:8080
 --variable BROWSER:headlesschrome
 --variable PROTOCOL:http
+--variable PICCOMPARE:$false
 --variable CI:$true
 --variable DEBUG:$true
 --variable USEORIGINALNAME:$false
