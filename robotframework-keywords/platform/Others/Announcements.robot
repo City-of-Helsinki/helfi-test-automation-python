@@ -8,8 +8,9 @@ Resource        ../Commonkeywords.robot
 Create Announcement
 	[Documentation]    type=notification,attention,alert , showonallpages= should announcement be shown on all pages, Is announcement published
 	[Arguments]   ${name}	${lang_selection}    ${type}    ${showonallpages}=True    ${published}=True
+	${language_pointer}=  Get Language Pointer   ${lang_selection}
 	Input Text   ${Inp_Announcement_Title}   ${name}
-	Run Keyword Unless  '${lang_selection}'=='Finnish'   Select From List By Label   ${Ddn_Announcement_Language}   ${lang_selection}
+	Run Keyword Unless  '${lang_selection}'=='Finnish'   Select From List By Value   ${Ddn_Announcement_Language}   ${language_pointer}
 	${type}=  Convert To Lower Case   ${type}
 	Select From List By Value    name:field_announcement_type   ${type}
 	Run Keyword Unless  ${showonallpages}   Click Element  ${Swh_Announcement_Visibility}
@@ -21,7 +22,8 @@ Create Announcement
 Select Content To Show The Announcement For
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  css:#edit-field-announcement-content-pages-wrapper > div > span > span.selection > span > ul > li > input   Esimerkkisivu
 	Input Text  css:#edit-field-announcement-unit-pages-wrapper > div > span > span.selection > span > ul > li > input   Peijaksen sairaala
-	Input Text  css:#edit-field-announcement-service-pages-wrapper > div > span > span.selection > span > ul > li > input   Ompeleiden poisto
+	Input Text  css:#edit-field-announcement-service-pages-wrapper > div > span > span.selection > span > ul > li > input   Digituki
+	Sleep  20
 	Capture Page Screenshot
 	
 Add Link To Announcement

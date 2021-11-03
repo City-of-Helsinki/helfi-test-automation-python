@@ -26,7 +26,7 @@ All Pages After Modify
 	Then Modified Announcement Has Correct Text Content
 
 Certain Pages
-	[Tags]  
+	[Tags]
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Alert Announcement to Show on Certain Pages
 	And User Submits The New Announcement
@@ -42,16 +42,16 @@ Unpublished
 	Then Announcement Should Not Be Visible In Checked Content	
 
 English Translation
-	[Tags]  
 	[Documentation]  Translated announcement is shown in its respective language page.
+	[Tags]
 	Given User Goes To New Annoucement Site
 	When User Creates English Published Alert Announcement to Show on All Pages
 	And User Submits The New Announcement
 	Then Announcement Should Be Visible Only For English Language Content	
 
 Notification Layout
-	[Tags]
 	[Documentation]  Checks by using picture compariso that layout looks as it should
+	[Tags]
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Notification Announcement to Show on All Pages
 	And User Submits The New Announcement
@@ -97,31 +97,31 @@ Modified Announcement Has Correct Text Content
 	Annoucement Text Content Equals    Modified Content For Announcement
 	Announcement Is Visible For Peijaksen sairaala Of Unit List
 	Annoucement Text Content Equals    Modified Content For Announcement
-	Announcement Is Visible For Ompeleiden poisto Of Service List
+	Announcement Is Visible For Digituki Of Service List
 	Annoucement Text Content Equals    Modified Content For Announcement
 	
 		
 Announcement Should Be Visible In Checked Content
 	Announcement Is Visible For Esimerkkisivu Of User Created Content List
 	Announcement Is Visible For Peijaksen sairaala Of Unit List
-	Announcement Is Visible For Ompeleiden poisto Of Service List
+	Announcement Is Visible For Digituki Of Service List
 
 Announcement Should Not Be Visible In Checked Content
 	Announcement Is Not Visible For Esimerkki laskeutumissivusta Of User Created Content List
-	Announcement Is Not Visible For Viikin kampuskirjasto Of Unit List
-	Announcement Is Not Visible For Äänioikeusrekisteri Of Service List
+	Announcement Is Not Visible For Otaniemen kirjasto Of Unit List
+	Announcement Is Not Visible For Parkletit Of Service List
 	
 Announcement Should Be Visible Only For ${lang_selection} Language Content
 	Announcement Is Visible For Link examples Of User Created Content List
 	Announcement Is Visible For Lippulaiva library Of Unit List
-	Announcement Is Visible For Online health check Of Service List
+	Announcement Is Visible For Social welfare counselling Of Service List
 	
 	Announcement Is Not Visible For Esimerkki laskeutumissivusta Of User Created Content List
-	Announcement Is Not Visible For Viikin kampuskirjasto Of Unit List
-	Announcement Is Not Visible For Äänioikeusrekisteri Of Service List
+	Announcement Is Not Visible For Otaniemen kirjasto Of Unit List
+	Announcement Is Not Visible For Parkletit Of Service List
 	
 	Announcement Is Not Visible For Lippulaivabiblioteket Of Unit List
-	Announcement Is Not Visible For Elektronisk hälsokontroll Of Service List
+	Announcement Is Not Visible For Socialrådgivning Of Service List
 
 Announcement Layout For ${type} Should Be Correct For Checked Content
 	Announcement Is Visible For Esimerkkisivu Of User Created Content List

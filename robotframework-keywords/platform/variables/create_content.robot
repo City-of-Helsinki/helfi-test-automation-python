@@ -10,6 +10,7 @@
 #				 Menu-item  = Mtm
 #				 Item		= Itm    (For example div elements or page view components)
 #				 TextArea	= Tar
+#				 Select     = Sel
 
 *** Variables ***
 #LISTS
@@ -201,7 +202,7 @@ ${Inp_ListOfLinks_Title}							name:field_content[1][subform][field_list_of_link
 ${Inp_ListOfLinks_Design}							//select[contains(@name, 'field_list_of_links_design')]
 ${Inp_ListOfLinks_Link_Uri}							//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'uri')]
 ${Inp_ListOfLinks_Link_Title}		    			//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'title')]
-${Inp_ListOfLinks_Link_NewLink}						//input[contains(@name, 'field_list_of_links_links_list')][contains(@name, 'add_more')]
+${Inp_ListOfLinks_Link_NewLink}						//input[contains(@name, 'field_list_of_links_links_list')]
 ${Inp_ListOfLinks_Link_Picture}					    name:field_list_of_links_image-media-library-open-button-field_content-1-subform-field_list_of_links_links-0-subform
 ${Inp_ListOfLinks_Link_Picture_Landingpage}			name:field_list_of_links_image-media-library-open-button-field_content-0-subform-field_list_of_links_links-0-subform
 ${Inp_ListOfLinks_Link_Picture2}				    name:field_list_of_links_image-media-library-open-button-field_content-1-subform-field_list_of_links_links-1-subform
@@ -228,7 +229,7 @@ ${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-
 ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > button
 													
 ${Itm_Video}										css:div.remote-video.remote-video--default > div > iframe
-${Itm_Video2}  										(//div[contains(@class,'remote-video remote-video--default')])[last()] >> css:div > iframe
+${Itm_Video2}  										(//div[contains(@class,'remote-video remote-video--default')])[last()] >> css:div > div > iframe
 ${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
 ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe
 
@@ -289,9 +290,9 @@ ${Btn_Map_ZoomOut}									css:.custom-zoom-out
 ${Btn_Map_Palvelukartta_AllowCookies}				//button[contains(text(),'Salli kaikki evästeet')]
 
 #UNIT SEARCH
-${Inp_UnitSearch_Title}								name:field_content[1][subform][field_unit_search_title][0][value]
-${Inp_UnitSearch_Title_Landingpage}					name:field_content[0][subform][field_unit_search_title][0][value]
-${Frm_UnitSearch_Content}							css:#cke_124_contents > iframe
+${Inp_UnitSearch_Title}								//input[contains(@name, 'field_unit_search_title')][contains(@name, 'value')]
+${Sel_UnitSearch_Units}								//select[contains(@name, 'field_unit_search_units')]
+${Frm_UnitSearch_Content}							//div[contains(@id,'subform-field-unit-search-description')] >> css:div > div > iframe
 ${Inp_UnitSearch_SearchField}						css:[data-drupal-selector=edit-unit-search]
 ${Inp_UnitSearch_SearchButton}						css:[data-drupal-selector=edit-actions] > input
 

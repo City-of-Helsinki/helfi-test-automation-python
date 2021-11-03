@@ -44,10 +44,10 @@ ServiceList Paragraph Works Correctly
 	${contentpage}=   Get Location
 	Click Link   css:.service__link
 	${currenturl}=   Get Location
-	Should Contain   ${currenturl}   sosiaalineuvonta
+	Should Contain   ${currenturl}   parkletit
 	Run Keyword If  '${TEST NAME}'=='Two Services'   GoTo   ${contentpage}
 	Run Keyword If  '${TEST NAME}'=='Two Services'  Click Link   css:div.views-element-container > div > div > div:nth-child(2) > div > a
 	${currenturl}=   Run Keyword If  '${TEST NAME}'=='Two Services'  Get Location
-	Run Keyword If  '${TEST NAME}'=='Two Services'  Should Contain   ${currenturl}   parkletit
+	Run Keyword If  '${TEST NAME}'=='Two Services'  Should Contain   ${currenturl}   sosiaalineuvonta   
 
 	

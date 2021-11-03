@@ -9,27 +9,22 @@ Create Unit Search Paragraph
 	[Arguments]	  ${pagetype}
 	Input Non-paragraph Related Content   ${pagetype}
 	Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_UnitSearch}
-	Run Keyword If  '${pagetype}'!='LandingPage'  Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_UnitSearch_Title}
-	Run Keyword If  '${pagetype}'=='LandingPage'  Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_UnitSearch_Title_Landingpage}
-	Run Keyword If  '${pagetype}'!='LandingPage'  Select From List By Index   name:field_content[1][subform][field_unit_search_units][]   0
-	Run Keyword If  '${pagetype}'!='LandingPage'  Select From List By Index   name:field_content[1][subform][field_unit_search_units][]   1
-	Run Keyword If  '${pagetype}'=='LandingPage'  Select From List By Index   name:field_content[0][subform][field_unit_search_units][]   0
-	Run Keyword If  '${pagetype}'=='LandingPage'  Select From List By Index   name:field_content[0][subform][field_unit_search_units][]   1
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_UnitSearch_Title}
+	Select From List By Index   ${Sel_UnitSearch_Units}   0
+	Select From List By Index   ${Sel_UnitSearch_Units}   1
 	${TextFileContent}=  Return Correct Content   ${language}
-	Run Keyword If  '${pagetype}'=='Page'   Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_UnitSearch_Content}   //body   ${TextFileContent}
-	Run Keyword If  '${pagetype}'=='Article'   Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   css:#cke_68_contents > iframe   //body   ${TextFileContent}
-	Run Keyword If  '${pagetype}'=='LandingPage'   Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Content}   //body   ${TextFileContent}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_UnitSearch_Content}   //body   ${TextFileContent}
 	
 	
 Unit Links Are Working Correctly
 	${contentpageurl}=   Get Location
-	Click Element   //a[contains(@href, '/fi/paloheinan-kirjasto')]
+	Click Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
 	${currenturl}=   Get Location
-	Should Contain   ${currenturl}   paloheinan-kirjasto
+	Should Contain   ${currenturl}   lippulaivan-kirjasto
 	Goto   ${contentpageurl}
-	Click Element   //a[contains(@href, '/fi/tapanilan-kirjasto')]
+	Click Element   //a[contains(@href, '/fi/otaniemen-kirjasto')]
 	${currenturl}=   Get Location
-	Should Contain   ${currenturl}   tapanilan-kirjasto
+	Should Contain   ${currenturl}   otaniemen-kirjasto
 	Goto   ${contentpageurl}
 	
 The Search Bar Is Working Correctly
@@ -40,36 +35,38 @@ The Search Bar Is Working Correctly
 	Search Bar Works By Unit Post Number
 	Clear Element Text   ${Inp_UnitSearch_SearchField}
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/63115')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Lippulaivan kirjasto
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Otaniemen kirjasto
 
 Search Bar Works By Unit Name
 	Input Text  ${Inp_UnitSearch_SearchField}   Otan
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/63115')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Link   Lippulaivan kirjasto
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Otaniemen kirjasto
 	
 Search Bar Works By Unit Address
-	Input Text  ${Inp_UnitSearch_SearchField}   hiiden
+	Input Text  ${Inp_UnitSearch_SearchField}   merikar
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/tpr-unit/63115')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Link   Otaniemen kirjasto
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Lippulaivan kirjasto
 
 Search Bar Works By Unit Post Number
 	Sleep  0.2
-	Input Text  ${Inp_UnitSearch_SearchField}   00670
+	Input Text  ${Inp_UnitSearch_SearchField}   02150
 	Click Button   ${Inp_UnitSearch_SearchButton}
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
-	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Element   //a[contains(@href, '/tpr-unit/8359')]
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Otaniemen kirjasto
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Link   Lippulaivan kirjasto
 	
 Unit Address And Phone Data Is Correct
+	Input Text  ${Inp_UnitSearch_SearchField}   Otan
+	Click Button   ${Inp_UnitSearch_SearchButton}
+	Wait Until Keyword Succeeds  5x  200ms  Page Should Not Contain Link   Lippulaivan kirjasto
 	${addressline1}=  Get Text   css:.address-line1
 	${postalcode}=  Get Text   css:.postal-code
 	${city}=  Get Text   css:.locality
-	${phone}=  Get Text   css:.phones > a
-	Click Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
+	Click Link   Otaniemen kirjasto
 	${currenturl}=   Get Location
-	Should Contain   ${currenturl}   paloheinan-kirjasto
+	Should Contain   ${currenturl}   otaniemen-kirjasto
 	${addressline1_unitsite}=  Get Text   css:.address-line1
 	${postalcode_unitsite}=  Get Text   css:.postal-code
 	${city_unitsite}=  Get Text   css:.locality
@@ -77,5 +74,5 @@ Unit Address And Phone Data Is Correct
 	Should Be Equal   ${addressline1}   ${addressline1_unitsite}
 	Should Be Equal   ${postalcode}   ${postalcode_unitsite}
 	Should Be Equal   ${city}   ${city_unitsite}
-	Should Be Equal   ${phone}   ${phone_unitsite}
+	Should Not Be Empty   ${phone_unitsite}
 	

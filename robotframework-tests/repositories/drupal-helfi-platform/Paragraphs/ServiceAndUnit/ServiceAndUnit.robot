@@ -83,7 +83,7 @@ Unit Contents Should Be Correct
 	${hasservicelink}=  Unit Has Service Link
 	Should Be True   ${hasservicelink}
 	Should Be Equal   ${servicetitle}   Sosiaalineuvonta
-	Should Be Equal   ${servicedesc}   Digitukea saa tietokoneen, tabletin ja älypuhelimen käytössä. Tukea saa myös sähköisen asioinnin, verkkopalveluiden ja yleisimpien sovellusten käyttöön liittyvissä ongelmissa.
+	Should Be Equal   ${servicedesc}   Sosiaalineuvonta palvelee helsinkiläisiä kaikissa aikuissosiaalityöhön liittyvissä kysymyksissä.
 	
 Units Service Link Works Correctly
 	Click Element   //a[contains(@href, 'https://helfi.docker.so/fi/sosiaalineuvonta')]
