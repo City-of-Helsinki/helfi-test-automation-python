@@ -6,7 +6,7 @@ Force Tags		LANDINGPAGE   ADDFROMLIBRARY
 
 *** Test Cases ***
 Columns
-	[Tags] 
+	[Tags]    CRITICAL
 	Given User Creates New Columns Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in Finnish Language
 	And User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in English Language

@@ -8,7 +8,7 @@ Force Tags		LANDINGPAGE   SERVICELIST
 *** Test Cases ***
 
 One Service
-	[Tags]
+	[Tags]   CRITICAL
 	Given Service Is Published
 	When User Adds Content With Service List
 	Then Layout Should Not Have Changed

@@ -7,7 +7,7 @@ Force Tags		ARTICLE   REMOTEVIDEO
 *** Test Cases ***
 
 One Video
-	[Tags]
+	[Tags]   CRITICAL
 	Given User Goes To New Article -Site
 	And User Adds Content With 1 Remote Video(s)
 	When User Submits The New Article

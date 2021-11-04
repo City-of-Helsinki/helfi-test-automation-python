@@ -8,7 +8,7 @@ Force Tags		PAGE   MAP
 
 *** Test Cases ***
 Kartta Map
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Goes To New Page -Site
 	User Adds Map Using kartta.hel.fi Map Location
 	When User Submits The New Page

@@ -7,7 +7,7 @@ Force Tags		LANDINGPAGE   REMOTEVIDEO
 *** Test Cases ***
 
 One Video
-	[Tags]
+	[Tags]   CRITICAL
 	Given User Goes To New LandingPage -Site
 	And User Adds Content With 1 Remote Video(s)
 	When User Submits The New LandingPage

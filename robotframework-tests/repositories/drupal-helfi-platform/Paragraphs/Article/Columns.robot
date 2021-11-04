@@ -44,7 +44,7 @@ Force Tags		ARTICLE   COLUMNS
 	Then Layout Should Not Have Changed	
 
 50-50 with picture and text
-	[Tags]   CRITICAL
+	[Tags]
 	Given User Goes To New Article Site 
 	And User Starts Creating Article With 50-50 Division And Mixed Content
 	And User Adds Picture to Left Column
@@ -53,7 +53,7 @@ Force Tags		ARTICLE   COLUMNS
 	Then Layout Should Not Have Changed
 
 70-30 with original size picture and text
-	[Tags]  CRITICAL
+	[Tags]
 	Given User Goes To New Article Site
 	And User Starts Creating Article With 70-30 Division And Mixed Content
 	And User Adds Original Picture to Left Column
@@ -72,7 +72,7 @@ Finnish English Swedish Translations
 	And Page Should Have Swedish Translation
 
 Keywords
-	[Tags]  CRITICAL
+	[Tags]
 	Given User Creates Two Column Content Pages
 	When User Clicks The Added Keyword On Page
 	Then There Should Be Two Articles With The Given Keyword

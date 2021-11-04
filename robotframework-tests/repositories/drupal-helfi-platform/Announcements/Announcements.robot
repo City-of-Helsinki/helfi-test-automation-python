@@ -26,7 +26,7 @@ All Pages After Modify
 	Then Modified Announcement Has Correct Text Content
 
 Certain Pages
-	[Tags]
+	[Tags]   CRITICAL
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Alert Announcement to Show on Certain Pages
 	And User Submits The New Announcement

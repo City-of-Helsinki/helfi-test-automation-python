@@ -7,7 +7,7 @@ Force Tags		LANDINGPAGE   UNITSEARCH
 *** Test Cases ***
 
 Two Units
-	[Tags]
+	[Tags]   CRITICAL
 	Given Units Are Published
 	When User Goes To New LandingPage -Site
 	And User Starts Creating UnitSearch Paragraph

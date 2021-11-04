@@ -10,7 +10,7 @@ Force Tags		PAGE   CONTENTLIFTUP
 
 *** Test Cases ***
 One Unit
-	[Tags]
+	[Tags]   CRITICAL
 	Given User Publishes Unit With Name Lippulaivan kirjasto  
 	And User Goes To New Page -Site
 	And User Adds Content Liftup

@@ -7,7 +7,7 @@ Force Tags		ARTICLE   UNITSEARCH
 *** Test Cases ***
 
 Two Units
-	[Tags]
+	[Tags]   CRITICAL
 	Given Units Are Published
 	When User Goes To New Article -Site
 	And User Starts Creating UnitSearch Paragraph
