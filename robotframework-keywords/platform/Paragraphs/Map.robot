@@ -10,9 +10,9 @@ Create Map With Given Url
 	Set Test Variable   ${URL}   ${URL}
 	Input Non-paragraph Related Content   Page
 	Open Paragraph For Edit   ${Opt_AddMap}
-	${description}=  Return Correct Description   ${language}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Map_Title}   ${TEST NAME}
-	Input Text Content To Frame   ${description}   cke_122_contents
+	${description}=  Return Correct Description   ${language}
+	Input Text  ${Inp_Map_Description}   ${description}
 	Click Element   ${Btn_Map_Add}
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   name:helfi_media_map_url   ${URL}
 	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element	  ${Btn_Map_Url_Add}
@@ -21,14 +21,13 @@ Create Map With Given Url
 	Submit New Media
 	
 Map Paragraph Works Correctly
-	Wait Until Keyword Succeeds  5x   200ms   Accept Cookies
+	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies
 	${ispalvelukartta}=  URL Contains Text   palvelukartta
 	Wait Until Element Is Visible  ${Itm_Map}
 	Select Frame   ${Itm_Map}
-	Run Keyword Unless   ${ispalvelukartta}   Scroll Element Into View   css:#mapcontainer > div.ol-viewport > canvas
-	Run Keyword If   ${ispalvelukartta}   Scroll Element Into View   css:#app > div > div > div:nth-child(3) > div
+	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
 	Sleep  2
-	Run Keyword If   ${ispalvelukartta}   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
+	
 	IF    ${ispalvelukartta}
         Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
     ELSE
@@ -36,8 +35,8 @@ Map Paragraph Works Correctly
     END 
 	
 	${mapstart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
-	Run Keyword Unless   ${ispalvelukartta}	  Click Element   ${Btn_Map_ZoomOut}
-	Run Keyword If   ${ispalvelukartta}	  Click Element  css:#app > div > div > div:nth-child(3) > div > div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div:nth-child(2) > div > button.MuiButtonBase-root.jss275.zoomOut
+	Run Keyword Unless   ${ispalvelukartta}	  Click Element   ${Btn_Map_Kartta_ZoomOut}
+	Run Keyword If   ${ispalvelukartta}	  Click Element  ${Btn_Map_Palvelukartta_ZoomOut}
 	Sleep   1
 	IF    ${ispalvelukartta}
         Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapend.png
@@ -51,4 +50,12 @@ Map Paragraph Works Correctly
 URL Contains Text
 	[Arguments]  ${text}
 	${containstext}=    Run Keyword And Return Status    Should Contain    ${URL}    ${text}
-	[Return]   ${containstext}	
+	[Return]   ${containstext}
+	
+Allow Palvelukartta Cookies
+	Sleep  2
+	Wait Until Element Is Visible  ${Itm_Map}   timeout=3
+	Select Frame   ${Itm_Map}
+	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
+	Unselect Frame
+	Sleep  4	

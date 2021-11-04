@@ -8,7 +8,7 @@ Force Tags		PAGE   MAP
 
 *** Test Cases ***
 Kartta Map
-	[Tags]  CRITICAL
+	[Tags]  CRITICAL   TODO
 	Given User Goes To New Page -Site
 	User Adds Map Using kartta.hel.fi Map Location
 	When User Submits The New Page
@@ -39,8 +39,10 @@ User Adds Map Using ${source} Map Location
 	 
 Layout Should Not Have Changed
 	Wait Until Keyword Succeeds  5x   200ms   Accept Cookies
-	Sleep  4
+	${ispalvelukartta}=  URL Contains Text   palvelukartta
+	Sleep   3
+	Run Keyword If   ${ispalvelukartta}	  Allow Palvelukartta Cookies
 	Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_GALLERY_${BROWSER}.png
+	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_MAP_${TEST NAME}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}	 
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}	  ${EMPTY}   10
