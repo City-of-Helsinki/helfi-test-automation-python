@@ -15,7 +15,7 @@ Without Picture
 	And List Of Links Should Work Correctly
 
 With Picture
-	[Tags]  CRITICAL 
+	[Tags]  CRITICAL    TODO
 	Given User Goes To New Page -Site
 	And User Creates List Of Links With Picture
 	And User Adds Second Link For Esimerkkisivu Content

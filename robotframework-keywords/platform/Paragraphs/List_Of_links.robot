@@ -20,10 +20,7 @@ Create ${pagetype} With List Of Links ${style}
 Add Picture To Link
 	[Arguments]   ${picname}
 	${islandingpage}=  Suite Name Contains Text    Landing Page
-	Run Keyword If  ('${picname}'=='tulips') & (not(${islandingpage}))   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_ListOfLinks_Link_Picture2}
-	...			ELSE IF  ('${picname}'=='tulips') & ${islandingpage}   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_ListOfLinks_Link_Picture2_Landingpage}
-	...		 	ELSE IF  not(${islandingpage})  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_ListOfLinks_Link_Picture}
-	...			ELSE     Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_ListOfLinks_Link_Picture_Landingpage}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Inp_ListOfLinks_Link_AddPicture}
 	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
 	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
