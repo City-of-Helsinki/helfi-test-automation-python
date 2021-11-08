@@ -31,7 +31,7 @@ ${gallery}									false
 ${serviceispublished}						false
 ${unitispublished}							false
 @{excludetaglist}     					    ARTICLE
-${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi
+${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi/user/login
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
 ${URL_unit_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 ${URL_service_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-service
