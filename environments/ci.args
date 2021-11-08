@@ -1,8 +1,9 @@
 --variable ADMIN_URL:docker exec helfi-app drush uli
---variable BASE_URL:mysite-app.mysite_internal:8080
+--variable BASE_URL:helfi-kymp-varnish:6081
 --variable BROWSER:headlesschrome
 --variable PROTOCOL:http
 --variable PICCOMPARE:$false
 --variable CI:$true
 --variable DEBUG:$true
 --variable USEORIGINALNAME:$false
+--variable REPORTS_PATH:app/helfi-test-automation-python/robotframework-reports
