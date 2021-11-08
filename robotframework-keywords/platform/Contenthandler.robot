@@ -31,13 +31,13 @@ ${gallery}									false
 ${serviceispublished}						false
 ${unitispublished}							false
 @{excludetaglist}     					    ARTICLE
-${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi/user/login
-${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content
-${URL_unit_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-unit
-${URL_service_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/integrations/tpr-service
-${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi/admin/content/media
-${URL_paragraphs_page}						${PROTOCOL}://${BASE_URL}/fi/admin/content/paragraphs
-${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi/admin/content/paragraphs/add/default
+${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/user/login
+${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content
+${URL_unit_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/integrations/tpr-unit
+${URL_service_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/integrations/tpr-service
+${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/media
+${URL_paragraphs_page}						${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/paragraphs
+${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/paragraphs/add/default
 		
 *** Keywords ***
 
