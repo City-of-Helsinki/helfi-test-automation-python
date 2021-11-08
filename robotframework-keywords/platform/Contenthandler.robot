@@ -92,6 +92,7 @@ Go To ${language} Translation Page
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
+	${currenturl}=   Get Location
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    ${pagesadded}
 		   #BECAUSE REMOVING FINNISH TRANSLATION SEEMINGLY ALSO REMOVES SWEDISH ONE, WE CAN EXIT LOOP AT THIS POINT
