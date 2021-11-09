@@ -17,10 +17,12 @@ Debug Error
 	...				  in debug folder of test results.
 	Maximize Browser Window   
 	Execute javascript  document.body.style.zoom="30%"
-	Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
+	Run Keyword Unless   ${CI}  Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
+	Run Keyword If   ${CI}   Capture Page Screenshot    filename=debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png   
 	Execute javascript  document.body.style.zoom="100%"
 	${source}=   Get Source
-	Create File  ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}
+	Run Keyword Unless   ${CI}  Create File  ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}
+	Run Keyword If   ${CI}   Create File  robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}   
 	
 Input Text To Frame
 	[Documentation]   Inserts text to given frame and returns to original content
