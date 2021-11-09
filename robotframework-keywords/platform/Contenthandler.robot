@@ -437,7 +437,7 @@ Log-In In CI Environment
     #Call Method    ${chrome_options}    add_argument    --unsafely-treat-insecure-origin-as-secure=http://varnish-helfi-kymp.docker.so
     
     
-    Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
+    Open Browser    https://varnish-helfi-kymp.docker.so/    chrome    options=${chrome_options}
     Log In
 	
 Rename Picture With New Name
