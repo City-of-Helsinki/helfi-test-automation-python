@@ -422,8 +422,9 @@ Content Should Match Current Language Selection
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
-	Get Admin Url
+	
 	Run Keyword If   ${CI}   Log-In In CI Environment
+	Run Keyword Unless   ${CI}   Get Admin Url
 	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
 	Go To   ${URL_content_page}
 	Set Window Size   1296   696

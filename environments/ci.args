@@ -1,7 +1,6 @@
---variable ADMIN_URL:docker exec helfi-app drush uli
---variable BASE_URL:helfi-kymp-varnish:6081
+--variable BASE_URL:varnish-helfi-kymp.docker.so
 --variable BROWSER:headlesschrome
---variable PROTOCOL:http
+--variable PROTOCOL:https
 --variable PICCOMPARE:$false
 --variable CI:$true
 --variable DEBUG:$true
