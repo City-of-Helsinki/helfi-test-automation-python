@@ -432,11 +432,8 @@ Log-In In CI Environment
     ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --headless
-    Call Method    ${chrome_options}    add_argument    --allow-running-insecure-content
-    Call Method    ${chrome_options}    add_argument    --disable-web-security
-    #Call Method    ${chrome_options}    add_argument    --unsafely-treat-insecure-origin-as-secure=http://varnish-helfi-kymp.docker.so
-    
-    
+    Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
+        
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
     Log In
 	
