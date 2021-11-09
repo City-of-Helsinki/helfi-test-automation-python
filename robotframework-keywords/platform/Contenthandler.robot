@@ -186,7 +186,8 @@ Open Created Content
 	Run Keyword If   ${CI}  Reload Page
 	  
 Log In
-	Wait Until Keyword Succeeds  5x  200ms  Input Text   id:edit-name   helfi-admin
+	Wait Until Keyword Succeeds  5x  200ms  Accept Cookies
+	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
 	Click Button   id:edit-submit
 
