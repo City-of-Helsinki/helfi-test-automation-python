@@ -432,6 +432,7 @@ Log-In In CI Environment
     ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --headless
+    Call Method    ${chrome_options}    add_argument    --allow-running-insecure-content
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
     Log In
 	
