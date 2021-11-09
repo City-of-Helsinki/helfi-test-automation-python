@@ -433,6 +433,8 @@ Log-In In CI Environment
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --headless
     Call Method    ${chrome_options}    add_argument    --allow-running-insecure-content
+    Call Method    ${chrome_options}    add_argument    --disable-web-security
+    
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
     Log In
 	
