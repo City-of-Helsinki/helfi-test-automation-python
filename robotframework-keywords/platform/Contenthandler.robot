@@ -434,6 +434,8 @@ Log-In In CI Environment
     Call Method    ${chrome_options}    add_argument    --headless
     Call Method    ${chrome_options}    add_argument    --allow-running-insecure-content
     Call Method    ${chrome_options}    add_argument    --disable-web-security
+    Call Method    ${chrome_options}    add_argument    --unsafely-treat-insecure-origin-as-secure=https://varnish-helfi-kymp.docker.so
+    
     
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
     Log In
