@@ -76,7 +76,7 @@ User Starts Creating ${color} Accordion With ${heading} Heading And ${contenttyp
 	Create Page With ${color} Color , ${heading} Heading And ${contenttype} With ${subcontent} Content
 	
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error   Accept Cookies
 	Capture Screenshot Of Accordion Contents
 	${contenttype}=  Convert To Lower Case   ${contenttype}
 	${originalpic} =  Set Variable If  '${picture}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${picture}_${heading}_${BROWSER}.png   
