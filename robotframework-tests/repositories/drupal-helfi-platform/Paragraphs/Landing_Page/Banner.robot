@@ -91,7 +91,7 @@ User Clicks The Content Link
 Link Should Be Opened In New Window   New Window Should Be Opened   Rautatie (romaani) – Wikipedia
  
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Banner.Take Screenshot Of Content
 	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner Secondary Color') | ('${TEST NAME}'=='Center Aligned Banner Secondary Color') | ('${TEST NAME}'=='Left Aligned Banner With Color Palette')   Capture Element Screenshot  css:.banner__content-wrapper   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	${originalpic} =  Set Variable If  ('${linkstyle}'!='${EMPTY}') & ('${coloroption}'=='${EMPTY}')  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_${linkstyle}link_${BROWSER}.png
