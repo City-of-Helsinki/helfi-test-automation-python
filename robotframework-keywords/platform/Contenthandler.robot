@@ -103,7 +103,7 @@ Cleanup and Close Browser
 		   Delete Test Automation Created Content
     END
 	FOR    ${i}    IN RANGE    ${mediaadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Paragraphs
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
     END
     FOR    ${i}    IN RANGE    10
     	   Go To   ${URL_paragraphs_page}
