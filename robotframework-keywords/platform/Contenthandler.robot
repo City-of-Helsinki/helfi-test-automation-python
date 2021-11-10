@@ -311,12 +311,10 @@ Submit New Content
 
 Submit New Media
 	[Documentation]  User submits new media content and it is saved and appears in media view
-	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
-	Run Keyword If  '${language}'=='en'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
-	Run Keyword If  '${language}'=='sv'  Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
-		Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic}
-	Run Keyword If  '${language}'=='en'  Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic_Alt}
-	Run Keyword If  '${language}'=='sv'  Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic_Alt}
+	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
+	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic_Alt}
 	Set Test Variable  ${mediaadded}    ${mediaadded}+1
 		
 Go To New ${pagetype} -View For ${language} Translation
@@ -425,9 +423,11 @@ Login And Go To Content Page
 	...				  page.
 	
 	Run Keyword If   ${CI}   Log-In In CI Environment
-	Run Keyword Unless   ${CI}   Get Admin Url
-	Run Keyword Unless   ${CI}   Open Browser  ${admin_url}  ${BROWSER}
-	Go To   ${URL_content_page}
+	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
+	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
+	Run Keyword Unless   ${CI_LOCALTEST}  Go To   ${URL_content_page}
+	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
+	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
 	
 Log-In In CI Environment

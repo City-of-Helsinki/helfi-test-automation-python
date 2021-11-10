@@ -147,6 +147,7 @@ ${Opt_AddGallery}						    name:field_content_gallery_add_more
 ${Btn_Gallery_Picture}						(//input[contains(@name, 'field_gallery_slide_media-media-library-open-button-field_content')][contains(@name, 'subform-field_gallery_slides')])[last()]
 ${Btn_Gallery_Picture_Caption}				//textarea[contains(@name, '[subform][field_gallery_slides]')][contains(@name, '[subform][field_gallery_slide_caption]')]
 ${Btn_Gallery_Picture_Addmore}				//input[contains(@name, 'subform_field_gallery_slides_gallery_slide_add_more')]
+${Inp_Gallery_Edit}						    //input[contains(@value, 'Edit')][contains(@id, 'field-content')]
 # PAGE VIEW
 ${Txt_Hero_Title}								css:.hero__title
 ${Txt_Hero_Description}							css:.hero__description
@@ -272,7 +273,7 @@ ${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span
 ${Txt_Accordion_Title}								//button[@class='accordion-item__button accordion-item__button--toggle handorgel__header__button']
 ${Txt_Accordion_Content}							//*[@id="handorgel1-fold1-content"]/div/div/div/div/p
 ${Txt_ContentCards_Title}							css:.content-cards__title
-${Txt_Gallery_Title}								css:.gallery__title
+${Txt_Gallery_Title}								css:#block-hdbt-page-title > div > h1 > span
 ${Txt_Gallery_Image_Caption}						css:.media--image__caption
 ${Txt_LiftupWithImage_Title}						css:.liftup-with-image__title
 ${Txt_ListOfLinks_Title}							css:.list-of-links__title

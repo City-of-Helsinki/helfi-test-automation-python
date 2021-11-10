@@ -9,17 +9,19 @@ Create ${pagetype} With Gallery
 	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddGallery}
 	Add Picture 'train' And Caption To 1:th Picture
+	Sleep  1   # Added sleep to avoid odd behaviour in page
 	Add Picture 'temple' And Caption To 2:th Picture
+	Sleep  1   # Added sleep to avoid odd behaviour in page
 	Add Picture 'tulips' And Caption To 3:th Picture
 
 Click Edit Paragraph
 	Execute javascript  window.scrollTo(0, 1000)
-	Click Element   name:field_content_0_edit
+	Click Element   ${Inp_Gallery_Edit}
 
 Add Picture '${name}' And Caption To ${number}:th Picture
 	${number}=   Convert To Integer   ${number}
 	Run Keyword If  ${number}>=2   Click Element   ${Btn_Gallery_Picture_Addmore}
-	${editgalleryvisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  name:field_content_0_edit   timeout=1
+	${editgalleryvisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  ${Inp_Gallery_Edit}   timeout=3
 	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  500ms  Click Edit Paragraph
 	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Gallery_Picture_Addmore}
 	Run Keyword If  '${name}'=='tulips'   Sleep   1    # Sleep due issues of missing paragraph in page

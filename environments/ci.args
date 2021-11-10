@@ -3,6 +3,8 @@
 --variable PROTOCOL:https
 --variable PICCOMPARE:$false
 --variable CI:$true
+--variable CI_LOCALTEST:$false
 --variable DEBUG:$true
 --variable USEORIGINALNAME:$false
 --variable REPORTS_PATH:app/helfi-test-automation-python/robotframework-reports
+
