@@ -94,16 +94,22 @@ Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
 	${currenturl}=   Get Location
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
-	FOR    ${i}    IN RANGE    ${pagesadded}
+	
+	FOR    ${i}    IN RANGE    10
 		   #BECAUSE REMOVING FINNISH TRANSLATION SEEMINGLY ALSO REMOVES SWEDISH ONE, WE CAN EXIT LOOP AT THIS POINT
-		   Run Keyword If  ('${i}'=='2') & ('${TEST NAME}'=='Finnish English Swedish Translations')   Exit For Loop   
-           Wait Until Keyword Succeeds  5x  300ms 	Delete Newly Created Item on Content Menu List
+		   Go To   ${URL_content_page}
+		   ${count}=  Get Element Count   partial link:Test Automation
+		   Exit For Loop If   ${count}==0
+		   Delete Test Automation Created Content
     END
 	FOR    ${i}    IN RANGE    ${mediaadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Content Media List
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Paragraphs
     END
-    FOR    ${i}    IN RANGE    ${paragraphsadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Newly Created Item from Paragraphs List
+    FOR    ${i}    IN RANGE    10
+    	   Go To   ${URL_paragraphs_page}
+    	   ${count}=  Get Element Count   partial link:Test_Automation
+    	   Exit For Loop If   ${count}==0
+           Delete Test Automation Created Paragraphs
     END
     
     # in case of service/unit testcases
@@ -321,27 +327,29 @@ Go To New ${pagetype} -View For ${language} Translation
 	Go To Translate Selection Page
 	Go To ${language} Translation Page
 	
-Delete Newly Created Item on Content Menu List
+Delete Test Automation Created Content
 	[Documentation]   Deletes Created Item By assuming it is the topmost one in the list. Returns to content page afterwards.
-	Go To   ${URL_content_page}
-	Click Button   ${Btn_Actions_Dropbutton}
-	Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
-	Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
+	Click Link   partial link: Test Automation
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
+
+	#Click Button   ${Btn_Actions_Dropbutton}
+	#Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
+	#Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_content_page}
 
 	
-Delete Newly Created Item from Content Media List
+Delete Test Automation Created Media
 	Go To   ${URL_media_page}
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_Dropbutton}
 	Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
 	Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_media_page}	
 	
-Delete Newly Created Item from Paragraphs List
-	Go To   ${URL_paragraphs_page}
-	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_Dropbutton}
-	Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
-	Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
+Delete Test Automation Created Paragraphs
+	Click Link   partial link: Test_Automation
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_paragraphs_page}	
 	
 Copy Original Screenshot To Reports Folder
