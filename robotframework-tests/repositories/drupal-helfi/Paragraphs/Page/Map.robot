@@ -38,7 +38,7 @@ User Adds Map Using ${source} Map Location
     END 
 	 
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms   Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	${ispalvelukartta}=  URL Contains Text   palvelukartta
 	Sleep   3
 	Run Keyword If   ${ispalvelukartta}	  Allow Palvelukartta Cookies
