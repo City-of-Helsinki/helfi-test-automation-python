@@ -18,7 +18,7 @@ Create ${pagetype} With ${cardsize} Cards For ${contentname} Content
  	Set Test Variable  ${cardsize}  ${cardsize}
  	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddContentCards}
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Title}
 	Run Keyword If  ${islandingpage}  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Landingpage_Title}
 	${cardsizevalue}=  Resolve Card-Size Variable   ${cardsize}
@@ -27,7 +27,7 @@ Create ${pagetype} With ${cardsize} Cards For ${contentname} Content
 	Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'${contentname}')]
 	
 Add New ContentCard For ${contentname} Content
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Wait Until Keyword Succeeds  5x  100ms  Click Element  ${Inp_ContentCard_Addnew}
 	# Better locators does not match correct element. For some reason only first is returned
 	# So Only works for second content card. 

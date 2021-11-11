@@ -31,7 +31,7 @@ User Submits The New Page
 	Submit The New Page
 
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Sleep  5
 	Remote_Video.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_REMOTEVIDEO_${number}_${BROWSER}.png

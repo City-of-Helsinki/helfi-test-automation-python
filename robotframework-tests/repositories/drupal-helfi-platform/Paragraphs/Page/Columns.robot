@@ -133,7 +133,7 @@ Picture on ${side} Has Original Aspect Ratio Enabled
 	Use Original Aspect Ratio on ${side}
 
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Columns.Take Screenshot Of Content
 	${contenttype}=  Convert To Lower Case   ${contenttype}
 	${originalpic} =  Set Variable If  

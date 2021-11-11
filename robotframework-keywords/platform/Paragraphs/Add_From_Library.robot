@@ -218,7 +218,7 @@ Page Should Have ${lang_input} Translation
 	Page Content Matches Language
 
 Page Content Matches Language
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	${Description}=  Return Description From Page
 	IF    ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  
 		Accept Cookies

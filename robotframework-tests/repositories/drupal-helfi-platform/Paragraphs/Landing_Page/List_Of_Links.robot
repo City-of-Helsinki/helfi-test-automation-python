@@ -46,7 +46,7 @@ List Of Links Should Work Correctly
 	List Of Links Is Working Correctly
 
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_LISTOFLINKS_${style}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png

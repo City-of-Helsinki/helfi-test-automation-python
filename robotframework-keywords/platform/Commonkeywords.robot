@@ -53,9 +53,9 @@ Replace Encoded Characters From String
 	${string}=  Replace String Using Regexp   ${replaced}   .{0,1}$   ${EMPTY}
 	[Return]    ${string}
 	
-Suite Name Contains Text
+Suite Source Contains Text
 	[Arguments]  ${text}
-	${containstext}=    Run Keyword And Return Status    Should Contain    ${SUITE NAME}    ${text}
+	${containstext}=    Run Keyword And Return Status    Should Contain    ${SUITE SOURCE}    ${text}
 	[Return]   ${containstext}
 
 Test Name Contains Text

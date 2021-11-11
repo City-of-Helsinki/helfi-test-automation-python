@@ -27,7 +27,7 @@ Create a ${value} Aligned ${pagetype} With Hero Block In ${lang_selection} Langu
  
 Start Creating a ${value} Aligned Page With Hero Block 
 	Set Test Variable   ${value}    ${value} 
-	${islandingpage}=   Suite Name Contains Text   Landing Page
+	${islandingpage}=   Suite Source Contains Text   Landing_Page
 	Set Test Variable   ${islandingpage}   ${islandingpage}
 	${containslink}=    Run Keyword And Return Status    Should Contain    ${TEST NAME}    Link
 	Input Title  Test Automation: ${value} Aligned Hero Block Page

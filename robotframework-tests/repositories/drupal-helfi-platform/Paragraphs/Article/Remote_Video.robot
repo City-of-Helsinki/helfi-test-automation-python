@@ -31,7 +31,7 @@ User Submits The New Article
 	Submit The New Article
 	 
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Sleep  5
 	Remote_Video.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_REMOTEVIDEO_${number}_${BROWSER}.png

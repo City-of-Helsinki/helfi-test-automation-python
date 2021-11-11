@@ -19,7 +19,7 @@ Create ${pagetype} With List Of Links ${style}
 	
 Add Picture To Link
 	[Arguments]   ${picname}
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Inp_ListOfLinks_Link_AddPicture}
 	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
 	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element  ${Inp_Pic_Name}
@@ -43,7 +43,7 @@ Add Second Link For Content
 	Wait Until Keyword Succeeds  5x  100ms  Click Element  ${Inp_ListOfLinks_Link_NewLink}
 	# Better locators does not match correct element. For some reason only first is returned
 	# So Only works for second content card.
-	${islandingpage}=  Suite Name Contains Text    Landing Page 
+	${islandingpage}=  Suite Source Contains Text    Landing_Page 
 	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'list-of-links-links-1-subform-field-list-of-links-link-0-uri')]   /fi/esimerkkisivu
 	Run Keyword If  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'list-of-links-links-1-subform-field-list-of-links-link-0-uri')]   /fi/esimerkkisivu
 	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'list-of-links-links-1-subform-field-list-of-links-link-0-title')]   Esimerkkisivu

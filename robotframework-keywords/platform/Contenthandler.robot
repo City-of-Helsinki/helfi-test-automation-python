@@ -312,7 +312,7 @@ Submit New Content
 	[Documentation]  User submits new page and it is saved and appears in content view
 	Wait Until Keyword Succeeds  5x  100ms  Click Button   ${Btn_Submit}
 	Wait Until Keyword Succeeds  5x  100ms  Element Should Not Be Visible   ${Btn_Submit}
-	${isserviceandunit}=  Suite Name Contains Text  ServiceAndUnit
+	${isserviceandunit}=  Suite Source Contains Text  ServiceAndUnit
 	Run Keyword Unless  ${isserviceandunit}  Set Test Variable  ${pagesadded}    ${pagesadded}+1
 
 Submit New Media
@@ -524,7 +524,7 @@ Add Picture Caption to ${side}
 	
 Add Text Content To Column on ${side}
 	[Documentation]   Adds text content to selected column by selecting content type first and then inserting text
-	${isaddfromlibrary}=  Suite Name Contains Text    Add From Library
+	${isaddfromlibrary}=  Suite Source Contains Text    Add_From_Library
 	${issidebar}=  Test Name Contains Text    Sidebar
 	Run Keyword If  ${isaddfromlibrary} & ('${language}'!='fi')   Click And Select Text As ${side} Content Type
 	Run Keyword If  '${language}'=='fi'  Click And Select Text As ${side} Content Type
@@ -567,7 +567,7 @@ Input Non-paragraph Related Content
 	Input Title  Test Automation: ${TEST NAME}
 	Run Keyword If  '${pagetype}'=='Article'   Set Article Spesific Values
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
 	
 Set Article Spesific Values

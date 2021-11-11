@@ -40,8 +40,8 @@ Remote Video Play Begins Correctly
 
 
 Video 2 Plays Correctly
-	${isarticle}=  Suite Name Contains Text   Article
-	${islandingpage}=  Suite Name Contains Text   Landing Page
+	${isarticle}=  Suite Source Contains Text   Article
+	${islandingpage}=  Suite Source Contains Text   Landing_Page
 	Run Keyword If   ${isarticle}   Capture Element Screenshot   ${Itm_Article_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
 	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png   
 	Run Keyword Unless   ${isarticle} | ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png

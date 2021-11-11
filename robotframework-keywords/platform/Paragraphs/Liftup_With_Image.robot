@@ -11,7 +11,7 @@ Create LiftUpWithImage
 	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddLiftupWithImage}
 	${design}=   Resolve Design Variable   ${design}
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
 	Run Keyword If  ${islandingpage}     Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
 	Input Title To Paragraph    ${Inp_LiftupWithImage_Title}
@@ -31,7 +31,7 @@ Resolve Design Variable
 
 Add Picture
 	[Arguments]   ${picname}
-	${islandingpage}=  Suite Name Contains Text    Landing Page
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword If  not(${islandingpage})  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_LiftupWithImage_Picture}
 	...			ELSE	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_LiftupWithImage_Picture}
 	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg

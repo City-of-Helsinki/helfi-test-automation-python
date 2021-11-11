@@ -214,7 +214,7 @@ Page Content Matches Language
 	Content Should Match Current Language Selection   ${Content}
 	
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Take Screenshot Of Content
 	${originalpic} =  Set Variable If
 ...  '${picalign}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${picalign}_vaakuna_${picture}_${BROWSER}.png

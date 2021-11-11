@@ -56,7 +56,7 @@ User Starts Creating ${pagetype} With ${design} -Design 	Create LiftUpWithImage 
 User Starts Creating ${pagetype} With ${design} -Design and Alternate Color 	Create LiftUpWithImage   ${pagetype}   ${design}   Secondary	
 	
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Accept Cookies
+	Run Keyword And Ignore Error  Accept Cookies
 	Take Screenshot Of Content
 	Run Keyword If  '${coloroption}'!='${EMPTY}'   Capture Element Screenshot  css:.liftup-with-image__content   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	${originalpic} =  Set Variable If  '${coloroption}'=='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_LIFTUPWITHIMAGE_${design}_${BROWSER}.png
