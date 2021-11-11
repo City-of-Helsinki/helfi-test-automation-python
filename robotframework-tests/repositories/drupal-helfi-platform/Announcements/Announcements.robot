@@ -78,9 +78,9 @@ User Goes To New Annoucement Site
 	Go To New Annoucement Site
 	
 User Creates ${lang_selection} ${publishstatus} ${type} Announcement to Show on ${visibility} Pages
-	Run Keyword If   ('${visibility}'=='All') & ('${publishstatus}'=='Published')  Create Announcement    Test_Automation_Announcement_All_Pages   ${lang_selection}    ${type}
-	Run Keyword If   ('${visibility}'=='All') & ('${publishstatus}'=='Unpublished')  Create Announcement    Test_Automation_Announcement_All_Pages   ${lang_selection}    ${type}   True   False
-	Run Keyword If   '${visibility}'=='Certain'  Create Announcement    Test_Automation_Announcement_Certain_Pages   ${lang_selection}    ${type}   False
+	Run Keyword If   ('${visibility}'=='All') & ('${publishstatus}'=='Published')  Create Announcement    Test Automation Announcement All Pages   ${lang_selection}    ${type}
+	Run Keyword If   ('${visibility}'=='All') & ('${publishstatus}'=='Unpublished')  Create Announcement    Test Automation Announcement All Pages   ${lang_selection}    ${type}   True   False
+	Run Keyword If   '${visibility}'=='Certain'  Create Announcement    Test Automation Announcement Certain Pages   ${lang_selection}    ${type}   False
 
 User Adds ${lang_selection} Translation For The Announcement
 	Add ${lang_selection} Translation For The Announcement

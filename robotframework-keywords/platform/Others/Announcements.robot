@@ -23,8 +23,8 @@ Select Content To Show The Announcement For
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  css:#edit-field-announcement-content-pages-wrapper > div > span > span.selection > span > ul > li > input   Esimerkkisivu
 	Input Text  css:#edit-field-announcement-unit-pages-wrapper > div > span > span.selection > span > ul > li > input   Peijaksen sairaala
 	Input Text  css:#edit-field-announcement-service-pages-wrapper > div > span > span.selection > span > ul > li > input   Digituki
-	Sleep  20
-	Capture Page Screenshot
+	Sleep  2	# Searching content to input fields 
+
 	
 Add Link To Announcement
 	[Arguments]   ${url}	${title}   
