@@ -29,12 +29,15 @@ Map Paragraph Works Correctly
 	Sleep  2
 	
 	IF    ${ispalvelukartta}
-        Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+        Run Keyword Unless   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+        Run Keyword If   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
     ELSE
-    	Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+    	Run Keyword Unless   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+    	Run Keyword If   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
     END 
 	
 	${mapstart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+	#${mapstart} =  Run Keyword If   ${CI}  Set Variable    {BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
 	Run Keyword Unless   ${ispalvelukartta}	  Click Element   ${Btn_Map_Kartta_ZoomOut}
 	Run Keyword If   ${ispalvelukartta}	  Click Element  ${Btn_Map_Palvelukartta_ZoomOut}
 	Sleep   1
