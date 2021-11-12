@@ -96,7 +96,6 @@ Cleanup and Close Browser
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	
 	FOR    ${i}    IN RANGE    10
-		   #BECAUSE REMOVING FINNISH TRANSLATION SEEMINGLY ALSO REMOVES SWEDISH ONE, WE CAN EXIT LOOP AT THIS POINT
 		   Go To   ${URL_content_page}
 		   ${count}=  Get Element Count   partial link:Test Automation
 		   Exit For Loop If   ${count}==0
@@ -360,10 +359,6 @@ Get Admin Url
    [Documentation]   Gets URL needed in localhost testing.
    ${admin_url} =   Run  ${ADMIN_URL}
    Set Test Variable   ${admin_url}
-
-Run Insert Example Content
-   [Documentation]  Inserts Example content since some testcases are dependent of it existing.
-   ${output} =   Run Keyword Unless  ${CI}  Run  docker exec hel-platform-app drush en -y helfi_example_content
 
 Set Service As Published
 	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  //input[@id='edit-status'][@checked='checked']   1
