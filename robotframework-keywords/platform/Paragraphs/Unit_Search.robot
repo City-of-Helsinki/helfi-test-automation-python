@@ -18,11 +18,11 @@ Create Unit Search Paragraph
 	
 Unit Links Are Working Correctly
 	${contentpageurl}=   Get Location
-	Click Element   //a[contains(@href, '/fi/lippulaivan-kirjasto')]
+	Click Element   //a[contains(@href, 'lippulaivan-kirjasto')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   lippulaivan-kirjasto
 	Goto   ${contentpageurl}
-	Click Element   //a[contains(@href, '/fi/otaniemen-kirjasto')]
+	Click Element   //a[contains(@href, 'otaniemen-kirjasto')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   otaniemen-kirjasto
 	Goto   ${contentpageurl}
