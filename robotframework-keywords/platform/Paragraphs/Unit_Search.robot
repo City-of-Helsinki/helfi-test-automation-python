@@ -10,6 +10,7 @@ Create Unit Search Paragraph
 	Input Non-paragraph Related Content   ${pagetype}
 	Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_UnitSearch}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_UnitSearch_Title}
+	Sleep  1
 	Select From List By Index   ${Sel_UnitSearch_Units}   0
 	Select From List By Index   ${Sel_UnitSearch_Units}   1
 	${TextFileContent}=  Return Correct Content   ${language}
