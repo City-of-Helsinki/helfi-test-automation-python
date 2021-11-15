@@ -280,7 +280,7 @@ ${Txt_ListOfLinks_Title}							css:.list-of-links__title
 ${Txt_ListOfLinks_Link}								css:.list-of-links__item__title
 
 #MAP
-${Inp_Map_Title}									//input[contains(@id, 'edit-title')]
+${Inp_Map_Title}									//input[contains(@id, 'field-map-title')]
 ${Inp_Map_Description}								//textarea[contains(@id, 'field-lead-in')]
 ${Btn_Map_Add}										//input[contains(@name, 'field_map_map-media-library-open-button-field_content')]
 ${Btn_Map_Url_Add}									(//input[@data-drupal-selector='edit-submit'])[3]
