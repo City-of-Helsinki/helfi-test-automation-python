@@ -17,17 +17,20 @@ Resolve Card-Size Variable
 Create ${pagetype} With ${cardsize} Cards For ${contentname} Content
  	Set Test Variable  ${cardsize}  ${cardsize}
  	Input Non-paragraph Related Content   ${pagetype}
-	Open Paragraph For Edit   ${Opt_AddContentCards}
-	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Title}
-	Run Keyword If  ${islandingpage}  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Landingpage_Title}
+ 	# IF PAGE AND KYMP -repo , lets use lower paragraph add list, ELSE just default.
+ 	IF    ('${pagetype}'=='Page') & ('${PREFIX}'=='/kaupunkiymparisto-ja-liikenne')
+	    Wait Until Keyword Succeeds  5x  200ms  Open Paragraph For Edit   ${Opt_AddContentCards_Lower}   ${Ddn_AddContent_Lower}
+    ELSE
+    	Wait Until Keyword Succeeds  5x  200ms  Open Paragraph For Edit   ${Opt_AddContentCards}
+    END 
+    Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_ContentCard_Title}
+
 	${cardsizevalue}=  Resolve Card-Size Variable   ${cardsize}
 	Select From List By Value  ${Inp_ContentCard_Design}  ${cardsizevalue}
 	Input Text   ${Inp_ContentCard_TargetId}   ${contentname}
 	Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'${contentname}')]
 	
 Add New ContentCard For ${contentname} Content
-	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Wait Until Keyword Succeeds  5x  100ms  Click Element  ${Inp_ContentCard_Addnew}
 	# Better locators does not match correct element. For some reason only first is returned
 	# So Only works for second content card. 

@@ -41,6 +41,7 @@ ${Btn_Save_En}								//button[contains(text(),'Save')]
 ${Btn_Save_Sv}								//button[contains(text(),'Spara')]
 ${Ddn_AddContent}							//ul[@data-drupal-selector='edit-field-content-add-more-operations']//li[2]/button
 ${Ddn_AddContent_Sidebar}					css:#edit-field-sidebar-content-add-more > div > div > ul > li.dropbutton-toggle > button
+${Ddn_AddContent_Lower}						css:#edit-field-lower-content-add-more > div > div > ul > li.dropbutton-toggle > button
 ${Opt_AddColumns}						    name:field_content_columns_add_more
 ${Opt_AddPicture}						    name:field_content_image_add_more
 ${Opt_AddText}								name:field_content_text_add_more
@@ -48,6 +49,7 @@ ${Opt_AddLink}								name:field-content-link-add-more
 ${Opt_AddBanner}   							name:field_content_banner_add_more
 ${Opt_AddAccordion}   						name:field_content_accordion_add_more
 ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
+${Opt_AddContentCards_Lower}				name:field_lower_content_content_cards_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
@@ -190,9 +192,7 @@ ${Opt_Accordion_Column_Left_AddContent_Text}	//ul[contains(@data-drupal-selector
 ${Opt_Accordion_Column_Right_AddContent_Text}	//ul[contains(@data-drupal-selector, 'subform-field-columns-right-column-add-more-operations')]//input[contains(@name,'subform_field_accordion_item_content_text_add_more')]
 
 # CONTENT_CARDS
-${Inp_ContentCard_Title}							//input[contains(@name, 'field_content_cards_title')][contains(@name, 'value')]
-
-${Inp_ContentCard_Landingpage_Title}				name:field_content[0][subform][field_content_cards_title][0][value]
+${Inp_ContentCard_Title}							//input[contains(@name, 'field_content_cards_title')]
 ${Inp_ContentCard_Design}							//select[contains(@name, 'field_content_cards_design')][contains(@name, 'subform')]
 ${Inp_ContentCard_TargetId}							(//input[contains(@name, 'target_id')][contains(@name, 'field_content_cards_content')])[last()]
 ${Inp_ContentCard_Addnew}							//input[contains(@name, 'subform_field_content_cards_content_add_more')]
