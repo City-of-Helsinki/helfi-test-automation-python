@@ -51,6 +51,7 @@ User Adds New ContentCard For ${contentname} Content
 	Add New ContentCard For ${contentname} Content
 
 ContentCards Should Work Correctly
+	Run Keyword And Ignore Error  Accept Cookies
 	ContentCards Are Working Correctly
 	
 User Goes To New Page -Site		Go To New Page Site

@@ -49,7 +49,7 @@ User Adds New ContentCard For ${contentname} Content
 	Add New ContentCard For ${contentname} Content
 
 ContentCards Should Work Correctly
-    Wait Until Keyword Succeeds  5x  200ms  Accept Cookies
+    Run Keyword And Ignore Error  Accept Cookies
 	Wait Until Keyword Succeeds  5x  200ms  ContentCards Are Working Correctly
 	
 User Goes To New LandingPage Site   Go To New LandingPage Site
