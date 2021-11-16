@@ -297,7 +297,8 @@ ${Inp_UnitSearch_SearchField}						css:[data-drupal-selector=edit-unit-search]
 ${Inp_UnitSearch_SearchButton}						css:[data-drupal-selector=edit-actions] > input
 
 #SERVICELIST
-${Inp_ServiceList_Title}							name:field_content[0][subform][field_service_list_title][0][value]
+${Inp_ServiceList_Title}							//input[contains(@name, 'field_service_list_title')]   
+${Sel_ServiceList_Services}							//select[contains(@name, 'field_service_list_services')]
 
 # SIDEBAR
 ${Inp_Sidebar_Text}									name:field_sidebar_content[0][subform][field_sidebar_text_title][0][value]
