@@ -114,7 +114,7 @@ Cleanup and Close Browser
     # in case of service/unit testcases
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
     ${unitispublished}=   Convert To Boolean   ${unitispublished}
-    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   Digituki
+    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   Sosiaalineuvonta
     Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
     Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
@@ -126,7 +126,8 @@ Set Service Back To Unpublished
 	Click Link   ${name}
 	Wait Until Keyword Succeeds  5x  200ms 	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  //input[@id='edit-status'][@checked='checked']
+	Capture Page Screenshot
+	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  css:input.tpr-entity-status:checked
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
 	Click Button   ${Btn_Submit}
 	
@@ -137,7 +138,7 @@ Set Unit Back To Unpublished
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 	Click Link   ${name}
 	Wait Until Keyword Succeeds  5x  200ms 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  //input[@id='edit-status'][@checked='checked']
+	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  css:input.tpr-entity-status:checked
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
 	Click Button   ${Btn_Submit}
 	
@@ -331,10 +332,6 @@ Delete Test Automation Created Content
 	Click Link   partial link: Test Automation
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
-
-	#Click Button   ${Btn_Actions_Dropbutton}
-	#Click Element  ${Btn_Actions_ContentMenu_Deletebutton}
-	#Click Element  ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_content_page}
 
 	
@@ -361,12 +358,12 @@ Get Admin Url
    Set Test Variable   ${admin_url}
 
 Set Service As Published
-	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  //input[@id='edit-status'][@checked='checked']   1
+	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1
 	Run Keyword Unless  ${isalreadypublished}  Click Element   id:edit-status
 	Set Test Variable  ${serviceispublished}   true
 
 Set Unit As Published
-	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  //input[@id='edit-status'][@checked='checked']   1
+	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1
 	Run Keyword Unless  ${isalreadypublished}  Click Element   id:edit-status
 	Run Keyword Unless  ${isalreadypublished}  Set Test Variable  ${unitispublished}   true
 
