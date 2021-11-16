@@ -317,10 +317,8 @@ Submit New Content
 
 Submit New Media
 	[Documentation]  User submits new media content and it is saved and appears in media view
-	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic}
-	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Insert_Pic_Alt}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Insert_Pic}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic}
-	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible     ${Btn_Insert_Pic_Alt}
 	Set Test Variable  ${mediaadded}    ${mediaadded}+1
 		
 Go To New ${pagetype} -View For ${language} Translation

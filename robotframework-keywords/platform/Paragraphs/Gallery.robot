@@ -20,7 +20,7 @@ Click Edit Paragraph
 
 Add Picture '${name}' And Caption To ${number}:th Picture
 	${number}=   Convert To Integer   ${number}
-	Run Keyword If  ${number}>=2   Wait Until Keyword Succeeds  5x  500ms  Click Element   ${Btn_Gallery_Picture_Addmore}
+	Run Keyword If  ${number}>=2  Run Keyword And Ignore Error   Click Element   ${Btn_Gallery_Picture_Addmore}
 	${editgalleryvisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  ${Inp_Gallery_Edit}   timeout=3
 	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  500ms  Click Edit Paragraph
 	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Gallery_Picture_Addmore}
@@ -35,7 +35,7 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Click Button   ${Btn_Save}
-	Submit New Media
+	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 	Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Btn_Gallery_Picture_Caption}   ${pic_1_caption_${language}}
 	Set Test Variable  ${picture}    picture
 	
