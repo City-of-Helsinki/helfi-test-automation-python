@@ -20,7 +20,7 @@ Click Edit Paragraph
 
 Add Picture '${name}' And Caption To ${number}:th Picture
 	${number}=   Convert To Integer   ${number}
-	Run Keyword If  ${number}>=2   Click Element   ${Btn_Gallery_Picture_Addmore}
+	Run Keyword If  ${number}>=2   Wait Until Keyword Succeeds  5x  500ms  Click Element   ${Btn_Gallery_Picture_Addmore}
 	${editgalleryvisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  ${Inp_Gallery_Edit}   timeout=3
 	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  500ms  Click Edit Paragraph
 	Run Keyword If  ${editgalleryvisible}  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Gallery_Picture_Addmore}
