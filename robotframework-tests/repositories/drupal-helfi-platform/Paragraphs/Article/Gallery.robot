@@ -24,7 +24,7 @@ User Starts Creating Page With Gallery  Create Article With Gallery
 User Goes To New Article Site  Go To New Article Site
 
 Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies
+	Run Keyword And Ignore Error   Accept Cookies
 	Gallery.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_ARTICLE_GALLERY_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
