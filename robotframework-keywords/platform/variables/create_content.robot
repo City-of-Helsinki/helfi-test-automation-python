@@ -152,10 +152,10 @@ ${Inp_Gallery_Edit}						    //input[contains(@value, 'Edit')][contains(@id, 'fi
 # PAGE VIEW
 ${Txt_Hero_Title}								css:.hero__title
 ${Txt_Hero_Description}							css:.hero__description
-${Txt_Leadin_Content}							//div[@class='container lead-in__container']
+${Txt_Leadin_Content}							css:div[class$="lead-in"]
 ${Txt_Column_Title}								css:.component__title
 ${Txt_Column_Description}						xpath://p[1]
-${Txt_Column_Content}							css:.component__content
+${Txt_Column_Content}							css:p
 ${Itm_Gallery_Slidetrack}						id:splide01-track  
 # ARTICLE SPESIFIC
 ${Inp_Author}								name:field_author[0][value]
