@@ -117,7 +117,6 @@ Page Should Have ${lang_input} Translation
 
 Page Content Matches Language
 	${Title}=  Return Title From LandingPage
-	${Description}=  Return Description From LandingPage
 	${Content}=  Return Content From LandingPage
 	Title Should Match Current Language Selection   ${Title}
 	Columns.Content Should Match Current Language Selection   ${Content}
