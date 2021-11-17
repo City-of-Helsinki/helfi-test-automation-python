@@ -14,7 +14,7 @@ Create Map With Given Url
 	${description}=  Return Correct Description   ${language}
 	Input Text  ${Inp_Map_Description}   ${description}
 	Wait Until Keyword Succeeds  5x  100ms   Add Url To Map
-	Submit New Media
+	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 
 Add Url To Map	
 	Wait Until Keyword Succeeds  5x  100ms  Click Element   ${Btn_Map_Add}

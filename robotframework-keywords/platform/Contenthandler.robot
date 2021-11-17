@@ -500,7 +500,7 @@ Add Picture to Column
 	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Click Button   ${Btn_Save}
-	Submit New Media
+	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 	Wait Until Keyword Succeeds  10x  500ms   Add Picture Caption to ${side}  
 	Set Test Variable  ${picture}    picture   
 

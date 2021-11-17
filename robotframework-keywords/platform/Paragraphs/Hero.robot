@@ -94,7 +94,7 @@ Start Creating Hero Block Page with ${picalign} Picture
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}
-	Submit New Media
+	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 	Wait Until Element Is Visible  //input[@data-drupal-selector='edit-field-hero-0-subform-field-hero-image-selection-0-remove-button']   timeout=3
 	  
 
