@@ -88,6 +88,7 @@ Create New ${lang_selection} Picture Paragraph To Library
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddPicture}
 	Add Picture 'train' And Caption To 1:th Picture
+	Sleep  2     # small wait needed so page gets loaded
 	Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
@@ -233,10 +234,10 @@ Page Content Matches Language
     IF   not(${islandingpage})
     	${Description}=    Return Description From Page
     END		
-    IF  (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks'))
+    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks'))
     	${Content}=  Add_From_Library.Return Content From Page
     END
-    IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
+    IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='ContentCards')
     	${Linktext}=  Return Link Text From Page
     END
     IF  	('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
@@ -247,19 +248,22 @@ Page Content Matches Language
     END
 
 	# CONTENT VALIDATIONS
-    IF   ((${islandingpage}) & ('${TEST NAME}'=='Banner')) | ((${islandingpage}) & ('${TEST NAME}'=='Gallery'))
+    IF   (${islandingpage}) & ('${TEST NAME}'=='Gallery')
     	  Description Should Match Current Language Selection   ${Description}
-    END
-    IF   not(${islandingpage})
+    ELSE IF   (${islandingpage}) & ('${TEST NAME}'=='Banner')
+    	Description Should Match Current Language Selection   ${Content}
+	ELSE IF   (${islandingpage}) & ('${TEST NAME}'=='LiftupWithImage')
+    	Description Should Match Current Language Selection   ${Content}    	
+    ELSE IF   not(${islandingpage})
     	Description Should Match Current Language Selection   ${Description}
     END
     IF   ${islandingpage} & ('${TEST NAME}'=='Columns')
-    	  Content Should Match Current Language Selection   ${Description}
-    END
-    IF   (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks'))
+    	  Content Should Match Current Language Selection   ${Content}
+    ELSE IF   (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Banner'))
     	  Content Should Match Current Language Selection   ${Content}
     END
-    IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
+    
+    IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='ContentCards')
     	  LinkText Is Correct   ${Linktext}
     END
     IF   ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
@@ -289,14 +293,10 @@ Return Description From Page
 	[Return]		${description}
 
 Return Content From Page
-	IF    '${TEST NAME}'=='Columns'
-		${content}=	Get Text    ${Txt_Column_Content}
-	ELSE IF    '${TEST NAME}'=='Text'
-		${content}=	Get Text    ${Txt_Column_Content}
-	ELSE IF   '${TEST NAME}'=='Accordion'
+	IF   '${TEST NAME}'=='Accordion'
 		Sleep  2
-		${content}=	Get Text   ${Txt_Accordion_Content}
 	END
+	${content}= 	Get Text    ${Txt_Content}
 	[Return]		${content}
 	
 Return Link Text From Page
@@ -304,6 +304,8 @@ Return Link Text From Page
 		${linktxt}=	 Get Text    ${Txt_Banner_Link}
 	ELSE IF   '${TEST NAME}'=='ListOfLinks'
 		${linktxt}=	 Get Text    ${Txt_ListOfLinks_Link}
+	ELSE IF    '${TEST NAME}'=='ContentCards'
+		${linktxt}=	 Get Text    ${Txt_ContentCards_Link}
 	END
 	[Return]		${linktxt}
 
@@ -322,4 +324,8 @@ LinkText Is Correct
 		Should Match    ${linktext}    Test Automation Banner Link
 	ELSE IF   '${TEST NAME}'=='ListOfLinks'
 		Should Match    ${linktext}    Linkkiesimerkit
+	ELSE IF   ('${TEST NAME}'=='ContentCards') & ('${language}'=='fi')
+		Should Match    ${linktext}    Esimerkkisivu
+	ELSE IF   ('${TEST NAME}'=='ContentCards') & ('${language}'=='en')
+		Should Match    ${linktext}    Link examples
 	END

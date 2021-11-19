@@ -82,6 +82,7 @@ ${Opt_Link_Framed}				css:[value=secondary]
 ${Opt_Link_Transparent}			css:[value=supplementary]
 ${Ddn_Icon} 							//select[contains(@data-drupal-selector, 'subform-field-icon')]
 ${Txt_Title}								css:.component__title
+${Txt_Content}								css:p
 
 #HERO
 ${Inp_Hero_Title}							//input[contains(@id, 'edit-field-hero-0-subform')]
@@ -269,8 +270,9 @@ ${Tar_Paragraph_Gallery_Image_Caption}				name:paragraphs[0][subform][field_gall
 ${Txt_Banner_Title}									css:.banner__title
 ${Txt_Banner_Description}							css:div.banner__content-wrapper > div > div > p
 ${Txt_Banner_Link}									css:div.banner__content-wrapper > a > span
+${Txt_ContentCards_Link}							css:h3.content-card__title > span
 ${Txt_Accordion_Title}								//button[@class='accordion-item__button accordion-item__button--toggle handorgel__header__button']
-${Txt_Accordion_Content}							css:p
+
 ${Txt_ContentCards_Title}							css:.component__title
 ${Txt_Gallery_Title}								css:#block-hdbt-page-title > div > h1 > span
 ${Txt_Gallery_Image_Caption}						css:.media--image__caption

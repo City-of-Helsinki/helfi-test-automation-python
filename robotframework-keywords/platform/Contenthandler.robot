@@ -568,12 +568,6 @@ Input Text Content To Frame
 Input Non-paragraph Related Content
 	[Arguments]   ${pagetype}
 	Input Title  Test Automation: ${TEST NAME}
-	Run Keyword If  '${pagetype}'=='Article'   Set Article Spesific Values
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
-	
-Set Article Spesific Values
-	Input Author   Test Automation Author
-	${ingress}=  Get File  ${CONTENT_PATH}/text_ingress_${language}.txt
-	Input Lead   ${ingress}

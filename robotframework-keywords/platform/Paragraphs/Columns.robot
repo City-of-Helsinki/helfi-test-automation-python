@@ -82,7 +82,7 @@ Return Description From ${pagetype}
 	[Return]		${description}
 
 Return Content From ${pagetype}
-	${content}=	Get Text    ${Txt_Column_Content}
+	${content}=	Get Text    ${Txt_Content}
 	[Return]		${content}
 	
 Return Lead From Article
