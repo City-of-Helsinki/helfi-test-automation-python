@@ -117,6 +117,7 @@ Create New ${lang_selection} ListOfLinks Paragraph To Library
 	Input Text  ${Inp_ListOfLinks_Link_Uri}   /fi/linkkiesimerkit
 	Input Text  ${Inp_ListOfLinks_Link_Title}   Linkkiesimerkit
 	Add Picture 'train' And Caption To 1:th Picture
+	Sleep  2     # small wait needed so page gets loaded
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
@@ -128,7 +129,8 @@ Create New ${lang_selection} Text Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Text_${language}  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddText}
-	Wait Until Keyword Succeeds  5x  200ms  Input Description To Paragraph   ${Frm_Content}
+	${TextFileContent}=  Return Correct Content   ${language}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Content}   //body   ${TextFileContent}
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
@@ -194,7 +196,6 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	Run Keyword If  '${language}'=='en'   Click Button   ${Btn_Save_En}
 	Run Keyword If  '${language}'=='sv'   Click Button   ${Btn_Save_Sv}
 	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
-
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Tar_Paragraph_Gallery_Image_Caption}   ${pic_1_caption_${language}}
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Tar_Paragraph_Picture_Image_Caption}   ${pic_1_caption_${language}}
 	Set Test Variable  ${picture}    picture
@@ -213,59 +214,61 @@ Open Add Picture
 	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 Page Should Have ${lang_input} Translation
+	Run Keyword And Ignore Error  Accept Cookies
 	Set Language Pointer   ${lang_input}
 	Select Language   ${lang_input}
 	Page Content Matches Language
 
 Page Content Matches Language
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	${Description}=  Return Description From Page
-	IF    ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  
-		Accept Cookies
-    ELSE IF  '${TEST NAME}'=='Accordion'
+	Zoom Out And Capture Page Screenshot
+    # CONTENT FETCH FOR VALIDATIONS
+    IF  '${TEST NAME}'=='Accordion'
         Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
-    ELSE IF    (not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='Text'))
+		# TODO: Add check to accordion content after opening it
+    END
+    IF    (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
     	${Title}=  Return Title From Page
-    ELSE IF  (not('${TEST NAME}'=='Banner')) | (not('${TEST NAME}'=='ContentCards')) | (not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='LiftupWithImage')) | (not('${TEST NAME}'=='ListOfLinks')) | (not('${TEST NAME}'=='Text'))
+    END
+    IF   not(${islandingpage})
+    	${Description}=    Return Description From Page
+    END		
+    IF  (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks'))
     	${Content}=  Add_From_Library.Return Content From Page
-    ELSE IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
+    END
+    IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
     	${Linktext}=  Return Link Text From Page
-    ELSE IF  	('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
+    END
+    IF  	('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
     	${Piccaption}=   Return Picture Caption From Page
-    ELSE IF  	(not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='Text'))
+    END
+    IF  	(not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
     	Title Should Match Current Language Selection   ${Title}
-    ELSE IF    not(${islandingpage})
-    	  Description Should Match Current Language Selection   ${Description}  	
-    ELSE IF   ${islandingpage} & ('${TEST NAME}'=='Banner')
+    END
+
+	# CONTENT VALIDATIONS
+    IF   ((${islandingpage}) & ('${TEST NAME}'=='Banner')) | ((${islandingpage}) & ('${TEST NAME}'=='Gallery'))
     	  Description Should Match Current Language Selection   ${Description}
-    ELSE IF   ${islandingpage} & ('${TEST NAME}'=='Columns')
+    END
+    IF   not(${islandingpage})
+    	Description Should Match Current Language Selection   ${Description}
+    END
+    IF   ${islandingpage} & ('${TEST NAME}'=='Columns')
     	  Content Should Match Current Language Selection   ${Description}
-    ELSE IF   (not('${TEST NAME}'=='Banner')) | (not('${TEST NAME}'=='ContentCards')) | (not('${TEST NAME}'=='Gallery')) | (not('${TEST NAME}'=='Picture')) | (not('${TEST NAME}'=='LiftupWithImage')) | (not('${TEST NAME}'=='ListOfLinks')) | (not('${TEST NAME}'=='Text'))
+    END
+    IF   (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks'))
     	  Content Should Match Current Language Selection   ${Content}
-    ELSE IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
+    END
+    IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')
     	  LinkText Is Correct   ${Linktext}
-    ELSE IF   ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
+    END
+    IF   ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
     	  Picture Caption Is Correct   ${Piccaption}
     END
-	
-	#Run Keyword If  ('${TEST NAME}'=='Accordion') & ('${language}'=='fi')  Accept Cookies
-	#Run Keyword If  '${TEST NAME}'=='Accordion'  Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
-	#${Title}=  Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')   Return Title From Page
-	#${Description}=  Return Description From Page
-	# ${Content}=  Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Add_From_Library.Return Content From Page
-	# ${Linktext}=  Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')  Return Link Text From Page
-	# ${Piccaption}=  Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')  Return Picture Caption From Page
-	#Run Keyword Unless  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='Text')  Title Should Match Current Language Selection   ${Title}
-	#Run Keyword Unless  ${islandingpage}  Description Should Match Current Language Selection   ${Description}	
-	#Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Banner')  Description Should Match Current Language Selection   ${Description}
-	#Run Keyword If  ${islandingpage} & ('${TEST NAME}'=='Columns')   Content Should Match Current Language Selection   ${Description}
-	#Run Keyword Unless  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture') | ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Text')  Content Should Match Current Language Selection   ${Content}
-	#Run Keyword If  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks')    LinkText Is Correct   ${Linktext}
-	#Run Keyword If  ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')   Picture Caption Is Correct   ${Piccaption}
-	
+		
 Return Title From Page
 	IF    '${TEST NAME}'=='Columns'
-        ${title}=   Get Text    ${Txt_Column_Title}
+        ${title}=   Get Text    ${Txt_Title}
     ELSE IF    '${TEST NAME}'=='Banner'
         ${title}=   Get Text    ${Txt_Banner_Title}
     ELSE IF    '${TEST NAME}'=='Accordion'
@@ -276,16 +279,19 @@ Return Title From Page
     ELSE IF  '${TEST NAME}'=='LiftupWithImage'	
     	${title}=   Get Text    ${Txt_LiftupWithImage_Title}
     ELSE IF  '${TEST NAME}'=='ListOfLinks'	
-    	${title}=   Get Text    ${Txt_ListOfLinks_Title}
+    	${title}=   Get Text    ${Txt_Title}
     END
 	[Return]		${title}
 
 Return Description From Page
-	${description}=	Get Text    ${Txt_Column_Description}
+	[Documentation]  Description (lead-in) field ONLY in Page -content
+	${description}=	Get Text    ${Txt_Leadin_Content}
 	[Return]		${description}
 
 Return Content From Page
 	IF    '${TEST NAME}'=='Columns'
+		${content}=	Get Text    ${Txt_Column_Content}
+	ELSE IF    '${TEST NAME}'=='Text'
 		${content}=	Get Text    ${Txt_Column_Content}
 	ELSE IF   '${TEST NAME}'=='Accordion'
 		Sleep  2

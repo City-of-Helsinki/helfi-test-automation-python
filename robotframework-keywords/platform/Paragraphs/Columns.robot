@@ -70,7 +70,7 @@ Content Should Match Current Language Selection
 	Run Keyword If  '${language}'=='sv'  Should Match Regexp  ${string}   Det är bara synd, att han inte är
 	
 Return Title From ${pagetype}
-	${title}=	Get Text    ${Txt_Column_Title}
+	${title}=	Get Text    ${Txt_Title}
 	[Return]		${title}
 
 Return Description From ${pagetype}

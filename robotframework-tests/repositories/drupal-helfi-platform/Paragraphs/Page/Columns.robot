@@ -149,18 +149,6 @@ Page Should Have ${lang_input} Translation
 	Select Language   ${lang_input}
 	Page Content Matches Language
 
-Return Title From Page
-	${title}=	Get Text    ${Txt_Column_Title}
-	[Return]		${title}
-
-Return Description From Page
-	${description}=	Get Text    ${Txt_Leadin_Content}
-	[Return]		${description}
-
-Return Content From Page
-	${content}=	Get Text    ${Txt_Column_Content}
-	[Return]		${content}
-
 Page Content Matches Language
 	${Title}=  Return Title From Page
 	${Description}=  Return Description From Page

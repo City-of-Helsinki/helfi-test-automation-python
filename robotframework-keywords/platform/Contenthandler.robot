@@ -101,15 +101,16 @@ Cleanup and Close Browser
 		   Exit For Loop If   ${count}==0
 		   Delete Test Automation Created Content
     END
-	FOR    ${i}    IN RANGE    ${mediaadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
-    END
     FOR    ${i}    IN RANGE    10
     	   Go To   ${URL_paragraphs_page}
     	   ${count}=  Get Element Count   partial link:Test_Automation
     	   Exit For Loop If   ${count}==0
            Delete Test Automation Created Paragraphs
     END
+	FOR    ${i}    IN RANGE    ${mediaadded}
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
+    END
+
     
     # in case of service/unit testcases
     ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
@@ -369,12 +370,24 @@ Select Language
 	[Arguments]     ${value}
 	[Documentation]  fi = Finnish , sv = Swedish , en = English , ru = Russian
 	${value}=  Convert To Lower Case   ${value}
-	Run Keyword If  '${value}'=='finnish'  Click Element  css:[lang|=fi]
-	Run Keyword If  '${value}'=='swedish'  Set Focus To Element  css:[lang|=sv]
-	Run Keyword If  '${value}'=='swedish'  Click Element  css:[lang|=sv]
-	Run Keyword If  '${value}'=='english'  Set Focus To Element  css:[lang|=en]
-	Run Keyword If  '${value}'=='english'  Click Element  css:[lang|=en]
-	Run Keyword If  '${value}'=='russian'  Click Element  css:[lang|=ru]
+	IF    '${value}'=='finnish'
+		Wait Until Keyword Succeeds  5x  200ms  Set Focus To Element  css:[lang|=fi]
+        Click Element  css:[lang|=fi]
+    ELSE IF    '${value}'=='english'
+        Wait Until Keyword Succeeds  5x  200ms  Set Focus To Element  css:[lang|=en]
+        Click Element  css:[lang|=en]
+    ELSE IF    '${value}'=='swedish'
+    	Wait Until Keyword Succeeds  5x  200ms  Set Focus To Element  css:[lang|=sv]
+    	Click Element  css:[lang|=sv]
+    ELSE
+    	Click Element  css:[lang|=ru]
+    END 
+	#Run Keyword If  '${value}'=='finnish'  Click Element  css:[lang|=fi]
+	#Run Keyword If  '${value}'=='swedish'  Set Focus To Element  css:[lang|=sv]
+	#Run Keyword If  '${value}'=='swedish'  Click Element  css:[lang|=sv]
+	#Run Keyword If  '${value}'=='english'  Set Focus To Element  css:[lang|=en]
+	#Run Keyword If  '${value}'=='english'  Click Element  css:[lang|=en]
+	#Run Keyword If  '${value}'=='russian'  Click Element  css:[lang|=ru]
 
 Return Correct Title
 	[Arguments]     ${language}

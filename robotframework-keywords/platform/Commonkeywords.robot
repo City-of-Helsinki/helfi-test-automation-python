@@ -79,6 +79,8 @@ Rename Reports Picture To Use Original Picture Name
 	
 Zoom Out And Capture Page Screenshot
 	[Documentation]   Used for debugging purposes during test development
+	Sleep  0.1
 	Execute javascript  document.body.style.zoom="25%"
 	Capture Page Screenshot
 	Execute javascript  document.body.style.zoom="100%"
+	Sleep  0.1
