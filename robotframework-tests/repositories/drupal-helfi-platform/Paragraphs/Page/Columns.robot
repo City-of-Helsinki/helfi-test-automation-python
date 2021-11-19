@@ -150,9 +150,9 @@ Page Should Have ${lang_input} Translation
 	Page Content Matches Language
 
 Page Content Matches Language
-	${Title}=  Return Title From Page
-	${Description}=  Return Description From Page
-	${Content}=  Return Content From Page
+	${Title}=  Columns.Return Title From Page
+	${Description}=  Columns.Return Description From Page
+	${Content}=  Columns.Return Content From Page
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
 	Columns.Content Should Match Current Language Selection   ${Content}
