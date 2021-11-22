@@ -14,7 +14,7 @@ Create ${pagetype} With List Of Links ${style}
 	Input Text  ${Inp_ListOfLinks_Link_Title}   Link Examples
 	Click Element   ${Swh_ListOfLinks_Link_OpenInNewTab}
 	Run Keyword If   '${TEST NAME}'=='With Picture'   Add Picture To Link   train
-	...   ELSE IF   '${TEST NAME}'!='Without Picture And Description'   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
+	...   ELSE IF   '${TEST NAME}'!='Without Picture And Description'   Wait Until Keyword Succeeds  5x  200ms   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
 	
 	
 Add Picture To Link
@@ -40,17 +40,13 @@ Resolve Style Variable
 	[Return]   ${stylevariable}
 
 Add Second Link For Content
-	Wait Until Keyword Succeeds  5x  100ms  Click Element  ${Inp_ListOfLinks_Link_NewLink}
-	# Better locators does not match correct element. For some reason only first is returned
-	# So Only works for second content card.
-	${islandingpage}=  Suite Source Contains Text    Landing_Page 
-	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'list-of-links-links-1-subform-field-list-of-links-link-0-uri')]   /fi/esimerkkisivu
-	Run Keyword If  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'list-of-links-links-1-subform-field-list-of-links-link-0-uri')]   /fi/esimerkkisivu
-	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   //input[contains(@data-drupal-selector, 'list-of-links-links-1-subform-field-list-of-links-link-0-title')]   Esimerkkisivu
-	Run Keyword If  ${islandingpage}   Wait Until Keyword Succeeds  5x  100ms  Input Text   name:field_content[0][subform][field_list_of_links_links][1][subform][field_list_of_links_link][0][title]   Esimerkkisivu
+	Wait Until Keyword Succeeds  5x  300ms  Click Element  ${Inp_ListOfLinks_Link_NewLink}
+	Sleep  1    # Small sleep due issues with fields accepting input for second link
+	Wait Until Keyword Succeeds  5x  300ms  Input Text   ${Inp_ListOfLinks_Link_Uri}   /fi/esimerkkisivu
+	Wait Until Keyword Succeeds  5x  300ms  Input Text   ${Inp_ListOfLinks_Link_Title}   Esimerkkisivu
 	Run Keyword If   '${TEST NAME}'=='With Picture'   Add Picture To Link    tulips
-	...   ELSE IF  ('${TEST NAME}'!='Without Picture And Description') & (not(${islandingpage}))   Input Text    ${Inp_ListOfLinks_Link_Description2}    Klikkaa tästä siirtyäksesi
-	...   ELSE IF  ${islandingpage} & ('${TEST NAME}'!='Without Picture And Description')   Input Text    name:field_content[0][subform][field_list_of_links_links][1][subform][field_list_of_links_desc][0][value]    Klikkaa tästä siirtyäksesi
+	...   ELSE IF  ('${TEST NAME}'!='Without Picture And Description')    Input Text    ${Inp_ListOfLinks_Link_Description}    Klikkaa tästä siirtyäksesi
+	
 	
 		
 List Of Links Is Working Correctly

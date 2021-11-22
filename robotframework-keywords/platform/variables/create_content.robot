@@ -199,14 +199,12 @@ ${Inp_ContentCard_Addnew}							//input[contains(@name, 'subform_field_content_c
 
 #LIST-OF-LINKS
 ${Opt_AddListOfLinks}							    name:field_content_list_of_links_add_more
-${Inp_ListOfLinks_Title}							name:field_content[1][subform][field_list_of_links_title][0][value]
 ${Inp_ListOfLinks_Design}							//select[contains(@name, 'field_list_of_links_design')]
-${Inp_ListOfLinks_Link_Uri}							//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'uri')]
-${Inp_ListOfLinks_Link_Title}		    			//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'title')]
+${Inp_ListOfLinks_Link_Uri}							(//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'uri')])[last()]
+${Inp_ListOfLinks_Link_Title}		    			(//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'title')])[last()]
 ${Inp_ListOfLinks_Link_NewLink}						//input[contains(@name, 'field_list_of_links_links_list')]
+${Inp_ListOfLinks_Link_Description}					(//input[contains(@name, 'field_list_of_links_desc')])[last()]
 ${Inp_ListOfLinks_Link_AddPicture}					(//input[contains(@name, 'image-media-library-open-button-field_content')])[last()]
-${Inp_ListOfLinks_Link_Description}					//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'value')]
-${Inp_ListOfLinks_Link_Description2}				name:field_content[1][subform][field_list_of_links_links][1][subform][field_list_of_links_desc][0][value]
 ${Swh_ListOfLinks_Link_OpenInNewTab}				//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'target_new')]
 
 #LIFTUP-WITH-IMAGE
