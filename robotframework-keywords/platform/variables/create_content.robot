@@ -283,7 +283,7 @@ ${Inp_Map_Title}									//input[contains(@id, 'field-map-title')]
 ${Inp_Map_Description}								//textarea[contains(@id, 'field-lead-in')]
 ${Btn_Map_Add}										//input[contains(@name, 'field_map_map-media-library-open-button-field_content')]
 ${Btn_Map_Url_Add}									(//input[@data-drupal-selector='edit-submit'])[3]
-${Itm_Map}											css:body > div.dialog-off-canvas-main-canvas > div > main > div.main-content > div > article > div > div.map.map--default > div > div.map__wrapper > div > iframe
+${Itm_Map}											css:#palvelukartta-map + div > div > iframe
 ${Btn_Map_Kartta_ZoomOut}							css:.custom-zoom-out
 ${Btn_Map_Palvelukartta_ZoomOut}					//button[contains(@class,'zoomOut')]
 ${Btn_Map_Palvelukartta_AllowCookies}				//button[contains(text(),'Salli kaikki evästeet')]
