@@ -26,8 +26,10 @@ Add Url To Map
 Map Paragraph Works Correctly
 	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies
 	${ispalvelukartta}=  URL Contains Text   palvelukartta
-	Wait Until Element Is Visible  ${Itm_Map}
-	Select Frame   ${Itm_Map}
+	Run Keyword If  ${ispalvelukartta}  Wait Until Element Is Visible  ${Itm_Map_Palvelukartta}
+	Run Keyword If  ${ispalvelukartta}  Select Frame   ${Itm_Map_Palvelukartta}
+	Run Keyword Unless  ${ispalvelukartta}   Wait Until Element Is Visible  ${Itm_Map_Kartta}  
+	Run Keyword Unless  ${ispalvelukartta}   Select Frame   ${Itm_Map_Kartta}  
 	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
 	Sleep  2
 	
@@ -60,8 +62,8 @@ URL Contains Text
 	
 Allow Palvelukartta Cookies
 	Sleep  2
-	Wait Until Element Is Visible  ${Itm_Map}   timeout=3
-	Select Frame   ${Itm_Map}
+	Wait Until Element Is Visible  ${Itm_Map_Palvelukartta}   timeout=3
+	Select Frame   ${Itm_Map_Palvelukartta}
 	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
 	Unselect Frame
 	Sleep  4	
