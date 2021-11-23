@@ -116,8 +116,8 @@ Add ${style} Link In Hero Content Paragraph
 
 
 Add ${style} Link In Text Editor
-	Set Focus To Element   //a[contains(@title, 'Linkki')]
-	Click Element   //a[contains(@title, 'Linkki')]
+	Set Focus To Element   //a[contains(@title, 'Link')]
+	Click Element   //a[contains(@title, 'Link')]
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Hero_Link_Texteditor_URL}   https://fi.wikipedia.org/wiki/Rautatie_(romaani)    
 	Input Text   ${Inp_Hero_Link_Texteditor_Title}    ${link_title_${language}}
 	Click Element  ${Ddn_Hero_Link_Texteditor_Design}
