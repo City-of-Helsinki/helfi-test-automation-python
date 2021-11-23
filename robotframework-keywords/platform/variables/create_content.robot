@@ -158,12 +158,6 @@ ${Txt_Leadin_Content}							css:div[class$="lead-in"]
 ${Txt_Column_Description}						xpath://p[1]
 ${Txt_Column_Content}							css:p
 ${Itm_Gallery_Slidetrack}						id:splide01-track  
-# ARTICLE SPESIFIC
-${Inp_Author}								name:field_author[0][value]
-${Inp_Lead}									name:field_lead[0][value]
-${Inp_Keywords}								css:.select2-search__field
-${Txt_Lead}									css:.article__lead
-${Txt_Author}								css:.article__author
 
 # BANNER
 ${Opt_Banner_Left}							css:[value=align-left]
@@ -226,8 +220,6 @@ ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > butt
 													
 ${Itm_Video}										css:div.responsive-video-container > iframe
 ${Itm_Video2}  										(//div[contains(@class,'responsive-video-container')])[last()] >> css:div > div > iframe
-${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
-${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe
 
 # ADD FROM LIBRARY
 ${Inp_Paragraph_Title}								name:label[0][value]

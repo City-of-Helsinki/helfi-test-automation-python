@@ -50,8 +50,6 @@ Take Screenshot Of Content
 	Maximize Browser Window
 	Wait Until Element Is Visible   ${Itm_Gallery_Slidetrack}   timeout=5
 	Execute javascript  document.body.style.zoom="28%"
-	${containsarticle}=    Suite Source Contains Text   Article
-	Run keyword if  ('${BROWSER}'=='chromeheadless') & (${containsarticle})   Execute javascript   document.body.style.zoom="25%"
 	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
 	Execute javascript  document.body.style.zoom="100%"
 	

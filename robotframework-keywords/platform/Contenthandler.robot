@@ -30,7 +30,7 @@ ${language}	 		 						fi
 ${gallery}									false
 ${serviceispublished}						false
 ${unitispublished}							false
-@{excludetaglist}     					    ARTICLE
+@{excludetaglist}     					    <something>
 ${URL_login_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/user/login
 ${URL_content_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content
 ${URL_unit_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/integrations/tpr-unit
@@ -237,12 +237,7 @@ Compared Pictures Match
     ELSE
     	Compare Images      ${pic1}   ${pic2}
     END 
-    
 
-Go To New Article Site
-	GoTo   ${URL_content_page}
-	Click Add Content
-	Wait Until Keyword Succeeds  5x  200ms  Click Add Article
 
 Go To New Annoucement Site
 	GoTo   ${URL_content_page}
@@ -291,12 +286,6 @@ Click Add Announcement
 	Wait Until Element Is Visible  //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']   timeout=3
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']
 	Element Should Not Be Visible   //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']
-	
-Click Add Article
-	[Documentation]   Add Article ('Artikkeli') click in Add Content('Lisää sisältöä') -menu
-	Wait Until Element Is Visible  //a[contains(@href, '/node/add/article')][@class='admin-item__link']   timeout=3
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/article')][@class='admin-item__link']
-	Element Should Not Be Visible   //a[contains(@href, '/node/add/article')][@class='admin-item__link']
 
 Go To Translate Selection Page
 	[Documentation]   Goes To Translations Page for first document in the content list

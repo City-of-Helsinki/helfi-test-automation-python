@@ -55,14 +55,10 @@ ${pagetype} Content Matches Language
 	${Title}=  Return Title From ${pagetype}
 	${Description}=  Return Description From ${pagetype}
 	${Content}=   Return Content From ${pagetype}
-	${Lead}=  Run Keyword If  '${pagetype}'=='Article'  Return Lead From Article
-	${Author}=  Run Keyword If  '${pagetype}'=='Article'   Return Author From Article
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
 	Columns.Content Should Match Current Language Selection   ${Content}
-	Run Keyword If  '${pagetype}'=='Article'  Lead Should Match Current Language Selection   ${Lead}
-	Run Keyword If  '${pagetype}'=='Article'  Author Should Be Correct   ${Author}
-
+	
 Content Should Match Current Language Selection
 	[Arguments]   ${string}
 	Run Keyword If  '${language}'=='fi'  Should Match Regexp  ${string}   Viittatie teki niemen nenässä polvekkeen
@@ -84,24 +80,3 @@ Return Description From ${pagetype}
 Return Content From ${pagetype}
 	${content}=	Get Text    ${Txt_Content}
 	[Return]		${content}
-	
-Return Lead From Article
-	${lead}=	Get Text    ${Txt_Lead}
-	[Return]		${lead}
-
-Return Author From Article
-	${author}=	Get Text    ${Txt_Author}
-	[Return]		${author}
-	
-Lead Should Match Current Language Selection
-	[Arguments]   ${string}
-	Run Keyword If  '${language}'=='fi'  Should Match Regexp  ${string}   Ingressi eli johdate on tekstin
-	Run Keyword If  '${language}'=='en'  Should Match Regexp  ${string}   A lead paragraph
-	Run Keyword If  '${language}'=='sv'  Should Match Regexp  ${string}   Ingressen är den inledande delen av en artikel
-
-Author Should Be Correct
-	[Arguments]   ${string}
-	Should Match Regexp  ${string}   Test Automation Author
-
-*** Variables ***
-${BROWSER}    
