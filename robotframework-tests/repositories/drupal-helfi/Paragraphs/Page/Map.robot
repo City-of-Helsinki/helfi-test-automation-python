@@ -13,7 +13,7 @@ Kartta Map
 	User Adds Map Using kartta.hel.fi Map Location
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	And Map Paragraph Works Correctly
+#	And Map Paragraph Works Correctly
 	
 Palvelukartta Map
 	[Tags]  CRITICAL
@@ -21,7 +21,7 @@ Palvelukartta Map
 	User Adds Map Using palvelukartta.hel.fi Map Location
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	And Map Paragraph Works Correctly
+#	And Map Paragraph Works Correctly
 	
 *** Keywords ***
 
