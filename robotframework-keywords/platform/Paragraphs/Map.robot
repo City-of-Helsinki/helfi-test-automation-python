@@ -42,9 +42,8 @@ Map Paragraph Works Correctly
     END 
 	
 	${mapstart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
-	#${mapstart} =  Run Keyword If   ${CI}  Set Variable    {BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
-	Run Keyword Unless   ${ispalvelukartta}	  Click Element   ${Btn_Map_Kartta_ZoomOut}
-	Run Keyword If   ${ispalvelukartta}	  Click Element  ${Btn_Map_Palvelukartta_ZoomOut}
+	Run Keyword Unless   ${ispalvelukartta}	  Wait Until Keyword Succeeds  5x   300ms   Click Element   ${Btn_Map_Kartta_ZoomOut}
+	Run Keyword If   ${ispalvelukartta}	  Wait Until Keyword Succeeds  5x   300ms   Click Element  ${Btn_Map_Palvelukartta_ZoomOut}
 	Sleep   1
 	IF    ${ispalvelukartta}
         Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapend.png
