@@ -224,8 +224,8 @@ ${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-
 
 ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > button
 													
-${Itm_Video}										css:div.remote-video.remote-video--default > div > iframe
-${Itm_Video2}  										(//div[contains(@class,'remote-video remote-video--default')])[last()] >> css:div > div > iframe
+${Itm_Video}										css:div.responsive-video-container > iframe
+${Itm_Video2}  										(//div[contains(@class,'responsive-video-container')])[last()] >> css:div > div > iframe
 ${Itm_Article_Video2}  								css:article > div:nth-child(2) > div > div:nth-child(3) > div > iframe
 ${Itm_Landingpage_Video2}							css:article > div > div:nth-child(2) > div > iframe
 

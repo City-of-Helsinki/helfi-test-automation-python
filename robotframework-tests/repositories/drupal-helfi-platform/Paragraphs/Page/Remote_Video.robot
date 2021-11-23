@@ -12,7 +12,7 @@ One Video
 	And User Adds Content With 1 Remote Video(s)
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	#And Remote Video Play Begins Correctly    #DISABLED DUE ERROR IN PICTURE DIMENSIONS, TRY SELECTING FRAMES IF FIXES IT
+	#And Remote Video Play Begins Correctly
 
 Two Videos
 	[Tags]
@@ -20,7 +20,7 @@ Two Videos
 	And User Adds Content With 2 Remote Video(s)
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	#And Remote Video Play Begins Correctly    #DISABLED DUE ERROR IN PICTURE DIMENSIONS, TRY SELECTING FRAMES IF FIXES IT
+	#And Remote Video Play Begins Correctly
 	
 *** Keywords ***
 User Adds Content With ${number} Remote Video(s)
