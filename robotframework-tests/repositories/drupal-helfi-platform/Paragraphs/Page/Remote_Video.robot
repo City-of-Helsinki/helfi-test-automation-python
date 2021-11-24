@@ -32,7 +32,6 @@ User Submits The New Page
 
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
-	Sleep  5
 	Remote_Video.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_REMOTEVIDEO_${number}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
