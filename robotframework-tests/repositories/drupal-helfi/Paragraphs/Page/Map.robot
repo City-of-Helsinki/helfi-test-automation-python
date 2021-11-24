@@ -40,7 +40,6 @@ User Adds Map Using ${source} Map Location
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	${ispalvelukartta}=  URL Contains Text   palvelukartta
-	Sleep   3
 	Run Keyword If   ${ispalvelukartta}	  Allow Palvelukartta Cookies
 	Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_MAP_${TEST NAME}_${BROWSER}.png
