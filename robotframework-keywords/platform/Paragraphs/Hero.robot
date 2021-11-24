@@ -50,7 +50,6 @@ Start Creating a ${value} Aligned Page With Hero Block
      	Run Keyword If  '${language}'=='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   css:#cke_1_contents > iframe
     	Run Keyword If  '${language}'!='fi'  Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   ${Frm_Content}
     	Add Lead-In Text   ${Tar_Page_LeadIn}	${content_up}    
-        #Run Keyword If  '${language}'!='fi'   Add Lead-In Text   ${content_up}    cke_2_contents
     ELSE
     	Insert Description and Lead-In For Page   ${TextFileDescription}   ${content_up} 
     END
