@@ -11,7 +11,16 @@ White Accordion
 	And User Creates White Accordion With h2 Heading And Text Content
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	And Accordion Component Works As Expected	
+	And Accordions Text Content Works As Expected	
+
+White Accordion With Picture
+	[Tags]  CRITICAL
+	Given User Goes To New Page -Site
+	And User Creates White Accordion With h2 Heading And Picture Content
+	And User Adds Picture to Accordion
+	When User Submits The New Page
+	Then Layout Should Not Have Changed
+	And Accordions Picture Content Works As Expected	
 	
 Grey Accordion
 	[Tags]
@@ -20,7 +29,7 @@ Grey Accordion
 	And User Adds Content to Text Subcategory
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	And Accordion Component Works As Expected	
+	And Accordions Text Content Works As Expected	
 
 Columns With Pictures
 	[Tags]  CRITICAL
@@ -29,7 +38,7 @@ Columns With Pictures
 	User Adds Picture Content to Columns Subcategory
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	And Accordion Component Works As Expected	
+	And Accordions Columns Content Works As Expected	
 
 Columns With Text
 	[Tags]
@@ -38,7 +47,7 @@ Columns With Text
 	User Adds Text Content to Columns Subcategory
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
-	And Accordion Component Works As Expected	
+	And Accordions Text Content Works As Expected	
 
 Two Accordions
 	[Tags]
@@ -59,6 +68,9 @@ User Adds Second Accordion
 
 User Adds ${content} Content to Columns Subcategory
 	Add ${content} Content to Columns Subcategory
+
+User Adds Picture To Accordion
+	Add Picture to Accordion
 
 User Adds Content to Text Subcategory
 	Add Content To Text Subcategory

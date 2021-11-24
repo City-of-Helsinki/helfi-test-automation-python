@@ -28,7 +28,7 @@ Add Second Accordion
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_Accordion_Title}
 	Wait Until Keyword Succeeds  5x  200ms  Select From List By Label   ${Ddn_Accordion2_Icon}   check
 	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Ddn_Accordion_AddContent}
-	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Accordion2_Content_Text}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Accordion_Content_Text}
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Accordion2_Content}   //body   ${TextFileContent} To Text Subcategory
 		
@@ -42,6 +42,16 @@ Add Pictures to Column
 	Add picture to Left Column
 	Add picture to Right Column
 
+Add Picture to Accordion
+	Wait Until Keyword Succeeds  5x  300ms  Click Element  ${Btn_Accordion_Picture_Addnew}
+	Wait Until Keyword Succeeds  5x  100ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
+	Wait Until Keyword Succeeds  5x  100ms  Input Text    ${Inp_Pic_Name}   Juna sillalla
+	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
+	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
+	Click Button   ${Btn_Save}
+	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
+	
+
 Add Text to Column
 	Add text to Left Column
 	Add text to Right Column
@@ -54,15 +64,25 @@ Add SubContent To Accordion
 	[Arguments]   ${content}
 	Wait Until Element Is Visible   ${Ddn_Accordion_AddContent}   timeout=3
 	Click Element	${Ddn_Accordion_AddContent}
-	Run Keyword If  '${content}'=='Text'  Click Element   ${Opt_Accordion_Content_Text}
-	Run Keyword If  '${content}'=='Columns'  Click Element   ${Opt_Accordion_Content_Columns}
-	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  200ms  Add Content To Text Subcategory
-	
-	
-Accordion Component Works As Expected
+	IF    '${content}'=='Text'
+		Click Element   ${Opt_Accordion_Content_Text}
+		Wait Until Keyword Succeeds  5x  200ms  Add Content To Text Subcategory
+	ELSE IF   '${content}'=='Columns'
+		Click Element   ${Opt_Accordion_Content_Columns}
+	ELSE IF  '${content}'=='Picture'
+		Click Element   ${Opt_Accordion_Content_Picture}
+	END
+		
+Accordions ${contenttype} Content Works As Expected
 	Click Element  ${Btn_Accordion_View}
-	Run Keyword Unless  '${picture}'=='picture'	 Wait Until Keyword Succeeds  5x  200ms  Text Content Exists In Created Accordion   
-	Run Keyword If  '${picture}'=='picture'  Wait Until Keyword Succeeds  5x  200ms  Columns Paragraph With Pictures Exist In Created Accordion
+	IF    '${contenttype}'=='Columns'
+		Wait Until Keyword Succeeds  5x  200ms  Columns Paragraph With Pictures Exist In Created Accordion
+	ELSE IF    '${contenttype}'=='Picture'
+		Picture Exists in Created Accordion
+	ELSE IF    '${contenttype}'=='Text'
+		Wait Until Keyword Succeeds  5x  200ms  Text Content Exists In Created Accordion
+	END   
+	
 
 Text Content Exists In Created Accordion
 	IF    '${TEST NAME}'=='Columns With Text'
@@ -72,10 +92,6 @@ Text Content Exists In Created Accordion
     	${content}=  Accordion.Return Content From Page
     	Content Should Match Current Language Selection   ${content}
     END 
-	#${content}=  Run Keyword If  '${TEST NAME}'=='Columns With Text'   Return Content From Accordion Column Text Content
-	#...			 ELSE   Accordion.Return Content From Page
-	#Run Keyword If  '${TEST NAME}'=='Columns With Text'    Column Texts Matches To Expected Content  ${content}
-	#...			 ELSE      Content Should Match Current Language Selection   ${content}
 
 Column Texts Matches To Expected Content
 	[Arguments]   ${contentlist} 
@@ -90,6 +106,10 @@ Columns Paragraph With Pictures Exist In Created Accordion
 	${pic2}=  Get Element Attribute  //picture//following::picture//img   src
 	Should Contain   ${pic1}    train
 	Should Contain   ${pic2}    temple
+
+Picture Exists in Created Accordion
+	${pic1}=  Get Element Attribute  //picture//img   src
+	Should Contain   ${pic1}    train
 			
 Return Content From Page
 	Wait Until Element Is Visible   css:#handorgel1-fold1-content > div > div > div > div > p   timeout=3	
