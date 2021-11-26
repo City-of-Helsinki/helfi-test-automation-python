@@ -83,6 +83,7 @@ ${Opt_Link_Transparent}			css:[value=supplementary]
 ${Ddn_Icon} 							//select[contains(@data-drupal-selector, 'subform-field-icon')]
 ${Txt_Title}								css:.component__title
 ${Txt_Content}								css:p
+${Swh_TOC}									id:edit-toc-enabled-value
 
 #HERO
 ${Inp_Hero_Title}							//input[contains(@id, 'edit-field-hero-0-subform')]
@@ -163,8 +164,7 @@ ${Itm_Gallery_Slidetrack}						id:splide01-track
 ${Opt_Banner_Left}							css:[value=align-left]
 ${Opt_Banner_Left_Secondary}				css:[value=align-left-secondary]
 ${Opt_Banner_Center_Secondary}				css:[value=align-center-secondary]
-${Inp_Banner_Title}							name:field_content[0][subform][field_banner_title][0][value]
-
+${Inp_Banner_Title}							(//input[contains(@name, '[field_banner_title]')])[last()]
 ${Inp_Banner_Link_Uri}						name:field_content[0][subform][field_banner_link][0][uri]
 ${Inp_Banner_Link_Title}					name:field_content[0][subform][field_banner_link][0][title]
 ${Swh_Banner_Link_OpenInNewWindow}   		name:field_content[0][subform][field_banner_link][0][options][target_new]
