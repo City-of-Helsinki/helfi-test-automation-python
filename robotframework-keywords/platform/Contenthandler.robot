@@ -44,13 +44,11 @@ ${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/conte
 Open Paragraph For Edit
 	[Arguments]   ${paragraph}    ${paragraphlist}=${EMPTY}
 	[Documentation]  'paragraphlist' can be given if list should be some other than default paragraph list.
-	Element Should Not Be Visible   ${paragraph}  
 	Wait Until Element Is Visible   ${Ddn_AddContent}   timeout=3
 	Run Keyword If  '${paragraphlist}'=='${EMPTY}'  Click Element	${Ddn_AddContent}
 	Run Keyword Unless  '${paragraphlist}'=='${EMPTY}'   Click Element	${paragraphlist}
 	Click Element   ${paragraph}
-	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${paragraph}
-
+	
 Input Title To Paragraph
 	[Arguments]    ${paragraph_title_locator}
 	${title}=  Return Correct Title   ${language}
