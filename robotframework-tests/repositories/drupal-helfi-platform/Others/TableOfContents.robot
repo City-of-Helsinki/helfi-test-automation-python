@@ -28,7 +28,9 @@ User Goes To New Page -Site
 
 User Creates Banner With Name
 	[Arguments]   ${name}
+	Element Should Not Be Visible   ${Opt_AddBanner}
 	Wait Until Keyword Succeeds  5x  200ms  Open Paragraph For Edit   ${Opt_AddBanner}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Opt_AddBanner}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  ${Inp_Banner_Title}   ${name}
 	Input Description To Paragraph   (//iframe)[last()]
 			
