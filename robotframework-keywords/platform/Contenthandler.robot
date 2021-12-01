@@ -13,7 +13,7 @@ Documentation   Handler class for several content handling keywords.
 ...				gallery:  is gallery paragraph used in this test.  
 Resource        Commonkeywords.robot
 Resource		  ./variables/create_content.robot
-Library           DocTest.VisualTest
+Library           RobotEyes
 Library           OperatingSystem
 Library			  Collections
 
@@ -228,14 +228,15 @@ Set Language Pointer
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
 	[Arguments]	   ${pic1}   ${pic2}    ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}
+	#${pic2}=  Remove String   ${pic2}   ${SPACE}    # DUE ISSUES IN PICTURE COMPARISON REPORT NOT SHOWING ACTUAL -PIC   
 	IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
-        Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}   move_tolerance=${movetolerance}
+        Compare Two Images   ${pic1}   ${pic2}   output=diffimage.png   tolerance=${movetolerance}
     ELSE IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'=='${EMPTY}')
-        Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}
+        Compare Two Images   ${pic1}   ${pic2}   output=diffimage.png   tolerance=${movetolerance}
     ELSE IF    ('${excludefilepath}'=='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
-        Compare Images      ${pic1}   ${pic2}   move_tolerance=${movetolerance}
+        Compare Two Images   ${pic1}   ${pic2}   output=diffimage.png   tolerance=${movetolerance}
     ELSE
-    	Compare Images      ${pic1}   ${pic2}
+    	Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
     END 
 
 
@@ -421,13 +422,14 @@ Content Should Match Current Language Selection
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
-	
+	Set Suite Name Without Spaces
 	Run Keyword If   ${CI}   Log-In In CI Environment
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
 	Run Keyword Unless   ${CI_LOCALTEST}  Go To   ${URL_content_page}
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
+	Open Eyes   lib=none
 	Set Window Size   1296   696
 	
 Log-In In CI Environment
@@ -541,6 +543,11 @@ Add Text Content To Column on ${side}
 Click And Select Text As ${side} Content Type
 	Wait Until Element Is Visible  ${Opt_Column_${side}_AddContent_Text}   timeout=3
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}
+
+Set Suite Name Without Spaces
+	[Documentation]  Due issues in picture comparison test report, lets remove spaces from suite name and set variable
+	${modified}=  Remove String   ${SUITE NAME}   ${SPACE}
+	Set Suite Variable   ${SUITE}   ${modified}  
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}	
@@ -548,7 +555,14 @@ Compare Pictures And Handle PictureData
 	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
 	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}   ${movetolerance}
 	
-	
+Prepare ComparisonPicture String
+	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Remove String   ${comparisonpic}   ${SPACE}
+	[Return]   ${comparisonpic}	
+
+Capture ComparisonPicture Screenshot
+	${picname}=  Prepare ComparisonPicture String
+	Capture Page Screenshot    filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 
 Input Text Content To Frame
 	[Arguments]   ${content}    ${cke}
@@ -560,3 +574,5 @@ Input Non-paragraph Related Content
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
+
+	
