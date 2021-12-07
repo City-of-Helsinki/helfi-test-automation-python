@@ -29,7 +29,7 @@ Take Screenshot Of Content
 	Maximize Browser Window
 	Execute javascript  document.body.style.zoom="40%"
 	Run keyword if  ('${picsize}'=='original') & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Execute javascript  document.body.style.zoom="100%"
 
 Set Banner Title

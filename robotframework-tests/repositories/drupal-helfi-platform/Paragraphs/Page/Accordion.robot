@@ -93,5 +93,5 @@ Layout Should Not Have Changed
 	${contenttype}=  Convert To Lower Case   ${contenttype}
 	${originalpic} =  Set Variable If  '${picture}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${picture}_${heading}_${BROWSER}.png   
 	...				${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${heading}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

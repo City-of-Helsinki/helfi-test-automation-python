@@ -34,23 +34,23 @@ Map Paragraph Works Correctly
 	Sleep  2
 	
 	IF    ${ispalvelukartta}
-        Run Keyword Unless   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
-        Run Keyword If   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+        Run Keyword Unless   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
+        Run Keyword If   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
     ELSE
-    	Run Keyword Unless   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
-    	Run Keyword If   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+    	Run Keyword Unless   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
+    	Run Keyword If   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
     END 
 	
-	${mapstart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapstart.png
+	${mapstart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
 	Run Keyword Unless   ${ispalvelukartta}	  Wait Until Keyword Succeeds  5x   300ms   Click Element   ${Btn_Map_Kartta_ZoomOut}
 	Run Keyword If   ${ispalvelukartta}	  Wait Until Keyword Succeeds  5x   300ms   Click Element  ${Btn_Map_Palvelukartta_ZoomOut}
 	Sleep   1
 	IF    ${ispalvelukartta}
-        Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapend.png
+        Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapend.png
     ELSE
-    	Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapend.png
+    	Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapend.png
     END 
-	${mapend} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Mapend.png
+	${mapend} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapend.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${mapstart}   ${mapend}
 	Unselect Frame
 

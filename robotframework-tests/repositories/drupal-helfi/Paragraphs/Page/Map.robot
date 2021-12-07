@@ -43,5 +43,5 @@ Layout Should Not Have Changed
 	Run Keyword If   ${ispalvelukartta}	  Allow Palvelukartta Cookies
 	Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_MAP_${TEST NAME}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}	  ${EMPTY}   10

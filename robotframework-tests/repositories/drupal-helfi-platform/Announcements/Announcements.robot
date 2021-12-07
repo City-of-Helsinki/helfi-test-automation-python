@@ -130,7 +130,7 @@ Announcement Layout For ${type} Should Be Correct For Checked Content
 
 ${type} Announcement Layout Is Corrent
 		Scroll Element Into View   css:#block-announcements > div
-        Capture Element Screenshot   css:#block-announcements > div    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}-${type}.png
+        Capture Element Screenshot   css:#block-announcements > div    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
         ${originalpic}=  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/ANNOUNCEMENTS_${type}_${BROWSER}.png
-        ${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}-${type}.png
+        ${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
         Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}   ${EMPTY}   1

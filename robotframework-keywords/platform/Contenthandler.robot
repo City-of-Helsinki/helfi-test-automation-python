@@ -227,17 +227,9 @@ Set Language Pointer
 	
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
-	[Arguments]	   ${pic1}   ${pic2}    ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}
-	#${pic2}=  Remove String   ${pic2}   ${SPACE}    # DUE ISSUES IN PICTURE COMPARISON REPORT NOT SHOWING ACTUAL -PIC   
-	IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
-        Compare Two Images   ${pic1}   ${pic2}   output=diffimage.png   tolerance=${movetolerance}
-    ELSE IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'=='${EMPTY}')
-        Compare Two Images   ${pic1}   ${pic2}   output=diffimage.png   tolerance=${movetolerance}
-    ELSE IF    ('${excludefilepath}'=='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
-        Compare Two Images   ${pic1}   ${pic2}   output=diffimage.png   tolerance=${movetolerance}
-    ELSE
-    	Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
-    END 
+	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
+    Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
+     
 
 
 Go To New Annoucement Site
@@ -429,7 +421,6 @@ Login And Go To Content Page
 	Run Keyword Unless   ${CI_LOCALTEST}  Go To   ${URL_content_page}
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
-	Open Eyes   lib=none
 	Set Window Size   1296   696
 	
 Log-In In CI Environment
@@ -455,7 +446,7 @@ Select Icon With Name
 Take Screenshot Of Content
 	Maximize Browser Window
 	Execute javascript  document.body.style.zoom="30%"
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Execute javascript  document.body.style.zoom="100%"
 
 New Window Should Be Opened
@@ -550,13 +541,13 @@ Set Suite Name Without Spaces
 	Set Suite Variable   ${SUITE}   ${modified}  
 	
 Compare Pictures And Handle PictureData
-	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}	
+	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}	
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
-	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}   ${movetolerance}
+	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${movetolerance}
 	
 Prepare ComparisonPicture String
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	${comparisonpic}=  Remove String   ${comparisonpic}   ${SPACE}
 	[Return]   ${comparisonpic}	
 

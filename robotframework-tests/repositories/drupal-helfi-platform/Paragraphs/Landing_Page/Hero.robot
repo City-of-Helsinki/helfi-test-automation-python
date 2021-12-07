@@ -221,7 +221,7 @@ Layout Should Not Have Changed
 ...  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_vaakuna_nopicture_${linkstyle}link_${BROWSER}.png
 ...  '${color}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_${color}_nopicture_${BROWSER}.png
 ...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${value}_vaakuna_nopicture_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData	  ${originalpic}   ${comparisonpic}
 	
 
