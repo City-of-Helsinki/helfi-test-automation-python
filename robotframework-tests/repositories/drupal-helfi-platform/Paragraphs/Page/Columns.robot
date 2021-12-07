@@ -9,7 +9,7 @@ Force Tags		PAGE   COLUMNS
 
 *** Test Cases ***
 50-50
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Goes To New Page -Site
 	And User Starts Creating Page With 50-50 Division And Text Content
 	And User Adds Text to Left Column
@@ -18,7 +18,7 @@ Force Tags		PAGE   COLUMNS
 	Then Layout Should Not Have Changed	
 	
 30-70
-	[Tags]   TODO
+	[Tags]
 	Given User Goes To New Page -Site 
 	And User Starts Creating Page With 30-70 Division And Text Content
 	And User Adds Text to Left Column
@@ -27,7 +27,7 @@ Force Tags		PAGE   COLUMNS
 	Then Layout Should Not Have Changed	
 
 70-30
-	[Tags]   TODO
+	[Tags]
 	Given User Goes To New Page -Site
 	And User Starts Creating Page With 70-30 Division And Text Content
 	And User Adds Text to Left Column
