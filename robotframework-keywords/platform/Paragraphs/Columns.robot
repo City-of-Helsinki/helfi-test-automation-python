@@ -51,11 +51,7 @@ Take Screenshot Of Content
 	Maximize Browser Window
 	Execute javascript  document.body.style.zoom="40%"
 	Run keyword if  ('${picsize}'=='original') & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
-	Open Eyes   lib=Seleniumlibrary
-	Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   redact=xpath://*[@id="block-hdbt-messages"]/section/div/div[1]/svg/use
-	Open Eyes   lib=none
-	Debug Error
-	#Capture Page Screenshot    filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"
 
 ${pagetype} Content Matches Language

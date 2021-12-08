@@ -67,6 +67,6 @@ Take Screenshot Of Content
 	ELSE
 		Execute javascript  document.body.style.zoom="30%"
 	END
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"	
 	

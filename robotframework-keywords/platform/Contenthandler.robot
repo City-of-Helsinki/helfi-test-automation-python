@@ -74,6 +74,11 @@ Input Lead
 	Wait Until Element Is Visible   ${Inp_Lead}   timeout=3  
 	Input Text  ${Inp_Lead}   ${lead} 
 
+Capture Screenshot For Picture Comparison
+	Open Eyes   lib=Seleniumlibrary
+	Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
+	Open Eyes   lib=none
+
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
 	Run Keyword If   '${pagetype}'=='Page'   Input Text  name:field_lead_in[0][value]   ${content}
@@ -311,7 +316,7 @@ Go To New ${pagetype} -View For ${language} Translation
 Delete Test Automation Created Content
 	[Documentation]   Deletes Created Item By assuming it is the topmost one in the list. Returns to content page afterwards.
 	Click Link   partial link: Test Automation
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
 	Go To   ${URL_content_page}
 
@@ -364,12 +369,6 @@ Select Language
     ELSE
     	Click Element  css:[lang|=ru]
     END 
-	#Run Keyword If  '${value}'=='finnish'  Click Element  css:[lang|=fi]
-	#Run Keyword If  '${value}'=='swedish'  Set Focus To Element  css:[lang|=sv]
-	#Run Keyword If  '${value}'=='swedish'  Click Element  css:[lang|=sv]
-	#Run Keyword If  '${value}'=='english'  Set Focus To Element  css:[lang|=en]
-	#Run Keyword If  '${value}'=='english'  Click Element  css:[lang|=en]
-	#Run Keyword If  '${value}'=='russian'  Click Element  css:[lang|=ru]
 
 Return Correct Title
 	[Arguments]     ${language}
@@ -422,6 +421,7 @@ Login And Go To Content Page
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
+	#Open Eyes   lib=none
 	
 Log-In In CI Environment
     ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
@@ -446,7 +446,7 @@ Select Icon With Name
 Take Screenshot Of Content
 	Maximize Browser Window
 	Execute javascript  document.body.style.zoom="30%"
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"
 
 New Window Should Be Opened
