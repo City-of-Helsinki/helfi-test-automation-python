@@ -330,7 +330,7 @@ Delete Test Automation Created Media
 	
 Delete Test Automation Created Paragraphs
 	Click Link   partial link: Test_Automation
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_paragraphs_page}	
 	
