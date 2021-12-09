@@ -76,7 +76,8 @@ Input Lead
 
 Capture Screenshot For Picture Comparison
 	Open Eyes   lib=Seleniumlibrary
-	Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
+	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
+	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
 	Open Eyes   lib=none
 
 Input Content Header Title
@@ -336,7 +337,7 @@ Delete Test Automation Created Paragraphs
 	
 Copy Original Screenshot To Reports Folder
 	[Arguments]     ${source}
-	Copy File    ${source}    ${REPORTS_PATH}/originals/
+	Copy File    ${source}    robotframework-reports/originals/
 
 Get Admin Url
    [Documentation]   Gets URL needed in localhost testing.
@@ -546,15 +547,6 @@ Compare Pictures And Handle PictureData
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
 	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${movetolerance}
-	
-Prepare ComparisonPicture String
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	${comparisonpic}=  Remove String   ${comparisonpic}   ${SPACE}
-	[Return]   ${comparisonpic}	
-
-Capture ComparisonPicture Screenshot
-	${picname}=  Prepare ComparisonPicture String
-	Capture Page Screenshot    filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 
 Input Text Content To Frame
 	[Arguments]   ${content}    ${cke}

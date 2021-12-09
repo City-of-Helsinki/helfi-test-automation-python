@@ -97,5 +97,5 @@ Layout Should Not Have Changed
 	${originalpic} =  Set Variable If  ('${linkstyle}'!='${EMPTY}') & ('${coloroption}'=='${EMPTY}')  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_${linkstyle}link_${BROWSER}.png
 	...	  '${coloroption}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${TEST NAME}_${BROWSER}.png
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_text_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

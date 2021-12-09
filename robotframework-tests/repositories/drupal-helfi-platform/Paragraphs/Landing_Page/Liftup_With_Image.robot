@@ -61,5 +61,5 @@ Layout Should Not Have Changed
 	Run Keyword If  '${coloroption}'!='${EMPTY}'   Capture Element Screenshot  css:.liftup-with-image__content   filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	${originalpic} =  Set Variable If  '${coloroption}'=='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_LIFTUPWITHIMAGE_${design}_${BROWSER}.png
 	...	  '${coloroption}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${TEST NAME}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

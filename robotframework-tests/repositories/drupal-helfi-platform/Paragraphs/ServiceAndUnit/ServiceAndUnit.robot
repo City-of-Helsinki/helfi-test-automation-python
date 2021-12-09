@@ -94,7 +94,7 @@ Banner Paragraph Should Have Selected Color
 	Open Unit With Name   Lippulaivan kirjasto
 	Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.has-sidebar   filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	${originalpic} =   Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_SERVICEANDUNIT_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
 	
 Delete Banners And Do Other Teardown Actions
