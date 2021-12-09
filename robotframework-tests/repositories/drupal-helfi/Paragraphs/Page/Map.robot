@@ -44,4 +44,4 @@ Layout Should Not Have Changed
 	Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_MAP_${TEST NAME}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}	  ${EMPTY}   10
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

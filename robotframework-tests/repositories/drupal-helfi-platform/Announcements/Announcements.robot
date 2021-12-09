@@ -133,4 +133,4 @@ ${type} Announcement Layout Is Corrent
         Capture Element Screenshot   css:#block-announcements > div    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
         ${originalpic}=  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/ANNOUNCEMENTS_${type}_${BROWSER}.png
         ${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
-        Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}   ${EMPTY}   1
+        Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
