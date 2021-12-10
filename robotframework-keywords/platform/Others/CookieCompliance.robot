@@ -21,3 +21,10 @@ Accept All Cookies
 Accept Essential Cookies
 	Wait Until Keyword Succeeds  6x  400ms  Click Button  //button[@class='eu-cookie-compliance-save-preferences-button hds-button hds-button--secondary']
 	
+Resolve Login
+	IF    (${CI}) | (${CI_LOCALTEST})
+        Open Browser  ${URL_login_page}  ${BROWSER}
+    ELSE
+    	Login And Go To Content Page
+    END
+	
