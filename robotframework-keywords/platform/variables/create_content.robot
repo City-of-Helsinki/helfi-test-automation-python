@@ -169,7 +169,9 @@ ${Inp_Banner_Link_Uri}						name:field_content[0][subform][field_banner_link][0]
 ${Inp_Banner_Link_Title}					name:field_content[0][subform][field_banner_link][0][title]
 ${Swh_Banner_Link_OpenInNewWindow}   		name:field_content[0][subform][field_banner_link][0][options][target_new]
 #UNCATEGORIZED
-${Btn_Picture}								name:field_image-media-library-open-button-field_content-1-subform
+${Btn_Picture}								(//input[contains(@name, 'field_image-media-library-open-button-field_content')])[last()]
+${Btn_Picture_Remove}						//input[contains(@name, 'media-library-remove-button-field_content')]
+${Frm_Text_Content}							//div[contains(@id,'subform-field-text')][contains(@id,'value')] >> css:div > div > iframe
 
 #ACCORDION
 ${Inp_Accordion_Title}	  					(//input[contains(@name, '[field_accordion_item_heading]')][contains(@name, '[value]')])[last()]
@@ -212,7 +214,6 @@ ${Inp_Service_Visible_Title}						name:field_service_visible_title[0][value]
 ${Inp_Service_ParentService}						name:field_service_parent_service[0][target_id]
 
 # REMOTE VIDEO
-#${Btn_RemoteVideo_Add}								name:field_remote_video-media-library-open-button-field_content-1-subform
 ${Btn_RemoteVideo_Add}								(//input[contains(@name, 'field_remote_video-media-library-open-button-field_content')][contains(@name, 'subform')])[last()]
 ${Inp_RemoteVideo_Url}								name:url
 ${Btn_RemoteVideo_AddUrl}							//form/div[2]/input[@data-drupal-selector='edit-submit']
