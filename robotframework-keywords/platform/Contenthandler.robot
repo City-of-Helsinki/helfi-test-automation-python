@@ -89,8 +89,8 @@ Go To Translations Tab
 	Click Element   //a[contains(text(),'Translate')]
 	
 Go To Modify Tab
-	Scroll Element Into View   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Scroll Element Into View   css:ul.local-tasks > li:nth-child(2) > a
+	Click Element   css:ul.local-tasks > li:nth-child(2) > a
 	
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
@@ -131,8 +131,8 @@ Set Service Back To Unpublished
 	[Arguments]   ${name}
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-service
 	Click Link   ${name}
-	Wait Until Keyword Succeeds  5x  200ms 	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Wait Until Keyword Succeeds  5x  200ms 	Set Focus To Element   css:ul.local-tasks > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Capture Page Screenshot
 	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  css:input.tpr-entity-status:checked
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
@@ -144,7 +144,7 @@ Set Unit Back To Unpublished
 	[Arguments]   ${name}
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 	Click Link   ${name}
-	Wait Until Keyword Succeeds  5x  200ms 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Wait Until Keyword Succeeds  5x  200ms 	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  css:input.tpr-entity-status:checked
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
 	Click Button   ${Btn_Submit}
@@ -154,7 +154,7 @@ Publish Unit With Name
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 	Click Link   ${unitname}
 	Run Keyword And Ignore Error   Accept Cookies
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Set Unit As Published
 	Click Button   ${Btn_Submit}
 
@@ -164,8 +164,8 @@ Publish Service With Name
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-service
 	Click Link   ${servicename}
 	Run Keyword And Ignore Error   Accept Cookies
-	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Set Focus To Element   css:ul.local-tasks > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Set Service As Published
 	Click Button   ${Btn_Submit}	
 

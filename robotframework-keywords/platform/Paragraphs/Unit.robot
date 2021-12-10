@@ -22,8 +22,8 @@ Add Banner For Unit With Name And Color
 	[Arguments]	   ${name}   ${color}
 	${color}=  Convert To Lower Case   ${color}
 	Open Unit With Name    ${name}
-	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Set Focus To Element   css:ul.local-tasks > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Open Paragraph For Edit   ${Opt_AddBanner}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_Banner_Title}
 	Select From List By Value   name:color_palette[0]   silver
@@ -31,8 +31,8 @@ Add Banner For Unit With Name And Color
 Delete Banner For Unit With Name
 	[Arguments]	   ${name}
 	Open Unit With Name    ${name}
-	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Set Focus To Element   css:ul.local-tasks > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.paragraphs-dropdown-toggle
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#field-content-0-remove
 	Sleep  0.5		# Little pause so that banner gets succesfully deleted
