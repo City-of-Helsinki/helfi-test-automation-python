@@ -23,7 +23,7 @@ Accept Essential Cookies
 	
 Resolve Login
 	IF    (${CI}) | (${CI_LOCALTEST})
-        Open Browser  ${URL_login_page}  ${BROWSER}
+        Set CI Arguments And Open Browser
     ELSE
     	Login And Go To Content Page
     END

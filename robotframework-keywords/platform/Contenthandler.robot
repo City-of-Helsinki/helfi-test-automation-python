@@ -423,15 +423,18 @@ Login And Go To Content Page
 	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
 
-	
-Log-In In CI Environment
-    ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
+Set CI Arguments And Open Browser
+	${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --headless
     Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
     Call Method    ${chrome_options}    add_argument    --disable-gpu
         
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
+	
+	
+Log-In In CI Environment
+	Set CI Arguments And Open Browser
     Log In
 	
 Rename Picture With New Name
