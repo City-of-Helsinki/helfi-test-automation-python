@@ -23,7 +23,7 @@ ContentLiftup Is Working Correctly For Two Units
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   lippulaivan-kirjasto
 	Go To   ${contentpageurl}
-	Wait Until Element Is Visible   //a[contains(@href, '/fi/otaniemen')]
-	Click Element   //a[contains(@href, '/fi/otaniemen')]
+	Wait Until Element Is Visible   //a[contains(@href, 'otaniemen')]
+	Click Element   //a[contains(@href, 'otaniemen')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   otaniemen-kirjasto
