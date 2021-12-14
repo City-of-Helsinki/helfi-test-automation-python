@@ -16,6 +16,7 @@ Resource		  ./variables/create_content.robot
 Library           RobotEyes
 Library           OperatingSystem
 Library			  Collections
+Library			  pabot.PabotLib
 
 *** Variables ***
 ${submitted}								false
@@ -103,19 +104,21 @@ Cleanup and Close Browser
 	
 	FOR    ${i}    IN RANGE    10
 		   Go To   ${URL_content_page}
-		   ${count}=  Get Element Count   partial link:Test Automation
+		   ${count}=  Get Element Count   link:Test Automation: ${SUITE}.${TEST NAME}
 		   Exit For Loop If   ${count}==0
 		   Delete Test Automation Created Content
     END
-    FOR    ${i}    IN RANGE    10
-    	   Go To   ${URL_paragraphs_page}
-    	   ${count}=  Get Element Count   partial link:Test_Automation
-    	   Exit For Loop If   ${count}==0
-           Delete Test Automation Created Paragraphs
-    END
-	FOR    ${i}    IN RANGE    ${mediaadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
-    END
+    # REMOVING PARAGRAPHS IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
+    #FOR    ${i}    IN RANGE    10
+    #	   Go To   ${URL_paragraphs_page}
+    #	   ${count}=  Get Element Count   partial link:Test_Automation
+    #	   Exit For Loop If   ${count}==0
+    #       Delete Test Automation Created Paragraphs
+    #END
+	# REMOVING MEDIA IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
+	#FOR    ${i}    IN RANGE    ${mediaadded}
+    #       Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
+    #END
 
     
     # in case of service/unit testcases
@@ -125,6 +128,7 @@ Cleanup and Close Browser
     Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
     Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
+    Run Teardown Only Once   Generate Picture Comparison Report
 	Close Browser	
 	
 Set Service Back To Unpublished
@@ -316,7 +320,7 @@ Go To New ${pagetype} -View For ${language} Translation
 	
 Delete Test Automation Created Content
 	[Documentation]   Deletes Created Item By assuming it is the topmost one in the list. Returns to content page afterwards.
-	Click Link   partial link: Test Automation
+	Click Link   link:Test Automation: ${SUITE}.${TEST NAME}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
 	Go To   ${URL_content_page}
@@ -343,6 +347,12 @@ Get Admin Url
    [Documentation]   Gets URL needed in localhost testing.
    ${admin_url} =   Run  ${ADMIN_URL}
    Set Test Variable   ${admin_url}
+
+Generate Picture Comparison Report
+   [Documentation]   Runs picture comparison results file creation command manually since
+   ...				 when using pabot it does not get automatically generated
+   Run  reportgen --baseline=${IMAGES_DIR} --results=${ACTUAL_DIR}
+
 
 Set Service As Published
 	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1
@@ -414,7 +424,7 @@ Content Should Match Current Language Selection
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
-	Set Suite Name Without Spaces
+	Set Shortened Suite Name
 	Run Keyword If   ${CI}   Log-In In CI Environment
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
@@ -540,9 +550,10 @@ Click And Select Text As ${side} Content Type
 	Wait Until Element Is Visible  ${Opt_Column_${side}_AddContent_Text}   timeout=3
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}
 
-Set Suite Name Without Spaces
-	[Documentation]  Due issues in picture comparison test report, lets remove spaces from suite name and set variable
-	${modified}=  Remove String   ${SUITE NAME}   ${SPACE}
+Set Shortened Suite Name
+	[Documentation]  Lets set shortened suite name for clarity and pabot purposes on content removal
+	${suitesplitted}=  Split String   ${SUITE NAME}   separator=.Repositories.
+	${modified}=   Get From List  ${suitesplitted}  -1
 	Set Suite Variable   ${SUITE}   ${modified}  
 	
 Compare Pictures And Handle PictureData
@@ -557,7 +568,7 @@ Input Text Content To Frame
 		
 Input Non-paragraph Related Content
 	[Arguments]   ${pagetype}
-	Input Title  Test Automation: ${TEST NAME}
+	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
