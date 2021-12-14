@@ -23,10 +23,14 @@ Add Remote Video
 	Sleep  1
 	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
 	Sleep  1
-	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
-	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm} 
+	Wait Until Keyword Succeeds  5x  1s   Remote Video Add Button Is Pressed   
 	Set Test Variable  ${mediaadded}    ${mediaadded}+1
-	
+
+Remote Video Add Button Is Pressed
+	Click Button  ${Btn_RemoteVideo_Confirm}
+	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm}
+
+
 Remote Video Play Begins Correctly
 	Wait Until Element Is Visible  ${Itm_Video}
 	Capture Element Screenshot   css:div.responsive-video-container > iframe    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1start.png
