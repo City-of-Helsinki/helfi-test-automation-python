@@ -13,7 +13,7 @@ Documentation   Handler class for several content handling keywords.
 ...				gallery:  is gallery paragraph used in this test.  
 Resource        Commonkeywords.robot
 Resource		  ./variables/create_content.robot
-Library           DocTest.VisualTest
+Library           RobotEyes
 Library           OperatingSystem
 Library			  Collections
 
@@ -74,6 +74,12 @@ Input Lead
 	Wait Until Element Is Visible   ${Inp_Lead}   timeout=3  
 	Input Text  ${Inp_Lead}   ${lead} 
 
+Capture Screenshot For Picture Comparison
+	Open Eyes   lib=Seleniumlibrary
+	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
+	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
+	Open Eyes   lib=none
+
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
 	Run Keyword If   '${pagetype}'=='Page'   Input Text  name:field_lead_in[0][value]   ${content}
@@ -83,8 +89,8 @@ Go To Translations Tab
 	Click Element   //a[contains(text(),'Translate')]
 	
 Go To Modify Tab
-	Scroll Element Into View   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Scroll Element Into View   css:ul.local-tasks > li:nth-child(2) > a
+	Click Element   css:ul.local-tasks > li:nth-child(2) > a
 	
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
@@ -125,8 +131,8 @@ Set Service Back To Unpublished
 	[Arguments]   ${name}
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-service
 	Click Link   ${name}
-	Wait Until Keyword Succeeds  5x  200ms 	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Wait Until Keyword Succeeds  5x  200ms 	Set Focus To Element   css:ul.local-tasks > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Capture Page Screenshot
 	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  css:input.tpr-entity-status:checked
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
@@ -138,7 +144,7 @@ Set Unit Back To Unpublished
 	[Arguments]   ${name}
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 	Click Link   ${name}
-	Wait Until Keyword Succeeds  5x  200ms 	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Wait Until Keyword Succeeds  5x  200ms 	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	${ispublished}=  Run Keyword And Return Status   Page Should Contain Element  css:input.tpr-entity-status:checked
 	Run Keyword If   ${ispublished}  Click Element   id:edit-status
 	Click Button   ${Btn_Submit}
@@ -148,7 +154,7 @@ Publish Unit With Name
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-unit
 	Click Link   ${unitname}
 	Run Keyword And Ignore Error   Accept Cookies
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Set Unit As Published
 	Click Button   ${Btn_Submit}
 
@@ -158,8 +164,8 @@ Publish Service With Name
 	Goto  https://${BASE_URL}/fi/admin/content/integrations/tpr-service
 	Click Link   ${servicename}
 	Run Keyword And Ignore Error   Accept Cookies
-	Set Focus To Element   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
-	Click Link   css:#block-hdbt-local-tasks > ul > li:nth-child(2) > a
+	Set Focus To Element   css:ul.local-tasks > li:nth-child(2) > a
+	Click Link   css:ul.local-tasks > li:nth-child(2) > a
 	Set Service As Published
 	Click Button   ${Btn_Submit}	
 
@@ -227,16 +233,9 @@ Set Language Pointer
 	
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
-	[Arguments]	   ${pic1}   ${pic2}    ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}
-	IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
-        Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}   move_tolerance=${movetolerance}
-    ELSE IF    ('${excludefilepath}'!='${EMPTY}') & ('${movetolerance}'=='${EMPTY}')
-        Compare Images      ${pic1}   ${pic2}   placeholder_file=${excludefilepath}
-    ELSE IF    ('${excludefilepath}'=='${EMPTY}') & ('${movetolerance}'!='${EMPTY}')
-        Compare Images      ${pic1}   ${pic2}   move_tolerance=${movetolerance}
-    ELSE
-    	Compare Images      ${pic1}   ${pic2}
-    END 
+	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
+    Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
+     
 
 
 Go To New Annoucement Site
@@ -318,7 +317,7 @@ Go To New ${pagetype} -View For ${language} Translation
 Delete Test Automation Created Content
 	[Documentation]   Deletes Created Item By assuming it is the topmost one in the list. Returns to content page afterwards.
 	Click Link   partial link: Test Automation
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
 	Go To   ${URL_content_page}
 
@@ -332,13 +331,13 @@ Delete Test Automation Created Media
 	
 Delete Test Automation Created Paragraphs
 	Click Link   partial link: Test_Automation
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-local-tasks > ul > li:nth-child(3) > a
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}
 	Go To   ${URL_paragraphs_page}	
 	
 Copy Original Screenshot To Reports Folder
 	[Arguments]     ${source}
-	Copy File    ${source}    ${REPORTS_PATH}/originals/
+	Copy File    ${source}    robotframework-reports/originals/
 
 Get Admin Url
    [Documentation]   Gets URL needed in localhost testing.
@@ -371,12 +370,6 @@ Select Language
     ELSE
     	Click Element  css:[lang|=ru]
     END 
-	#Run Keyword If  '${value}'=='finnish'  Click Element  css:[lang|=fi]
-	#Run Keyword If  '${value}'=='swedish'  Set Focus To Element  css:[lang|=sv]
-	#Run Keyword If  '${value}'=='swedish'  Click Element  css:[lang|=sv]
-	#Run Keyword If  '${value}'=='english'  Set Focus To Element  css:[lang|=en]
-	#Run Keyword If  '${value}'=='english'  Click Element  css:[lang|=en]
-	#Run Keyword If  '${value}'=='russian'  Click Element  css:[lang|=ru]
 
 Return Correct Title
 	[Arguments]     ${language}
@@ -421,7 +414,7 @@ Content Should Match Current Language Selection
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
-	
+	Set Suite Name Without Spaces
 	Run Keyword If   ${CI}   Log-In In CI Environment
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
@@ -429,14 +422,19 @@ Login And Go To Content Page
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
-	
-Log-In In CI Environment
-    ${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
+
+Set CI Arguments And Open Browser
+	${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --headless
     Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
         
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
+	
+	
+Log-In In CI Environment
+	Set CI Arguments And Open Browser
     Log In
 	
 Rename Picture With New Name
@@ -453,7 +451,7 @@ Select Icon With Name
 Take Screenshot Of Content
 	Maximize Browser Window
 	Execute javascript  document.body.style.zoom="30%"
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"
 
 New Window Should Be Opened
@@ -541,14 +539,17 @@ Add Text Content To Column on ${side}
 Click And Select Text As ${side} Content Type
 	Wait Until Element Is Visible  ${Opt_Column_${side}_AddContent_Text}   timeout=3
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}
+
+Set Suite Name Without Spaces
+	[Documentation]  Due issues in picture comparison test report, lets remove spaces from suite name and set variable
+	${modified}=  Remove String   ${SUITE NAME}   ${SPACE}
+	Set Suite Variable   ${SUITE}   ${modified}  
 	
 Compare Pictures And Handle PictureData
-	[Arguments]   ${originalpic}   ${comparisonpic}   ${excludefilepath}=${EMPTY}   ${movetolerance}=${EMPTY}	
+	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}	
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
-	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${excludefilepath}   ${movetolerance}
-	
-	
+	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${movetolerance}
 
 Input Text Content To Frame
 	[Arguments]   ${content}    ${cke}
@@ -560,3 +561,5 @@ Input Non-paragraph Related Content
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
+
+	

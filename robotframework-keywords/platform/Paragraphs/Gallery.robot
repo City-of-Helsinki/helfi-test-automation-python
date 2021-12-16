@@ -50,7 +50,7 @@ Take Screenshot Of Content
 	Maximize Browser Window
 	Wait Until Element Is Visible   ${Itm_Gallery_Slidetrack}   timeout=5
 	Execute javascript  document.body.style.zoom="28%"
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"
 	
 Moving Between Gallery Images Works

@@ -56,7 +56,7 @@ Announcement Is Not Visible For ${contentname} Of ${contenttype} List
 
 Annoucement Text Content Equals
 	[Arguments]   ${content}
-	${announcementtext}=  Get Text  css:#block-announcements > div > div > span > p
+	${announcementtext}=  Get Text  css:div.announcement__content > span > p
 	Should Be Equal   ${announcementtext}   ${content}  
 
 Check Announcement Visibility For Given Content
@@ -71,7 +71,7 @@ Check Announcement Visibility For Given Content
     Wait Until Keyword Succeeds  5x   200ms   Click Link   ${contentname}
 	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies
     IF    ${shouldbevisible}
-        Element Should Be Visible   css:#block-announcements > div
+        Element Should Be Visible   css:div.announcement__content
     ELSE
-    	Element Should Not Be Visible   css:#block-announcements > div
+    	Element Should Not Be Visible   css:div.announcement__content
     END

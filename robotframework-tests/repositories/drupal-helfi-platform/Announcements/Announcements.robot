@@ -10,7 +10,7 @@ Force Tags		 ANNOUNCEMENTS
 
 *** Test Cases ***
 All Pages
-	[Tags]  CRITICAL
+	[Tags]  CRITICAL 
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Alert Announcement to Show on All Pages
 	And User Submits The New Announcement
@@ -34,7 +34,7 @@ Certain Pages
 	And Announcement Should Not Be Visible In Checked Content	
 
 Unpublished
-	[Tags]  
+	[Tags]
 	[Documentation]  Unpublished announcements should not be shown at all
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Unpublished Alert Announcement to Show on All Pages
@@ -129,8 +129,8 @@ Announcement Layout For ${type} Should Be Correct For Checked Content
 	
 
 ${type} Announcement Layout Is Corrent
-		Scroll Element Into View   css:#block-announcements > div
-        Capture Element Screenshot   css:#block-announcements > div    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}-${type}.png
+		Scroll Element Into View   css:div.announcement__content
+        Capture Element Screenshot   css:div.announcement__content    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
         ${originalpic}=  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/ANNOUNCEMENTS_${type}_${BROWSER}.png
-        ${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}-${type}.png
-        Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}   ${EMPTY}   1
+        ${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
+        Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

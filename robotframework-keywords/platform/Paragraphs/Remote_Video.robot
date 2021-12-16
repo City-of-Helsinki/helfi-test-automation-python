@@ -23,17 +23,21 @@ Add Remote Video
 	Sleep  1
 	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
 	Sleep  1
-	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
-	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm} 
+	Wait Until Keyword Succeeds  5x  1s   Remote Video Add Button Is Pressed   
 	Set Test Variable  ${mediaadded}    ${mediaadded}+1
-	
+
+Remote Video Add Button Is Pressed
+	Click Button  ${Btn_RemoteVideo_Confirm}
+	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm}
+
+
 Remote Video Play Begins Correctly
 	Wait Until Element Is Visible  ${Itm_Video}
-	Capture Element Screenshot   css:div.responsive-video-container > iframe    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video1start.png
-	${videostart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video1start.png
+	Capture Element Screenshot   css:div.responsive-video-container > iframe    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1start.png
+	${videostart} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1start.png
 	Play Video   ${Itm_Video}
-	Capture Element Screenshot   ${Itm_Video}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video1end.png
-	${videoend} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video1end.png
+	Capture Element Screenshot   ${Itm_Video}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1end.png
+	${videoend} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${videostart}   ${videoend}
 	#VIDEO2
 	Run Keyword If  '${TEST NAME}'=='Two Videos'   Video 2 Plays Correctly
@@ -41,13 +45,13 @@ Remote Video Play Begins Correctly
 
 Video 2 Plays Correctly
 	${islandingpage}=  Suite Source Contains Text   Landing_Page
-	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png   
-	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
+	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png   
+	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png
 	${video2start} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
 	Play Video   ${Itm_Video2}
-	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
-	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
-	${video2end} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2end.png
+	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
+	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
+	${video2end} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${video2start}   ${video2end}
 
 Play Video
@@ -67,6 +71,6 @@ Take Screenshot Of Content
 	ELSE
 		Execute javascript  document.body.style.zoom="30%"
 	END
-	Capture Page Screenshot    filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"	
 	

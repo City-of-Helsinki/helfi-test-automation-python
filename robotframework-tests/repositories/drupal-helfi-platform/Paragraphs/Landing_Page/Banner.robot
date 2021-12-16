@@ -93,9 +93,9 @@ Link Should Be Opened In New Window   New Window Should Be Opened   Rautatie (ro
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Banner.Take Screenshot Of Content
-	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner Secondary Color') | ('${TEST NAME}'=='Center Aligned Banner Secondary Color') | ('${TEST NAME}'=='Left Aligned Banner With Color Palette')   Capture Element Screenshot  css:.banner__content-wrapper   filename=${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	Run Keyword If  ('${TEST NAME}'=='Left Aligned Banner Secondary Color') | ('${TEST NAME}'=='Center Aligned Banner Secondary Color') | ('${TEST NAME}'=='Left Aligned Banner With Color Palette')   Capture Element Screenshot  css:.banner__content-wrapper   filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	${originalpic} =  Set Variable If  ('${linkstyle}'!='${EMPTY}') & ('${coloroption}'=='${EMPTY}')  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_${linkstyle}link_${BROWSER}.png
 	...	  '${coloroption}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${TEST NAME}_${BROWSER}.png
 	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_BANNER_${alignment}_text_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}.png
+	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
