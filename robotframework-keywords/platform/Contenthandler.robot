@@ -16,7 +16,6 @@ Resource		  ./variables/create_content.robot
 Library           RobotEyes
 Library           OperatingSystem
 Library			  Collections
-Library			  pabot.PabotLib
 
 *** Variables ***
 ${submitted}								false
@@ -92,6 +91,16 @@ Go To Translations Tab
 Go To Modify Tab
 	Scroll Element Into View   css:ul.local-tasks > li:nth-child(2) > a
 	Click Element   css:ul.local-tasks > li:nth-child(2) > a
+
+Search And Click Content From Content Pages
+	[Arguments]  ${contentname}
+	FOR    ${i}    IN RANGE    10
+    	${hascontent}=  Run Keyword And Return Status   Wait Until Keyword Succeeds  5x   200ms   Page Should Contain Link   ${contentname}
+    	Run Keyword If  ${hascontent}  Wait Until Keyword Succeeds  5x   200ms   Click Link   ${contentname}
+    	Exit For Loop If   ${hascontent}
+    	Click Element   css:.pager__item--next
+    END
+	
 	
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
@@ -101,9 +110,9 @@ Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
 	${currenturl}=   Get Location
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
-	
 	FOR    ${i}    IN RANGE    10
 		   Go To   ${URL_content_page}
+		   Log   Test Automation: ${SUITE}.${TEST NAME}
 		   ${count}=  Get Element Count   link:Test Automation: ${SUITE}.${TEST NAME}
 		   Exit For Loop If   ${count}==0
 		   Delete Test Automation Created Content
@@ -128,8 +137,7 @@ Cleanup and Close Browser
     Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
     Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
-    Run Teardown Only Once   Generate Picture Comparison Report
-	Close Browser	
+    Close Browser	
 	
 Set Service Back To Unpublished
 	[Arguments]   ${name}
@@ -292,9 +300,8 @@ Click Add Announcement
 
 Go To Translate Selection Page
 	[Documentation]   Goes To Translations Page for first document in the content list
-	Go To   ${URL_content_page}
-	Click Button   ${Btn_Actions_Dropbutton}
-	Click Element  ${Btn_Actions_ContentMenu_Translatebutton}
+	Set Focus To Element   css:ul.local-tasks > li:nth-child(5) > a
+	Click Link   css:ul.local-tasks > li:nth-child(5) > a
 
 Submit The New ${pagetype}
 	[Documentation]   Sleeps 1 second in case of pictures added so that they have time to load into content view.
@@ -347,12 +354,6 @@ Get Admin Url
    [Documentation]   Gets URL needed in localhost testing.
    ${admin_url} =   Run  ${ADMIN_URL}
    Set Test Variable   ${admin_url}
-
-Generate Picture Comparison Report
-   [Documentation]   Runs picture comparison results file creation command manually since
-   ...				 when using pabot it does not get automatically generated
-   Run  reportgen --baseline=${IMAGES_DIR} --results=${ACTUAL_DIR}
-
 
 Set Service As Published
 	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1

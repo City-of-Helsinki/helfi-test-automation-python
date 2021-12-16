@@ -30,7 +30,7 @@ Start Creating a ${value} Aligned Page With Hero Block
 	${islandingpage}=   Suite Source Contains Text   Landing_Page
 	Set Test Variable   ${islandingpage}   ${islandingpage}
 	${containslink}=    Run Keyword And Return Status    Should Contain    ${TEST NAME}    Link
-	Input Title  Test Automation: ${value} Aligned Hero Block Page
+	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${titleisvisible}=  Run Keyword And Return Status   Element Should Be Enabled   ${Inp_Hero_Title}
 	Run Keyword Unless  ${titleisvisible} 	Click Element   ${Swh_HeroOnOff}
 	Wait Until Keyword Succeeds  5x  100ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}

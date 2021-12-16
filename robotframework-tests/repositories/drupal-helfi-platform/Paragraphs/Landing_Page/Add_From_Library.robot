@@ -79,6 +79,6 @@ User Creates New ListOfLinks Paragraphs To Library
 	Create New Swedish ListOfLinks Paragraph To Library
 
 User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
-	Go To  ${URL_content_page}
-	Go To New LandingPage Site
+	Run Keyword If  '${lang_selection}'=='Finnish'  Go To  ${URL_content_page}
+	Run Keyword If  '${lang_selection}'=='Finnish'  Go To New LandingPage Site
 	Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content

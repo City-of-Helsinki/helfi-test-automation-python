@@ -22,7 +22,7 @@ All Cookies
 *** Keywords ***
 User Opens Content With Title ${contenttitle}
     Go To   ${URL_content_page}
-    Wait Until Keyword Succeeds  5x   200ms   Click Link   ${contenttitle}
+    Search And Click Content From Content Pages   ${contenttitle}
 
 User Accepts ${selection} Cookies
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  User Opens Content With Title Esimerkkisivu
