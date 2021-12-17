@@ -88,8 +88,8 @@ Start Creating Hero Block Page with ${picalign} Picture
 	# For some reason any locator does not find this so last effort was focusing element and simulating keyboard enter
 	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element  ${Btn_Hero_Picture}
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    RETURN
-	Wait Until Keyword Succeeds  5x  100ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
-	Wait Until Keyword Succeeds  5x  100ms  Input Text    ${Inp_Pic_Name}   Juna sillalla
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
+	Wait Until Keyword Succeeds  6x  200ms  Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}

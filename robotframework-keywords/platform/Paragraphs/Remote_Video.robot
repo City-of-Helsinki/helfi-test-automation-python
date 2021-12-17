@@ -20,12 +20,13 @@ Add Remote Video
 	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
-	Sleep  1
-	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
-	Sleep  1
-	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
-	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm} 
+	Wait Until Keyword Succeeds  6x  1s  Confirm Video Selection
 	Set Test Variable  ${mediaadded}    ${mediaadded}+1
+
+Confirm Video Selection
+	Click Button  ${Btn_RemoteVideo_Confirm}
+	Wait Until Keyword Succeeds  7x  400ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm}
+	
 	
 Remote Video Play Begins Correctly
 	Wait Until Element Is Visible  ${Itm_Video}

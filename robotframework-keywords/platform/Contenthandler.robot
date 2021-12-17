@@ -97,8 +97,10 @@ Search And Click Content From Content Pages
 	FOR    ${i}    IN RANGE    10
     	${hascontent}=  Run Keyword And Return Status   Wait Until Keyword Succeeds  5x   200ms   Page Should Contain Link   ${contentname}
     	Run Keyword If  ${hascontent}  Wait Until Keyword Succeeds  5x   200ms   Click Link   ${contentname}
-    	Exit For Loop If   ${hascontent}
-    	Click Element   css:.pager__item--next
+    	Run Keyword If  ${hascontent}  Return From Keyword   True
+    	${nextbuttonvisible}=  Run Keyword And Return Status   Element Should Be Visible   css:.pager__item--next
+    	Run Keyword If  ${nextbuttonvisible}   Click Element   css:.pager__item--next
+    	Run Keyword Unless  ${nextbuttonvisible}   Return From Keyword   False
     END
 	
 	
@@ -112,10 +114,9 @@ Cleanup and Close Browser
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    10
 		   Go To   ${URL_content_page}
-		   Log   Test Automation: ${SUITE}.${TEST NAME}
-		   ${count}=  Get Element Count   link:Test Automation: ${SUITE}.${TEST NAME}
-		   Exit For Loop If   ${count}==0
-		   Delete Test Automation Created Content
+		   ${contentfound}=   Search And Click Content From Content Pages   Test Automation: ${SUITE}.${TEST NAME}
+		   Run Keyword If   ${contentfound}   Delete Test Automation Created Content
+		   Run Keyword Unless   ${contentfound}   Exit For Loop
     END
     # REMOVING PARAGRAPHS IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
     #FOR    ${i}    IN RANGE    10
@@ -327,10 +328,9 @@ Go To New ${pagetype} -View For ${language} Translation
 	
 Delete Test Automation Created Content
 	[Documentation]   Deletes Created Item By assuming it is the topmost one in the list. Returns to content page afterwards.
-	Click Link   link:Test Automation: ${SUITE}.${TEST NAME}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
-	Go To   ${URL_content_page}
+	
 
 	
 Delete Test Automation Created Media

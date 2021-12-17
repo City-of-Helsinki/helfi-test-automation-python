@@ -2,7 +2,6 @@
 Documentation   For these testcases to work, 'helfi_example_content' should be enabled.
 Resource        ../../../../robotframework-keywords/platform/Others/CookieCompliance.robot
 Test Setup      Resolve Login
-Test Teardown   Cleanup and Close Browser
 Force Tags		COOKIECOMPLIANCE
 
 *** Test Cases ***

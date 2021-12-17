@@ -53,6 +53,7 @@ ${Opt_AddContentCards_Lower}				name:field_lower_content_content_cards_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
+${Opt_AddFromLibrary_Lower}					name:field_lower_content_from_library_add_more
 ${Opt_ServiceList}							name:field_content_service_list_add_more
 ${Opt_SideBarText}							name:field_sidebar_content_sidebar_text_add_more
 ${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_more
