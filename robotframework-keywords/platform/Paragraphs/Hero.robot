@@ -33,9 +33,9 @@ Start Creating a ${value} Aligned Page With Hero Block
 	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${titleisvisible}=  Run Keyword And Return Status   Element Should Be Enabled   ${Inp_Hero_Title}
 	Run Keyword Unless  ${titleisvisible} 	Click Element   ${Swh_HeroOnOff}
-	Wait Until Keyword Succeeds  5x  100ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
+	Wait Until Keyword Succeeds  6x  300ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
 	Run Keyword If  '${value}'=='Center'  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Hero_Alignment_Center} 
-	Wait Until Keyword Succeeds  5x  100ms   Input Title To Paragraph   ${Inp_Hero_Title}
+	Wait Until Keyword Succeeds  6x  300ms   Input Title To Paragraph   ${Inp_Hero_Title}
 	${TextFileContent}=  Return Correct Content   ${language}
 	@{content} =	Split String	${TextFileContent}   .,.
 	${content_up}=  Get From List  ${content}   0

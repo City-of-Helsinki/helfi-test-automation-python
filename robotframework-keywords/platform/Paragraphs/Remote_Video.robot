@@ -17,9 +17,11 @@ Add Remote Video
 	Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
 	Wait Until Keyword Succeeds  5x  200ms  Execute javascript  window.scrollTo(0, 200)
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_RemoteVideo_Add}
+	Wait Until Element Is Visible   ${Inp_RemoteVideo_Url}   timeout=5
 	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
+	Sleep  1		#SMALL SLEEP DUE ISSUES IN CONTENT LOADING
 	Wait Until Keyword Succeeds  6x  1s  Confirm Video Selection
 	Set Test Variable  ${mediaadded}    ${mediaadded}+1
 

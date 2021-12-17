@@ -21,8 +21,8 @@ Add Picture To Link
 	[Arguments]   ${picname}
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Inp_ListOfLinks_Link_AddPicture}
-	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
-	Wait Until Keyword Succeeds  5x  300ms  Set Focus To Element  ${Inp_Pic_Name}
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
+	Wait Until Keyword Succeeds  6x  300ms  Set Focus To Element  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
