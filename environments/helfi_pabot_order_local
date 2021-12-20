@@ -1,0 +1,33 @@
+{--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.All Pages
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Certain Pages
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.All Pages After Modify
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Unpublished
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.English Translation
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Notification Layout
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Attention Layout
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Alert Layout}
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.EUCookieCompliance.CookieCompliance
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Others.TableOfContents
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Add From Library
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Banner
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Columns
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Content Cards
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Hero
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Liftup With Image
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.List Of Links
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Remote Video
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Service List
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Unit Search
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Accordion
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Add From Library
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Columns
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Content Cards
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Content Liftup
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Hero
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Gallery
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.List Of Links
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Remote Video
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Uncategorized
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Unit Search
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.ServiceAndUnit.ServiceAndUnit
+--suite Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi.Paragraphs.Page.Map
