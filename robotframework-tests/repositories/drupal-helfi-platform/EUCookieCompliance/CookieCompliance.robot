@@ -34,7 +34,7 @@ ${consent_option} Cookies Are Created
 		${consent_option}=   Remove String   ${consent_option}   Then
 		${consent_option}=   Strip String   ${consent_option}
 		IF    '${consent_option}'=='Essential'
-        	Should Be Equal   ${agreed}     ["%22essential%22"]
+        	Should Be Equal   ${agreed}     [%22essential%22]
     	ELSE
-    		Should Be Equal   ${agreed}     ["%22essential%22%2C%22preference%22%2C%22statistics%22%2C%22marketing%22"]
+    		Should Be Equal   ${agreed}     [%22essential%22%2C%22preference%22%2C%22statistics%22%2C%22marketing%22]
    		END
