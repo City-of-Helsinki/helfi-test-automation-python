@@ -168,14 +168,17 @@ Open Paragraph Add Page With Given Language
 	
 Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content 
 	${language_pointer}=   Get Language Pointer   ${lang_selection}
+	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Set Test Variable   ${language}   ${language_pointer}
 	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Set Test Variable   ${paragraph}   ${paragraph}
 	Input Non-paragraph Related Content   ${pagetype}
-	Run Keyword If  '${lang_selection}'=='Finnish'  Open Paragraph For Edit   ${Opt_AddFromLibrary}
 	
-	Wait Until Keyword Succeeds  5x  200ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_${paragraph}_${language}')]
-	Wait Until Keyword Succeeds  5x  200ms  Submit The New ${pagetype}
+	Run Keyword If  ('${lang_selection}'=='Finnish') & (not(${islandingpage}))  Open Paragraph For Edit   ${Opt_AddFromLibrary_Lower}   ${Ddn_AddContent_Lower}
+	Run Keyword If  ('${lang_selection}'=='Finnish') & (${islandingpage})  Open Paragraph For Edit   ${Opt_AddFromLibrary}
+	
+	Wait Until Keyword Succeeds  6x  300ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_${paragraph}_${language}')]
+	Wait Until Keyword Succeeds  6x  300ms  Submit The New ${pagetype}
 
 Add Picture '${name}' And Caption To ${number}:th Picture
 	${number}=   Convert To Integer   ${number}
@@ -189,8 +192,8 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	${pictitle}=  Get From List  ${content}   0
 	${picdescription}=  Get From List  ${content}   1
 	${pgrapher}=  Get From List  ${content}   2
-	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${name}.jpg
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Pic_Name}   ${pictitle}
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${name}.jpg
+	Wait Until Keyword Succeeds  6x  300ms  Input Text    ${Inp_Pic_Name}   ${pictitle}
 	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Run Keyword If  '${language}'=='fi'   Click Button   ${Btn_Save}
@@ -222,8 +225,7 @@ Page Should Have ${lang_input} Translation
 
 Page Content Matches Language
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	Zoom Out And Capture Page Screenshot
-    # CONTENT FETCH FOR VALIDATIONS
+	# CONTENT FETCH FOR VALIDATIONS
     IF  '${TEST NAME}'=='Accordion'
         Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
 		# TODO: Add check to accordion content after opening it

@@ -13,24 +13,23 @@ Create ${pagetype} With ${number} Remote Video(s) Content
 
 	
 Add Remote Video
-	[Arguments]   ${url}=https://www.youtube.com/watch?v=nl5jKA6MMVg
-	Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
-	Wait Until Keyword Succeeds  5x  200ms  Execute javascript  window.scrollTo(0, 200)
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_RemoteVideo_Add}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
-	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
-	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
-	Sleep  1
-	Wait Until Keyword Succeeds  5x  1s   Click Button  ${Btn_RemoteVideo_Confirm}
-	Sleep  1
-	Wait Until Keyword Succeeds  5x  1s   Remote Video Add Button Is Pressed   
-	Set Test Variable  ${mediaadded}    ${mediaadded}+1
+    [Arguments]   ${url}=https://www.youtube.com/watch?v=nl5jKA6MMVg
+    Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
+    Wait Until Keyword Succeeds  5x  200ms  Execute javascript  window.scrollTo(0, 200)
+    Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_RemoteVideo_Add}
+    Wait Until Element Is Visible   ${Inp_RemoteVideo_Url}   timeout=5
+    Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
+    Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
+    Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
+    Sleep  1		#SMALL SLEEP DUE ISSUES IN CONTENT LOADING
+    Wait Until Keyword Succeeds  6x  1s  Confirm Video Selection
+    Set Test Variable  ${mediaadded}    ${mediaadded}+1
 
-Remote Video Add Button Is Pressed
-	Click Button  ${Btn_RemoteVideo_Confirm}
-	Wait Until Keyword Succeeds  6x  300ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm}
-
-
+Confirm Video Selection
+    Click Button  ${Btn_RemoteVideo_Confirm}
+    Wait Until Keyword Succeeds  7x  400ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm}
+  
+  
 Remote Video Play Begins Correctly
 	Wait Until Element Is Visible  ${Itm_Video}
 	Capture Element Screenshot   css:div.responsive-video-container > iframe    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1start.png

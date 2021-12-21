@@ -110,6 +110,6 @@ User Creates New Text Paragraphs To Library
 	Create New Swedish Text Paragraph To Library
 		
 User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
-	Go To  ${URL_content_page}
-	Go To New Page Site
+	Run Keyword If  '${lang_selection}'=='Finnish'  Go To  ${URL_content_page}
+	Run Keyword If  '${lang_selection}'=='Finnish'  Go To New Page Site
 	Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content

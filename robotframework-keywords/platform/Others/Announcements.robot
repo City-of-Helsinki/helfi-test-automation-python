@@ -68,7 +68,7 @@ Check Announcement Visibility For Given Content
     ELSE IF    '${contenttype}'=='Unit'
     	Go To   ${URL_unit_page}
     END 
-    Wait Until Keyword Succeeds  5x   200ms   Click Link   ${contentname}
+    Search And Click Content From Content Pages   ${contentname}
 	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies
     IF    ${shouldbevisible}
         Element Should Be Visible   css:div.announcement__content

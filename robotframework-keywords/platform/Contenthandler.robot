@@ -91,6 +91,18 @@ Go To Translations Tab
 Go To Modify Tab
 	Scroll Element Into View   css:ul.local-tasks > li:nth-child(2) > a
 	Click Element   css:ul.local-tasks > li:nth-child(2) > a
+
+Search And Click Content From Content Pages
+	[Arguments]  ${contentname}
+	FOR    ${i}    IN RANGE    10
+    	${hascontent}=  Run Keyword And Return Status   Wait Until Keyword Succeeds  5x   200ms   Page Should Contain Link   ${contentname}
+    	Run Keyword If  ${hascontent}  Wait Until Keyword Succeeds  5x   200ms   Click Link   ${contentname}
+    	Run Keyword If  ${hascontent}  Return From Keyword   True
+    	${nextbuttonvisible}=  Run Keyword And Return Status   Element Should Be Visible   css:.pager__item--next
+    	Run Keyword If  ${nextbuttonvisible}   Click Element   css:.pager__item--next
+    	Run Keyword Unless  ${nextbuttonvisible}   Return From Keyword   False
+    END
+	
 	
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
@@ -100,22 +112,16 @@ Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
 	${currenturl}=   Get Location
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
-	
 	FOR    ${i}    IN RANGE    10
 		   Go To   ${URL_content_page}
-		   ${count}=  Get Element Count   partial link:Test Automation
-		   Exit For Loop If   ${count}==0
-		   Delete Test Automation Created Content
+		   ${contentfound}=   Search And Click Content From Content Pages   Test Automation: ${SUITE}.${TEST NAME}
+		   Run Keyword If   ${contentfound}   Delete Test Automation Created Content
+		   Run Keyword Unless   ${contentfound}   Exit For Loop
     END
-    FOR    ${i}    IN RANGE    10
-    	   Go To   ${URL_paragraphs_page}
-    	   ${count}=  Get Element Count   partial link:Test_Automation
-    	   Exit For Loop If   ${count}==0
-           Delete Test Automation Created Paragraphs
-    END
-	FOR    ${i}    IN RANGE    ${mediaadded}
-           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
-    END
+    
+    Run Keyword Unless  ${CI}   TearDown Test Paragraphs
+    Run Keyword Unless  ${CI}   TearDown Media Content
+
 
     
     # in case of service/unit testcases
@@ -125,7 +131,22 @@ Cleanup and Close Browser
     Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
     Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
-	Close Browser	
+    Close Browser	
+
+TearDown Test Paragraphs
+	# REMOVING PARAGRAPHS IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
+    FOR    ${i}    IN RANGE    10
+    	   Go To   ${URL_paragraphs_page}
+    	   ${count}=  Get Element Count   partial link:Test_Automation
+    	   Exit For Loop If   ${count}==0
+           Delete Test Automation Created Paragraphs
+    END
+
+TearDown Media Content
+	# REMOVING MEDIA IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
+	FOR    ${i}    IN RANGE    ${mediaadded}
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
+    END
 	
 Set Service Back To Unpublished
 	[Arguments]   ${name}
@@ -288,9 +309,8 @@ Click Add Announcement
 
 Go To Translate Selection Page
 	[Documentation]   Goes To Translations Page for first document in the content list
-	Go To   ${URL_content_page}
-	Click Button   ${Btn_Actions_Dropbutton}
-	Click Element  ${Btn_Actions_ContentMenu_Translatebutton}
+	Set Focus To Element   css:ul.local-tasks > li:nth-child(5) > a
+	Click Link   css:ul.local-tasks > li:nth-child(5) > a
 
 Submit The New ${pagetype}
 	[Documentation]   Sleeps 1 second in case of pictures added so that they have time to load into content view.
@@ -316,10 +336,9 @@ Go To New ${pagetype} -View For ${language} Translation
 	
 Delete Test Automation Created Content
 	[Documentation]   Deletes Created Item By assuming it is the topmost one in the list. Returns to content page afterwards.
-	Click Link   partial link: Test Automation
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.local-tasks__wrapper > ul > li:nth-child(3) > a
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Actions_SelectedItem_Deletebutton}  
-	Go To   ${URL_content_page}
+	
 
 	
 Delete Test Automation Created Media
@@ -414,7 +433,7 @@ Content Should Match Current Language Selection
 Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
-	Set Suite Name Without Spaces
+	Set Shortened Suite Name
 	Run Keyword If   ${CI}   Log-In In CI Environment
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
@@ -494,9 +513,9 @@ Add Picture to Column
 	${picdescription}=  Get From List  ${content}   1
 	${pgrapher}=  Get From List  ${content}   2
 	Wait Until Element Is Visible  ${Btn_Column_${side}_Picture}   timeout=3
-	Wait Until Keyword Succeeds  10x  500ms  Click Element  ${Btn_Column_${side}_Picture}
-	Wait Until Keyword Succeeds  10x  500ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${selection}.jpg
-	Wait Until Keyword Succeeds  10x  500ms  Input Text    ${Inp_Pic_Name}   ${pictitle}
+	Wait Until Keyword Succeeds  6x  300ms  Click Element  ${Btn_Column_${side}_Picture}
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${selection}.jpg
+	Wait Until Keyword Succeeds  6x  300ms  Input Text    ${Inp_Pic_Name}   ${pictitle}
 	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Click Button   ${Btn_Save}
@@ -540,9 +559,10 @@ Click And Select Text As ${side} Content Type
 	Wait Until Element Is Visible  ${Opt_Column_${side}_AddContent_Text}   timeout=3
 	Wait Until Keyword Succeeds  3x  100ms  Click Element  ${Opt_Column_${side}_AddContent_Text}
 
-Set Suite Name Without Spaces
-	[Documentation]  Due issues in picture comparison test report, lets remove spaces from suite name and set variable
-	${modified}=  Remove String   ${SUITE NAME}   ${SPACE}
+Set Shortened Suite Name
+	[Documentation]  Lets set shortened suite name for clarity and pabot purposes on content removal
+	${suitesplitted}=  Split String   ${SUITE NAME}   separator=.Repositories.
+	${modified}=   Get From List  ${suitesplitted}  -1
 	Set Suite Variable   ${SUITE}   ${modified}  
 	
 Compare Pictures And Handle PictureData
@@ -557,7 +577,7 @@ Input Text Content To Frame
 		
 Input Non-paragraph Related Content
 	[Arguments]   ${pagetype}
-	Input Title  Test Automation: ${TEST NAME}
+	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	

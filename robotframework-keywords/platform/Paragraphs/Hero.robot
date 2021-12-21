@@ -30,12 +30,12 @@ Start Creating a ${value} Aligned Page With Hero Block
 	${islandingpage}=   Suite Source Contains Text   Landing_Page
 	Set Test Variable   ${islandingpage}   ${islandingpage}
 	${containslink}=    Run Keyword And Return Status    Should Contain    ${TEST NAME}    Link
-	Input Title  Test Automation: ${value} Aligned Hero Block Page
+	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${titleisvisible}=  Run Keyword And Return Status   Element Should Be Enabled   ${Inp_Hero_Title}
 	Run Keyword Unless  ${titleisvisible} 	Click Element   ${Swh_HeroOnOff}
-	Wait Until Keyword Succeeds  5x  100ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
+	Wait Until Keyword Succeeds  6x  300ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
 	Run Keyword If  '${value}'=='Center'  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Hero_Alignment_Center} 
-	Wait Until Keyword Succeeds  5x  100ms   Input Title To Paragraph   ${Inp_Hero_Title}
+	Wait Until Keyword Succeeds  6x  300ms   Input Title To Paragraph   ${Inp_Hero_Title}
 	${TextFileContent}=  Return Correct Content   ${language}
 	@{content} =	Split String	${TextFileContent}   .,.
 	${content_up}=  Get From List  ${content}   0
@@ -88,8 +88,8 @@ Start Creating Hero Block Page with ${picalign} Picture
 	# For some reason any locator does not find this so last effort was focusing element and simulating keyboard enter
 	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element  ${Btn_Hero_Picture}
 	Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    RETURN
-	Wait Until Keyword Succeeds  5x  100ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
-	Wait Until Keyword Succeeds  5x  100ms  Input Text    ${Inp_Pic_Name}   Juna sillalla
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
+	Wait Until Keyword Succeeds  6x  200ms  Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}

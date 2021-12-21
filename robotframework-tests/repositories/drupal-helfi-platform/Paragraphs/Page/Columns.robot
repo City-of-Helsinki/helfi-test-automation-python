@@ -121,7 +121,7 @@ User Adds ${content} to Sidebar
 	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_Sidebar_Text}
 	Run Keyword If  '${content}'=='Text'  Input Text To Frame   ${Frm_Sidebar_Text}   //body   ${TextFileContent}    
 	Run Keyword If  '${content}'=='Content From Library'   Open Paragraph For Edit   ${Opt_SideBarContentFromLibrary}   ${Ddn_AddContent_Sidebar}
-	Run Keyword If  '${content}'=='Content From Library'   Wait Until Keyword Succeeds  5x  200ms  Select From List By Index   name:field_sidebar_content[0][subform][field_reusable_paragraph]   1
+	Run Keyword If  '${content}'=='Content From Library'   Wait Until Keyword Succeeds  6x  300ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_SidebarText_${language}')]
 
 User Adds Link Button With ${linkstyle} Style into ${side} Column
 	Set Test Variable   ${linkstyle}   ${linkstyle}

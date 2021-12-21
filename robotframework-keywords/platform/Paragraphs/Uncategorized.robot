@@ -37,8 +37,8 @@ Add Picture Content To Page
 	Run Keyword Unless   ${addpicturevisible}   Click Element   ${Ddn_AddContent}
 	Run Keyword If  '${language}'=='fi'  Click Element   ${Opt_AddPicture}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Picture}
-	Wait Until Keyword Succeeds  5x  100ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
-	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element  ${Inp_Pic_Name}
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
+	Wait Until Keyword Succeeds  6x  300ms  Set Focus To Element  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja

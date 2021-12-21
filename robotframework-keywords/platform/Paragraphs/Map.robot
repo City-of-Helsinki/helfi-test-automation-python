@@ -13,15 +13,15 @@ Create Map With Given Url
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Map_Title}   ${TEST NAME}
 	${description}=  Return Correct Description   ${language}
 	Input Text  ${Inp_Map_Description}   ${description}
-	Wait Until Keyword Succeeds  5x  100ms   Add Url To Map
-	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
+	Wait Until Keyword Succeeds  6x  300ms   Add Url To Map
+	Wait Until Keyword Succeeds  6x  300ms  Submit New Media
 
 Add Url To Map	
-	Wait Until Keyword Succeeds  5x  100ms  Click Element   ${Btn_Map_Add}
-	Wait Until Keyword Succeeds  5x  100ms  Input Text   name:helfi_media_map_url   ${URL}
-	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element	  ${Btn_Map_Url_Add}
-	Wait Until Keyword Succeeds  5x  100ms  Click Button  ${Btn_Map_Url_Add}
-	Wait Until Keyword Succeeds  5x  100ms  Click Button  ${Btn_Save}
+	Wait Until Keyword Succeeds  6x  300ms  Click Element   ${Btn_Map_Add}
+	Wait Until Keyword Succeeds  6x  300ms  Input Text   name:helfi_media_map_url   ${URL}
+	Wait Until Keyword Succeeds  6x  300ms  Set Focus To Element	  ${Btn_Map_Url_Add}
+	Wait Until Keyword Succeeds  6x  300ms  Click Button  ${Btn_Map_Url_Add}
+	Wait Until Keyword Succeeds  6x  300ms  Click Button  ${Btn_Save}
 	
 Map Paragraph Works Correctly
 	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies

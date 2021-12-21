@@ -4,3 +4,4 @@ libspecs
 .project
 .classpath
 *.class
+/.pabotsuitenames

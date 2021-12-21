@@ -34,8 +34,8 @@ Add Picture
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword If  not(${islandingpage})  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_LiftupWithImage_Picture}
 	...			ELSE	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Inp_LiftupWithImage_Picture}
-	Wait Until Keyword Succeeds  5x  200ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
-	Wait Until Keyword Succeeds  5x  100ms  Set Focus To Element  ${Inp_Pic_Name}
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${picname}.jpg
+	Wait Until Keyword Succeeds  6x  300ms  Set Focus To Element  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
 	Input Text    ${Inp_Pic_AltText}   Vanha juna kuljettaa matkustajia 
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
