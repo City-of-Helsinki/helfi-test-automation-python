@@ -118,17 +118,10 @@ Cleanup and Close Browser
 		   Run Keyword If   ${contentfound}   Delete Test Automation Created Content
 		   Run Keyword Unless   ${contentfound}   Exit For Loop
     END
-    # REMOVING PARAGRAPHS IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
-    #FOR    ${i}    IN RANGE    10
-    #	   Go To   ${URL_paragraphs_page}
-    #	   ${count}=  Get Element Count   partial link:Test_Automation
-    #	   Exit For Loop If   ${count}==0
-    #       Delete Test Automation Created Paragraphs
-    #END
-	# REMOVING MEDIA IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
-	#FOR    ${i}    IN RANGE    ${mediaadded}
-    #       Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
-    #END
+    
+    Run Keyword Unless  ${CI}   TearDown Test Paragraphs
+    Run Keyword Unless  ${CI}   TearDown Media Content
+
 
     
     # in case of service/unit testcases
@@ -139,6 +132,21 @@ Cleanup and Close Browser
     Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
     Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
     Close Browser	
+
+TearDown Test Paragraphs
+	# REMOVING PARAGRAPHS IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
+    FOR    ${i}    IN RANGE    10
+    	   Go To   ${URL_paragraphs_page}
+    	   ${count}=  Get Element Count   partial link:Test_Automation
+    	   Exit For Loop If   ${count}==0
+           Delete Test Automation Created Paragraphs
+    END
+
+TearDown Media Content
+	# REMOVING MEDIA IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
+	FOR    ${i}    IN RANGE    ${mediaadded}
+           Wait Until Keyword Succeeds  2x  200ms 	Delete Test Automation Created Media
+    END
 	
 Set Service Back To Unpublished
 	[Arguments]   ${name}
