@@ -54,6 +54,7 @@ Take Screenshot Of Content
 	Execute javascript  document.body.style.zoom="100%"
 	
 Moving Between Gallery Images Works
+	Execute javascript  window.scrollTo(500,1000)		# SCROLL PAGE BECAUSE CHAT BLOCKS THE ARROW ELEMENT
 	Click Element   //button[@class='splide__arrow splide__arrow--next']
 	Sleep   1   # Sleep so that element attribute value is changed
 	${value}=  Get Element Attribute  //li[contains(@class, 'is-active is-visible')]//img   src
