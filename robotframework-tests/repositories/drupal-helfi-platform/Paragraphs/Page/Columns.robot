@@ -119,7 +119,7 @@ User Adds ${content} to Sidebar
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	Run Keyword If  '${content}'=='Text'  Open Paragraph For Edit   ${Opt_SideBarText}   ${Ddn_AddContent_Sidebar}
 	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  5x  100ms  Input Title To Paragraph   ${Inp_Sidebar_Text}
-	Run Keyword If  '${content}'=='Text'  Input Text To Frame   ${Frm_Sidebar_Text}   //body   ${TextFileContent}    
+	Run Keyword If  '${content}'=='Text'  Wait Until Keyword Succeeds  6x  300ms  Input Text To Frame   ${Frm_Sidebar_Text}   //body   ${TextFileContent}    
 	Run Keyword If  '${content}'=='Content From Library'   Open Paragraph For Edit   ${Opt_SideBarContentFromLibrary}   ${Ddn_AddContent_Sidebar}
 	Run Keyword If  '${content}'=='Content From Library'   Wait Until Keyword Succeeds  6x  300ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_SidebarText_${language}')]
 
