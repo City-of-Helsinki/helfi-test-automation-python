@@ -119,8 +119,8 @@ Cleanup and Close Browser
 		   Run Keyword Unless   ${contentfound}   Exit For Loop
     END
     
-    Run Keyword Unless  ${CI}   TearDown Test Paragraphs
-    Run Keyword Unless  ${CI}   TearDown Media Content
+    Run Keyword Unless  ${CI} | ${CI_LOCALTEST}   TearDown Test Paragraphs
+    Run Keyword Unless  ${CI} | ${CI_LOCALTEST}   TearDown Media Content
 
 
     

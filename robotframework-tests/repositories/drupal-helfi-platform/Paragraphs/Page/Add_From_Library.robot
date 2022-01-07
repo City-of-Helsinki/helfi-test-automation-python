@@ -55,7 +55,7 @@ Picture
 	Then Page Should Have Swedish Translation
 
 ListOfLinks
-	[Tags]   
+	[Tags]
 	Given User Creates New ListOfLinks Paragraphs To Library
 	When User Starts Creating Page With Add From Library Content For ListOfLinks -Paragraph in Finnish Language
 	And User Starts Creating Page With Add From Library Content For ListOfLinks -Paragraph in English Language

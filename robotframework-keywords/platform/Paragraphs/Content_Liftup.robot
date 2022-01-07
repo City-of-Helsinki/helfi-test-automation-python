@@ -13,13 +13,13 @@ Add Content Liftup For Unit
 	Capture Page Screenshot
 
 ContentLiftup Is Working Correctly For One Unit
-	Click Link   css:.unit__link
+	Click Link   //a[contains(@href, 'lippulaiva')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   lippulaivan-kirjasto
 
 ContentLiftup Is Working Correctly For Two Units
 	${contentpageurl}=   Get Location
-	Click Link   css:.unit__link
+	Click Link   //a[contains(@href, 'lippulaiva')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   lippulaivan-kirjasto
 	Go To   ${contentpageurl}

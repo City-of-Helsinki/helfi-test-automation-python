@@ -268,7 +268,7 @@ ${Txt_Accordion_Title}								//button[@class='accordion-item__button accordion-
 
 ${Txt_ContentCards_Title}							css:.component__title
 ${Txt_Gallery_Title}								css:#block-hdbt-page-title > div > h1 > span
-${Txt_Gallery_Image_Caption}						css:.media--image__caption
+${Txt_Gallery_Image_Caption}						css:.image__caption
 ${Txt_LiftupWithImage_Title}						css:.liftup-with-image__title
 ${Txt_ListOfLinks_Title}							css:.list-of-links__title
 ${Txt_ListOfLinks_Link}								css:.list-of-links__item__title

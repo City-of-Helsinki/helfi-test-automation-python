@@ -228,7 +228,6 @@ Page Content Matches Language
 	# CONTENT FETCH FOR VALIDATIONS
     IF  '${TEST NAME}'=='Accordion'
         Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Accordion_View}
-		# TODO: Add check to accordion content after opening it
     END
     IF    (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
     	${Title}=  Return Title From Page
