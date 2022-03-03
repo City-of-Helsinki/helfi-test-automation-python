@@ -194,7 +194,7 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	${pgrapher}=  Get From List  ${content}   2
 	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/${name}.jpg
 	Wait Until Keyword Succeeds  6x  300ms  Input Text    ${Inp_Pic_Name}   ${pictitle}
-	Input Text    ${Inp_Pic_AltText}   ${picdescription} 
+	Input Text    ${Inp_Pic_AltText}   ${picdescription}
 	Input Text    ${Inp_Pic_Photographer}   ${pgrapher}
 	Run Keyword If  '${language}'=='fi'   Click Button   ${Btn_Save}
 	Run Keyword If  '${language}'=='en'   Click Button   ${Btn_Save_En}
@@ -233,9 +233,12 @@ Page Content Matches Language
     	${Title}=  Return Title From Page
     END
     IF   not(${islandingpage})
+    	${Lead-in}=    Return Lead-in From Page
+    END
+    IF   (${islandingpage} & (not('${TEST NAME}'=='Columns')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='ListOfLinks'))) | ('${TEST NAME}'=='Accordion')
     	${Description}=    Return Description From Page
-    END		
-    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks'))
+    END
+    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Accordion'))
     	${Content}=  Add_From_Library.Return Content From Page
     END
     IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='ContentCards')
@@ -244,23 +247,20 @@ Page Content Matches Language
     IF  	('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
     	${Piccaption}=   Return Picture Caption From Page
     END
-    IF  	(not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
-    	Title Should Match Current Language Selection   ${Title}
-    END
 
 	# CONTENT VALIDATIONS
-    IF   (${islandingpage}) & ('${TEST NAME}'=='Gallery')
-    	  Description Should Match Current Language Selection   ${Description}
-    ELSE IF   (${islandingpage}) & ('${TEST NAME}'=='Banner')
-    	Description Should Match Current Language Selection   ${Content}
-	ELSE IF   (${islandingpage}) & ('${TEST NAME}'=='LiftupWithImage')
-    	Description Should Match Current Language Selection   ${Content}    	
-    ELSE IF   not(${islandingpage})
+	IF  (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
+    	Title Should Match Current Language Selection   ${Title}
+    END
+    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Columns')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='ListOfLinks'))) | ('${TEST NAME}'=='Accordion')
     	Description Should Match Current Language Selection   ${Description}
+    END
+    IF   not(${islandingpage})
+    	Lead-in Should Match Current Language Selection   ${Lead-in}
     END
     IF   ${islandingpage} & ('${TEST NAME}'=='Columns')
     	  Content Should Match Current Language Selection   ${Content}
-    ELSE IF   (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Banner'))
+    ELSE IF   (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Accordion'))
     	  Content Should Match Current Language Selection   ${Content}
     END
     
@@ -289,8 +289,11 @@ Return Title From Page
 	[Return]		${title}
 
 Return Description From Page
-	[Documentation]  Description (lead-in) field ONLY in Page -content
-	${description}=	Get Text    ${Txt_Leadin_Content}
+	IF   (not('${TEST NAME}'=='Accordion'))
+		${description}=	   Get Text    ${Txt_Description}
+	ELSE
+		${description}=	   Get Text    ${Txt_Component_Description}
+	END
 	[Return]		${description}
 
 Return Content From Page

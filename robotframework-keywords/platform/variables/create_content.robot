@@ -83,7 +83,9 @@ ${Opt_Link_Framed}				css:[value=secondary]
 ${Opt_Link_Transparent}			css:[value=supplementary]
 ${Ddn_Icon} 							//select[contains(@data-drupal-selector, 'subform-field-icon')]
 ${Txt_Title}								css:.component__title
-${Txt_Content}								css:p
+${Txt_Content}								css:div[class$="__content"] > p
+${Txt_Description}							css:div[class$="__desc"] > p
+${Txt_Component_Description}				css:div[class$="__description"] > p
 ${Swh_TOC}									id:edit-toc-enabled-value
 
 #HERO

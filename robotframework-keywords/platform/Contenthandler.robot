@@ -223,7 +223,8 @@ Log In
 	Wait Until Keyword Succeeds  5x  200ms  Accept Cookies
 	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
-	Click Button   id:edit-submit
+	Run Keyword And Ignore Error   Accept Cookies
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   id:edit-submit
 
 Open Content In Non CI Environments
 	[Documentation]   Goes to content view of created content through content list page (since local environment errors prevent
@@ -418,11 +419,20 @@ Title Should Match Current Language Selection
 	Run Keyword If  '${language}'=='en'  Should Match Regexp   ${string}   Emily Bronte: Wuthering Heights
 	Run Keyword If  '${language}'=='sv'  Should Match Regexp   ${string}   Selma Lagerlof: Bannlyst  
 
-Description Should Match Current Language Selection
+Lead-In Should Match Current Language Selection
 	[Arguments]   ${string}
 	Run Keyword If  '${language}'=='fi'  Should Match Regexp  ${string}   "Rautatie" on Juhani Ahon
 	Run Keyword If  '${language}'=='en'  Should Match Regexp  ${string}   In the late winter months
 	Run Keyword If  '${language}'=='sv'  Should Match Regexp  ${string}   Sven Elversson var nära att dö under en nordpolsexpedtion
+
+Description Should Match Current Language Selection
+	[Arguments]   ${string}
+	Run Keyword If  ('${language}'=='fi') & ('${TEST NAME}'=='Accordion')  Should Match Regexp  ${string}   Sitä Matti ajatteli, mitä rovastin ja ruustinnan
+	Run Keyword If  ('${language}'=='fi') & (not('${TEST NAME}'=='Accordion'))   Should Match Regexp  ${string}   "Rautatie" on Juhani Ahon
+	Run Keyword If  ('${language}'=='en') & ('${TEST NAME}'=='Accordion')  Should Match Regexp  ${string}   “It is not,” retorted she
+	Run Keyword If  ('${language}'=='en') & (not('${TEST NAME}'=='Accordion'))  Should Match Regexp  ${string}   In the late winter months
+	Run Keyword If  ('${language}'=='sv') & ('${TEST NAME}'=='Accordion')  Should Match Regexp  ${string}   På Grimön i den västra	
+	Run Keyword If  ('${language}'=='sv') & (not('${TEST NAME}'=='Accordion'))  Should Match Regexp  ${string}   Sven Elversson var nära att dö under en nordpolsexpedtion
 
 Content Should Match Current Language Selection
 	[Arguments]   ${string}
@@ -566,7 +576,8 @@ Set Shortened Suite Name
 	Set Suite Variable   ${SUITE}   ${modified}  
 	
 Compare Pictures And Handle PictureData
-	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}	
+	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}
+	Log   ${USEORIGINALNAME}	
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
 	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${movetolerance}
