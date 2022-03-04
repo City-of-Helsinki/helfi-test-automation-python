@@ -215,7 +215,7 @@ Log In
 	Input Password   id:edit-pass   Test_Automation
 	Run Keyword And Ignore Error   Accept Cookies
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   id:edit-submit
-	Wait Until Keyword Succeeds  5x  300ms  Element Should Not Be Visible   id:edit-submit
+	Wait Until Keyword Succeeds  7x  200ms  Element Should Not Be Visible   id:edit-submit
 	
 
 Open Content In Non CI Environments
