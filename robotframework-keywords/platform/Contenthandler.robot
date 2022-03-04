@@ -214,9 +214,11 @@ Log In
 	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
 	Run Keyword And Ignore Error   Accept Cookies
-	Wait Until Keyword Succeeds  5x  200ms  Click Button   id:edit-submit
-	Wait Until Keyword Succeeds  7x  200ms  Element Should Not Be Visible   id:edit-submit
-	
+	Wait Until Keyword Succeeds  7x  300ms  Log In User
+
+Log In User
+	Click Button   id:edit-submit
+	Wait Until Keyword Succeeds  7x  200ms  Element Should Not Be Visible   id:edit-submit	
 
 Open Content In Non CI Environments
 	[Documentation]   Goes to content view of created content through content list page (since local environment errors prevent
