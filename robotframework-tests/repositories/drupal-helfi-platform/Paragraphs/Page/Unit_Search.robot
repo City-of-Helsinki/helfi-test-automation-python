@@ -8,7 +8,6 @@ Force Tags		PAGE   UNITSEARCH
 
 Two Units
 	[Tags]   CRITICAL
-	Given Units Are Published
 	When User Goes To New Page -Site
 	And User Starts Creating UnitSearch Paragraph
 	And User Submits The New Page
@@ -18,11 +17,6 @@ Two Units
 	And Unit Address and Phone Data Is Correct
 
 *** Keywords ***
-
-Units Are Published
-	Publish Unit With Name   Lippulaivan kirjasto
-	Publish Unit With Name   Otaniemen kirjasto
-	
 User Starts Creating UnitSearch Paragraph
 	Create Unit Search Paragraph   Page
 	

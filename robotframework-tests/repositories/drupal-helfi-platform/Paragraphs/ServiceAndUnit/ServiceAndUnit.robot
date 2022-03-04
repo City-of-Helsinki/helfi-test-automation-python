@@ -1,9 +1,6 @@
 *** Settings ***
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Service.robot
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Unit.robot
-Documentation   For units and services used in these testcases to appear, about 50 units and services should be imported.
-...				Also following modules should be enabled/imported:
-...				tpr_config
 Test Setup      Login And Go To Content Page
 Test Teardown   Delete Banners And Do Other Teardown Actions	
 Force Tags		SERVICE   UNIT
@@ -18,7 +15,6 @@ Service
 #Unit With Service
 #	[Tags]
 #	[Documentation]   Currently no Units with Services are imported, thus disabling this case    
-#	Given Service Is Set as Published
 #	When User Opens Unit With Name Lippulaivan kirjasto
 #	Then Unit Contents Should Be Correct
 #	And Units Service Link Works Correctly
@@ -34,9 +30,6 @@ Unit With Color Palette
 
 User Submits The Unit Changes
 	Submit Unit Changes
-
-Service Is Set as Published
-	Publish Service With Name   Sosiaalineuvonta
 	
 User Opens Service With Name ${name}
 	Open Service With Name   ${name}

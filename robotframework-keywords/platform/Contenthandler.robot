@@ -121,16 +121,6 @@ Cleanup and Close Browser
     
     Run Keyword Unless  ${CI} | ${CI_LOCALTEST}   TearDown Test Paragraphs
     Run Keyword Unless  ${CI} | ${CI_LOCALTEST}   TearDown Media Content
-
-
-    
-    # in case of service/unit testcases
-    ${serviceispublished}=   Convert To Boolean   ${serviceispublished}
-    ${unitispublished}=   Convert To Boolean   ${unitispublished}
-    Run Keyword If  ${serviceispublished}  Set Service Back To Unpublished   Sosiaalineuvonta
-    Run Keyword If  '${TEST NAME}'=='Two Services'  Set Service Back To Unpublished   Parkletit
-    Run Keyword If  ${unitispublished}  Set Unit Back To Unpublished   Lippulaivan kirjasto
-    Run Keyword If  '${TEST NAME}'=='Two Units'  Set Unit Back To Unpublished   Otaniemen kirjasto
     Close Browser	
 
 TearDown Test Paragraphs

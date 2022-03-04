@@ -11,8 +11,9 @@ Create Unit Search Paragraph
 	Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_UnitSearch}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_UnitSearch_Title}
 	Sleep  1
-	Select From List By Index   ${Sel_UnitSearch_Units}   0
-	Select From List By Index   ${Sel_UnitSearch_Units}   1
+	#WE´LL USE HARDCODED INDEX VALUES SINCE THESE LIKELY WONT CHANGE IN CI
+	Select From List By Index   ${Sel_UnitSearch_Units}   0     
+	Select From List By Index   ${Sel_UnitSearch_Units}   2	    
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_UnitSearch_Content}   //body   ${TextFileContent}
 	

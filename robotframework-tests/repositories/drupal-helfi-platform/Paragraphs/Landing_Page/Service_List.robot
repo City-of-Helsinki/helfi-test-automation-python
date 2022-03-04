@@ -9,25 +9,17 @@ Force Tags		LANDINGPAGE   SERVICELIST
 
 One Service
 	[Tags]   CRITICAL
-	Given Service Is Published
 	When User Adds Content With Service List
 	Then Layout Should Not Have Changed
 	And ServiceList Paragraph Works Correctly
 
 Two Services
 	[Tags]
-	Given Services Are Published
 	When User Adds Content With Service List
 	Then Layout Should Not Have Changed
 	And ServiceList Paragraph Works Correctly
 	
 *** Keywords ***
-
-Service Is Published	Publish Service With Name   Parkletit
-Services Are Published	
-	Publish Service With Name   Sosiaalineuvonta
-	Publish Service With Name   Parkletit
-	
 User Adds Content With Service List
 	Go To New LandingPage Site
 	Add ServiceList   LandingPage
