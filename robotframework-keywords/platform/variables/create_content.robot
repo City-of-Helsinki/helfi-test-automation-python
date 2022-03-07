@@ -225,6 +225,12 @@ ${Btn_RemoteVideo_Confirm}							css:div.ui-dialog-buttonset.form-actions > butt
 													
 ${Itm_Video}										css:div.responsive-video-container > iframe
 ${Itm_Video2}  										(//div[contains(@class,'responsive-video-container')])[last()] >> css:div > div > iframe
+${Itm_Video_Description}							(//div[contains(@class,'remote-video-video-desc')][contains(@class, 'cke')])[last()] >> css:div > div > iframe
+${Itm_Video_Title}									//input[contains(@name, 'remote_video_video_title')]
+
+${Video_Title}										//h3[contains(@class, 'remote-video__video-title')]
+${Video_Description}								//div[contains(@class, 'remote-video__video-desc')]
+
 
 # ADD FROM LIBRARY
 ${Inp_Paragraph_Title}								name:label[0][value]

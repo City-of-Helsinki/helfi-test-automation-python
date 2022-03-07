@@ -3,6 +3,10 @@
 Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
 
+*** Variables ***  
+${title}						Helsinki-apu ikääntyneiden helsinkiläisten avuksi					
+${description}					Helsinki-avussa varmistetaan, että ikääntyneet helsinkiläiset saavat keskusteluavun lisäksi apua arjen tärkeiden asioiden hoitamiseen
+
 *** Keywords ***
 
 Create ${pagetype} With ${number} Remote Video(s) Content
@@ -23,12 +27,22 @@ Add Remote Video
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
     Sleep  1		#SMALL SLEEP DUE ISSUES IN CONTENT LOADING
     Wait Until Keyword Succeeds  6x  1s  Confirm Video Selection
+    Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Itm_Video_Description}  //body  ${description}
+    Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Itm_Video_Title}   ${title}
+    
+    
     Set Test Variable  ${mediaadded}    ${mediaadded}+1
 
 Confirm Video Selection
     Click Button  ${Btn_RemoteVideo_Confirm}
     Wait Until Keyword Succeeds  7x  400ms   Element Should Not Be Visible   ${Btn_RemoteVideo_Confirm}
   
+Remote Video Title And Description is Correct
+	${actual_title}=  Get Text   ${Video_Title}
+	${actual_desciption}=  Get Text   ${Video_Description}
+	Should Be Equal   ${title}     ${actual_title}
+	Should Be Equal   ${description}     ${actual_desciption}
+	
   
 Remote Video Play Begins Correctly
 	Wait Until Element Is Visible  ${Itm_Video}

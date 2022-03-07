@@ -12,6 +12,7 @@ One Video
 	And User Adds Content With 1 Remote Video(s)
 	When User Submits The New LandingPage
 	Then Layout Should Not Have Changed
+	And Remote Video Title And Description is Correct
 #	And Remote Video Play Begins Correctly      #DISABLED DUE ERROR IN PICTURE DIMENSIONS, TRY SELECTING FRAMES IF FIXES IT
 
 Two Videos
