@@ -465,7 +465,7 @@ Rename Picture With New Name
 	...				  maintenance of comparison pictures
 	[Arguments]   ${originalpic}   ${comparisonpic}
 	${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/   
-	Move File   ${comparisonpic}   ${REPORTS_PATH}/${newname}
+	Move File   ${REPORTS_PATH}/${comparisonpic}   ${REPORTS_PATH}/${newname}
 
 Select Icon With Name
 	[Arguments]   ${icon_name}
@@ -571,7 +571,6 @@ Set Shortened Suite Name
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}
-	Log   ${USEORIGINALNAME}	
 	Run Keyword If   ${USEORIGINALNAME}   Rename Picture With New Name   ${originalpic}   ${comparisonpic}
 	Run Keyword If   ${PICCOMPARE}   Copy Original Screenshot To Reports Folder   ${originalpic}
 	Run Keyword If   ${PICCOMPARE}   Compared Pictures Match   ${originalpic}    ${comparisonpic}   ${movetolerance}
