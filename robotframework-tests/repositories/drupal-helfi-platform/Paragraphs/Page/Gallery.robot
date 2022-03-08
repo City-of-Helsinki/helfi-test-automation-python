@@ -10,7 +10,6 @@ Force Tags		PAGE   GALLERY
 Browse Gallery Images
 	[Tags]   CRITICAL
 	Given User Goes To New Page -Site
-	Fail
 	And User Starts Creating Page With Gallery
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
