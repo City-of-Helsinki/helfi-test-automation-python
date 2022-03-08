@@ -18,7 +18,7 @@ Debug Error
 	Maximize Browser Window   
 	Execute javascript  document.body.style.zoom="30%"
 	Run Keyword Unless   ${CI}  Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
-	Run Keyword If   ${CI}   Capture Page Screenshot    filename=robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png   
+	Run Keyword If   ${CI}   Capture Page Screenshot    filename=robotframework-reports/debugs/${SUITE NAME}-${TEST NAME}_error_zoomout.png   
 	Execute javascript  document.body.style.zoom="100%"
 	${source}=   Get Source
 	Run Keyword Unless   ${CI}  Create File  ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}
