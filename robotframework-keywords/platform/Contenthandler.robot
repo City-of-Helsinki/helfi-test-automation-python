@@ -464,8 +464,12 @@ Rename Picture With New Name
 	[Documentation]   Idea is to Replace Reports file picture with new name in order to help in 
 	...				  maintenance of comparison pictures
 	[Arguments]   ${originalpic}   ${comparisonpic}
-	${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/   
-	Move File   ${REPORTS_PATH}/${comparisonpic}   ${REPORTS_PATH}/${newname}
+	${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/
+	IF    ${CI}
+		   Move File   ${comparisonpic}   ${newname}
+	ELSE   
+		   Move File   ${REPORTS_PATH}/${comparisonpic}   ${REPORTS_PATH}/${newname}
+	END
 
 Select Icon With Name
 	[Arguments]   ${icon_name}
