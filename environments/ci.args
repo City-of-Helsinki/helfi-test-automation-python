@@ -1,4 +1,3 @@
---variable BASE_URL:varnish-helfi-kymp.docker.so
 --variable BROWSER:headlesschrome
 --variable PROTOCOL:https
 --variable PICCOMPARE:$false
