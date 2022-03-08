@@ -120,7 +120,7 @@ Add ${style} Link In Text Editor
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Hero_Link_Texteditor_URL}   https://fi.wikipedia.org/wiki/Rautatie_(romaani)    
 	Input Text   ${Inp_Hero_Link_Texteditor_Title}    ${link_title_${language}}
 	Wait Until Element Is Visible   ${Ddn_Hero_Link_Texteditor_Design}   timeout=3
-	Click Element  ${Ddn_Hero_Link_Texteditor_Design}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Ddn_Hero_Link_Texteditor_Design}
 	
 	Run Keyword If  '${style}'=='Fullcolor'  Click Element   ${Opt_Hero_Link_Texteditor_ButtonFullcolor}
 	Run Keyword If  '${style}'=='Framed'  Click Element   ${Opt_Hero_Link_Texteditor_ButtonFramed}
