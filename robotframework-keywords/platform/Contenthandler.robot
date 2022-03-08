@@ -466,7 +466,7 @@ Rename Picture With New Name
 	[Arguments]   ${originalpic}   ${comparisonpic}
 	${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/
 	IF    ${CI}
-		   Move File   ${comparisonpic}   ${newname}
+		   Move File   robotframework-reports/${comparisonpic}   robotframework-reports/${newname}
 	ELSE   
 		   Move File   ${REPORTS_PATH}/${comparisonpic}   ${REPORTS_PATH}/${newname}
 	END
