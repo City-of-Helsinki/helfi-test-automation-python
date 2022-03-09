@@ -1,6 +1,5 @@
 --variable BROWSER:headlesschrome
 --variable PROTOCOL:https
---variable PICCOMPARE:$false
 --variable CI:$true
 --variable CI_LOCALTEST:$false
 --variable DEBUG:$true
