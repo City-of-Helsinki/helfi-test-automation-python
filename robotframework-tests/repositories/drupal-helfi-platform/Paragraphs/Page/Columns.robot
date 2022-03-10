@@ -73,7 +73,7 @@ Finnish English Swedish Translations
 	And Page Should Have Swedish Translation
 
 
-50-50 With Sidebar Text
+50-50 with sidebar text
 	[Tags]  CRITICAL   SIDEBAR
 	Given User Goes To New Page -Site
 	And User Starts Creating Page With 50-50 Division And Text Content
@@ -83,7 +83,7 @@ Finnish English Swedish Translations
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
 
-50-50 With Sidebar Content From Library
+50-50 with sidebar content from library
 	[Tags]  SIDEBAR
 	Given User Creates New SidebarText Paragraphs To Library
 	Given User Goes To New Page -Site
