@@ -102,13 +102,7 @@ Picture on ${side} Has Original Aspect Ratio Enabled
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Columns.Take Screenshot Of Content
-	${contenttype}=  Convert To Lower Case   ${contenttype}
-	${originalpic} =  Set Variable If  
-	...  '${contenttype}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_COLUMNS_${division}_picture_${picsize}_${BROWSER}.png
-	...  '${contenttype}'=='mixed'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_COLUMNS_${division}_left_${content1}_right_${content2}_${picsize}_${BROWSER}.png
-	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_COLUMNS_${division}_text_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures
 
 Page Should Have ${lang_input} Translation
 	Set Language Pointer   ${lang_input}

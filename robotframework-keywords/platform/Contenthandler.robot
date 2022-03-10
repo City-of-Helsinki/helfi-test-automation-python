@@ -572,6 +572,11 @@ Set Shortened Suite Name
 	${suitesplitted}=  Split String   ${SUITE NAME}   separator=.Repositories.
 	${modified}=   Get From List  ${suitesplitted}  -1
 	Set Suite Variable   ${SUITE}   ${modified}  
+
+Compare Two Pictures
+	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_${TEST NAME}_${BROWSER}.png
+	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}
