@@ -9,7 +9,7 @@ Force Tags		LANDINGPAGE   COLUMNS
 
 
 *** Test Cases ***
-50-50
+Landingpage-50-50
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Page With 50-50 Division And Text Content
@@ -18,7 +18,7 @@ Force Tags		LANDINGPAGE   COLUMNS
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 	
-30-70
+Landingpage-30-70
 	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Page With 30-70 Division And Text Content
@@ -27,7 +27,7 @@ Force Tags		LANDINGPAGE   COLUMNS
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-70-30
+Landingpage-70-30
 	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Page With 70-30 Division And Text Content
@@ -36,7 +36,7 @@ Force Tags		LANDINGPAGE   COLUMNS
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-50-50 with picture
+Landingpage-50-50 with picture
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Page With 50-50 Division And Picture Content
@@ -45,7 +45,7 @@ Force Tags		LANDINGPAGE   COLUMNS
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-50-50 with picture and text
+Landingpage-50-50 with picture and text
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Page With 50-50 Division And Mixed Content
@@ -54,7 +54,7 @@ Force Tags		LANDINGPAGE   COLUMNS
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 
-70-30 with original size picture and text
+Landingpage-70-30 with original size picture and text
 	[Tags]   CRITICAL
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Page With 70-30 Division And Mixed Content
