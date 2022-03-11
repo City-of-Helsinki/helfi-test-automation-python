@@ -7,7 +7,7 @@ Force Tags		PAGE   REMOTEVIDEO
 *** Test Cases ***
 
 One Video
-	[Tags]   CRITICAL
+	[Tags]   CRITICAL   TODO
 	Given User Goes To New Page -Site
 	And User Adds Content With 1 Remote Video(s)
 	When User Submits The New Page
@@ -33,7 +33,4 @@ User Submits The New Page
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Remote_Video.Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_REMOTEVIDEO_${number}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Run Keyword Unless  '${TEST NAME}'=='Two Videos'   Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
-	Run Keyword If  '${TEST NAME}'=='Two Videos'	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures

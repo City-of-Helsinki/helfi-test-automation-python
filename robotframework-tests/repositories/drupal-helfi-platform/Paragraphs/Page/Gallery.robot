@@ -26,6 +26,4 @@ User Starts Creating Page With Gallery  Create Page With Gallery
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Gallery.Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_GALLERY_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures

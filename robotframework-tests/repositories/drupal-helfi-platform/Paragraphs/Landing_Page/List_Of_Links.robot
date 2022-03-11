@@ -48,6 +48,4 @@ List Of Links Should Work Correctly
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_LISTOFLINKS_${style}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures

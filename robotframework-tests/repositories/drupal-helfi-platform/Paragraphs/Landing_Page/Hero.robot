@@ -216,13 +216,7 @@ Page Content Matches Language
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Take Screenshot Of Content
-	${originalpic} =  Set Variable If
-...  '${picalign}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${picalign}_vaakuna_${picture}_${BROWSER}.png
-...  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_vaakuna_nopicture_${linkstyle}link_${BROWSER}.png
-...  '${color}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_${color}_nopicture_${BROWSER}.png
-...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${value}_vaakuna_nopicture_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData	  ${originalpic}   ${comparisonpic}
+	Compare Two Pictures
 	
 
 	
