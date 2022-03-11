@@ -13,7 +13,7 @@ Create ${pagetype} With ${number} Remote Video(s) Content
 	Set Test Variable   ${number}   ${number}
 	Input Non-paragraph Related Content   ${pagetype}
     Add Remote Video
-    Run Keyword If  '${TEST NAME}'=='Two Videos'   Add Remote Video   https://www.youtube.com/watch?v=3HPuT7A0O8c
+    Run Keyword If  ('${TEST NAME}'=='Two Videos') | ('${TEST NAME}'=='Landingpage-Two Videos')    Add Remote Video   https://www.youtube.com/watch?v=3HPuT7A0O8c
 
 	
 Add Remote Video
@@ -53,7 +53,7 @@ Remote Video Play Begins Correctly
 	${videoend} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${videostart}   ${videoend}
 	#VIDEO2
-	Run Keyword If  '${TEST NAME}'=='Two Videos'   Video 2 Plays Correctly
+	Run Keyword If  ('${TEST NAME}'=='Two Videos') | ('${TEST NAME}'=='Landingpage-Two Videos')   Video 2 Plays Correctly
 
 
 Video 2 Plays Correctly

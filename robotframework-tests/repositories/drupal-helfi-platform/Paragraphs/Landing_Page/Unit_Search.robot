@@ -6,7 +6,7 @@ Force Tags		LANDINGPAGE   UNITSEARCH
 
 *** Test Cases ***
 
-Two Units
+Landingpage-Two Units
 	[Tags]   CRITICAL
 	When User Goes To New LandingPage -Site
 	And User Starts Creating UnitSearch Paragraph

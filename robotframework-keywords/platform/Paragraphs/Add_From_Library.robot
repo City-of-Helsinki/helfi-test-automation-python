@@ -208,13 +208,13 @@ Open Add Picture
 	[Arguments]   ${number}
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Element Is Visible   ${Btn_Paragraph_Gallery_Picture}${number-1}-subform   timeout=4
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Element Is Visible   ${Btn_Paragraph_Image_Picture}   timeout=4
-	Run Keyword If  '${TEST NAME}'=='LiftupWithImage'  Wait Until Element Is Visible   ${Btn_Paragraph_LiftupWithImage_Picture}   timeout=4
-	Run Keyword If  '${TEST NAME}'=='ListOfLinks'  Wait Until Element Is Visible   ${Btn_Paragraph_ListOfLinks_Picture}   timeout=4
+	Run Keyword If  ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='Landingpage-LiftupWithImage')  Wait Until Element Is Visible   ${Btn_Paragraph_LiftupWithImage_Picture}   timeout=4
+	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Wait Until Element Is Visible   ${Btn_Paragraph_ListOfLinks_Picture}   timeout=4
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Gallery_Picture}${number-1}-subform
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Image_Picture}
-	Run Keyword If  '${TEST NAME}'=='LiftupWithImage'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_LiftupWithImage_Picture}
-	Run Keyword If  '${TEST NAME}'=='ListOfLinks'  Execute javascript  window.scrollTo(0, 800)
-	Run Keyword If  '${TEST NAME}'=='ListOfLinks'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_ListOfLinks_Picture}
+	Run Keyword If  ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='Landingpage-LiftupWithImage')  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_LiftupWithImage_Picture}
+	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Execute javascript  window.scrollTo(0, 800)
+	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_ListOfLinks_Picture}
 	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 Page Should Have ${lang_input} Translation
@@ -235,13 +235,13 @@ Page Content Matches Language
     IF   not(${islandingpage})
     	${Lead-in}=    Return Lead-in From Page
     END
-    IF   (${islandingpage} & (not('${TEST NAME}'=='Columns')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='ListOfLinks'))) | ('${TEST NAME}'=='Accordion')
+    IF   (${islandingpage} & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Landingpage-Accordion')
     	${Description}=    Return Description From Page
     END
-    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Accordion'))
+    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Landingpage-LiftupWithImage')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Landingpage-Banner')) & (not('${TEST NAME}'=='Accordion'))
     	${Content}=  Add_From_Library.Return Content From Page
     END
-    IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='ContentCards')
+    IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')
     	${Linktext}=  Return Link Text From Page
     END
     IF  	('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
@@ -252,19 +252,19 @@ Page Content Matches Language
 	IF  (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
     	Title Should Match Current Language Selection   ${Title}
     END
-    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Columns')) & (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='ListOfLinks'))) | ('${TEST NAME}'=='Accordion')
+    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Accordion')
     	Description Should Match Current Language Selection   ${Description}
     END
     IF   not(${islandingpage})
     	Lead-in Should Match Current Language Selection   ${Lead-in}
     END
-    IF   ${islandingpage} & ('${TEST NAME}'=='Columns')
+    IF   ${islandingpage} & ('${TEST NAME}'=='Landingpage-Columns')
     	  Content Should Match Current Language Selection   ${Content}
-    ELSE IF   (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Accordion'))
+    ELSE IF   (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Landingpage-LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Landingpage-Banner')) & (not('${TEST NAME}'=='Accordion'))
     	  Content Should Match Current Language Selection   ${Content}
     END
     
-    IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='ContentCards')
+    IF  ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')
     	  LinkText Is Correct   ${Linktext}
     END
     IF   ('${TEST NAME}'=='Gallery') | ('${TEST NAME}'=='Picture')
@@ -274,16 +274,16 @@ Page Content Matches Language
 Return Title From Page
 	IF    '${TEST NAME}'=='Columns'
         ${title}=   Get Text    ${Txt_Title}
-    ELSE IF    '${TEST NAME}'=='Banner'
+    ELSE IF    ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner')
         ${title}=   Get Text    ${Txt_Banner_Title}
     ELSE IF    '${TEST NAME}'=='Accordion'
     	Wait Until Element Is Visible   ${Txt_Accordion_Title}
     	${title}=   Get Text    ${Txt_Accordion_Title}
-    ELSE IF  '${TEST NAME}'=='ContentCards'
+    ELSE IF  ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')
     	${title}=   Get Text    ${Txt_ContentCards_Title}
-    ELSE IF  '${TEST NAME}'=='LiftupWithImage'	
+    ELSE IF  ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='Landingpage-LiftupWithImage')	
     	${title}=   Get Text    ${Txt_LiftupWithImage_Title}
-    ELSE IF  '${TEST NAME}'=='ListOfLinks'	
+    ELSE IF  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')	
     	${title}=   Get Text    ${Txt_Title}
     END
 	[Return]		${title}
@@ -304,11 +304,11 @@ Return Content From Page
 	[Return]		${content}
 	
 Return Link Text From Page
-	IF    '${TEST NAME}'=='Banner'
+	IF    ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner')
 		${linktxt}=	 Get Text    ${Txt_Banner_Link}
-	ELSE IF   '${TEST NAME}'=='ListOfLinks'
+	ELSE IF   ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')
 		${linktxt}=	 Get Text    ${Txt_ListOfLinks_Link}
-	ELSE IF    '${TEST NAME}'=='ContentCards'
+	ELSE IF    ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')
 		${linktxt}=	 Get Text    ${Txt_ContentCards_Link}
 	END
 	[Return]		${linktxt}
@@ -324,12 +324,12 @@ Picture Caption Is Correct
 LinkText Is Correct
 	[Arguments]   ${linktext}
 	${linktext}=  Replace Encoded Characters From String   ${linktext}   ${EMPTY}    UTF-8    \\xc2\\xad
-	IF    '${TEST NAME}'=='Banner'
+	IF    ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner')
 		Should Match    ${linktext}    Test Automation Banner Link
-	ELSE IF   '${TEST NAME}'=='ListOfLinks'
+	ELSE IF   ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')
 		Should Match    ${linktext}    Linkkiesimerkit
-	ELSE IF   ('${TEST NAME}'=='ContentCards') & ('${language}'=='fi')
+	ELSE IF   (('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')) & ('${language}'=='fi')
 		Should Match    ${linktext}    Esimerkkisivu
-	ELSE IF   ('${TEST NAME}'=='ContentCards') & ('${language}'=='en')
+	ELSE IF   (('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')) & ('${language}'=='en')
 		Should Match    ${linktext}    Link examples
 	END

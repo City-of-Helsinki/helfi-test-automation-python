@@ -6,7 +6,7 @@ Force Tags		LANDINGPAGE   REMOTEVIDEO
 
 *** Test Cases ***
 
-One Video
+Landingpage-One Video
 	[Tags]   CRITICAL
 	Given User Goes To New LandingPage -Site
 	And User Adds Content With 1 Remote Video(s)
@@ -15,7 +15,7 @@ One Video
 	And Remote Video Title And Description is Correct
 #	And Remote Video Play Begins Correctly      #DISABLED DUE ERROR IN PICTURE DIMENSIONS, TRY SELECTING FRAMES IF FIXES IT
 
-Two Videos
+Landingpage-Two Videos
 	[Tags]
 	Given User Goes To New LandingPage -Site
 	And User Adds Content With 2 Remote Video(s)
@@ -36,5 +36,5 @@ Layout Should Not Have Changed
 	Remote_Video.Take Screenshot Of Content
 	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_REMOTEVIDEO_${number}_${BROWSER}.png
 	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Run Keyword Unless  '${TEST NAME}'=='Two Videos'   Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
-	Run Keyword If  '${TEST NAME}'=='Two Videos'	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Run Keyword Unless  '${TEST NAME}'=='Landingpage-Two Videos'   Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Run Keyword If  '${TEST NAME}'=='Landingpage-Two Videos'	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
