@@ -252,7 +252,7 @@ Page Content Matches Language
 	IF  (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
     	Title Should Match Current Language Selection   ${Title}
     END
-    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Accordion')
+    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Landingpage-Accordion')
     	Description Should Match Current Language Selection   ${Description}
     END
     IF   not(${islandingpage})
@@ -272,7 +272,7 @@ Page Content Matches Language
     END
 		
 Return Title From Page
-	IF    '${TEST NAME}'=='Columns'
+	IF    ('${TEST NAME}'=='Columns') | ('${TEST NAME}'=='Landingpage-Columns')
         ${title}=   Get Text    ${Txt_Title}
     ELSE IF    ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner')
         ${title}=   Get Text    ${Txt_Banner_Title}

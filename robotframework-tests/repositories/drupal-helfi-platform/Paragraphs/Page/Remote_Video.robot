@@ -7,7 +7,7 @@ Force Tags		PAGE   REMOTEVIDEO
 *** Test Cases ***
 
 One Video
-	[Tags]   CRITICAL   TODO
+	[Tags]   CRITICAL
 	Given User Goes To New Page -Site
 	And User Adds Content With 1 Remote Video(s)
 	When User Submits The New Page

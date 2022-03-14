@@ -14,7 +14,7 @@ Create ${pagetype} With List Of Links ${style}
 	Input Text  ${Inp_ListOfLinks_Link_Title}   Link Examples
 	Click Element   ${Swh_ListOfLinks_Link_OpenInNewTab}
 	Run Keyword If   ('${TEST NAME}'=='With Picture') | ('${TEST NAME}'=='Landingpage-With Picture')   Add Picture To Link   train
-	...   ELSE IF   ('${TEST NAME}'!='Without Picture And Description') | ('${TEST NAME}'!='Landingpage-Without Picture And Description')   Wait Until Keyword Succeeds  5x  200ms   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
+	...   ELSE IF   ('${TEST NAME}'!='Without Picture And Description') & ('${TEST NAME}'!='Landingpage-Without Picture And Description')   Wait Until Keyword Succeeds  5x  200ms   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
 	
 	
 Add Picture To Link
@@ -45,7 +45,7 @@ Add Second Link For Content
 	Wait Until Keyword Succeeds  5x  300ms  Input Text   ${Inp_ListOfLinks_Link_Uri}   /fi/esimerkkisivu
 	Wait Until Keyword Succeeds  5x  300ms  Input Text   ${Inp_ListOfLinks_Link_Title}   Esimerkkisivu
 	Run Keyword If   ('${TEST NAME}'=='With Picture') | ('${TEST NAME}'=='Landingpage-With Picture')   Add Picture To Link    tulips
-	...   ELSE IF  ('${TEST NAME}'!='Without Picture And Description') | ('${TEST NAME}'!='Landingpage-Without Picture And Description')    Input Text    ${Inp_ListOfLinks_Link_Description}    Klikkaa tästä siirtyäksesi
+	...   ELSE IF  ('${TEST NAME}'!='Without Picture And Description') & ('${TEST NAME}'!='Landingpage-Without Picture And Description')    Input Text    ${Inp_ListOfLinks_Link_Description}    Klikkaa tästä siirtyäksesi
 	
 	
 		
