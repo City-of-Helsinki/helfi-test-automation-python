@@ -16,7 +16,7 @@ In order to work with this robot framework repo locally, you need:
 
     needed for running the testcases
 
-**5)**  [DoctestLibrary](https://pypi.org/project/robotframework-doctestlibrary/) Installed.  
+**5)**  [Roboteyes](https://github.com/jz-jess/RobotEyes) Installed.  
 
     needed for picture compare assertions
 
@@ -28,13 +28,13 @@ Currently used (6/2021) versions are:
 
     Robot Framework 4.0.2
     Seleniumlibrary 5.1.3
-    Doctestlibrary  0.1.2
+    Doctestlibrary  1.5.0
      
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
 
-            robot -i DEMO -A ./environments/local.args -d robotframework-reports .
-which will run all tests with DEMO tag. Other arguments are:
+            robot -i GALLERY -A ./environments/local.args -d robotframework-reports .
+which will run all tests with GALLERY tag. Other arguments are:
 - Argument file for setting up some variables related to local environment (**optional**)
 - Report folder for run logs (related to project folder root)  (**optional**)
   
