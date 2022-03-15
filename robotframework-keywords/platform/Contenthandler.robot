@@ -211,10 +211,13 @@ Open Created Content
 	  
 Log In
 	Wait Until Keyword Succeeds  5x  200ms  Accept Cookies
+	Wait Until Keyword Succeeds  7x  300ms  Input Credentials And Log In
+
+Input Credentials And Log In
 	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
 	Run Keyword And Ignore Error   Accept Cookies
-	Wait Until Keyword Succeeds  7x  300ms  Log In User
+	Wait Until Keyword Succeeds  3x  600ms  Log In User
 
 Log In User
 	Click Button   id:edit-submit
