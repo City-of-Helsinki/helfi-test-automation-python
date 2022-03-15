@@ -577,7 +577,12 @@ Set Shortened Suite Name
 	Set Suite Variable   ${SUITE}   ${modified}  
 
 Compare Two Pictures
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_${TEST NAME}_${BROWSER}.png
+	IF  ${CI}   
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/ci/${language}_${TEST NAME}_${BROWSER}.png
+	ELSE
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_${TEST NAME}_${BROWSER}.png
+	END
+	
 	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
 	
