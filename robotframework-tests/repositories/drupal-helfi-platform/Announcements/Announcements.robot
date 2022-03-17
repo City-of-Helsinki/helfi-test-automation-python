@@ -130,5 +130,5 @@ Announcement Layout For ${type} Should Be Correct For Checked Content
 
 ${type} Announcement Layout Is Corrent
 		Scroll Element Into View   css:div.announcement__content
-        Capture Element Screenshot   css:div.announcement__content    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
+        Capture Element Screenshot   css:div.announcement__content    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
         Compare Two Pictures

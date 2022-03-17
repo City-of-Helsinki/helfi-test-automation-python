@@ -75,10 +75,10 @@ Input Lead
 	Input Text  ${Inp_Lead}   ${lead} 
 
 Capture Screenshot For Picture Comparison
-	Open Eyes   lib=Seleniumlibrary
+	#Open Eyes   lib=Seleniumlibrary
 	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
 	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
-	Open Eyes   lib=none
+	#Open Eyes   lib=none
 
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
@@ -253,6 +253,7 @@ Set Language Pointer
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
 	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
+	#Open Eyes   SeleniumLibrary
     Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
      
 
@@ -448,6 +449,7 @@ Login And Go To Content Page
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
+	Run Keyword If   ${PICCOMPARE}   Open Eyes   SeleniumLibrary
 
 Set CI Arguments And Open Browser
 	${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
