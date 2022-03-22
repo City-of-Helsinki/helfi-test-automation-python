@@ -75,10 +75,11 @@ Input Lead
 	Input Text  ${Inp_Lead}   ${lead} 
 
 Capture Screenshot For Picture Comparison
-	#Open Eyes   lib=Seleniumlibrary
-	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
-	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
-	#Open Eyes   lib=none
+	[Arguments]   ${blur}=${EMPTY}    ${redact}=${EMPTY}
+	[Documentation]  See   https://github.com/jz-jess/RobotEyes
+	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+
 
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
@@ -579,6 +580,7 @@ Set Shortened Suite Name
 	Set Suite Variable   ${SUITE}   ${modified}  
 
 Compare Two Pictures
+	[Arguments]   ${movetolerance}=${EMPTY}
 	IF  ${CI}   
 		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/ci/${language}_${TEST NAME}_${BROWSER}.png
 	ELSE
@@ -586,7 +588,7 @@ Compare Two Pictures
 	END
 	
 	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}   ${movetolerance}
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}

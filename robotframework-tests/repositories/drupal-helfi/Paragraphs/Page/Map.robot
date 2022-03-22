@@ -38,8 +38,5 @@ User Adds Map Using ${source} Map Location
     END 
 	 
 Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	${ispalvelukartta}=  URL Contains Text   palvelukartta
-	Run Keyword If   ${ispalvelukartta}	  Allow Palvelukartta Cookies
-	Take Screenshot Of Content
-	Compare Two Pictures
+	Page Should Contain Element   css:.component__container
+	Page Should Contain Link   Avaa kartta uuteen ikkunaan
