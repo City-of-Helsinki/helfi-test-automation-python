@@ -49,7 +49,7 @@ Use Original Aspect Ratio on ${side}
 
 Take Screenshot Of Content
 	Maximize Browser Window
-	Run Keyword If   ${PICCOMPARE}   Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
+	Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 	
 ${pagetype} Content Matches Language
 	${Title}=  Return Title From ${pagetype}
