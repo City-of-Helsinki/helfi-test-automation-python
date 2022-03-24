@@ -475,10 +475,12 @@ Rename Picture With New Name
 	[Documentation]   Idea is to Replace Reports file picture with new name in order to help in 
 	...				  maintenance of comparison pictures
 	[Arguments]   ${originalpic}   ${comparisonpic}
-	${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/
+	
 	IF    ${CI}
+		   ${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/ci/
 		   Move File   robotframework-reports/${comparisonpic}   robotframework-reports/${newname}
-	ELSE   
+	ELSE
+		   ${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/	   
 		   Move File   ${REPORTS_PATH}/${comparisonpic}   ${REPORTS_PATH}/${newname}
 	END
 
