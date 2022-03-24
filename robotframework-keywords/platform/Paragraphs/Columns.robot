@@ -49,11 +49,8 @@ Use Original Aspect Ratio on ${side}
 
 Take Screenshot Of Content
 	Maximize Browser Window
-	Execute javascript  document.body.style.zoom="40%"
-	Run keyword if  ('${picsize}'=='original') & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
-	Capture Screenshot For Picture Comparison
-	Execute javascript  document.body.style.zoom="100%"
-
+	Run Keyword If   ${PICCOMPARE}   Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
+	
 ${pagetype} Content Matches Language
 	${Title}=  Return Title From ${pagetype}
 	${Description}=  Return Description From ${pagetype}

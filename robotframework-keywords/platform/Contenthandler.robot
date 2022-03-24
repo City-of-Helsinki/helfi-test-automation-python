@@ -75,12 +75,17 @@ Input Lead
 	Input Text  ${Inp_Lead}   ${lead} 
 
 Capture Screenshot For Picture Comparison
-	[Arguments]   ${blur}=${EMPTY}    ${redact}=${EMPTY}
+	[Arguments]   ${locator}   ${blur}=${EMPTY}    ${redact}=${EMPTY}
 	[Documentation]  See   https://github.com/jz-jess/RobotEyes
-	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
-	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
-
-
+	${wsize}=  Get Window Size
+	${width}=  Get From List   ${wsize}   0
+	${height}=  Get From List   ${wsize}   1
+	Set Window Size  3840   2160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
+	Open Eyes   SeleniumLibrary
+	Run Keyword Unless   ${CI}  Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	Run Keyword If   ${CI}   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
+	
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
 	Run Keyword If   '${pagetype}'=='Page'   Input Text  name:field_lead_in[0][value]   ${content}
