@@ -54,8 +54,4 @@ ContentCards Should Work Correctly
 	
 User Goes To New LandingPage Site   Go To New LandingPage Site
 New Landingpage is Submitted	Submit The New Landingpage
-
-Layout Should Not Have Changed
-	Take Screenshot Of Content
-	Compare Two Pictures
  
