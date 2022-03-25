@@ -78,7 +78,7 @@ User Adds Content to Text Subcategory
 Capture Screenshot Of Accordion Contents
 	 Click Element  ${Btn_Accordion_View}
 	 Sleep  1
-	 Take Screenshot Of Content
+	 Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 	 Click Element  ${Btn_Accordion_View}
 
 User Creates ${color} Accordion With ${heading} Heading And ${contenttype} Content
