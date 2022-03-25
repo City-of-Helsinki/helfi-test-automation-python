@@ -76,6 +76,7 @@ User Adds Content to Text Subcategory
 	Add Content To Text Subcategory
 
 Capture Screenshot Of Accordion Contents
+	 #TODO: OPEN ALSO SECOND ACCORDION IN CASE OF TWO
 	 Click Element  ${Btn_Accordion_View}
 	 Sleep  1
 	 Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
