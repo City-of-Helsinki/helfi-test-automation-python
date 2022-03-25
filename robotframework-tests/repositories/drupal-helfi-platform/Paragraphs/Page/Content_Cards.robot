@@ -63,5 +63,5 @@ User Submits The New Page
 	 
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
 	Compare Two Pictures
