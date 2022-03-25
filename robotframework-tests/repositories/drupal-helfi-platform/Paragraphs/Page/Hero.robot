@@ -222,11 +222,5 @@ Page Content Matches Language
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
 	Content Should Match Current Language Selection   ${Content}
-	
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error   Accept Cookies
-	Take Screenshot Of Content
-	Compare Two Pictures
 
-	
 	

@@ -26,7 +26,3 @@ User Starts Creating UnitSearch Paragraph
 User Goes To New LandingPage -Site		Go To New LandingPage Site
 
 User Submits The New LandingPage	Submit The New LandingPage
-
-Layout Should Not Have Changed
-	Take Screenshot Of Content
-	Compare Two Pictures

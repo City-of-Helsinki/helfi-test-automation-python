@@ -25,7 +25,3 @@ User Starts Creating UnitSearch Paragraph
 User Goes To New Page -Site		Go To New Page Site
 
 User Submits The New Page	Submit The New Page
-
-Layout Should Not Have Changed
-	Take Screenshot Of Content
-	Compare Two Pictures

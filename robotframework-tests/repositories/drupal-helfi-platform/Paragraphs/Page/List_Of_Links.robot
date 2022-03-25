@@ -45,8 +45,3 @@ User Adds Second Link For ${content} Content
 
 List Of Links Should Work Correctly
 	List Of Links Is Working Correctly
-	 
-Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms   Run Keyword And Ignore Error   Accept Cookies
-	Take Screenshot Of Content
-	Compare Two Pictures

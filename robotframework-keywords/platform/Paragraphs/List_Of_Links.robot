@@ -58,3 +58,8 @@ List Of Links Is Working Correctly
 	Click Element   //h3[contains(text(),'Esimerkkisivu')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   esimerkkisivu
+	
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures	

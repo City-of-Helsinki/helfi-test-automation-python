@@ -91,3 +91,7 @@ Take Screenshot Of Content
 	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"	
 	
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures	

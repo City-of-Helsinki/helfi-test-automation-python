@@ -25,11 +25,6 @@ User Adds Content With Service List
 	Add ServiceList   LandingPage
 	Submit The New Landingpage
 	
-Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Run Keyword And Ignore Error   Accept Cookies
-	Take Screenshot Of Content
-	Compare Two Pictures
-	
 ServiceList Paragraph Works Correctly
 	${contentpage}=   Get Location
 	Click Link   css:.service__link

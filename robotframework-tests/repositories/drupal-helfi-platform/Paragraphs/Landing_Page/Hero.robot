@@ -212,11 +212,3 @@ Page Content Matches Language
 	${Content}=  Return Lead-in From Page
 	Title Should Match Current Language Selection   ${Title}
 	Content Should Match Current Language Selection   ${Content}
-	
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
-	Compare Two Pictures
-	
-
-	

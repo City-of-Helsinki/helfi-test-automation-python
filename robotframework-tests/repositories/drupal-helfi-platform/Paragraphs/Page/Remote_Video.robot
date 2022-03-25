@@ -29,8 +29,3 @@ User Adds Content With ${number} Remote Video(s)
 User Goes To New Page -Site		Go To New Page Site
 User Submits The New Page
 	Submit The New Page
-
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Remote_Video.Take Screenshot Of Content
-	Compare Two Pictures   3

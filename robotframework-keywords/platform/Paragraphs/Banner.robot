@@ -27,10 +27,7 @@ Create Banner
 	
 Take Screenshot Of Content
 	Maximize Browser Window
-	Execute javascript  document.body.style.zoom="40%"
-	Run keyword if  ('${picsize}'=='original') & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
-	Capture Screenshot For Picture Comparison
-	Execute javascript  document.body.style.zoom="100%"
+	Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 
 Set Banner Title
 	Input Text  ${Inp_Banner_Title}   Juhani Aho: Rautatie

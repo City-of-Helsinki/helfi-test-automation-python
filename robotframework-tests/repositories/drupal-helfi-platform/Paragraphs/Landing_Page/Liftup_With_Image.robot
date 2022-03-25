@@ -54,8 +54,3 @@ New Landingpage is Submitted	Submit The New Landingpage
 
 User Starts Creating ${pagetype} With ${design} -Design 	Create LiftUpWithImage   ${pagetype}   ${design}
 User Starts Creating ${pagetype} With ${design} -Design and Alternate Color 	Create LiftUpWithImage   ${pagetype}   ${design}   Secondary	
-	
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
-	Compare Two Pictures

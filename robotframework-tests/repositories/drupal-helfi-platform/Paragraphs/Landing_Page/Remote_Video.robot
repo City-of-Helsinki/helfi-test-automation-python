@@ -30,8 +30,3 @@ User Adds Content With ${number} Remote Video(s)
 User Goes To New LandingPage -Site		Go To New LandingPage Site
 User Submits The New LandingPage
 	Submit The New LandingPage
-	 
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Remote_Video.Take Screenshot Of Content
-	Compare Two Pictures
