@@ -48,10 +48,7 @@ Open Add Picture To Gallery Window
 
 Take Screenshot Of Content
 	Maximize Browser Window
-	Wait Until Element Is Visible   ${Itm_Gallery_Slidetrack}   timeout=5
-	Execute javascript  document.body.style.zoom="28%"
-	Capture Screenshot For Picture Comparison
-	Execute javascript  document.body.style.zoom="100%"
+	Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 	
 Moving Between Gallery Images Works
 	Execute javascript  window.scrollTo(500,1000)		# SCROLL PAGE BECAUSE CHAT BLOCKS THE ARROW ELEMENT

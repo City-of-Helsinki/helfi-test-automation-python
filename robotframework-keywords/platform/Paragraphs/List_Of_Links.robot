@@ -13,6 +13,7 @@ Create ${pagetype} With List Of Links ${style}
 	Input Text  ${Inp_ListOfLinks_Link_Uri}   /en/link-examples
 	Input Text  ${Inp_ListOfLinks_Link_Title}   Link Examples
 	Click Element   ${Swh_ListOfLinks_Link_OpenInNewTab}
+	Click Element   ${Swh_ListOfLinks_Link_LinkIsAccessible}
 	Run Keyword If   ('${TEST NAME}'=='With Picture') | ('${TEST NAME}'=='Landingpage-With Picture')   Add Picture To Link   train
 	...   ELSE IF   ('${TEST NAME}'!='Without Picture And Description') & ('${TEST NAME}'!='Landingpage-Without Picture And Description')   Wait Until Keyword Succeeds  5x  200ms   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
 	

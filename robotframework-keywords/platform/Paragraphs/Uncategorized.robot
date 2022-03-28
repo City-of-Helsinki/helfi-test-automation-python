@@ -7,10 +7,7 @@ Resource        ../Commonkeywords.robot
 
 Take Screenshot Of Content
 	Maximize Browser Window
-	Execute javascript  document.body.style.zoom="40%"
-	Run Keyword If  (('${TEST NAME}'=='Text And Picture') | ('${TEST NAME}'=='Only Picture')) & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
-	Capture Screenshot For Picture Comparison
-	Execute javascript  document.body.style.zoom="100%"
+	Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 
 Start Creating a New ${pagetype} With ${content} Content
 	Set Test Variable  ${content}  ${content}

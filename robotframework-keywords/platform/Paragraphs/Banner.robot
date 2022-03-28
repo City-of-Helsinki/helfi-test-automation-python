@@ -20,6 +20,7 @@ Create Banner
 	Input Text   ${Inp_Banner_Link_Title}    ${link_title_${language}}
 	Scroll Element Into View   ${Swh_Banner_Link_OpenInNewWindow}
 	Run Keyword If  '${TEST NAME}'=='Link Opens In New Window'   Select Checkbox  ${Swh_Banner_Link_OpenInNewWindow}
+	Run Keyword If  '${TEST NAME}'=='Link Opens In New Window'   Select Checkbox  ${Swh_Banner_Link_LinkIsAccessable}
 	Run Keyword If  '${linkstyle}'=='Fullcolor'  Click Element   ${Opt_Link_Fullcolor}
 	Run Keyword If  '${linkstyle}'=='Framed'  Click Element   ${Opt_Link_Framed}
 	Run Keyword If  '${linkstyle}'=='Transparent'  Click Element   ${Opt_Link_Transparent}

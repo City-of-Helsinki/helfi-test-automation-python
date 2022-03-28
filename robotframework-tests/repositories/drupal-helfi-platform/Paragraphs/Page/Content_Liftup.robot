@@ -51,5 +51,5 @@ ContentLiftup Should Work Correctly For Two Units
 
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
+	Content_Liftup.Take Screenshot Of Content
 	Compare Two Pictures   1

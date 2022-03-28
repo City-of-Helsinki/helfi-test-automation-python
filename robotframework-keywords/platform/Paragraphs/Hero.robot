@@ -23,7 +23,6 @@ Create a ${value} Aligned ${pagetype} With Hero Block In ${lang_selection} Langu
 	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Start Creating a ${value} Aligned Page With Hero Block
 	Submit The New ${pagetype}
-	Take Screenshot Of Content
  
 Start Creating a ${value} Aligned Page With Hero Block 
 	Set Test Variable   ${value}    ${value} 

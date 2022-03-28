@@ -171,6 +171,7 @@ ${Inp_Banner_Title}							(//input[contains(@name, '[field_banner_title]')])[las
 ${Inp_Banner_Link_Uri}						name:field_content[0][subform][field_banner_link][0][uri]
 ${Inp_Banner_Link_Title}					name:field_content[0][subform][field_banner_link][0][title]
 ${Swh_Banner_Link_OpenInNewWindow}   		name:field_content[0][subform][field_banner_link][0][options][target_new]
+${Swh_Banner_Link_LinkIsAccessable}    		name:field_content[0][subform][field_banner_link][0][options][target_check]
 #UNCATEGORIZED
 ${Btn_Picture}								(//input[contains(@name, 'field_image-media-library-open-button-field_content')])[last()]
 ${Btn_Picture_Remove}						//input[contains(@name, 'media-library-remove-button-field_content')]
@@ -206,6 +207,7 @@ ${Inp_ListOfLinks_Link_NewLink}						//input[contains(@name, 'field_list_of_link
 ${Inp_ListOfLinks_Link_Description}					(//input[contains(@name, 'field_list_of_links_desc')])[last()]
 ${Inp_ListOfLinks_Link_AddPicture}					(//input[contains(@name, 'image-media-library-open-button-field_content')])[last()]
 ${Swh_ListOfLinks_Link_OpenInNewTab}				//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'target_new')]
+${Swh_ListOfLinks_Link_LinkIsAccessible}			//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'target_check')]
 
 #LIFTUP-WITH-IMAGE
 ${Inp_LiftupWithImage_Title}		    			//input[contains(@name, 'liftup_with_image')][contains(@name, 'title')]
