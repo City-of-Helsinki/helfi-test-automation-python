@@ -53,10 +53,9 @@ Add Second Link For Content
 List Of Links Is Working Correctly
 	[Documentation]   Link Examples is opened in new window when Esimerkkisivu opens in current.
 	${contentpageurl}=   Get Location
-	Click Element   //h3[contains(text(),'Link Examples')]
+	Click Link   Link Examples
 	New Window Should Be Opened    Link examples | Helsingin kaupunki
-	Wait Until Element Is Visible   //h3[contains(text(),'Esimerkkisivu')]
-	Click Element   //h3[contains(text(),'Esimerkkisivu')]
+	Click Link   Esimerkkisivu
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   esimerkkisivu
 	
