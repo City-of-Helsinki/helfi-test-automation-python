@@ -6,7 +6,7 @@ Force Tags		PAGE   UNITSEARCH
 
 *** Test Cases ***
 
-Two Units
+Page-Two Units
 	[Tags]   CRITICAL
 	When User Goes To New Page -Site
 	And User Starts Creating UnitSearch Paragraph
