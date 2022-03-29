@@ -8,7 +8,7 @@
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Attention Layout
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Announcements.Announcements.Alert Layout
 }
-#WAIT
+
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.EUCookieCompliance.CookieCompliance
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Others.TableOfContents
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Landing Page.Add From Library
