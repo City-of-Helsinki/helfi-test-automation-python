@@ -217,6 +217,10 @@ Open Add Picture
 	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_ListOfLinks_Picture}
 	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
+Focus And Click ListOfLinks Add Picture Button
+	Execute javascript  window.scrollTo(0, 800)
+	Click Element	${Btn_Paragraph_ListOfLinks_Picture}
+
 Page Should Have ${lang_input} Translation
 	Run Keyword And Ignore Error  Accept Cookies
 	Set Language Pointer   ${lang_input}
