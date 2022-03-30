@@ -76,9 +76,10 @@ User Adds Content to Text Subcategory
 	Add Content To Text Subcategory
 
 Capture Screenshot Of Accordion Contents
+	 #TODO: OPEN ALSO SECOND ACCORDION IN CASE OF TWO
 	 Click Element  ${Btn_Accordion_View}
 	 Sleep  1
-	 Take Screenshot Of Content
+	 Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 	 Click Element  ${Btn_Accordion_View}
 
 User Creates ${color} Accordion With ${heading} Heading And ${contenttype} Content
@@ -90,8 +91,4 @@ User Starts Creating ${color} Accordion With ${heading} Heading And ${contenttyp
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error   Accept Cookies
 	Capture Screenshot Of Accordion Contents
-	${contenttype}=  Convert To Lower Case   ${contenttype}
-	${originalpic} =  Set Variable If  '${picture}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${picture}_${heading}_${BROWSER}.png   
-	...				${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_ACCORDION_${contenttype}_${color}_${heading}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures

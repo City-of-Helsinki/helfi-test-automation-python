@@ -73,7 +73,7 @@ Finnish English Swedish Translations
 	And Page Should Have Swedish Translation
 
 
-50-50 With Sidebar Text
+50-50 with sidebar text
 	[Tags]  CRITICAL   SIDEBAR
 	Given User Goes To New Page -Site
 	And User Starts Creating Page With 50-50 Division And Text Content
@@ -83,7 +83,7 @@ Finnish English Swedish Translations
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
 
-50-50 With Sidebar Content From Library
+50-50 with sidebar content from library
 	[Tags]  SIDEBAR
 	Given User Creates New SidebarText Paragraphs To Library
 	Given User Goes To New Page -Site
@@ -135,15 +135,7 @@ Picture on ${side} Has Original Aspect Ratio Enabled
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
 	Columns.Take Screenshot Of Content
-	${contenttype}=  Convert To Lower Case   ${contenttype}
-	${originalpic} =  Set Variable If  
-	...  '${contenttype}'=='picture'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_COLUMNS_${division}_picture_${picsize}_${BROWSER}.png
-	...	 '${linkstyle}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_COLUMNS_${division}_left_${content1}_right_${content2}_${linkstyle}_${BROWSER}.png
-	...  '${contenttype}'=='mixed'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_COLUMNS_${division}_left_${content1}_right_${content2}_${picsize}_${BROWSER}.png
-	...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_COLUMNS_${division}_text_${BROWSER}.png
-	
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures
 
 Page Should Have ${lang_input} Translation
 	Set Language Pointer   ${lang_input}

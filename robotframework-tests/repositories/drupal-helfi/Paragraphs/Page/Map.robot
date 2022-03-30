@@ -38,10 +38,5 @@ User Adds Map Using ${source} Map Location
     END 
 	 
 Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	${ispalvelukartta}=  URL Contains Text   palvelukartta
-	Run Keyword If   ${ispalvelukartta}	  Allow Palvelukartta Cookies
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_MAP_${TEST NAME}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Page Should Contain Element   css:.component__container
+	Page Should Contain Link   Avaa kartta uuteen ikkunaan

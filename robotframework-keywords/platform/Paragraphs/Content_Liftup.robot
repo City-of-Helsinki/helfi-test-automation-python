@@ -27,3 +27,7 @@ ContentLiftup Is Working Correctly For Two Units
 	Click Element   //a[contains(@href, 'otaniemen')]
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   otaniemen-kirjasto
+	
+Take Screenshot Of Content
+	Maximize Browser Window
+	Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper

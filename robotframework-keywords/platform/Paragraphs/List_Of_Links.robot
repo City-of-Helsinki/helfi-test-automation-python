@@ -13,8 +13,9 @@ Create ${pagetype} With List Of Links ${style}
 	Input Text  ${Inp_ListOfLinks_Link_Uri}   /en/link-examples
 	Input Text  ${Inp_ListOfLinks_Link_Title}   Link Examples
 	Click Element   ${Swh_ListOfLinks_Link_OpenInNewTab}
-	Run Keyword If   '${TEST NAME}'=='With Picture'   Add Picture To Link   train
-	...   ELSE IF   '${TEST NAME}'!='Without Picture And Description'   Wait Until Keyword Succeeds  5x  200ms   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
+	Click Element   ${Swh_ListOfLinks_Link_LinkIsAccessible}
+	Run Keyword If   ('${TEST NAME}'=='With Picture') | ('${TEST NAME}'=='Landingpage-With Picture')   Add Picture To Link   train
+	...   ELSE IF   ('${TEST NAME}'!='Without Picture And Description') & ('${TEST NAME}'!='Landingpage-Without Picture And Description')   Wait Until Keyword Succeeds  5x  200ms   Input Text    ${Inp_ListOfLinks_Link_Description}    Siirry linkin sisältöön tästä
 	
 	
 Add Picture To Link
@@ -44,17 +45,21 @@ Add Second Link For Content
 	Sleep  1    # Small sleep due issues with fields accepting input for second link
 	Wait Until Keyword Succeeds  5x  300ms  Input Text   ${Inp_ListOfLinks_Link_Uri}   /fi/esimerkkisivu
 	Wait Until Keyword Succeeds  5x  300ms  Input Text   ${Inp_ListOfLinks_Link_Title}   Esimerkkisivu
-	Run Keyword If   '${TEST NAME}'=='With Picture'   Add Picture To Link    tulips
-	...   ELSE IF  ('${TEST NAME}'!='Without Picture And Description')    Input Text    ${Inp_ListOfLinks_Link_Description}    Klikkaa tästä siirtyäksesi
+	Run Keyword If   ('${TEST NAME}'=='With Picture') | ('${TEST NAME}'=='Landingpage-With Picture')   Add Picture To Link    tulips
+	...   ELSE IF  ('${TEST NAME}'!='Without Picture And Description') & ('${TEST NAME}'!='Landingpage-Without Picture And Description')    Input Text    ${Inp_ListOfLinks_Link_Description}    Klikkaa tästä siirtyäksesi
 	
 	
 		
 List Of Links Is Working Correctly
 	[Documentation]   Link Examples is opened in new window when Esimerkkisivu opens in current.
 	${contentpageurl}=   Get Location
-	Click Element   //h3[contains(text(),'Link Examples')]
+	Click Link   Link Examples
 	New Window Should Be Opened    Link examples | Helsingin kaupunki
-	Wait Until Element Is Visible   //h3[contains(text(),'Esimerkkisivu')]
-	Click Element   //h3[contains(text(),'Esimerkkisivu')]
+	Click Link   Esimerkkisivu
 	${currenturl}=   Get Location
 	Should Contain   ${currenturl}   esimerkkisivu
+	
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures	

@@ -51,7 +51,5 @@ ContentLiftup Should Work Correctly For Two Units
 
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_PAGE_CONTENTLIFTUP_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}	
+	Content_Liftup.Take Screenshot Of Content
+	Compare Two Pictures   1

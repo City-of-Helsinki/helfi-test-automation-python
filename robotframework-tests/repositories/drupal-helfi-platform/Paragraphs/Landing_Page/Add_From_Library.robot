@@ -5,7 +5,7 @@ Test Teardown   Cleanup and Close Browser
 Force Tags		LANDINGPAGE   ADDFROMLIBRARY
 
 *** Test Cases ***
-Columns
+Landingpage-Columns
 	[Tags]    CRITICAL
 	Given User Creates New Columns Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in Finnish Language
@@ -15,7 +15,7 @@ Columns
 	Then Page Should Have English Translation
 	Then Page Should Have Swedish Translation
 	
-Banner
+Landingpage-Banner
 	[Tags]
 	Given User Creates New Banner Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph in Finnish Language
@@ -25,7 +25,7 @@ Banner
 	Then Page Should Have English Translation
 	Then Page Should Have Swedish Translation
 
-ContentCards
+Landingpage-ContentCards
 	[Tags]
 	Given User Creates New ContentCards Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For ContentCards -Paragraph in Finnish Language
@@ -33,7 +33,7 @@ ContentCards
 	Then Page Should Have Finnish Translation
 	Then Page Should Have English Translation
 
-LiftupWithImage
+Landingpage-LiftupWithImage
 	[Tags]
 	Given User Creates New LiftupWithImage Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Finnish Language
@@ -43,7 +43,7 @@ LiftupWithImage
 	Then Page Should Have English Translation
 	Then Page Should Have Swedish Translation
 
-ListOfLinks
+Landingpage-ListOfLinks
 	[Tags]
 	Given User Creates New ListOfLinks Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in Finnish Language

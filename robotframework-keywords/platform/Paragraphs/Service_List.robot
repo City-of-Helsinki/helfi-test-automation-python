@@ -14,4 +14,8 @@ Add ServiceList
 	Select From List By Value   ${Sel_ServiceList_Services}   7716
 	Run Keyword If  '${TEST NAME}'=='Two Services'  Select From List By Value   ${Sel_ServiceList_Services}   7705
 	Wait Until Keyword Succeeds  5x  100ms   Input Description To Paragraph   css:#cke_1_contents > iframe
-	
+
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures		

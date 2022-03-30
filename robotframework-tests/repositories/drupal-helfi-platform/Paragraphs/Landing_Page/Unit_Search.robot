@@ -6,7 +6,7 @@ Force Tags		LANDINGPAGE   UNITSEARCH
 
 *** Test Cases ***
 
-Two Units
+Landingpage-Two Units
 	[Tags]   CRITICAL
 	When User Goes To New LandingPage -Site
 	And User Starts Creating UnitSearch Paragraph
@@ -26,9 +26,3 @@ User Starts Creating UnitSearch Paragraph
 User Goes To New LandingPage -Site		Go To New LandingPage Site
 
 User Submits The New LandingPage	Submit The New LandingPage
-
-Layout Should Not Have Changed
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_UNITSEARCH_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

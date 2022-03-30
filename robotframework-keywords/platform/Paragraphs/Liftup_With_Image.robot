@@ -43,3 +43,8 @@ Add Picture
 	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 	Wait Until Element Is Visible  //input[contains(@data-drupal-selector, 'remove-button')]   timeout=3
 	Set Test Variable  ${picture}   picture
+	
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures	

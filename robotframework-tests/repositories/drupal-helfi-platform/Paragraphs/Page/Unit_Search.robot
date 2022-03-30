@@ -6,7 +6,7 @@ Force Tags		PAGE   UNITSEARCH
 
 *** Test Cases ***
 
-Two Units
+Page-Two Units
 	[Tags]   CRITICAL
 	When User Goes To New Page -Site
 	And User Starts Creating UnitSearch Paragraph
@@ -25,9 +25,3 @@ User Starts Creating UnitSearch Paragraph
 User Goes To New Page -Site		Go To New Page Site
 
 User Submits The New Page	Submit The New Page
-
-Layout Should Not Have Changed
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_UNITSEARCH_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

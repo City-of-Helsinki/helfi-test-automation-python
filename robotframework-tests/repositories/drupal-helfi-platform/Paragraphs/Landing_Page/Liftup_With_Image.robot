@@ -54,12 +54,3 @@ New Landingpage is Submitted	Submit The New Landingpage
 
 User Starts Creating ${pagetype} With ${design} -Design 	Create LiftUpWithImage   ${pagetype}   ${design}
 User Starts Creating ${pagetype} With ${design} -Design and Alternate Color 	Create LiftUpWithImage   ${pagetype}   ${design}   Secondary	
-	
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
-	Run Keyword If  '${coloroption}'!='${EMPTY}'   Capture Element Screenshot  css:.liftup-with-image__content   filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	${originalpic} =  Set Variable If  '${coloroption}'=='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_LIFTUPWITHIMAGE_${design}_${BROWSER}.png
-	...	  '${coloroption}'!='${EMPTY}'   ${SCREENSHOTS_PATH}/${BROWSER}/${TEST NAME}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

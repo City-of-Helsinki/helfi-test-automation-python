@@ -75,11 +75,17 @@ Input Lead
 	Input Text  ${Inp_Lead}   ${lead} 
 
 Capture Screenshot For Picture Comparison
-	Open Eyes   lib=Seleniumlibrary
-	Run Keyword Unless   ${CI}  Capture Full Screen   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
-	Run Keyword If   ${CI}   Capture Full Screen   name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
-	Open Eyes   lib=none
-
+	[Arguments]   ${locator}   ${blur}=${EMPTY}    ${redact}=${EMPTY}
+	[Documentation]  See   https://github.com/jz-jess/RobotEyes
+	${wsize}=  Get Window Size
+	${width}=  Get From List   ${wsize}   0
+	${height}=  Get From List   ${wsize}   1
+	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
+	Open Eyes   SeleniumLibrary
+	Run Keyword Unless   ${CI}  Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	Run Keyword If   ${CI}   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
+	
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
 	Run Keyword If   '${pagetype}'=='Page'   Input Text  name:field_lead_in[0][value]   ${content}
@@ -211,10 +217,13 @@ Open Created Content
 	  
 Log In
 	Wait Until Keyword Succeeds  5x  200ms  Accept Cookies
+	Wait Until Keyword Succeeds  7x  300ms  Input Credentials And Log In
+
+Input Credentials And Log In
 	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
 	Run Keyword And Ignore Error   Accept Cookies
-	Wait Until Keyword Succeeds  7x  300ms  Log In User
+	Wait Until Keyword Succeeds  3x  600ms  Log In User
 
 Log In User
 	Click Button   id:edit-submit
@@ -250,6 +259,7 @@ Set Language Pointer
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
 	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
+	Open Eyes   lib=none      # SETTING LIBRARY TO NONE BECAUSE PICTURE COMPARISON DOES OTHERWISE GIVE FALSE POSITIVES
     Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
      
 
@@ -445,6 +455,7 @@ Login And Go To Content Page
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
+	Run Keyword If   ${PICCOMPARE}   Open Eyes   SeleniumLibrary
 
 Set CI Arguments And Open Browser
 	${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
@@ -464,10 +475,12 @@ Rename Picture With New Name
 	[Documentation]   Idea is to Replace Reports file picture with new name in order to help in 
 	...				  maintenance of comparison pictures
 	[Arguments]   ${originalpic}   ${comparisonpic}
-	${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/
+	
 	IF    ${CI}
+		   ${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/ci/
 		   Move File   robotframework-reports/${comparisonpic}   robotframework-reports/${newname}
-	ELSE   
+	ELSE
+		   ${newname}=  Fetch From Right   ${originalpic}   ${BROWSER}/	   
 		   Move File   ${REPORTS_PATH}/${comparisonpic}   ${REPORTS_PATH}/${newname}
 	END
 
@@ -572,6 +585,17 @@ Set Shortened Suite Name
 	${suitesplitted}=  Split String   ${SUITE NAME}   separator=.Repositories.
 	${modified}=   Get From List  ${suitesplitted}  -1
 	Set Suite Variable   ${SUITE}   ${modified}  
+
+Compare Two Pictures
+	[Arguments]   ${movetolerance}=${EMPTY}
+	IF  ${CI}   
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/ci/${language}_${TEST NAME}_${BROWSER}.png
+	ELSE
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_${TEST NAME}_${BROWSER}.png
+	END
+	
+	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}   ${movetolerance}
 	
 Compare Pictures And Handle PictureData
 	[Arguments]   ${originalpic}   ${comparisonpic}   ${movetolerance}=${EMPTY}

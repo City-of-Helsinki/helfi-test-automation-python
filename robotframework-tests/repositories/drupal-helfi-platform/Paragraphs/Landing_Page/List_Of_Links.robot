@@ -5,7 +5,7 @@ Test Teardown   Cleanup and Close Browser
 Force Tags		LANDINGPAGE   LISTOFLINKS
 
 *** Test Cases ***
-Without Picture
+Landingpage-Without Picture
 	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Creates List Of Links Without Picture
@@ -14,7 +14,7 @@ Without Picture
 	Then Layout Should Not Have Changed
 	And List Of Links Should Work Correctly
 
-With Picture
+Landingpage-With Picture
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
 	And User Creates List Of Links With Picture
@@ -23,7 +23,7 @@ With Picture
 	Then Layout Should Not Have Changed
 	And List Of Links Should Work Correctly
 
-Without Picture And Description
+Landingpage-Without Picture And Description
 	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Creates List Of Links Without Picture And Description
@@ -44,10 +44,3 @@ User Adds Second Link For ${content} Content
 
 List Of Links Should Work Correctly
 	List Of Links Is Working Correctly
-
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_LISTOFLINKS_${style}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}

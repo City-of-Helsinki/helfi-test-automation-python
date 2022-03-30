@@ -13,7 +13,7 @@ Create ${pagetype} With ${number} Remote Video(s) Content
 	Set Test Variable   ${number}   ${number}
 	Input Non-paragraph Related Content   ${pagetype}
     Add Remote Video
-    Run Keyword If  '${TEST NAME}'=='Two Videos'   Add Remote Video   https://www.youtube.com/watch?v=3HPuT7A0O8c
+    Run Keyword If  ('${TEST NAME}'=='Two Videos') | ('${TEST NAME}'=='Landingpage-Two Videos')    Add Remote Video   https://www.youtube.com/watch?v=3HPuT7A0O8c
 
 	
 Add Remote Video
@@ -21,9 +21,7 @@ Add Remote Video
     Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
     Wait Until Keyword Succeeds  5x  200ms  Execute javascript  window.scrollTo(0, 200)
     Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_RemoteVideo_Add}
-    Run Keyword And Ignore Error  Wait Until Element Is Visible   ${Inp_RemoteVideo_Url}   timeout=5
-    Run Keyword And Ignore Error  Scroll Element Into View   ${Inp_RemoteVideo_Url}
-    Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
+  	Wait Until Keyword Succeeds  6x  300ms  Input Text To Video URL field   ${url}
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
     Sleep  1		#SMALL SLEEP DUE ISSUES IN CONTENT LOADING
@@ -31,8 +29,13 @@ Add Remote Video
     Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Itm_Video_Description}  //body  ${description}
     Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Itm_Video_Title}   ${title}
     
-    
     Set Test Variable  ${mediaadded}    ${mediaadded}+1
+
+Input Text To Video URL field
+	[Arguments]   ${url}
+	Scroll Element Into View   ${Inp_RemoteVideo_Url}
+	Wait Until Element Is Visible   ${Inp_RemoteVideo_Url}   timeout=5
+    Wait Until Keyword Succeeds  3x  100ms  Input Text   ${Inp_RemoteVideo_Url}   ${url}
 
 Confirm Video Selection
     Click Button  ${Btn_RemoteVideo_Confirm}
@@ -54,7 +57,7 @@ Remote Video Play Begins Correctly
 	${videoend} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video1end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${videostart}   ${videoend}
 	#VIDEO2
-	Run Keyword If  '${TEST NAME}'=='Two Videos'   Video 2 Plays Correctly
+	Run Keyword If  ('${TEST NAME}'=='Two Videos') | ('${TEST NAME}'=='Landingpage-Two Videos')   Video 2 Plays Correctly
 
 
 Video 2 Plays Correctly
@@ -88,3 +91,7 @@ Take Screenshot Of Content
 	Capture Screenshot For Picture Comparison
 	Execute javascript  document.body.style.zoom="100%"	
 	
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures   1	

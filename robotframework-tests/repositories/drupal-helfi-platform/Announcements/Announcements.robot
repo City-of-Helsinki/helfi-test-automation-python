@@ -130,7 +130,6 @@ Announcement Layout For ${type} Should Be Correct For Checked Content
 
 ${type} Announcement Layout Is Corrent
 		Scroll Element Into View   css:div.announcement__content
-        Capture Element Screenshot   css:div.announcement__content    filename=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
-        ${originalpic}=  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/ANNOUNCEMENTS_${type}_${BROWSER}.png
-        ${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}-${type}.png
-        Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+        Run Keyword Unless   ${CI}   Capture Element Screenshot  css:div.announcement__content   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+		Run Keyword If   ${CI}   Capture Element Screenshot  css:div.announcement__content   filename=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+        Compare Two Pictures

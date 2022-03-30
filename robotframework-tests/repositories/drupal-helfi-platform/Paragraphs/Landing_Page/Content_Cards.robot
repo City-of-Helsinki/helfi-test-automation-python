@@ -5,7 +5,7 @@ Test Teardown   Cleanup and Close Browser
 Force Tags		LANDINGPAGE   CONTENTCARDS
 
 *** Test Cases ***
-Small Cards
+Landingpage-Small Cards
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Landingpage With Small Content Card For Link examples Content Page
@@ -14,7 +14,7 @@ Small Cards
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
-Large Cards
+Landingpage-Large Cards
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Landingpage With Large Content Card For Link examples Content Page
@@ -23,7 +23,7 @@ Large Cards
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
-Small Grey Cards
+Landingpage-Small Grey Cards
 	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Landingpage With Small Grey Content Card For Link examples Content Page
@@ -32,7 +32,7 @@ Small Grey Cards
 	Then Layout Should Not Have Changed
 	And ContentCards Should Work Correctly
 	
-Large Grey Cards
+Landingpage-Large Grey Cards
 	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Landingpage With Large Grey Content Card For Link examples Content Page
@@ -54,10 +54,4 @@ ContentCards Should Work Correctly
 	
 User Goes To New LandingPage Site   Go To New LandingPage Site
 New Landingpage is Submitted	Submit The New Landingpage
-
-Layout Should Not Have Changed
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_CONTENTCARDS_${cardsize}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
  

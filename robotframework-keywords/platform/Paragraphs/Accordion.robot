@@ -27,10 +27,14 @@ Add Second Accordion
 	Sleep  1			# LETS WAIT A BIT SO THAT NEW ACCORDION IS ADDED 
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_Accordion_Title}
 	Wait Until Keyword Succeeds  5x  200ms  Select From List By Label   ${Ddn_Accordion2_Icon}   check
-	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Ddn_Accordion_AddContent}
-	Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Accordion_Content_Text}
+	Wait Until Keyword Succeeds  6x  300ms  Add Text Content For Accordion
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Accordion2_Content}   //body   ${TextFileContent} To Text Subcategory
+
+Add Text Content For Accordion
+	Click Element   ${Ddn_Accordion_AddContent}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Be Visible   ${Opt_Accordion_Content_Text}
+	Click Element   ${Opt_Accordion_Content_Text}
 		
 Add ${content} Content to Columns Subcategory
 	${content}=  Convert To Lower Case   ${content}

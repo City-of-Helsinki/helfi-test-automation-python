@@ -42,6 +42,4 @@ User Starts Creating a New Page With ${content} Content
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies	
 	Uncategorized.Take Screenshot Of Content
-	${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_${content}_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}
+	Compare Two Pictures

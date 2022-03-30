@@ -23,7 +23,6 @@ Create a ${value} Aligned ${pagetype} With Hero Block In ${lang_selection} Langu
 	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Start Creating a ${value} Aligned Page With Hero Block
 	Submit The New ${pagetype}
-	Take Screenshot Of Content
  
 Start Creating a ${value} Aligned Page With Hero Block 
 	Set Test Variable   ${value}    ${value} 
@@ -138,5 +137,8 @@ Input Hero Description
 	Run Keyword If  '${language}'=='fi'	Input Text To Frame   css:#${cke}_contents > iframe   //body   ${description}
 	Run Keyword If  '${language}'!='fi'   Input Text To Frame   ${Frm_Content}   //body   ${description}
 
-
+Layout Should Not Have Changed
+	Run Keyword And Ignore Error  Accept Cookies
+	Capture Screenshot For Picture Comparison    css=main.layout-main-wrapper
+	Compare Two Pictures	
 

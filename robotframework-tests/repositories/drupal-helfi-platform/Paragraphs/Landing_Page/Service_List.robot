@@ -25,13 +25,6 @@ User Adds Content With Service List
 	Add ServiceList   LandingPage
 	Submit The New Landingpage
 	
-Layout Should Not Have Changed
-	Wait Until Keyword Succeeds  5x   200ms     Run Keyword And Ignore Error   Accept Cookies
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_SERVICELIST_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData	  ${originalpic}   ${comparisonpic}
-	
 ServiceList Paragraph Works Correctly
 	${contentpage}=   Get Location
 	Click Link   css:.service__link

@@ -6,7 +6,7 @@ Force Tags		LANDINGPAGE   HERO
 
 *** Test Cases ***
 
-Left Aligned
+Landingpage-Left Aligned
 	[Documentation]   Left Aligned Hero Block with Short version of text files in Finnish. 'Vaakuna' style.
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
@@ -14,14 +14,14 @@ Left Aligned
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-Center Aligned
+Landingpage-Center Aligned
 	[Tags] 
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Center Aligned Page With Hero Block
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-Left Aligned Picture
+Landingpage-Left Aligned Picture
 	[Documentation]   Left Aligned Hero Block with Picture
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
@@ -29,35 +29,35 @@ Left Aligned Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-Right Aligned Picture
+Landingpage-Right Aligned Picture
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Right Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Bottom Aligned Picture
+Landingpage-Bottom Aligned Picture
 	[Tags]      
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Bottom Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Background Picture
+Landingpage-Background Picture
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Background Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed			
 
-Diagonal Picture
+Landingpage-Diagonal Picture
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Diagonal Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed	
 
-Fullcolor Link
+Landingpage-Fullcolor Link
 	[Documentation]   Adds Left aligned page and a link with Fullcolor styling option selected
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
@@ -66,7 +66,7 @@ Fullcolor Link
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 
-Framed Link
+Landingpage-Framed Link
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -74,7 +74,7 @@ Framed Link
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 
-Transparent Link
+Landingpage-Transparent Link
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -82,7 +82,7 @@ Transparent Link
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 
-Gold Background Color
+Landingpage-Gold Background Color
 	[Documentation]   Left Aligned Hero Block with Background Color selection 'Gold' 
 	[Tags]  CRITICAL
 	Given User Goes To New LandingPage Site
@@ -91,7 +91,7 @@ Gold Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 
-Silver Background Color
+Landingpage-Silver Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -99,7 +99,7 @@ Silver Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Brick Background Color
+Landingpage-Brick Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -107,7 +107,7 @@ Brick Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Bus Background Color
+Landingpage-Bus Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -115,7 +115,7 @@ Bus Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Copper Background Color
+Landingpage-Copper Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -123,7 +123,7 @@ Copper Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Engel Background Color
+Landingpage-Engel Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -131,7 +131,7 @@ Engel Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Fog Background Color
+Landingpage-Fog Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -139,7 +139,7 @@ Fog Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Metro Background Color
+Landingpage-Metro Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -147,7 +147,7 @@ Metro Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Summer Background Color
+Landingpage-Summer Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -155,7 +155,7 @@ Summer Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Suomenlinna Background Color
+Landingpage-Suomenlinna Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -163,7 +163,7 @@ Suomenlinna Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	
-Tram Background Color
+Landingpage-Tram Background Color
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
@@ -212,17 +212,3 @@ Page Content Matches Language
 	${Content}=  Return Lead-in From Page
 	Title Should Match Current Language Selection   ${Title}
 	Content Should Match Current Language Selection   ${Content}
-	
-Layout Should Not Have Changed
-	Run Keyword And Ignore Error  Accept Cookies
-	Take Screenshot Of Content
-	${originalpic} =  Set Variable If
-...  '${picalign}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${picalign}_vaakuna_${picture}_${BROWSER}.png
-...  '${linkstyle}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_vaakuna_nopicture_${linkstyle}link_${BROWSER}.png
-...  '${color}'!='${EMPTY}'  ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_left_${color}_nopicture_${BROWSER}.png
-...   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_short_LANDINGPAGE_HERO_${value}_vaakuna_nopicture_${BROWSER}.png
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Compare Pictures And Handle PictureData	  ${originalpic}   ${comparisonpic}
-	
-
-	

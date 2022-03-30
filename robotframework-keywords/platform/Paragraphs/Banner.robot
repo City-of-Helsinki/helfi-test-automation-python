@@ -20,6 +20,7 @@ Create Banner
 	Input Text   ${Inp_Banner_Link_Title}    ${link_title_${language}}
 	Scroll Element Into View   ${Swh_Banner_Link_OpenInNewWindow}
 	Run Keyword If  '${TEST NAME}'=='Link Opens In New Window'   Select Checkbox  ${Swh_Banner_Link_OpenInNewWindow}
+	Run Keyword If  '${TEST NAME}'=='Link Opens In New Window'   Select Checkbox  ${Swh_Banner_Link_LinkIsAccessable}
 	Run Keyword If  '${linkstyle}'=='Fullcolor'  Click Element   ${Opt_Link_Fullcolor}
 	Run Keyword If  '${linkstyle}'=='Framed'  Click Element   ${Opt_Link_Framed}
 	Run Keyword If  '${linkstyle}'=='Transparent'  Click Element   ${Opt_Link_Transparent}
@@ -27,10 +28,7 @@ Create Banner
 	
 Take Screenshot Of Content
 	Maximize Browser Window
-	Execute javascript  document.body.style.zoom="40%"
-	Run keyword if  ('${picsize}'=='original') & ('${BROWSER}'=='chromeheadless')   Execute javascript  document.body.style.zoom="30%"
-	Capture Screenshot For Picture Comparison
-	Execute javascript  document.body.style.zoom="100%"
+	Capture Screenshot For Picture Comparison   css=main.layout-main-wrapper
 
 Set Banner Title
 	Input Text  ${Inp_Banner_Title}   Juhani Aho: Rautatie
