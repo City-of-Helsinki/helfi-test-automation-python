@@ -32,4 +32,4 @@
 --test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Uncategorized
 --test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Unit Search
 --test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.ServiceAndUnit.ServiceAndUnit
---test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi.Paragraphs.Page.Map
+--test Helfi Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Map

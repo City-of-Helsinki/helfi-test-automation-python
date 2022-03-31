@@ -33,4 +33,4 @@
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Uncategorized
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Unit Search
 --test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.ServiceAndUnit.ServiceAndUnit
---test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi.Paragraphs.Page.Map
+--test Helfi-Test-Automation-Python.Robotframework-Tests.Repositories.Drupal-Helfi-Platform.Paragraphs.Page.Map
