@@ -259,7 +259,7 @@ Set Language Pointer
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
 	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
-	Open Eyes   lib=none      # SETTING LIBRARY TO NONE BECAUSE PICTURE COMPARISON DOES OTHERWISE GIVE FALSE POSITIVES
+	Open Eyes   lib=none   cleanup=all_passed      # SETTING LIBRARY TO NONE BECAUSE PICTURE COMPARISON DOES OTHERWISE GIVE FALSE POSITIVES
     Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
      
 
@@ -455,7 +455,6 @@ Login And Go To Content Page
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
-	Run Keyword If   ${PICCOMPARE}   Open Eyes   SeleniumLibrary
 
 Set CI Arguments And Open Browser
 	${chrome_options}=  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys, selenium.webdriver
