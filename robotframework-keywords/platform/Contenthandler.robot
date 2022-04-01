@@ -83,7 +83,7 @@ Capture Screenshot For Picture Comparison
 	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
 	Open Eyes   SeleniumLibrary
 	Run Keyword Unless   ${CI}  Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
-	Run Keyword If   ${CI}   Wait Until Keyword Succeeds  3x   300ms   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	Run Keyword If   ${CI}   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
 	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
 	
 Input Content Header Title
