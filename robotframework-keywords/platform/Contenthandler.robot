@@ -259,7 +259,7 @@ Set Language Pointer
 Compared Pictures Match
 	[Documentation]   Tests that two pictures look same --> layout is not broken
 	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
-	Open Eyes   lib=none   cleanup=all_passed      # SETTING LIBRARY TO NONE BECAUSE PICTURE COMPARISON DOES OTHERWISE GIVE FALSE POSITIVES
+	Open Eyes   lib=none   # SETTING LIBRARY TO NONE BECAUSE PICTURE COMPARISON DOES OTHERWISE GIVE FALSE POSITIVES
     Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
      
 
