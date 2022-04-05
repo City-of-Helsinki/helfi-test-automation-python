@@ -46,6 +46,7 @@ ${Opt_AddColumns}						    name:field_content_columns_add_more
 ${Opt_AddPicture}						    name:field_content_image_add_more
 ${Opt_AddText}								name:field_content_text_add_more
 ${Opt_AddLink}								name:field-content-link-add-more
+${Opt_AddChart}								name:field_content_chart_add_more
 ${Opt_AddBanner}   							name:field_content_banner_add_more
 ${Opt_AddAccordion}   						name:field_content_accordion_add_more
 ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
@@ -320,3 +321,12 @@ ${Ddn_Announcement_Language}							name:langcode[0][value]
 ${Swh_Announcement_Visibility}							name:field_announcement_all_pages[value]
 ${Inp_Announcement_Link_Url}					 	  	name:edit-field-announcement-link-0-uri
 ${Inp_Announcement_Link_Title}							name:field_announcement_link[0][title]
+
+#CHART
+${Inp_Chart_Title}										css:input[name*=field_chart_title]
+${Inp_Chart_Description}								//div[contains(@id,'cke_edit-field-content')]//iframe
+${Btn_Chart_Add_Media}									//input[contains(@id,'chart-open-button')]
+${Inp_Chart_Url}										name:helfi_chart_url
+${Btn_Chart_Url_Add}									css:form[id*=helfi-chart-add-form] > div > input
+${Inp_Chart_Url_Title}									css:input[name*=field_helfi_chart_title]
+${Frm_Chart_Url_Transcription}							//div[contains(@id,'field-helfi-chart-transcript')]//iframe

@@ -1,7 +1,7 @@
 *** Settings ***
 Library    OperatingSystem
 Documentation   Common Keywords referred by many testsuites. Platform side tests only
-Library           SeleniumLibrary   run_on_failure=NOTHING
+Library           SeleniumLibrary
 Library			  String
 
 *** Variables ***

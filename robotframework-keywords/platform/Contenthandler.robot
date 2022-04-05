@@ -448,6 +448,7 @@ Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
 	Set Shortened Suite Name
+	Run Keyword If   ${CI}  Register Keyword To Run On Failure   NONE
 	Run Keyword If   ${CI}   Log-In In CI Environment
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
 	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
