@@ -45,6 +45,11 @@ Robot Framework Uses argument files to run correct settings in CI and local runs
 # Docker and CI
 You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform.
 
+In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
+Current pabot version is  2.1.0
+
+
+
 # Useful information:
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
             
