@@ -451,8 +451,8 @@ Login And Go To Content Page
 	Set Shortened Suite Name
 	Run Keyword If   ${CI}  Register Keyword To Run On Failure   NONE
 	Run Keyword If   ${CI}   Log-In In CI Environment
-	Run Keyword If   ('${CI}'!='true') & ('${CI_LOCALTEST}'!='true')  Get Admin Url
-	Run Keyword If   ('${CI}'!='true') & ('${CI_LOCALTEST}'!='true')  Open Browser  ${admin_url}  ${BROWSER}
+	Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  Get Admin Url
+	Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  Open Browser  ${admin_url}  ${BROWSER}
 	Run Keyword If   '${CI_LOCALTEST}'!='true'  Go To   ${URL_content_page}
 	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
 	Run Keyword If   ${CI_LOCALTEST}   Log In
