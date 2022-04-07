@@ -82,8 +82,13 @@ Capture Screenshot For Picture Comparison
 	${height}=  Get From List   ${wsize}   1
 	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
 	Open Eyes   SeleniumLibrary
-	Run Keyword If   '${CI}'!='true'  Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
-	Run Keyword If   ${CI}   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	IF    ${CI}
+		Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	ELSE
+		Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	END
+	#Run Keyword If   '${CI}'!='true'   Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}  
+	#Run Keyword If   ${CI}   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
 	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
 	
 Input Content Header Title
