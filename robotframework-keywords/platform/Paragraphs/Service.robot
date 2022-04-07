@@ -8,7 +8,7 @@ Resource        ../Commonkeywords.robot
 Publish The ${nth} Service In The Service List
 	Goto  https://helfi.docker.so/fi/admin/content/integrations/tpr-service/${nth}/edit
 	${ispublished}=   Run Keyword And Return Status   Checkbox Should Be Selected  id:edit-status
-	Run Keyword Unless   ${ispublished}   Set Service As Published
+	Run Keyword If   '${ispublished}'!='True'   Set Service As Published
 	Submit New Content
 
 

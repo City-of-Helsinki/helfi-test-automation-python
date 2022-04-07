@@ -10,14 +10,14 @@ Create Announcement
 	[Arguments]   ${name}	${lang_selection}    ${type}    ${showonallpages}=True    ${published}=True
 	${language_pointer}=  Get Language Pointer   ${lang_selection}
 	Input Text   ${Inp_Announcement_Title}   ${name}
-	Run Keyword Unless  '${lang_selection}'=='Finnish'   Select From List By Value   ${Ddn_Announcement_Language}   ${language_pointer}
+	Run Keyword If  '${lang_selection}'!='Finnish'   Select From List By Value   ${Ddn_Announcement_Language}   ${language_pointer}
 	${type}=  Convert To Lower Case   ${type}
 	Select From List By Value    name:field_announcement_type   ${type}
-	Run Keyword Unless  ${showonallpages}   Click Element  ${Swh_Announcement_Visibility}
-	Run Keyword Unless  ${showonallpages}   Select Content To Show The Announcement For
+	Run Keyword If  '${showonallpages}'!='True'   Click Element  ${Swh_Announcement_Visibility}
+	Run Keyword If  '${showonallpages}'!='True'   Select Content To Show The Announcement For
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   css:#cke_1_contents > iframe   //body   ${TextFileContent}
-	Run Keyword Unless  ${published}   Click Element  id:edit-status-value
+	Run Keyword If  '${published}'!='True'   Click Element  id:edit-status-value
 
 Select Content To Show The Announcement For
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  css:#edit-field-announcement-content-pages-wrapper > div > span > span.selection > span > ul > li > input   Esimerkkisivu

@@ -200,6 +200,7 @@ Add Picture '${name}' And Caption To ${number}:th Picture
 	Run Keyword If  '${language}'=='en'   Click Button   ${Btn_Save_En}
 	Run Keyword If  '${language}'=='sv'   Click Button   ${Btn_Save_Sv}
 	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
+	Run Keyword If  '${language}'=='en'   Sleep  0.1    # DUE SOME ISSUES WITH PRINTING ENGLISH CAPTION
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Tar_Paragraph_Gallery_Image_Caption}   ${pic_1_caption_${language}}
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Keyword Succeeds  5x  200ms   Input Text      ${Tar_Paragraph_Picture_Image_Caption}   ${pic_1_caption_${language}}
 	Set Test Variable  ${picture}    picture
@@ -213,8 +214,8 @@ Open Add Picture
 	Run Keyword If  '${TEST NAME}'=='Gallery'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Gallery_Picture}${number-1}-subform
 	Run Keyword If  '${TEST NAME}'=='Picture'  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_Image_Picture}
 	Run Keyword If  ('${TEST NAME}'=='LiftupWithImage') | ('${TEST NAME}'=='Landingpage-LiftupWithImage')  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_LiftupWithImage_Picture}
-	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Execute javascript  window.scrollTo(0, 800)
-	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Wait Until Keyword Succeeds  5x  200ms  Click Element	${Btn_Paragraph_ListOfLinks_Picture}
+	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Set Focus To Element   ${Btn_Paragraph_ListOfLinks_Picture}
+	Run Keyword If  ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks')  Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    RETURN
 	Wait Until Keyword Succeeds  5x  300ms  Element Should Be Visible   name:files[upload] 
 
 Focus And Click ListOfLinks Add Picture Button

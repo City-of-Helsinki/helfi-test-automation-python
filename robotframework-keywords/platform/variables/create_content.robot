@@ -268,7 +268,7 @@ ${Opt_Paragraph_AddListOfLinks}						name:paragraphs_list_of_links_add_more
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
 ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
-${Tar_Paragraph_Picture_Image_Caption}				name:paragraphs[0][subform][field_image_caption][0][value]
+${Tar_Paragraph_Picture_Image_Caption}				css:textarea[name*=field_image_caption]
 ${Tar_Paragraph_Gallery_Image_Caption}				name:paragraphs[0][subform][field_gallery_slides][0][subform][field_gallery_slide_caption][0][value]
 
 ${Txt_Banner_Title}									css:.banner__title

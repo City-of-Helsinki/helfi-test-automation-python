@@ -36,7 +36,7 @@ Force Tags		PAGE   COLUMNS
 	Then Layout Should Not Have Changed	
 
 50-50 with picture
-	[Tags]  CRITICAL 
+	[Tags]  CRITICAL
 	Given User Goes To New Page -Site  
 	And User Starts Creating Page With 50-50 Division And Picture Content
 	And User Adds Picture to Left Column

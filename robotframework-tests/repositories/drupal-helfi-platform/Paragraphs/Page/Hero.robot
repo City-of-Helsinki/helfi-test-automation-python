@@ -72,7 +72,7 @@ Fullcolor Link
 	Then Layout Should Not Have Changed
 
 Framed Link
-	[Tags]   
+	[Tags]
 	Given User Goes To New Page -Site
 	And User Starts Creating a Left Aligned Page With Hero Block
 	And User Adds Hero Link Button With Framed Style

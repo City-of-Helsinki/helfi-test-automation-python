@@ -12,7 +12,7 @@ Create ${pagetype} With ${color} Color , ${heading} Heading And ${contenttype} C
 	Set Test Variable  ${heading}  ${heading}
 	Input Non-paragraph Related Content   ${pagetype}
 	Open Paragraph For Edit   ${Opt_AddAccordion}
-	Run Keyword Unless  '${color}'=='White'  Wait Until Keyword Succeeds  5x  100ms  Click Element With Value   grey
+	Run Keyword If  '${color}'!='White'  Wait Until Keyword Succeeds  5x  100ms  Click Element With Value   grey
 	Wait Until Keyword Succeeds  5x  200ms  Click Element   //option[text()='${heading}']
 	Input Title To Paragraph   ${Inp_Accordion_Title}
 	Select Icon With Name   cogwheel

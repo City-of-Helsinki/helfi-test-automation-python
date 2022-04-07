@@ -63,11 +63,11 @@ Remote Video Play Begins Correctly
 Video 2 Plays Correctly
 	${islandingpage}=  Suite Source Contains Text   Landing_Page
 	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png   
-	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png
+	Run Keyword If   '${islandingpage}'!='True'   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png
 	${video2start} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
 	Play Video   ${Itm_Video2}
 	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
-	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
+	Run Keyword If   '${islandingpage}'!='True'   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
 	${video2end} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${video2start}   ${video2end}
 
