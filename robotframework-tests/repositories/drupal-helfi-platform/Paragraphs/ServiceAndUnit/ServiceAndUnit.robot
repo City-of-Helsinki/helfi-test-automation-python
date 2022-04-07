@@ -85,7 +85,7 @@ Units Service Link Works Correctly
 
 Banner Paragraph Should Have Selected Color
 	Open Unit With Name   Lippulaivan kirjasto
-	Run Keyword If   '${CI}'!='True'   Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.has-sidebar   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Run Keyword If   '${CI}'!='true'   Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.has-sidebar   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Run Keyword If   ${CI}   Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.has-sidebar   filename=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Two Pictures 
 	

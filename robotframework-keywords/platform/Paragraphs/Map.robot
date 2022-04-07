@@ -34,10 +34,10 @@ Map Paragraph Works Correctly
 	Sleep  2
 	
 	IF    ${ispalvelukartta}
-        Run Keyword If   '${CI}'!='True'  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
+        Run Keyword If   '${CI}'!='true'  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
         Run Keyword If   ${CI}  Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
     ELSE
-    	Run Keyword If   ${CI}'!='True'  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
+    	Run Keyword If   '${CI}'!='true'  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
     	Run Keyword If   ${CI}  Capture Element Screenshot   css:#mapcontainer > div.ol-viewport > canvas   ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapstart.png
     END 
 	
