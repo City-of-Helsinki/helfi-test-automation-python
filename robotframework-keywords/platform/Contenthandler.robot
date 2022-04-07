@@ -449,13 +449,31 @@ Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
 	Set Shortened Suite Name
-	Run Keyword If   ${CI}  Register Keyword To Run On Failure   NONE
-	Run Keyword If   ${CI}   Log-In In CI Environment
-	Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  Get Admin Url
-	Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  Open Browser  ${admin_url}  ${BROWSER}
-	Run Keyword If   '${CI_LOCALTEST}'!='true'  Go To   ${URL_content_page}
-	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
-	Run Keyword If   ${CI_LOCALTEST}   Log In
+	IF    ${CI}
+		Register Keyword To Run On Failure   NONE
+		Log-In In CI Environment
+	ELSE
+		Open Browser  ${URL_login_page}  ${BROWSER}
+		Log In
+	END
+	#IF   (not(${CI})) | (not(${CI_LOCALTEST}))
+	#	Get Admin Url
+	#	Open Browser  ${admin_url}  ${BROWSER}
+	#END
+	#IF   not(${CI_LOCALTEST})
+	#	Go To   ${URL_content_page}
+	#END
+	#IF    ${CI_LOCALTEST}
+	#	Open Browser  ${URL_login_page}  ${BROWSER}
+	#	Log In
+	#END
+	#Run Keyword If   ${CI}  Register Keyword To Run On Failure   NONE
+	#Run Keyword If   ${CI}   Log-In In CI Environment
+	#Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  Get Admin Url
+	#Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  Open Browser  ${admin_url}  ${BROWSER}
+	#Run Keyword If   '${CI_LOCALTEST}'!='true'  Go To   ${URL_content_page}
+	#Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
+	#Run Keyword If   ${CI_LOCALTEST}   Log In
 	Set Window Size   1296   696
 
 Set CI Arguments And Open Browser
