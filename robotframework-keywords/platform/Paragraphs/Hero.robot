@@ -34,7 +34,6 @@ Start Creating a ${value} Aligned Page With Hero Block
 	IF    not(${titleisvisible})
 		Click Element   ${Swh_HeroOnOff}
 	END
-	#Run Keyword If  '${titleisvisible}'!='True' 	Click Element   ${Swh_HeroOnOff}
 	Wait Until Keyword Succeeds  6x  300ms  Run Keyword If  '${value}'=='Center'  Click Element   ${Ddn_Hero_Alignment}
 	Run Keyword If  '${value}'=='Center'  Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Opt_Hero_Alignment_Center} 
 	Wait Until Keyword Succeeds  6x  300ms   Input Title To Paragraph   ${Inp_Hero_Title}

@@ -33,10 +33,6 @@ Map Paragraph Works Correctly
     	Wait Until Element Is Visible  ${Itm_Map_Kartta}
     	Select Frame   ${Itm_Map_Kartta}
     END 
-	#Run Keyword If  ${ispalvelukartta}  Wait Until Element Is Visible  ${Itm_Map_Palvelukartta}
-	#Run Keyword If  ${ispalvelukartta}  Select Frame   ${Itm_Map_Palvelukartta}
-	#Run Keyword If  '${ispalvelukartta}'!='True'   Wait Until Element Is Visible  ${Itm_Map_Kartta}  
-	#Run Keyword If  '${ispalvelukartta}'!='True'   Select Frame   ${Itm_Map_Kartta}  
 	Run Keyword And Ignore Error   Wait Until Keyword Succeeds  5x   200ms   Click Button   ${Btn_Map_Palvelukartta_AllowCookies}
 	Sleep  2
 	
@@ -50,9 +46,6 @@ Map Paragraph Works Correctly
     	Wait Until Keyword Succeeds  5x   300ms   Click Element   ${Btn_Map_Kartta_ZoomOut}
     END 
 	
-	
-	#Run Keyword If   '${ispalvelukartta}'!='True'	  Wait Until Keyword Succeeds  5x   300ms   Click Element   ${Btn_Map_Kartta_ZoomOut}
-	#Run Keyword If   ${ispalvelukartta}	  Wait Until Keyword Succeeds  5x   300ms   Click Element  ${Btn_Map_Palvelukartta_ZoomOut}
 	Sleep   1
 	IF    ${ispalvelukartta}
         Capture Element Screenshot   css:#app > div > div > div:nth-child(3) > div   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Mapend.png

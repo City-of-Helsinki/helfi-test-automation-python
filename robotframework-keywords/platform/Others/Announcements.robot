@@ -17,14 +17,11 @@ Create Announcement
 		Click Element  ${Swh_Announcement_Visibility}
 		Select Content To Show The Announcement For
 	END
-	#Run Keyword If  '${showonallpages}'!='True'   Click Element  ${Swh_Announcement_Visibility}
-	#Run Keyword If  '${showonallpages}'!='True'   Select Content To Show The Announcement For
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   css:#cke_1_contents > iframe   //body   ${TextFileContent}
 	IF    not(${published})
 		Click Element  id:edit-status-value
 	END
-#	Run Keyword If  '${published}'!='True'   Click Element  id:edit-status-value
 
 Select Content To Show The Announcement For
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  css:#edit-field-announcement-content-pages-wrapper > div > span > span.selection > span > ul > li > input   Esimerkkisivu

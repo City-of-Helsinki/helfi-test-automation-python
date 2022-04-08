@@ -14,8 +14,6 @@ Create LiftUpWithImage
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	
 	Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
-	#Run Keyword If  '${islandingpage}'!='True'   Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
-	#Run Keyword If  ${islandingpage}     Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
 	Input Title To Paragraph    ${Inp_LiftupWithImage_Title}
 	Add Picture   train
 	Input Description To Paragraph   ${Frm_Content}

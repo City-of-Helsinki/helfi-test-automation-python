@@ -24,8 +24,7 @@ User Opens Content With Title ${contenttitle}
     Search And Click Content From Content Pages   ${contenttitle}
 
 User Accepts ${selection} Cookies
-	Run Keyword If   not(${CI}) | not(${CI_LOCALTEST})  User Opens Content With Title Esimerkkisivu
-	#Run Keyword If   ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')  User Opens Content With Title Esimerkkisivu
+	Run Keyword If   (not(${CI})) | (not(${CI_LOCALTEST}))  User Opens Content With Title Esimerkkisivu
 	Accept ${selection} Cookies
 	
 ${consent_option} Cookies Are Created 
