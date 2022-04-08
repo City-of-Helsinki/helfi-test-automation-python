@@ -31,7 +31,7 @@ Add Text Content To Page
 
 Add Picture Content To Page
 	${addpicturevisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  ${Opt_AddPicture}   timeout=1
-	Run Keyword If   '${addpicturevisible}'!='True'   Click Element   ${Ddn_AddContent}
+	Run Keyword If   not(${addpicturevisible})   Click Element   ${Ddn_AddContent}
 	Run Keyword If  '${language}'=='fi'  Click Element   ${Opt_AddPicture}
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Picture}
 	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg

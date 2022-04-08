@@ -111,7 +111,7 @@ Search And Click Content From Content Pages
     	Run Keyword If  ${hascontent}  Return From Keyword   True
     	${nextbuttonvisible}=  Run Keyword And Return Status   Element Should Be Visible   css:.pager__item--next
     	Run Keyword If  ${nextbuttonvisible}   Click Element   css:.pager__item--next
-    	Run Keyword If  '${nextbuttonvisible}'!='True'   Return From Keyword   False
+    	Run Keyword If  not(${nextbuttonvisible})   Return From Keyword   False
     END
 	
 	
@@ -127,11 +127,12 @@ Cleanup and Close Browser
 		   Go To   ${URL_content_page}
 		   ${contentfound}=   Search And Click Content From Content Pages   Test Automation: ${SUITE}.${TEST NAME}
 		   Run Keyword If   ${contentfound}   Delete Test Automation Created Content
-		   Run Keyword If   '${contentfound}'!='True'   Exit For Loop
+		   Run Keyword If   not(${contentfound})   Exit For Loop
     END
-    
-    Run Keyword If  ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')   TearDown Test Paragraphs
-    Run Keyword If  ('${CI}'!='true') | ('${CI_LOCALTEST}'!='true')   TearDown Media Content
+    IF    (not(${CI})) & (not(${CI_LOCALTEST}))
+		TearDown Test Paragraphs
+		TearDown Media Content
+	END
     Close Browser	
 
 TearDown Test Paragraphs
@@ -381,8 +382,8 @@ Set Service As Published
 
 Set Unit As Published
 	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1
-	Run Keyword If  '${isalreadypublished}'!='True'  Click Element   id:edit-status
-	Run Keyword If  '${isalreadypublished}'!='True'  Set Test Variable  ${unitispublished}   true
+	Run Keyword If  not(${isalreadypublished})  Click Element   id:edit-status
+	Run Keyword If  not(${isalreadypublished})  Set Test Variable  ${unitispublished}   true
 
 Select Language
 	[Arguments]     ${value}
@@ -636,6 +637,6 @@ Input Non-paragraph Related Content
 	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	Run Keyword If  '${islandingpage}'!='True'   Input Content Header Title  ${headertitle}   ${pagetype}	
+	Run Keyword If  not(${islandingpage})   Input Content Header Title  ${headertitle}   ${pagetype}	
 
 	

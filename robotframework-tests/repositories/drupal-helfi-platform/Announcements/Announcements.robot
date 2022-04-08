@@ -130,6 +130,7 @@ Announcement Layout For ${type} Should Be Correct For Checked Content
 
 ${type} Announcement Layout Is Corrent
 		Scroll Element Into View   css:div.announcement__content
-        Run Keyword If   '${CI}'!='true'   Capture Element Screenshot  css:div.announcement__content   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+		Run Keyword If   not(${CI})   Capture Element Screenshot  css:div.announcement__content   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+        #Run Keyword If   '${CI}'!='true'   Capture Element Screenshot  css:div.announcement__content   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 		Run Keyword If   ${CI}   Capture Element Screenshot  css:div.announcement__content   filename=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
         Compare Two Pictures
