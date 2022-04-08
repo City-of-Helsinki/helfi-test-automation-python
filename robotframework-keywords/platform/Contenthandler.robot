@@ -454,7 +454,7 @@ Login And Go To Content Page
 	...				  page.
 	Set Shortened Suite Name
 	IF    ${CI}
-		#Register Keyword To Run On Failure   NONE
+		Register Keyword To Run On Failure   NONE
 		Log-In In CI Environment
 	ELSE
 		Open Browser  ${URL_login_page}  ${BROWSER}
