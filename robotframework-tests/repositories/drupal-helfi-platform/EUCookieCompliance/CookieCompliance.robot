@@ -5,15 +5,15 @@ Test Setup      Resolve Login
 Force Tags		COOKIECOMPLIANCE
 
 *** Test Cases ***
-Essential Cookies
-	[Tags]
-	When User Accepts Essential Cookies
-	Then Essential Cookies Are Created	
+#Essential Cookies
+#	[Tags]
+#	When User Accepts Essential Cookies
+#	Then Essential Cookies Are Created	
 
-All Cookies
-	[Tags]
-	When User Accepts All Cookies
-	Then All Cookies Are Created
+#All Cookies
+#	[Tags]
+#	When User Accepts All Cookies
+#	Then All Cookies Are Created
 
 
 
