@@ -16,10 +16,14 @@ Debug Error
 	[Documentation]   If debug is set on, will capture screenshot of error and save the html page. The data will be 
 	...				  in debug folder of test results.
 	Maximize Browser Window   
-	Execute javascript  document.body.style.zoom="30%"
+
 	IF    ${CI}
+		Capture Page Screenshot    filename=/app/helfi-test-automation-python/robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_normal.png
+		Execute javascript  document.body.style.zoom="80%"
 		Capture Page Screenshot    filename=/app/helfi-test-automation-python/robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
     ELSE
+    	Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_normal.png
+    	Execute javascript  document.body.style.zoom="80%"
 		Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png		
     END 
 	Execute javascript  document.body.style.zoom="100%"
