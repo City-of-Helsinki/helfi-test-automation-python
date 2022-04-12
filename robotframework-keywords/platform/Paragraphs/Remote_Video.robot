@@ -19,8 +19,9 @@ Create ${pagetype} With ${number} Remote Video(s) Content
 Add Remote Video
     [Arguments]   ${url}=https://www.youtube.com/watch?v=nl5jKA6MMVg
     Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
-    Wait Until Keyword Succeeds  5x  200ms  Execute javascript  window.scrollTo(0, 200)
-    Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_RemoteVideo_Add}
+    Wait Until Element Is Enabled   ${Btn_RemoteVideo_Add}   10 s
+	Wait Until Keyword Succeeds  5x  200ms  Set Focus To Element   ${Btn_RemoteVideo_Add}
+	Wait Until Keyword Succeeds  5x  200ms  Press Keys    None    RETURN
   	Wait Until Keyword Succeeds  6x  300ms  Input Text To Video URL field   ${url}
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
