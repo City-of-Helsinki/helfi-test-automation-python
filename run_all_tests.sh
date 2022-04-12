@@ -9,7 +9,7 @@ echo "#######################################"
 echo "# Running portfolio a first time      #"
 echo "#######################################"
 echo
-pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -v PREFIX:/kaupunkiymparisto-ja-liikenne -v BASE_URL:varnish-helfi-kymp.docker.so -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports $@
+pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -v PREFIX:/kaupunkiymparisto-ja-liikenne -v BASE_URL:varnish-helfi-kymp.docker.so -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@
 #robot --outputdir robotframework-reports $@
 
 # we stop the script here if all the tests were OK
@@ -29,7 +29,7 @@ echo "# Running again the tests that failed #"
 echo "#######################################"
 echo
 #robot --outputdir robotframework-reports --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml $@
-pabot  --processes 9 -v PREFIX:/kaupunkiymparisto-ja-liikenne -v BASE_URL:varnish-helfi-kymp.docker.so -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports $@
+pabot --processes 9 -v PREFIX:/kaupunkiymparisto-ja-liikenne -v BASE_URL:varnish-helfi-kymp.docker.so -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@
 # => Robot Framework generates file rerun.xml
 
 # we keep a copy of the second log file
