@@ -1,8 +1,8 @@
 # clean previous output files
-rm -f robotframework-reports/output.xml
-rm -f robotframework-reports/rerun.xml
-rm -f robotframework-reports/first_run_log.html
-rm -f robotframework-reports/second_run_log.html
+#rm -f robotframework-reports/output.xml
+#rm -f robotframework-reports/rerun.xml
+#rm -f robotframework-reports/first_run_log.html
+#rm -f robotframework-reports/second_run_log.html
 
 echo
 echo "#######################################"
