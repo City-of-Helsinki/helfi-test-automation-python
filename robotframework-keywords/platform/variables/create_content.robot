@@ -231,7 +231,7 @@ ${Itm_Video2}  										(//div[contains(@class,'responsive-video-container')])[
 ${Itm_Video_Description}							(//div[contains(@class,'remote-video-video-desc')][contains(@class, 'cke')])[last()] >> css:div > div > iframe
 ${Itm_Video_Title}									//input[contains(@name, 'remote_video_video_title')]
 
-${Video_Title}										//h3[contains(@class, 'remote-video__video-title')]
+${Video_Title}										//h2[contains(@class, 'remote-video__video-title')]
 ${Video_Description}								//div[contains(@class, 'remote-video__video-desc')]
 
 
