@@ -28,7 +28,7 @@ Currently used (4/2022) versions are:
 
     Robot Framework 5.0
     Seleniumlibrary 6.0.0
-    Roboteyes  1.5.9
+    Roboteyes  1.5.0
      
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
