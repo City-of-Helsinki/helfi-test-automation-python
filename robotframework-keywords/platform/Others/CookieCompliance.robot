@@ -25,6 +25,9 @@ Resolve Login
 	IF    (${CI}) | (${CI_LOCALTEST})
         Set CI Arguments And Open Browser
     ELSE
-    	Login And Go To Content Page
+    	Open Browser  ${URL_login_page}  ${BROWSER}
+		Input Text   id:edit-name   helfi-admin
+		Input Password   id:edit-pass   Test_Automation
+		Wait Until Keyword Succeeds  3x  600ms  Log In User
     END
 	
