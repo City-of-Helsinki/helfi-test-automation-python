@@ -16,13 +16,28 @@ Debug Error
 	[Documentation]   If debug is set on, will capture screenshot of error and save the html page. The data will be 
 	...				  in debug folder of test results.
 	Maximize Browser Window   
-	Execute javascript  document.body.style.zoom="30%"
-	Run Keyword Unless   ${CI}  Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
-	Run Keyword If   ${CI}   Capture Page Screenshot    filename=/app/helfi-test-automation-python/robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png   
+	${wsize}=  Get Window Size
+	${width}=  Get From List   ${wsize}   0
+	${height}=  Get From List   ${wsize}   1
+	IF    ${CI}
+		Capture Page Screenshot    filename=/app/helfi-test-automation-python/robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_normal.png
+		Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
+		Execute javascript  document.body.style.zoom="80%"
+		Capture Element Screenshot	css:body   /app/helfi-test-automation-python/robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png
+    ELSE
+    	Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_normal.png
+    	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
+		Execute javascript  document.body.style.zoom="80%"
+    	Capture Element Screenshot	css:body   ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_zoomout.png		
+    END 
 	Execute javascript  document.body.style.zoom="100%"
+	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
 	${source}=   Get Source
-	Run Keyword Unless   ${CI}  Create File  ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}
-	Run Keyword If   ${CI}   Create File  robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}   
+	IF    ${CI}
+		Create File  robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}	
+    ELSE
+		Create File  ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}
+    END
 	
 Input Text To Frame
 	[Documentation]   Inserts text to given frame and returns to original content

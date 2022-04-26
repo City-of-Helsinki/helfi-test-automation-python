@@ -5,15 +5,15 @@ Test Setup      Resolve Login
 Force Tags		COOKIECOMPLIANCE
 
 *** Test Cases ***
-Essential Cookies
-	[Tags]
-	When User Accepts Essential Cookies
-	Then Essential Cookies Are Created	
+#Essential Cookies
+#	[Tags]
+#	When User Accepts Essential Cookies
+#	Then Essential Cookies Are Created	
 
-All Cookies
-	[Tags]
-	When User Accepts All Cookies
-	Then All Cookies Are Created
+#All Cookies
+#	[Tags]
+#	When User Accepts All Cookies
+#	Then All Cookies Are Created
 
 
 
@@ -24,7 +24,7 @@ User Opens Content With Title ${contenttitle}
     Search And Click Content From Content Pages   ${contenttitle}
 
 User Accepts ${selection} Cookies
-	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  User Opens Content With Title Esimerkkisivu
+	Run Keyword If   (not(${CI})) | (not(${CI_LOCALTEST}))  User Opens Content With Title Esimerkkisivu
 	Accept ${selection} Cookies
 	
 ${consent_option} Cookies Are Created 

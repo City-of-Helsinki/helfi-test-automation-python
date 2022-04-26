@@ -12,8 +12,8 @@ Create LiftUpWithImage
 	Open Paragraph For Edit   ${Opt_AddLiftupWithImage}
 	${design}=   Resolve Design Variable   ${design}
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	Run Keyword Unless  ${islandingpage}   Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
-	Run Keyword If  ${islandingpage}     Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
+	
+	Wait Until Keyword Succeeds  5x  200ms  Select From List By Value  ${Inp_LiftupWithImage_Design}  ${design}
 	Input Title To Paragraph    ${Inp_LiftupWithImage_Title}
 	Add Picture   train
 	Input Description To Paragraph   ${Frm_Content}

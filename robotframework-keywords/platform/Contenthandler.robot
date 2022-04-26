@@ -46,7 +46,7 @@ Open Paragraph For Edit
 	[Documentation]  'paragraphlist' can be given if list should be some other than default paragraph list.
 	Wait Until Element Is Visible   ${Ddn_AddContent}   timeout=3
 	Run Keyword If  '${paragraphlist}'=='${EMPTY}'  Click Element	${Ddn_AddContent}
-	Run Keyword Unless  '${paragraphlist}'=='${EMPTY}'   Click Element	${paragraphlist}
+	Run Keyword If  '${paragraphlist}'!='${EMPTY}'   Click Element	${paragraphlist}
 	Click Element   ${paragraph}
 	
 Input Title To Paragraph
@@ -82,14 +82,17 @@ Capture Screenshot For Picture Comparison
 	${height}=  Get From List   ${wsize}   1
 	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
 	Open Eyes   SeleniumLibrary
-	Run Keyword Unless   ${CI}  Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
-	Run Keyword If   ${CI}   Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	IF    ${CI}
+		Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	ELSE
+		Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+	END
 	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
 	
 Input Content Header Title
 	[Arguments]   ${content}   ${pagetype}
 	Run Keyword If   '${pagetype}'=='Page'   Input Text  name:field_lead_in[0][value]   ${content}
-	Run Keyword Unless   '${pagetype}'=='Page'  Input Text To Frame   ${Frm_Content}   //body   ${content}
+	Run Keyword If   '${pagetype}'!='Page'  Input Text To Frame   ${Frm_Content}   //body   ${content}
 	
 Go To Translations Tab
 	Click Element   //a[contains(text(),'Translate')]
@@ -106,7 +109,7 @@ Search And Click Content From Content Pages
     	Run Keyword If  ${hascontent}  Return From Keyword   True
     	${nextbuttonvisible}=  Run Keyword And Return Status   Element Should Be Visible   css:.pager__item--next
     	Run Keyword If  ${nextbuttonvisible}   Click Element   css:.pager__item--next
-    	Run Keyword Unless  ${nextbuttonvisible}   Return From Keyword   False
+    	Run Keyword If  not(${nextbuttonvisible})   Return From Keyword   False
     END
 	
 	
@@ -122,11 +125,12 @@ Cleanup and Close Browser
 		   Go To   ${URL_content_page}
 		   ${contentfound}=   Search And Click Content From Content Pages   Test Automation: ${SUITE}.${TEST NAME}
 		   Run Keyword If   ${contentfound}   Delete Test Automation Created Content
-		   Run Keyword Unless   ${contentfound}   Exit For Loop
+		   Run Keyword If   not(${contentfound})   Exit For Loop
     END
-    
-    Run Keyword Unless  ${CI} | ${CI_LOCALTEST}   TearDown Test Paragraphs
-    Run Keyword Unless  ${CI} | ${CI_LOCALTEST}   TearDown Media Content
+    IF    (not(${CI})) & (not(${CI_LOCALTEST}))
+		TearDown Test Paragraphs
+		TearDown Media Content
+	END
     Close Browser	
 
 TearDown Test Paragraphs
@@ -211,7 +215,7 @@ Accept Cookies
 	Wait Until Keyword Succeeds  6x  400ms  Click Button  //button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']
 
 Open Created Content
-	Run Keyword Unless  ${CI}  Open Content In Non CI Environments
+	Run Keyword If  '${CI}'!='true'  Open Content In Non CI Environments
 	Run Keyword If   (${CI}) & ('${language}'=='fi')  	Accept Cookies
 	Run Keyword If   ${CI}  Reload Page
 	  
@@ -324,10 +328,11 @@ Submit The New ${pagetype}
 
 Submit New Content
 	[Documentation]  User submits new page and it is saved and appears in content view
+	Execute javascript  window.scrollTo(0, 400)    # SCROLL TO PAGE TOP SINCE SAVE BUTTON IS BEHIND OTHER ELEMENTS IN SOME TESTS
 	Wait Until Keyword Succeeds  5x  100ms  Click Button   ${Btn_Submit}
 	Wait Until Keyword Succeeds  5x  100ms  Element Should Not Be Visible   ${Btn_Submit}
 	${isserviceandunit}=  Suite Source Contains Text  ServiceAndUnit
-	Run Keyword Unless  ${isserviceandunit}  Set Test Variable  ${pagesadded}    ${pagesadded}+1
+	Run Keyword If  '${isserviceandunit}'!='True'  Set Test Variable  ${pagesadded}    ${pagesadded}+1
 
 Submit New Media
 	[Documentation]  User submits new media content and it is saved and appears in media view
@@ -370,13 +375,13 @@ Get Admin Url
 
 Set Service As Published
 	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1
-	Run Keyword Unless  ${isalreadypublished}  Click Element   id:edit-status
+	Run Keyword If  '${isalreadypublished}'!='True'  Click Element   id:edit-status
 	Set Test Variable  ${serviceispublished}   true
 
 Set Unit As Published
 	${isalreadypublished}=  Run Keyword And Return Status   Wait Until Page Contains Element  css:input.tpr-entity-status:checked   1
-	Run Keyword Unless  ${isalreadypublished}  Click Element   id:edit-status
-	Run Keyword Unless  ${isalreadypublished}  Set Test Variable  ${unitispublished}   true
+	Run Keyword If  not(${isalreadypublished})  Click Element   id:edit-status
+	Run Keyword If  not(${isalreadypublished})  Set Test Variable  ${unitispublished}   true
 
 Select Language
 	[Arguments]     ${value}
@@ -448,13 +453,14 @@ Login And Go To Content Page
 	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
 	...				  page.
 	Set Shortened Suite Name
-	Run Keyword If   ${CI}  Register Keyword To Run On Failure   NONE
-	Run Keyword If   ${CI}   Log-In In CI Environment
-	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Get Admin Url
-	Run Keyword Unless   (${CI}) | (${CI_LOCALTEST})  Open Browser  ${admin_url}  ${BROWSER}
-	Run Keyword Unless   ${CI_LOCALTEST}  Go To   ${URL_content_page}
-	Run Keyword If   ${CI_LOCALTEST}  Open Browser  ${URL_login_page}  ${BROWSER}
-	Run Keyword If   ${CI_LOCALTEST}   Log In
+	IF    ${CI}
+		Register Keyword To Run On Failure   NONE
+		Log-In In CI Environment
+	ELSE
+		Open Browser  ${URL_login_page}  ${BROWSER}
+		Log In
+	END
+
 	Set Window Size   1296   696
 
 Set CI Arguments And Open Browser
@@ -566,7 +572,7 @@ Add Text Content To Column on ${side}
 	... 	 '${side}'=='Left'	${content_left}
 	... 	 '${side}'=='Right'	${content_right}
 	${editpicturevisible}=  Run Keyword And Return Status    Element Should Not Be Visible  ${Btn_Column_${side}_Edit}   timeout=1
-	Run Keyword Unless   ${editpicturevisible}   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Column_${side}_Edit}
+	Run Keyword If   '${editpicturevisible}'!='True'   Wait Until Keyword Succeeds  5x  200ms  Click Element   ${Btn_Column_${side}_Edit}
 	
 	IF    (${issidebar})
         Wait Until Keyword Succeeds  10x  500ms  Input Text To Frame   css:#cke_1_contents > iframe   //body   ${content_text}
@@ -612,6 +618,6 @@ Input Non-paragraph Related Content
 	Input Title  Test Automation: ${SUITE}.${TEST NAME}
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	Run Keyword Unless  ${islandingpage}   Input Content Header Title  ${headertitle}   ${pagetype}	
+	Run Keyword If  not(${islandingpage})   Input Content Header Title  ${headertitle}   ${pagetype}	
 
 	

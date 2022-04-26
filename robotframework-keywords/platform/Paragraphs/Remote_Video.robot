@@ -19,8 +19,9 @@ Create ${pagetype} With ${number} Remote Video(s) Content
 Add Remote Video
     [Arguments]   ${url}=https://www.youtube.com/watch?v=nl5jKA6MMVg
     Run Keyword If  '${language}'=='fi'  Open Paragraph For Edit   ${Opt_AddRemotevideo}
-    Wait Until Keyword Succeeds  5x  200ms  Execute javascript  window.scrollTo(0, 200)
-    Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_RemoteVideo_Add}
+    Wait Until Element Is Enabled   ${Btn_RemoteVideo_Add}   10 s
+	Wait Until Keyword Succeeds  5x  200ms  Set Focus To Element   ${Btn_RemoteVideo_Add}
+	Wait Until Keyword Succeeds  5x  200ms  Press Keys    None    RETURN
   	Wait Until Keyword Succeeds  6x  300ms  Input Text To Video URL field   ${url}
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    TAB
     Wait Until Keyword Succeeds  5x  100ms  Press Keys    None    ENTER
@@ -62,12 +63,18 @@ Remote Video Play Begins Correctly
 
 Video 2 Plays Correctly
 	${islandingpage}=  Suite Source Contains Text   Landing_Page
-	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png   
-	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png
+	IF    ${islandingpage}
+		Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png
+    ELSE
+		Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2start.png
+    END 
 	${video2start} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE NAME}-${TEST NAME}_${language}_Video2start.png
 	Play Video   ${Itm_Video2}
-	Run Keyword If   ${islandingpage}   Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
-	Run Keyword Unless   ${islandingpage}   Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
+	IF    ${islandingpage}
+		Capture Element Screenshot   ${Itm_Landingpage_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
+    ELSE
+		Capture Element Screenshot   ${Itm_Video2}   ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
+    END 
 	${video2end} =  Set Variable    ${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}_Video2end.png
 	Run Keyword And Expect Error   The compared images are different.  Compared Pictures Match  ${video2start}   ${video2end}
 

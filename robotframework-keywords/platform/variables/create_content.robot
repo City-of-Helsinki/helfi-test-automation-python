@@ -231,7 +231,7 @@ ${Itm_Video2}  										(//div[contains(@class,'responsive-video-container')])[
 ${Itm_Video_Description}							(//div[contains(@class,'remote-video-video-desc')][contains(@class, 'cke')])[last()] >> css:div > div > iframe
 ${Itm_Video_Title}									//input[contains(@name, 'remote_video_video_title')]
 
-${Video_Title}										//h3[contains(@class, 'remote-video__video-title')]
+${Video_Title}										//h2[contains(@class, 'remote-video__video-title')]
 ${Video_Description}								//div[contains(@class, 'remote-video__video-desc')]
 
 
@@ -268,7 +268,7 @@ ${Opt_Paragraph_AddListOfLinks}						name:paragraphs_list_of_links_add_more
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
 ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
-${Tar_Paragraph_Picture_Image_Caption}				name:paragraphs[0][subform][field_image_caption][0][value]
+${Tar_Paragraph_Picture_Image_Caption}				css:textarea[name*=field_image_caption]
 ${Tar_Paragraph_Gallery_Image_Caption}				name:paragraphs[0][subform][field_gallery_slides][0][subform][field_gallery_slide_caption][0][value]
 
 ${Txt_Banner_Title}									css:.banner__title
