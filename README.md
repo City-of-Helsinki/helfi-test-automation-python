@@ -24,11 +24,11 @@ In order to work with this robot framework repo locally, you need:
             
 You can use the latest versions of the libraries, but might need to do some small refactoring if for example same keyword would have become outdated or if some structures like classic if-else pattern is no longer supported.
 
-Currently used (6/2021) versions are:
+Currently used (4/2022) versions are:
 
-    Robot Framework 4.0.2
-    Seleniumlibrary 5.1.3
-    Roboteyes  1.5.0
+    Robot Framework 5.0
+    Seleniumlibrary 6.0.0
+    Roboteyes  1.5.9
      
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
@@ -46,7 +46,7 @@ Robot Framework Uses argument files to run correct settings in CI and local runs
 You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform.
 
 In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
-Current pabot version is  2.1.0
+Current pabot version is  2.5.2   (4/2022)
 
 
 
