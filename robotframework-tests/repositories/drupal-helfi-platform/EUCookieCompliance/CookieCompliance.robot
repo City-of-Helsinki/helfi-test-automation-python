@@ -1,18 +1,18 @@
 *** Settings ***
 Documentation   For these testcases to work, 'helfi_example_content' should be enabled.
 Resource        ../../../../robotframework-keywords/platform/Others/CookieCompliance.robot
-Test Setup      Resolve Login
+Test Setup      Open Browser For Testing
 Force Tags		COOKIECOMPLIANCE
 
 *** Test Cases ***
 Essential Cookies
 	[Tags]
-	When User Accepts Essential Cookies
+	When User Accepts Essential Cookies And Logs In
 	Then Essential Cookies Are Created	
 
 All Cookies
 	[Tags]
-	When User Accepts All Cookies
+	When User Accepts All Cookies And Logs In
 	Then All Cookies Are Created
 
 
