@@ -28,8 +28,8 @@ User Starts Creating Contactcard Paragraph
 	Contenthandler.Input Non-paragraph Related Content   Page
 	Create ContactCard Paragraph
 	Create ContactCard1
-	Create ContactCard Paragraph
-	Create ContactCard2
+	Run Keyword If  '${TEST NAME}'=='Two Contact Cards'  Create ContactCard Paragraph
+	Run Keyword If  '${TEST NAME}'=='Two Contact Cards'  Create ContactCard2
 	
 
 User Submits The New Page
