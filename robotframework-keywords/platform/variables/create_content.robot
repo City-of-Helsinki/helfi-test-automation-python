@@ -61,6 +61,8 @@ ${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_m
 ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
+${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
+
 
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
@@ -330,3 +332,19 @@ ${Inp_Chart_Url}										name:helfi_chart_url
 ${Btn_Chart_Url_Add}									css:form[id*=helfi-chart-add-form] > div > input
 ${Inp_Chart_Url_Title}									css:input[name*=field_helfi_chart_title]
 ${Frm_Chart_Url_Transcription}							//div[contains(@id,'field-helfi-chart-transcript')]//iframe
+
+# CONTACT CARD LISTING
+${Inp_Contact_Card_Listing_Title}								css:input[name*=field_title]
+${Inp_Contact_Card_Listing_Description}					//div[contains(@id,'cke_edit-field-content')]//iframe
+${Btn_Add_ContactCard_File}								css:input[name*=files]
+${Inp_ContactCard_Picture_AlternateText}				(//input[contains(@name, 'field_contact_image')][contains(@name, 'alt')])[last()]
+${Inp_ContactCard_Photographer}							(//input[contains(@name, 'field_contact_image_photographer')])[last()]
+${Inp_ContactCard_Name}									(//input[contains(@name, 'field_contact_name')])[last()]
+${Inp_ContactCard_Title}								(//input[contains(@name, 'field_contact_title')])[last()]
+${Inp_ContactCard_Email}								(//input[contains(@name, 'field_email')])[last()]
+${Inp_ContactCard_PhoneNumber_1}						(//table[contains(@id, 'field-phone-number-values')])[last()] >> css:tr:nth-child(1) > td:nth-child(2) > div > input
+${Inp_ContactCard_PhoneNumber_2}						(//table[contains(@id, 'field-phone-number-values')])[last()] >> css:tr:nth-child(2) > td:nth-child(2) > div > input
+${Tar_ContactCard_Description}							(//textarea[contains(@name, 'field_contact_description')])[last()]
+${Btn_AddSocialMediaLink}								(//input[contains(@name, 'contact_social_media_social_media_link_add_more')])[last()]
+${Sel_ContactCard_SocialMedia_Icon}						(//select[contains(@name, 'field_icon')])[last()]
+${Inp_ContactCard_SocialMedia_Url}						(//input[contains(@name, 'field_social_media_link')])[last()]
