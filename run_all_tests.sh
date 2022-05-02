@@ -1,4 +1,3 @@
-set -e
 if [[ ! -n "$PREFIX" ]]; then
   PREFIX="/kaupunkiymparisto-ja-liikenne"
 fi
@@ -12,10 +11,10 @@ echo "#######################################"
 echo "# Running portfolio a first time      #"
 echo "#######################################"
 echo
-pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@
+EXIT_CODE=$(pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@)
 
 # we stop the script here if all the tests were OK
-if [ $? -eq 0 ]; then
+if [ $EXIT_CODE -eq 0 ]; then
 	echo "we don't run the tests again as everything was OK on first try"
 	exit 0
 fi
@@ -30,7 +29,7 @@ echo "#######################################"
 echo "# Running again the tests that failed #"
 echo "#######################################"
 echo
-pabot --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@
+EXIT_CODE2=$(pabot --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@)
 # => Robot Framework generates file rerun.xml
 
 # we keep a copy of the second log file
@@ -44,3 +43,7 @@ echo "########################"
 echo
 rebot --nostatusrc --outputdir robotframework-reports --output output.xml --merge robotframework-reports/output.xml  robotframework-reports/rerun.xml
 # => Robot Framework generates a new output.xml
+
+if [[ $EXIT_CODE -gt 0 ]] || [[ $EXIT_CODE2 -gt 0 ]]; then
+  exit 1
+fi
