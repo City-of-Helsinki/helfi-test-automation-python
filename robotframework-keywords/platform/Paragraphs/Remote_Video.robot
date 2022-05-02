@@ -29,6 +29,7 @@ Add Remote Video
     Wait Until Keyword Succeeds  6x  1s  Confirm Video Selection
     Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Itm_Video_Description}  //body  ${description}
     Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Itm_Video_Title}   ${title}
+    Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Assistive_Technology_Title}   Avustavan teknologian otsikko
     
     Set Test Variable  ${mediaadded}    ${mediaadded}+1
 

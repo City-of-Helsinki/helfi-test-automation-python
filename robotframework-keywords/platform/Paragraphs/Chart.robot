@@ -12,11 +12,12 @@ Create Chart
 	Open Paragraph For Edit   ${Opt_AddChart}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph  ${Inp_Chart_Title}
 	Input Description To Paragraph   ${Inp_Chart_Description}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Assistive_Technology_Title}   Avustavan teknologian otsikko
 	Click Button   ${Btn_Chart_Add_Media}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_Chart_Url}   ${test_url}
 	Click Button   ${Btn_Chart_Url_Add}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  ${Inp_Chart_Url_Title}    Chart Picture  
-	Input Text To Frame   ${Frm_Chart_Url_Transcription}   //body   Just transcription text for testcase:${TEST NAME} 
+	Input Text To Frame   ${Frm_Chart_Url_Transcription}   //body   Just transcription text for testcase:${TEST NAME}
 	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 	  
 Layout Should Not Have Changed
