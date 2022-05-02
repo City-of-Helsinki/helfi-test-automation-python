@@ -11,7 +11,8 @@ echo "#######################################"
 echo "# Running portfolio a first time      #"
 echo "#######################################"
 echo
-EXIT_CODE=$(pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@)
+pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@
+EXIT_CODE=$?
 
 # we stop the script here if all the tests were OK
 if [ $EXIT_CODE -eq 0 ]; then
@@ -29,7 +30,9 @@ echo "#######################################"
 echo "# Running again the tests that failed #"
 echo "#######################################"
 echo
-EXIT_CODE2=$(pabot --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@)
+pabot --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@
+EXIT_CODE2=$?
+
 # => Robot Framework generates file rerun.xml
 
 # we keep a copy of the second log file
