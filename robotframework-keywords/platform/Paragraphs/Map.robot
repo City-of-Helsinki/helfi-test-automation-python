@@ -13,6 +13,7 @@ Create Map With Given Url
 	Wait Until Keyword Succeeds  5x  100ms  Input Text   ${Inp_Map_Title}   ${TEST NAME}
 	${description}=  Return Correct Description   ${language}
 	Input Text  ${Inp_Map_Description}   ${description}
+	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Assistive_Technology_Title}   Avustavan teknologian otsikko
 	Wait Until Keyword Succeeds  6x  300ms   Add Url To Map
 	Wait Until Keyword Succeeds  6x  300ms  Submit New Media
 
