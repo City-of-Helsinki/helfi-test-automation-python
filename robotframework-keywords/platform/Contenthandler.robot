@@ -119,6 +119,7 @@ Go To ${language} Translation Page
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
+	Run Keyword If   ${MOBILE}  Switch Browser   1
 	${currenturl}=   Get Location
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    10
@@ -131,7 +132,7 @@ Cleanup and Close Browser
 		TearDown Test Paragraphs
 		TearDown Media Content
 	END
-    Close Browser	
+    Close All Browsers	
 
 TearDown Test Paragraphs
 	# REMOVING PARAGRAPHS IS LIKELY NOT NECESSARY FROM NOW ON SO LETS JUST DISABLE THIS
@@ -471,7 +472,40 @@ Set CI Arguments And Open Browser
     Call Method    ${chrome_options}    add_argument    --disable-gpu
         
     Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
-	
+
+Log In With Mobile and GoTo Page
+	[Arguments]   ${devicename}   ${url}
+	Set Individual Device Attributes   ${devicename}  375   667   2.0
+	Go To  ${URL_login_page}
+	Log In
+	Go To   ${url}
+
+Set Mobile Device
+	[Arguments]   ${devicename}
+    ${mobile emulation}=    Create Dictionary    deviceName=${devicename}
+    ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --headless
+    Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
+    
+    Call Method    ${chrome options}    add_experimental_option    mobileEmulation    ${mobile emulation}
+    Create Webdriver    Chrome    chrome_options=${chrome options}
+
+
+Set Individual Device Attributes
+	[Arguments]   ${devicename}   ${width}   ${height}   ${pixelratio}
+	[Documentation]   Used In Mobile Device Testing
+    ${device metrics}=    Create Dictionary    width=${${width}}    height=${${height}}    pixelRatio=${${pixelratio}}    userAgent=Mozilla/5.0 (Linux; Android 11; ${devicename}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36
+    ${mobile emulation}=    Create Dictionary    deviceMetrics=${device metrics}
+    ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --headless
+    Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
+    Call Method    ${chrome options}    add_experimental_option    mobileEmulation    ${mobile emulation}
+    Create Webdriver    Chrome    chrome_options=${chrome options}
+    	
 	
 Log-In In CI Environment
 	Set CI Arguments And Open Browser
