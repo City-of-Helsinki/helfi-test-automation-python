@@ -250,6 +250,7 @@ ${Inp_Paragraph_Accordion_Accordion1_Text}			name:paragraphs[0][subform][field_a
 ${Inp_Paragraph_ContentCard_TargetId}				name:paragraphs[0][subform][field_content_cards_content][0][target_id]
 ${Inp_Paragraph_ListOfLinks_Title}					name:paragraphs[0][subform][field_list_of_links_title][0][value]
 ${Inp_Paragraph_SidebarText_Title}					name:paragraphs[0][subform][field_sidebar_text_title][0][value]
+${Inp_Paragraph_UnitSearch_Title}					(//input[contains(@name, 'field_unit_search_title')])[last()]
 
 
 ${Btn_Paragraph_Gallery_Picture}					name:field_gallery_slide_media-media-library-open-button-paragraphs-0-subform-field_gallery_slides-
@@ -269,6 +270,7 @@ ${Opt_Paragraph_AddGallery} 					    name:paragraphs_gallery_add_more
 ${Opt_Paragraph_AddLiftupWithImage}					name:paragraphs_liftup_with_image_add_more
 ${Opt_Paragraph_AddListOfLinks}						name:paragraphs_list_of_links_add_more
 ${Opt_Paragraph_AddRemotevideo}						name:paragraphs_remote_video_add_more
+${Opt_Paragraph_UnitSearch}							name:paragraphs_unit_search_add_more
 ${Frm_Paragraph_Column_Left_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'left')]//iframe
 ${Frm_Paragraph_Column_Right_Text}					//div[contains(@id,'cke_edit-paragraphs-0-subform-field-columns')][contains(@id,'right')]//iframe
 ${Tar_Paragraph_Picture_Image_Caption}				css:textarea[name*=field_image_caption]
