@@ -47,6 +47,4 @@ echo
 rebot --nostatusrc --outputdir robotframework-reports --output output.xml --merge robotframework-reports/output.xml  robotframework-reports/rerun.xml
 # => Robot Framework generates a new output.xml
 
-if [[ $EXIT_CODE -gt 0 ]] || [[ $EXIT_CODE2 -gt 0 ]]; then
-  exit 1
-fi
+exit $EXIT_CODE2
