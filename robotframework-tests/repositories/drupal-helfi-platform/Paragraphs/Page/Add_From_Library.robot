@@ -9,107 +9,80 @@ Force Tags		PAGE   ADDFROMLIBRARY
 Columns
 	[Tags]
 	Given User Creates New Columns Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For Columns -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For Columns -Paragraph in English Language
-	And User Starts Creating Page With Add From Library Content For Columns -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating Page With Add From Library Content For Columns -Paragraph
+	Then Page Should Have Filled Columns Paragraph From Library
 
 Accordion
 	[Tags]
 	Given User Creates New Accordion Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For Accordion -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For Accordion -Paragraph in English Language
-	And User Starts Creating Page With Add From Library Content For Accordion -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating Page With Add From Library Content For Accordion -Paragraph
+	Then Page Should Have Filled Accordion Paragraph From Library
 
 ContentCards
 	[Tags]
 	Given User Creates New ContentCards Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For ContentCards -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For ContentCards -Paragraph in English Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
+	When User Starts Creating Page With Add From Library Content For ContentCards -Paragraph
+	Then Page Should Have Filled ContentCards Paragraph From Library
 
 Gallery
 	[Tags]
 	Given User Creates New Gallery Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For Gallery -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For Gallery -Paragraph in English Language
-	And User Starts Creating Page With Add From Library Content For Gallery -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating Page With Add From Library Content For Gallery -Paragraph
+	Then Page Should Have Filled Gallery Paragraph From Library
 
 Picture
 	[Tags]
 	Given User Creates New Picture Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For Picture -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For Picture -Paragraph in English Language
-	And User Starts Creating Page With Add From Library Content For Picture -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating Page With Add From Library Content For Picture -Paragraph
+	Then Page Should Have Filled Picture Paragraph From Library
 
 ListOfLinks
 	[Tags]
 	Given User Creates New ListOfLinks Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For ListOfLinks -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For ListOfLinks -Paragraph in English Language
-	And User Starts Creating Page With Add From Library Content For ListOfLinks -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating Page With Add From Library Content For ListOfLinks -Paragraph
+	Then Page Should Have Filled ListOfLinks Paragraph From Library
 
 Text
 	[Tags]
 	Given User Creates New Text Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For Text -Paragraph in Finnish Language
-	And User Starts Creating Page With Add From Library Content For Text -Paragraph in English Language
-	And User Starts Creating Page With Add From Library Content For Text -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating Page With Add From Library Content For Text -Paragraph
+	Then Page Should Have Filled Text Paragraph From Library
+
+Unit Search
+	[Tags]
+	Given User Creates New Unitsearch Paragraphs To Library
+	When User Starts Creating Page With Add From Library Content For Unitsearch -Paragraph
+	Then Page Should Have Filled Unitsearch Paragraph From Library
 		
 *** Keywords ***
 User Creates New Columns Paragraphs To Library	
-	Create New Finnish Columns Paragraph To Library
-	Create New English Columns Paragraph To Library
-	Create New Swedish Columns Paragraph To Library
+	Create New Columns Paragraph To Library
 
 User Creates New Accordion Paragraphs To Library	
-	Create New Finnish Accordion Paragraph To Library
-	Create New English Accordion Paragraph To Library
-	Create New Swedish Accordion Paragraph To Library
+	Create New Accordion Paragraph To Library
 
 User Creates New ContentCards Paragraphs To Library	
-	Create New Finnish ContentCards Paragraph To Library
-	Create New English ContentCards Paragraph To Library
+	Create New ContentCards Paragraph To Library
 
 User Creates New Gallery Paragraphs To Library	
-	Create New Finnish Gallery Paragraph To Library
-	Create New English Gallery Paragraph To Library
-	Create New Swedish Gallery Paragraph To Library
+	Create New Gallery Paragraph To Library
+
 
 User Creates New Picture Paragraphs To Library	
-	Create New Finnish Picture Paragraph To Library
-	Create New English Picture Paragraph To Library
-	Create New Swedish Picture Paragraph To Library
+	Create New Picture Paragraph To Library
+
 
 User Creates New ListOfLinks Paragraphs To Library	
-	Create New Finnish ListOfLinks Paragraph To Library
-	Create New English ListOfLinks Paragraph To Library
-	Create New Swedish ListOfLinks Paragraph To Library
+	Create New ListOfLinks Paragraph To Library
 
 User Creates New Text Paragraphs To Library	
-	Create New Finnish Text Paragraph To Library
-	Create New English Text Paragraph To Library
-	Create New Swedish Text Paragraph To Library
+	Create New Text Paragraph To Library
+
+
+User Creates New Unitsearch Paragraphs To Library	
+	Create New Unit Search Paragraph To Library
 		
-User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
-	Run Keyword If  '${lang_selection}'=='Finnish'  Go To  ${URL_content_page}
-	Run Keyword If  '${lang_selection}'=='Finnish'  Go To New Page Site
-	Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content
+User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph
+	Go To  ${URL_content_page}
+	Go To New Page Site
+	Create ${paragraph} -Paragraph ${pagetype} Content

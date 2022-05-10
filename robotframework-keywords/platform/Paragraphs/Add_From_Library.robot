@@ -4,11 +4,9 @@ Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
 
 *** Keywords ***
-Create New ${lang_selection} Columns Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Columns_${language}  
+Create New Columns Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Columns  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddColumns}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph  ${Inp_Paragraph_Columns_Title}
@@ -18,11 +16,9 @@ Create New ${lang_selection} Columns Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
 
-Create New ${lang_selection} Banner Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Banner_${language}
+Create New Banner Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Banner
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddBanner}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_Paragraph_Banner_Title}
@@ -35,11 +31,9 @@ Create New ${lang_selection} Banner Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1 
  
-Create New ${lang_selection} Accordion Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Accordion_${language}
+Create New Accordion Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Accordion
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddAccordion}
 	Wait Until Element Is Visible   ${Inp_Paragraph_Accordion_Accordion1_Text}
@@ -51,11 +45,9 @@ Create New ${lang_selection} Accordion Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1  
 
-Create New ${lang_selection} Gallery Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Gallery_${language}
+Create New Gallery Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Gallery
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddGallery}
 	Add Picture 'train' And Caption To 1:th Picture
@@ -64,27 +56,21 @@ Create New ${lang_selection} Gallery Paragraph To Library
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1 
 
 
-Create New ${lang_selection} ContentCards Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_ContentCards_${language}  
+Create New ContentCards Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_ContentCards 
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddContentCards}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph  ${Inp_Paragraph_ContentCards_Title}
-	Run Keyword If  '${lang_selection}'=='Finnish'  Input Text   ${Inp_Paragraph_ContentCard_TargetId}   Esimerkkisivu
-	Run Keyword If  '${lang_selection}'=='Finnish'  Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'Esimerkkisivu')]
-	Run Keyword If  '${lang_selection}'=='English'  Input Text   ${Inp_Paragraph_ContentCard_TargetId}   example
-	Run Keyword If  '${lang_selection}'=='English'  Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'example')]
+	Input Text   ${Inp_Paragraph_ContentCard_TargetId}   Esimerkkisivu
+	Wait Until Keyword Succeeds  5x  100ms  Click Element   //a[contains(text(),'Esimerkkisivu')]
 	Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
 
-Create New ${lang_selection} Picture Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Picture_${language}  
+Create New Picture Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Picture  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddPicture}
 	Add Picture 'train' And Caption To 1:th Picture
@@ -93,11 +79,9 @@ Create New ${lang_selection} Picture Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
 
-Create New ${lang_selection} LiftupWithImage Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_LiftupWithImage_${language}  
+Create New LiftupWithImage Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_LiftupWithImage 
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddLiftupWithImage}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph    ${Inp_LiftupWithImage_Title}
@@ -107,11 +91,9 @@ Create New ${lang_selection} LiftupWithImage Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
 
-Create New ${lang_selection} ListOfLinks Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_ListOfLinks_${language}  
+Create New ListOfLinks Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_ListOfLinks  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddListOfLinks}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph    ${Inp_Paragraph_ListOfLinks_Title}
@@ -123,11 +105,9 @@ Create New ${lang_selection} ListOfLinks Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
 
-Create New ${lang_selection} Text Paragraph To Library
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
-	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Text_${language}  
+Create New Text Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Text  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddText}
 	${TextFileContent}=  Return Correct Content   ${language}
@@ -140,7 +120,7 @@ Create New ${lang_selection} SidebarText Paragraph To Library
 	${language_pointer}=   Get Language Pointer   ${lang_selection}
 	Set Test Variable   ${language}   ${language_pointer}
 	Open Paragraph Add Page With Given Language   ${lang_selection}
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_SidebarText_${language}  
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_SidebarText  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddSidebarText}
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph    ${Inp_Paragraph_SidebarText_Title}
@@ -149,6 +129,20 @@ Create New ${lang_selection} SidebarText Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
+
+Create New Unit Search Paragraph To Library
+	Open Paragraph Add Page
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Unitsearch  
+	Click Element   ${Btn_Actions_Dropbutton}
+	Click Element  ${Opt_Paragraph_UnitSearch}
+	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph    ${Inp_Paragraph_UnitSearch_Title}
+	Wait Until Keyword Succeeds  5x  200ms  Select From List By Index   ${Sel_UnitSearch_Units}   0
+	Wait Until Keyword Succeeds  5x  200ms  Input Description To Paragraph   ${Frm_Content}
+	Wait Until Keyword Succeeds  5x  200ms  Click Button   ${Btn_Paragraph_Submit}
+	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
+	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1
+
+
  
 Add SubContent To Accordion 
 	[Arguments]   ${content}
@@ -161,23 +155,17 @@ Add Content To Text Subcategory
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_Content}   //body   ${TextFileContent}
 	 
-Open Paragraph Add Page With Given Language
-	[Arguments]   ${language}
+Open Paragraph Add Page
 	Go To   ${URL_paragraphs_add_page}
-	Select Language   ${language}
+
 	
-Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content 
-	${language_pointer}=   Get Language Pointer   ${lang_selection}
+Create ${paragraph} -Paragraph ${pagetype} Content 
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
-	Set Test Variable   ${language}   ${language_pointer}
-	Run Keyword If  '${lang_selection}'!='Finnish'  Go To New ${pagetype} -View For ${lang_selection} Translation
 	Set Test Variable   ${paragraph}   ${paragraph}
 	Input Non-paragraph Related Content   ${pagetype}
-	
-	Run Keyword If  ('${lang_selection}'=='Finnish') & (not(${islandingpage}))  Open Paragraph For Edit   ${Opt_AddFromLibrary_Lower}   ${Ddn_AddContent_Lower}
-	Run Keyword If  ('${lang_selection}'=='Finnish') & (${islandingpage})  Open Paragraph For Edit   ${Opt_AddFromLibrary}
-	
-	Wait Until Keyword Succeeds  6x  300ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_${paragraph}_${language}')]
+	Run Keyword If  not(${islandingpage})  Open Paragraph For Edit   ${Opt_AddFromLibrary_Lower}   ${Ddn_AddContent_Lower}
+	Run Keyword If  ${islandingpage}  Open Paragraph For Edit   ${Opt_AddFromLibrary}
+	Wait Until Keyword Succeeds  6x  300ms  Click Element   //option[contains(text(),'Test_Automation_Add_From_Library_${paragraph}')]
 	Wait Until Keyword Succeeds  6x  300ms  Submit The New ${pagetype}
 
 Add Picture '${name}' And Caption To ${number}:th Picture
@@ -222,10 +210,8 @@ Focus And Click ListOfLinks Add Picture Button
 	Execute javascript  window.scrollTo(0, 800)
 	Click Element	${Btn_Paragraph_ListOfLinks_Picture}
 
-Page Should Have ${lang_input} Translation
+Page Should Have Filled ${paragraph} Paragraph From Library
 	Run Keyword And Ignore Error  Accept Cookies
-	Set Language Pointer   ${lang_input}
-	Select Language   ${lang_input}
 	Page Content Matches Language
 
 Page Content Matches Language
@@ -240,10 +226,10 @@ Page Content Matches Language
     IF   not(${islandingpage})
     	${Lead-in}=    Return Lead-in From Page
     END
-    IF   (${islandingpage} & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Landingpage-Accordion')
+    IF   (${islandingpage} & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Landingpage-Accordion') | ('${TEST NAME}'=='Unit Search') | ('${TEST NAME}'=='Landingpage-Unit Search')
     	${Description}=    Return Description From Page
     END
-    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Landingpage-LiftupWithImage')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Landingpage-Banner')) & (not('${TEST NAME}'=='Accordion'))
+    IF  (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Landingpage-LiftupWithImage')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Landingpage-Banner')) & (not('${TEST NAME}'=='Accordion')) & (not('${TEST NAME}'=='Unit Search')) & (not('${TEST NAME}'=='Landingpage-Unit Search'))
     	${Content}=  Add_From_Library.Return Content From Page
     END
     IF  	('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner') | ('${TEST NAME}'=='ListOfLinks') | ('${TEST NAME}'=='Landingpage-ListOfLinks') | ('${TEST NAME}'=='ContentCards') | ('${TEST NAME}'=='Landingpage-ContentCards')
@@ -257,15 +243,13 @@ Page Content Matches Language
 	IF  (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='Text'))
     	Title Should Match Current Language Selection   ${Title}
     END
-    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Landingpage-Accordion')
+    IF   ((${islandingpage}) & (not('${TEST NAME}'=='Landingpage-Columns')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks'))) | ('${TEST NAME}'=='Landingpage-Accordion') | ('${TEST NAME}'=='Unit Search') | ('${TEST NAME}'=='Landingpage-Unit Search')
     	Description Should Match Current Language Selection   ${Description}
     END
     IF   not(${islandingpage})
     	Lead-in Should Match Current Language Selection   ${Lead-in}
     END
-    IF   ${islandingpage} & ('${TEST NAME}'=='Landingpage-Columns')
-    	  Content Should Match Current Language Selection   ${Content}
-    ELSE IF   (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Landingpage-LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Landingpage-Banner')) & (not('${TEST NAME}'=='Accordion'))
+    IF  ((${islandingpage}) & ('${TEST NAME}'=='Landingpage-Columns')) | (not('${TEST NAME}'=='ContentCards')) & (not('${TEST NAME}'=='Landingpage-ContentCards')) & (not('${TEST NAME}'=='Gallery')) & (not('${TEST NAME}'=='Picture')) & (not('${TEST NAME}'=='LiftupWithImage')) & (not('${TEST NAME}'=='Landingpage-LiftupWithImage')) & (not('${TEST NAME}'=='ListOfLinks')) & (not('${TEST NAME}'=='Landingpage-ListOfLinks')) & (not('${TEST NAME}'=='Banner')) & (not('${TEST NAME}'=='Landingpage-Banner')) & (not('${TEST NAME}'=='Accordion')) & (not('${TEST NAME}'=='Unit Search')) & (not('${TEST NAME}'=='Landingpage-Unit Search'))
     	  Content Should Match Current Language Selection   ${Content}
     END
     
@@ -277,7 +261,7 @@ Page Content Matches Language
     END
 		
 Return Title From Page
-	IF    ('${TEST NAME}'=='Columns') | ('${TEST NAME}'=='Landingpage-Columns')
+	IF    ('${TEST NAME}'=='Columns') | ('${TEST NAME}'=='Landingpage-Columns') | ('${TEST NAME}'=='Unit Search') | ('${TEST NAME}'=='Landingpage-Unit Search')
         ${title}=   Get Text    ${Txt_Title}
     ELSE IF    ('${TEST NAME}'=='Banner') | ('${TEST NAME}'=='Landingpage-Banner')
         ${title}=   Get Text    ${Txt_Banner_Title}
@@ -294,7 +278,7 @@ Return Title From Page
 	[Return]		${title}
 
 Return Description From Page
-	IF   (not('${TEST NAME}'=='Accordion'))
+	IF   (not('${TEST NAME}'=='Accordion')) & (not('${TEST NAME}'=='Unit Search')) & (not('${TEST NAME}'=='Landingpage-Unit Search'))
 		${description}=	   Get Text    ${Txt_Description}
 	ELSE
 		${description}=	   Get Text    ${Txt_Component_Description}

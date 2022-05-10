@@ -6,79 +6,62 @@ Force Tags		LANDINGPAGE   ADDFROMLIBRARY
 
 *** Test Cases ***
 Landingpage-Columns
-	[Tags]    CRITICAL
+	[Tags]
 	Given User Creates New Columns Paragraphs To Library
-	When User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in Finnish Language
-	And User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in English Language
-	And User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
-	
+	When User Starts Creating LandingPage With Add From Library Content For Columns -Paragraph
+	Then Page Should Have Filled Columns Paragraph From Library
+
 Landingpage-Banner
 	[Tags]
 	Given User Creates New Banner Paragraphs To Library
-	When User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph in Finnish Language
-	And User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph in English Language
-	And User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating LandingPage With Add From Library Content For Banner -Paragraph
+	Then Page Should Have Filled Banner Paragraph From Library
 
 Landingpage-ContentCards
 	[Tags]
 	Given User Creates New ContentCards Paragraphs To Library
-	When User Starts Creating LandingPage With Add From Library Content For ContentCards -Paragraph in Finnish Language
-	And User Starts Creating LandingPage With Add From Library Content For ContentCards -Paragraph in English Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
+	When User Starts Creating LandingPage With Add From Library Content For ContentCards -Paragraph
+	Then Page Should Have Filled ContentCards Paragraph From Library
 
 Landingpage-LiftupWithImage
 	[Tags]
 	Given User Creates New LiftupWithImage Paragraphs To Library
-	When User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Finnish Language
-	And User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in English Language
-	And User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating LandingPage With Add From Library Content For LiftupWithImage -Paragraph
+	Then Page Should Have Filled LiftupWithImage Paragraph From Library
+
 
 Landingpage-ListOfLinks
 	[Tags]
 	Given User Creates New ListOfLinks Paragraphs To Library
-	When User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in Finnish Language
-	And User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in English Language
-	And User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph in Swedish Language
-	Then Page Should Have Finnish Translation
-	Then Page Should Have English Translation
-	Then Page Should Have Swedish Translation
+	When User Starts Creating LandingPage With Add From Library Content For ListOfLinks -Paragraph
+	Then Page Should Have Filled ListOfLinks Paragraph From Library
 	
+Landingpage-Unit Search
+	[Tags]   TODO
+	Given User Creates New Unitsearch Paragraphs To Library
+	When User Starts Creating LandingPage With Add From Library Content For Unitsearch -Paragraph
+	Then Page Should Have Filled Unitsearch Paragraph From Library
+		
 *** Keywords ***
 User Creates New Columns Paragraphs To Library	
-	Create New Finnish Columns Paragraph To Library
-	Create New English Columns Paragraph To Library
-	Create New Swedish Columns Paragraph To Library
+	Create New Columns Paragraph To Library
 
 User Creates New Banner Paragraphs To Library	
-	Create New Finnish Banner Paragraph To Library
-	Create New English Banner Paragraph To Library
-	Create New Swedish Banner Paragraph To Library	
+	Create New Banner Paragraph To Library
 
 User Creates New ContentCards Paragraphs To Library	
-	Create New Finnish ContentCards Paragraph To Library
-	Create New English ContentCards Paragraph To Library
+	Create New ContentCards Paragraph To Library
 
 User Creates New LiftupWithImage Paragraphs To Library	
-	Create New Finnish LiftupWithImage Paragraph To Library
-	Create New English LiftupWithImage Paragraph To Library
-	Create New Swedish LiftupWithImage Paragraph To Library
+	Create New LiftupWithImage Paragraph To Library
 
 User Creates New ListOfLinks Paragraphs To Library	
-	Create New Finnish ListOfLinks Paragraph To Library
-	Create New English ListOfLinks Paragraph To Library
-	Create New Swedish ListOfLinks Paragraph To Library
+	Create New ListOfLinks Paragraph To Library
 
-User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph in ${lang_selection} Language
-	Run Keyword If  '${lang_selection}'=='Finnish'  Go To  ${URL_content_page}
-	Run Keyword If  '${lang_selection}'=='Finnish'  Go To New LandingPage Site
-	Create ${lang_selection} Language ${paragraph} -Paragraph ${pagetype} Content
+User Creates New Unitsearch Paragraphs To Library	
+	Create New Unit Search Paragraph To Library
+
+User Starts Creating ${pagetype} With Add From Library Content For ${paragraph} -Paragraph
+	Go To  ${URL_content_page}
+	Go To New LandingPage Site
+	Create ${paragraph} -Paragraph ${pagetype} Content
