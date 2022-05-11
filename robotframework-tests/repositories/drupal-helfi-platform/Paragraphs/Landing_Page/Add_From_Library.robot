@@ -37,7 +37,7 @@ Landingpage-ListOfLinks
 	Then Page Should Have Filled ListOfLinks Paragraph From Library
 	
 Landingpage-Unit Search
-	[Tags]   TODO
+	[Tags]
 	Given User Creates New Unitsearch Paragraphs To Library
 	When User Starts Creating LandingPage With Add From Library Content For Unitsearch -Paragraph
 	Then Page Should Have Filled Unitsearch Paragraph From Library

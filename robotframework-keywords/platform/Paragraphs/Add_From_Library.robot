@@ -119,7 +119,7 @@ Create New Text Paragraph To Library
 Create New ${lang_selection} SidebarText Paragraph To Library
 	${language_pointer}=   Get Language Pointer   ${lang_selection}
 	Set Test Variable   ${language}   ${language_pointer}
-	Open Paragraph Add Page With Given Language   ${lang_selection}
+	Open Paragraph Add Page
 	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_SidebarText  
 	Click Element   ${Btn_Actions_Dropbutton}
 	Click Element  ${Opt_Paragraph_AddSidebarText}

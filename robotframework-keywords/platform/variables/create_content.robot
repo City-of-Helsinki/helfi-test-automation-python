@@ -332,7 +332,7 @@ ${Inp_Chart_Title}										css:input[name*=field_chart_title]
 ${Inp_Chart_Description}								//div[contains(@id,'cke_edit-field-content')]//iframe
 ${Btn_Chart_Add_Media}									//input[contains(@id,'chart-open-button')]
 ${Inp_Chart_Url}										name:helfi_chart_url
-${Btn_Chart_Url_Add}									css:form[id*=helfi-chart-add-form] > div > input
+${Btn_Chart_Url_Add}									css:form[id*=helfi-chart-add-form] > div > div > div > input
 ${Inp_Chart_Url_Title}									css:input[name*=field_helfi_chart_title]
 ${Frm_Chart_Url_Transcription}							//div[contains(@id,'field-helfi-chart-transcript')]//iframe
 
