@@ -30,7 +30,7 @@ echo "#######################################"
 echo "# Running again the tests that failed #"
 echo "#######################################"
 echo
-pabot --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --nostatusrc --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@
+pabot --processes 9 -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args --rerunfailed robotframework-reports/output.xml --output rerun.xml -d robotframework-reports . $@
 EXIT_CODE2=$?
 
 # => Robot Framework generates file rerun.xml
