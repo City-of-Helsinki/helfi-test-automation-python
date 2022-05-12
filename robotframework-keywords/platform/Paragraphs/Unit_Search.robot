@@ -16,7 +16,14 @@ Create Unit Search Paragraph
 	Select From List By Index   ${Sel_UnitSearch_Units}   2	    
 	${TextFileContent}=  Return Correct Content   ${language}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   ${Frm_UnitSearch_Content}   //body   ${TextFileContent}
+	Wait Until Keyword Succeeds  5x  200ms  Click Element   css:details[id*=subform-group-unit-search-metadata]
+	Add Metadata
 	
+Add Metadata
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Chart_Metadata_SearchField_Title}   Hakuotsikko   
+	Input Text    ${Inp_Chart_Metadata_SearchField_DefaultText}   Oletustekstiarvo
+	Input Text    ${Inp_Chart_Metadata_SearchField_ButtonText}   Painiketeksti
+	Input Text    ${Inp_Chart_Metadata_SearchField_LoadMore}   Lisää toimipisteitä tästä
 	
 Unit Links Are Working Correctly
 	${contentpageurl}=   Get Location
@@ -39,6 +46,14 @@ The Search Bar Is Working Correctly
 	Click Button   ${Inp_UnitSearch_SearchButton}
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Lippulaivan kirjasto
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Otaniemen kirjasto
+
+Search Bar Metadata is Correct
+	${title}=   Get Text   css:label.hds-text-input__label
+	Should Be Equal   ${title}   Hakuotsikko   
+	Element Attribute Value Should Be   css:input[name=unit_search]   placeholder   Oletustekstiarvo   
+	Element Attribute Value Should Be   css:input[data-drupal-selector*=edit-submit-unit-search]   value   Painiketeksti   
+
+	
 
 Search Bar Works By Unit Name
 	Input Text  ${Inp_UnitSearch_SearchField}   Otan

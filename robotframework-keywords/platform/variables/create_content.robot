@@ -306,6 +306,13 @@ ${Sel_UnitSearch_Units}								//select[contains(@name, 'field_unit_search_units
 ${Frm_UnitSearch_Content}							//div[contains(@id,'subform-field-unit-search-description')] >> css:div > div > iframe
 ${Inp_UnitSearch_SearchField}						css:[data-drupal-selector=edit-unit-search]
 ${Inp_UnitSearch_SearchButton}						css:[data-drupal-selector=edit-actions] > input
+${Inp_Chart_Metadata_SearchField_Title}				css:input[name*=field_unit_search_meta_label]
+${Inp_Chart_Metadata_SearchField_DefaultText}		css:input[name*=field_unit_search_meta_placehold]
+${Inp_Chart_Metadata_SearchField_ButtonText}		css:input[name*=field_unit_search_meta_button]
+${Inp_Chart_Metadata_SearchField_LoadMore}	    	css:input[name*=field_unit_search_meta_load_more]
+					
+
+
 
 #SERVICELIST
 ${Inp_ServiceList_Title}							//input[contains(@name, 'field_service_list_title')]   

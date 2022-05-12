@@ -14,6 +14,7 @@ Page-Two Units
 	Then Layout Should Not Have Changed
 	And Unit Links Are Working Correctly
 	And The Search Bar Is Working Correctly
+	And Search Bar Metadata is Correct
 	And Unit Address and Phone Data Is Correct
 
 *** Keywords ***
