@@ -45,17 +45,6 @@ Create New Accordion Paragraph To Library
 	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
 	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1  
 
-Create New Gallery Paragraph To Library
-	Open Paragraph Add Page
-	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_Gallery
-	Click Element   ${Btn_Actions_Dropbutton}
-	Click Element  ${Opt_Paragraph_AddGallery}
-	Add Picture 'train' And Caption To 1:th Picture
-	Click Button   ${Btn_Paragraph_Submit}
-	Wait Until Keyword Succeeds  5x  200ms  Element Should Not Be Visible   ${Btn_Paragraph_Submit}
-	Set Test Variable  ${paragraphsadded}    ${paragraphsadded}+1 
-
-
 Create New ContentCards Paragraph To Library
 	Open Paragraph Add Page
 	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_Paragraph_Title}    Test_Automation_Add_From_Library_ContentCards 

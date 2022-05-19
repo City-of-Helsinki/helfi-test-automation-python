@@ -24,12 +24,6 @@ ContentCards
 	When User Starts Creating Page With Add From Library Content For ContentCards -Paragraph
 	Then Page Should Have Filled ContentCards Paragraph From Library
 
-Gallery
-	[Tags]
-	Given User Creates New Gallery Paragraphs To Library
-	When User Starts Creating Page With Add From Library Content For Gallery -Paragraph
-	Then Page Should Have Filled Gallery Paragraph From Library
-
 Picture
 	[Tags]
 	Given User Creates New Picture Paragraphs To Library
