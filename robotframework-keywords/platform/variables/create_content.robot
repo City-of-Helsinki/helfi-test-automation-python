@@ -62,6 +62,7 @@ ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
+${Opt_Unit_Accessibility_Information}		name:field_content_unit_accessibility_information_add_more
 
 
 ${Btn_File_Upload}					    	name:files[upload]
@@ -360,3 +361,6 @@ ${Tar_ContactCard_Description}							(//textarea[contains(@name, 'field_contact_
 ${Btn_AddSocialMediaLink}								(//input[contains(@name, 'contact_social_media_social_media_link_add_more')])[last()]
 ${Sel_ContactCard_SocialMedia_Icon}						(//select[contains(@name, 'field_icon')])[last()]
 ${Inp_ContactCard_SocialMedia_Url}						(//input[contains(@name, 'field_social_media_link')])[last()]
+
+#UNIT ACCESSIBILITY INFORMATION
+${Inp_Unit_Accessibility_Information_Unit} 				(//input[contains(@name, 'field_unit_accessibility_unit')])[last()]
