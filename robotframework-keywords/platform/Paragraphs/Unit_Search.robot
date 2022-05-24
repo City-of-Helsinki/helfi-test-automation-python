@@ -87,11 +87,11 @@ Unit Address And Phone Data Is Correct
 	${addressline1_unitsite}=  Get Text   css:.address-line1
 	${postalcode_unitsite}=  Get Text   css:.postal-code
 	${city_unitsite}=  Get Text   css:.locality
-	#${phone_unitsite}=  Get Text   css:#block-hdbt-subtheme-sidebarcontentblock > div > div > div.unit__contact-row.unit__contact-row--phone > a
+	${phone_unitsite}=  Get Text   css:#block-hdbt-subtheme-sidebarcontentblock > div > div > div.unit__contact-row.unit__contact-row--phone > a
 	Should Be Equal   ${addressline1}   ${addressline1_unitsite}
 	Should Be Equal   ${postalcode}   ${postalcode_unitsite}
 	Should Be Equal   ${city}   ${city_unitsite}
-	#Should Not Be Empty   ${phone_unitsite}
+	Should Not Be Empty   ${phone_unitsite}
 	
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies
