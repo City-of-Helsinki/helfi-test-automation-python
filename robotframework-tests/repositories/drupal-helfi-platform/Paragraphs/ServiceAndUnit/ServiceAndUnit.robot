@@ -30,6 +30,7 @@ Unit With Color Palette
 
 User Submits The Unit Changes
 	Submit Unit Changes
+
 	
 User Opens Service With Name ${name}
 	Open Service With Name   ${name}
@@ -49,6 +50,7 @@ Service Contents Should Be Correct
 	Should Be Equal   ${title}   Sosiaalineuvonta
 	Should Be Equal   ${shortdesc}   Sosiaalineuvonta palvelee helsinkiläisiä kaikissa aikuissosiaalityöhön liittyvissä kysymyksissä.
 	Should Contain   ${longdesc}   Sosiaalineuvonta palvelee helsinkiläisiä
+	
 	
 Unit Contents Should Be Correct
 	Run Keyword And Ignore Error  Accept Cookies
@@ -85,8 +87,8 @@ Units Service Link Works Correctly
 
 Banner Paragraph Should Have Selected Color
 	Open Unit With Name   Lippulaivan kirjasto
-	Run Keyword If   not(${CI})   Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.components.components--unit > div   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
-	Run Keyword If   ${CI}   Capture Element Screenshot  css:div.unit-header__container.container > div.unit__header > div.enriched-content.components.components--unit > div   filename=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Run Keyword If   not(${CI})   Capture Element Screenshot  css:#juhani-aho--rautatie   filename=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	Run Keyword If   ${CI}   Capture Element Screenshot  css:#juhani-aho--rautatie   filename=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
 	Compare Two Pictures 
 	
 Delete Banners And Do Other Teardown Actions

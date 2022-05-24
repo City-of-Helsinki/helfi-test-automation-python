@@ -18,13 +18,13 @@ Open Service With Name
 	Click Link   ${name}
 	
 Get Service Title
-	${title}=   Get Text   css:.service__title
+	${title}=   Get Text   css:.page-title > h1
 	[Return]   ${title}
 	
 Get Service Short Description
-	${shortdesc}=   Get Text   css:.service__short-desc
+	${shortdesc}=   Get Text   css:.lead-in > div > div > div
 	[Return]   ${shortdesc}
 	
 Get Service Long Description
-	${longdesc}=   Get Text   css:.service__long-desc
+	${longdesc}=   Get Text   css:.long-desc > p
 	[Return]   ${longdesc}	

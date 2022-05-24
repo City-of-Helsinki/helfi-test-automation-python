@@ -209,6 +209,8 @@ Page Should Have ${lang_input} Translation
 
 Page Content Matches Language
 	${Title}=  Return Hero Title From Page
-	${Content}=  Return Lead-in From Page
+	${Description}=  Return Hero Description From Page
+	${Content}=   Return Lead-in From Page
 	Title Should Match Current Language Selection   ${Title}
+	Description Should Match Current Language Selection   ${Description}
 	Content Should Match Current Language Selection   ${Content}
