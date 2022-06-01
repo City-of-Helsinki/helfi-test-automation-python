@@ -10,7 +10,6 @@ Add Content Liftup For Unit
 	Wait Until Keyword Succeeds  5x  200ms   Open Paragraph For Edit   ${Opt_ContentLiftup}
 	Sleep  0.5		# Small sleep so that text is inserted correctly
 	Wait Until Keyword Succeeds  5x  200ms   Input Text   ${Inp_UnitId_Text}   ${unitname}
-	Capture Page Screenshot
 
 ContentLiftup Is Working Correctly For One Unit
 	Click Link   //a[contains(@href, 'lippulaiva')]
