@@ -47,6 +47,7 @@ ${Opt_AddPicture}						    name:field_content_image_add_more
 ${Opt_AddText}								name:field_content_text_add_more
 ${Opt_AddLink}								name:field-content-link-add-more
 ${Opt_AddChart}								name:field_content_chart_add_more
+${Opt_AddEvent}								name:field_content_event_list_add_more
 ${Opt_AddBanner}   							name:field_content_banner_add_more
 ${Opt_AddAccordion}   						name:field_content_accordion_add_more
 ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
@@ -343,8 +344,6 @@ ${Btn_Chart_Url_Add}									css:form[id*=helfi-chart-add-form] > div > div > di
 ${Inp_Chart_Url_Title}									css:input[name*=field_helfi_chart_title]
 ${Frm_Chart_Url_Transcription}							//div[contains(@id,'field-helfi-chart-transcript')]//iframe
 
-
-
 # CONTACT CARD LISTING
 ${Inp_Contact_Card_Listing_Title}								css:input[name*=field_title]
 ${Inp_Contact_Card_Listing_Description}					//div[contains(@id,'cke_edit-field-content')]//iframe
@@ -360,3 +359,9 @@ ${Tar_ContactCard_Description}							(//textarea[contains(@name, 'field_contact_
 ${Btn_AddSocialMediaLink}								(//input[contains(@name, 'contact_social_media_social_media_link_add_more')])[last()]
 ${Sel_ContactCard_SocialMedia_Icon}						(//select[contains(@name, 'field_icon')])[last()]
 ${Inp_ContactCard_SocialMedia_Url}						(//input[contains(@name, 'field_social_media_link')])[last()]
+
+#EVENTS
+${Inp_Event_Title}										(//input[contains(@name, 'field_event_list_title')])[last()]
+${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
+${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
+${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
