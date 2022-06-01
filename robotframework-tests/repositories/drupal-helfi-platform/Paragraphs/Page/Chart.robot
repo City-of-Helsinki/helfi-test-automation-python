@@ -11,6 +11,7 @@ One Chart
 	And User Starts Creating New Chart
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Chart Is Present
 	
 	
 *** Keywords ***
@@ -20,3 +21,6 @@ User Submits The New Page
 	
 User Starts Creating New Chart
 	Create Chart   Page
+	
+Chart Is Present
+	chart Is Present In Page

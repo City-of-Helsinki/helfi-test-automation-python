@@ -12,14 +12,16 @@ Landingpage-Left Aligned
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Left Aligned Page With Hero Block
 	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Landingpage-Center Aligned
 	[Tags] 
 	Given User Goes To New LandingPage Site
 	And User Starts Creating a Center Aligned Page With Hero Block
 	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present		
 
 Landingpage-Left Aligned Picture
 	[Documentation]   Left Aligned Hero Block with Picture
@@ -27,7 +29,8 @@ Landingpage-Left Aligned Picture
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Left Picture
 	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Landingpage-Right Aligned Picture
 	[Tags]  
@@ -35,6 +38,7 @@ Landingpage-Right Aligned Picture
 	And User Starts Creating Hero Block Page with Right Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 	
 Landingpage-Bottom Aligned Picture
 	[Tags]      
@@ -42,20 +46,23 @@ Landingpage-Bottom Aligned Picture
 	And User Starts Creating Hero Block Page with Bottom Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 	
 Landingpage-Background Picture
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Background Picture
 	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed			
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present			
 
 Landingpage-Diagonal Picture
 	[Tags]  
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Diagonal Picture
 	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present		
 
 Landingpage-Fullcolor Link
 	[Documentation]   Adds Left aligned page and a link with Fullcolor styling option selected
@@ -65,6 +72,7 @@ Landingpage-Fullcolor Link
 	And User Adds Hero Link Button With Fullcolor Style
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 
 Landingpage-Framed Link
 	[Tags]  
@@ -90,6 +98,7 @@ Landingpage-Gold Background Color
 	And User Adds Gold As Background Color
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Landingpage-Silver Background Color
 	[Tags]  
@@ -214,3 +223,6 @@ Page Content Matches Language
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}
 	Content Should Match Current Language Selection   ${Content}
+
+Hero Component Is Present
+	Element Should Be Visible   css:.hero-wrapper 

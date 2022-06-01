@@ -17,14 +17,16 @@ Left Aligned
 	Given User Goes To New Page -Site
 	And User Starts Creating a Left Aligned Page With Hero Block
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Center Aligned
 	[Tags] 
 	Given User Goes To New Page -Site
 	And User Starts Creating a Center Aligned Page With Hero Block
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Left Aligned Picture
 	[Documentation]   Left Aligned Hero Block with Picture
@@ -32,7 +34,8 @@ Left Aligned Picture
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Left Picture
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Right Aligned Picture
 	[Tags]  
@@ -40,6 +43,7 @@ Right Aligned Picture
 	And User Starts Creating Hero Block Page with Right Picture
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 	
 Bottom Aligned Picture
 	[Tags]      
@@ -47,20 +51,23 @@ Bottom Aligned Picture
 	And User Starts Creating Hero Block Page with Bottom Picture
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 	
 Background Picture
-	[Tags] 
+	[Tags]
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Background Picture
 	When User Submits The New Page
-	Then Layout Should Not Have Changed			
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present			
 
 Diagonal Picture
 	[Tags]  
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Diagonal Picture
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Hero Component Is Present	
 
 Fullcolor Link
 	[Documentation]   Adds Left aligned page and a link with Fullcolor styling option selected
@@ -70,6 +77,7 @@ Fullcolor Link
 	And User Adds Hero Link Button With Fullcolor Style
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 
 Framed Link
 	[Tags]
@@ -78,6 +86,7 @@ Framed Link
 	And User Adds Hero Link Button With Framed Style
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 
 Transparent Link
 	[Tags]   
@@ -86,6 +95,7 @@ Transparent Link
 	And User Adds Hero Link Button With Transparent Style
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 
 Gold Background Color
 	[Documentation]   Left Aligned Hero Block with Background Color selection 'Gold' 
@@ -95,6 +105,7 @@ Gold Background Color
 	And User Adds Gold As Background Color
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Hero Component Is Present
 
 Silver Background Color
 	[Tags]   
@@ -223,4 +234,6 @@ Page Content Matches Language
 	Description Should Match Current Language Selection   ${Description}	
 	Content Should Match Current Language Selection   ${Content}
 
+Hero Component Is Present
+	Element Should Be Visible   css:.hero-wrapper 
 	

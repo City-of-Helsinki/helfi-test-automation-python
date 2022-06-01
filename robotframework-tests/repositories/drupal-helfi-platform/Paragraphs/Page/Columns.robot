@@ -16,6 +16,7 @@ Force Tags		PAGE   COLUMNS
 	And User Adds Text to Right Column
 	When User Submits The New Page
 	Then Layout Should Not Have Changed	
+	And Columns Paragraph Is Present
 	
 30-70
 	[Tags]
@@ -24,7 +25,8 @@ Force Tags		PAGE   COLUMNS
 	And User Adds Text to Left Column
 	And User Adds Text to Right Column
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present	
 
 70-30
 	[Tags]
@@ -33,7 +35,8 @@ Force Tags		PAGE   COLUMNS
 	And User Adds Text to Left Column
 	And User Adds Text to Right Column
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present
 
 50-50 with picture
 	[Tags]  CRITICAL
@@ -42,7 +45,8 @@ Force Tags		PAGE   COLUMNS
 	And User Adds Picture to Left Column
 	And User Adds Picture to Right Column
 	When User Submits The New Page
-	Then Layout Should Not Have Changed	
+	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present
 
 50-50 with picture and text
 	[Tags]  CRITICAL
@@ -52,6 +56,7 @@ Force Tags		PAGE   COLUMNS
 	And User Adds Text to Right Column
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present
 
 70-30 with original size picture and text
 	[Tags]  CRITICAL
@@ -62,6 +67,7 @@ Force Tags		PAGE   COLUMNS
 	And User Adds Text to Right Column
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present
 
 Finnish English Swedish Translations
 	[Tags]  CRITICAL
@@ -82,6 +88,7 @@ Finnish English Swedish Translations
 	And User Adds Text to Sidebar
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present
 
 50-50 with sidebar content from library
 	[Tags]  SIDEBAR
@@ -93,6 +100,7 @@ Finnish English Swedish Translations
 	And User Adds Content From Library to Sidebar
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
+	And Columns Paragraph Is Present
 
 *** Keywords ***
 User Goes To New Page -Site		Go To New Page Site
@@ -149,3 +157,6 @@ Page Content Matches Language
 	Title Should Match Current Language Selection   ${Title}
 	Description Should Match Current Language Selection   ${Description}	
 	Columns.Content Should Match Current Language Selection   ${Content}
+
+Columns Paragraph Is Present
+	columns Is Present In Page

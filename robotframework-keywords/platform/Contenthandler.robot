@@ -620,4 +620,7 @@ Input Non-paragraph Related Content
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 	Run Keyword If  not(${islandingpage})   Input Content Header Title  ${headertitle}   ${pagetype}	
 
+${paragraphname} Is Present In Page
+	Element Should Be Visible  css:.component.component--${paragraphname}   timeout=3
+	Element Should Be Visible  css:.component__content.${paragraphname}   timeout=3
 	
