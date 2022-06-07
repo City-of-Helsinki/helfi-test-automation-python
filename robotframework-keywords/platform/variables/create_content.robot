@@ -64,8 +64,9 @@ ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
 ${Opt_Unit_Accessibility_Information}		name:field_content_unit_accessibility_information_add_more
-
-
+${Inp_FrontPage_Links_Url}					(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'uri')])[last()]
+${Inp_FrontPage_Links_Title}				(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'title')])[last()]
+${Inp_FrontPage_Links_Addmore}				name:field_news_item_links_link_add_more
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
 ${Inp_Pic_AltText}							css:[data-drupal-selector=edit-media-0-fields-field-media-image-0-alt]
@@ -93,6 +94,9 @@ ${Txt_Description}							css:div[class$="__desc"] > p
 ${Txt_Component_Description}				css:div[class$="__description"] > p
 ${Swh_TOC}									id:edit-toc-enabled-value
 ${Assistive_Technology_Title}				(//input[contains(@name, 'field_iframe_title')])[last()]
+
+#TAGS
+${Inp_Frontpage_TagsGeneral}  				css:.select2-search__field
 
 #HERO
 ${Inp_Hero_Title}							//input[contains(@id, 'edit-field-hero-0-subform')]
@@ -170,16 +174,21 @@ ${Txt_Column_Content}							css:p
 ${Itm_Gallery_Slidetrack}						id:splide01-track  
 
 # BANNER
+${Frm_Banner_Description}					css:textarea[name*=field_banner_desc] + div > div > div > iframe
 ${Opt_Banner_Left}							css:[value=align-left]
 ${Opt_Banner_Left_Secondary}				css:[value=align-left-secondary]
 ${Opt_Banner_Center_Secondary}				css:[value=align-center-secondary]
 ${Inp_Banner_Title}							(//input[contains(@name, '[field_banner_title]')])[last()]
-${Inp_Banner_Link_Uri}						name:field_content[0][subform][field_banner_link][0][uri]
-${Inp_Banner_Link_Title}					name:field_content[0][subform][field_banner_link][0][title]
-${Swh_Banner_Link_OpenInNewWindow}   		name:field_content[0][subform][field_banner_link][0][options][target_new]
-${Swh_Banner_Link_LinkIsAccessable}    		name:field_content[0][subform][field_banner_link][0][options][target_check]
+${Inp_Banner_Link_Uri}						css:input[name*=field_banner_link][name*=uri]
+${Inp_Banner_Link_Title}					css:input[name*=field_banner_link][name*=title]
+${Swh_Banner_Link_OpenInNewWindow}   		css:input[name*=field_banner_link][name*=target_new]
+${Swh_Banner_Link_LinkIsAccessable}    		css:input[name*=field_banner_link][name*=target_check]
+
 #UNCATEGORIZED
 ${Btn_Picture}								(//input[contains(@name, 'field_image-media-library-open-button-field_content')])[last()]
+
+${Btn_MainImage}							name:field_main_image-media-library-open-button
+${Inp_MainImage_Caption}					css:textarea[name*=field_main_image_caption]
 ${Btn_Picture_Remove}						//input[contains(@name, 'media-library-remove-button-field_content')]
 ${Frm_Text_Content}							//div[contains(@id,'subform-field-text')][contains(@id,'value')] >> css:div > div > iframe
 

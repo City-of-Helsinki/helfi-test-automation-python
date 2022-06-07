@@ -4,42 +4,41 @@ Documentation   Mainly contains some cases which do not fall under any parent pa
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Uncategorized.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
-Force Tags		PAGE    UNCATEGORIZED
+Force Tags		NEWS-ITEM   UNCATEGORIZED   ETUSIVU_SPESIFIC    
 
 *** Test Cases ***
 
 Only Text
 	[Tags]
-	Given User Goes To New Page Site
+	Given User Goes To New News-Item Site
 	And User Starts Creating a New Page With Text Content  
-	When User Submits The New Page
+	When New News-Item is Submitted
 	Then Layout Should Not Have Changed
 	And Text Content Is Present
 
 Only Picture
 	[Tags]
-	Given User Goes To New Page Site
+	Given User Goes To New News-Item Site
 	And User Starts Creating a New Page With Picture Content  
-	When User Submits The New Page
+	When New News-Item is Submitted
 	Then Layout Should Not Have Changed
 	And Picture Content Is Present
 
 Text And Picture
 	[Tags]
-	Given User Goes To New Page Site
+	Given User Goes To New News-Item Site
 	And User Starts Creating a New Page With Mixed Content  
-	When User Submits The New Page
+	When New News-Item is Submitted
 	Then Layout Should Not Have Changed
 	And Text And Picture Content Is Present
 
 	
 *** Keywords ***
-User Submits The New Page
-	Submit The New Page  
-	
-User Goes To New Page Site  Go To New Page Site
+User Goes To New News-Item Site   Go To New News-Item Site
+New News-Item is Submitted	Submit The New News-Item
 	
 User Starts Creating a New Page With ${content} Content
+	Input Etusivu Instance Spesific Content
 	Start Creating a New Page With ${content} Content
 	
 Layout Should Not Have Changed
