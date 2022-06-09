@@ -4,7 +4,7 @@ Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
 *** Variables ***
 ${link_url1}   /en/news/multamaen-rautatieasema
-${link_url2}   /fi/news/liitupiippu
+${link_url2}   /en/news/liitupiippu
 ${link_url3}   /en/news/sahkoteknillinen-koulu
 ${link_url4}   /sv/nyheter/sumbawan-kieli
 
@@ -38,14 +38,28 @@ Create New Link
 	Input Text  ${Inp_TargetGroupLinks_Item_Link}   ${link_url${number}}
 	Input Text	${Inp_TargetGroupLinks_Item_Subtitle}   Test Subtitle${number}
 	
-	 
-
 Page Contains Target Group List With Content
 	target-group-links Is Present In Page
-
-	
 	
 Page Should Have Correct Number Of Target Links
 	[Arguments]   ${number}
 	Page Should Have Given Number Of Elements	css:.target-group-link   ${number}
+	
+${count} Target Links Work Correctly
+	${contentpageurl}=   Get Location
+	IF  '${count}'=='1'    # WE ARE RUNNING THE FIRST TESTCASE (IN TARGET GROUP LINK CASES) WHERE NUMBER IS 1
+		Click Link And Return   ${contentpageurl}   Target Link Main Title1   multamaen-rautatieasema
+	ELSE
+		Click Link And Return   ${contentpageurl}   Target Link Main Title1   multamaen-rautatieasema
+		Click Link And Return   ${contentpageurl}   Target Link Main Title2   liitupiippu
+		Click Link And Return   ${contentpageurl}   Target Link Main Title3   sahkoteknillinen-koulu
+		Click Link And Return   ${contentpageurl}   Target Link Main Title4   sumbawan-kieli   
+	END
+	
+Click Link And Return
+	[Arguments]   ${contentpageurl}   ${linktitle}   ${assertedpage}   
+	Click Link    ${linktitle}
+	${currenturl}=   Get Location
+	Wait Until Keyword Succeeds  7x  200ms  Should Contain   ${currenturl}   ${assertedpage}
+	Go To   ${contentpageurl}
 	

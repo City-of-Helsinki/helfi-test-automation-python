@@ -2,7 +2,7 @@
 Resource        ../../../../../robotframework-keywords/platform/Paragraphs/Target_Group_Links.robot
 Test Setup      Login And Go To Content Page
 Test Teardown   Cleanup and Close Browser	
-Force Tags		LANDINGPAGE   TARGET_GROUP_LINKS
+Force Tags		LANDINGPAGE   TARGET_GROUP_LINKS   ETUSIVU_SPESIFIC
 
 *** Test Cases ***
 
@@ -13,6 +13,7 @@ One Link
 	And New Landingpage is Submitted
 	Then Target Group List Should Be Present In Page
 	And There Are 1 Target Group List Links In Content
+	And All 1 Target Link(s) Work Correctly
 	
 
 Four Links
@@ -22,6 +23,7 @@ Four Links
 	And New Landingpage is Submitted
 	Then Target Group List Should Be Present In Page
 	And There Are 4 Target Group List Links In Content
+	And All 4 Target Link(s) Work Correctly
 	
 *** Keywords ***
 User Goes To New LandingPage Site   Go To New LandingPage Site
@@ -35,3 +37,6 @@ Target Group List Should Be Present In Page
 	
 There Are ${count} Target Group List Links In Content
 	Page Should Have Correct Number Of Target Links   ${count}
+
+All ${number} Target Link(s) Work Correctly	
+	${number} Target Links Work Correctly
