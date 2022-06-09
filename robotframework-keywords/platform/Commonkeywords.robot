@@ -88,7 +88,7 @@ Click Element Using JavaScript Id
 
 Page Should Have Given Number Of Elements 
 	[Arguments]   ${element}   ${elemcount} 
-	Page Should Contain Element   ${element}   limit=2
+	Page Should Contain Element   ${element}   limit=${elemcount}
 	
 	
 Rename Reports Picture To Use Original Picture Name
