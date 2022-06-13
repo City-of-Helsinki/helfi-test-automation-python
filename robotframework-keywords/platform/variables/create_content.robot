@@ -62,6 +62,7 @@ ${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_m
 ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_TargetGroupLinks}						name:field_content_target_group_links_add_more
 ${Opt_Current}								name:field_content_current_add_more
+${Opt_PopularServices}						name:field_content_popular_services_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
@@ -396,3 +397,8 @@ ${Sel_CurrentRightNow_Seasons}							css:select[name*=field_seasons]
 ${Inp_CurrentRightNow_Item_Title}						(//input[contains(@name, 'field_current_links')][contains(@name, 'title')])
 ${Inp_CurrentRightNow_Item_Link}						(//input[contains(@name, 'field_current_links')][contains(@name, 'uri')])
 
+#POPULAR SERVICES
+${Inp_PopularServices_Title}							(//input[contains(@name, 'field_service_title')][contains(@name, 'title')])[last()]
+${Inp_PopularServices_Item_NewItem}						css:input[name*=subform_field_service_items_popular_service_item_add_more]
+${Inp_PopularServices_Item_Title}						(//input[contains(@name, 'field_service_links')][contains(@name, 'title')])
+${Inp_PopularServices_Item_Link}						(//input[contains(@name, 'field_service_links')][contains(@name, 'uri')])
