@@ -12,6 +12,17 @@ ${IMAGES_PATH}    ${EXECDIR}/robotframework-resources/images
 ${SCREENSHOTS_PATH}    ${EXECDIR}/robotframework-resources/screenshots
 
 *** Keywords ***
+Debug Error In Mobile
+	IF    ${CI}
+		Capture Page Screenshot    filename=/app/helfi-test-automation-python/robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_fullpage.png
+		${source}=  Execute Javascript  document.getElementsByTagName('html')[0].innerHTML
+		Create File  robotframework-reports/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}
+    ELSE
+    	Capture Page Screenshot    filename=${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_fullpage.png   fullPage=true
+    	${source}=  Execute Javascript  document.getElementsByTagName('html')[0].innerHTML
+    	Create File  ${REPORTS_PATH}/debug/${SUITE NAME}-${TEST NAME}_error_source.html  ${source}	
+    END 
+
 Debug Error
 	[Documentation]   If debug is set on, will capture screenshot of error and save the html page. The data will be 
 	...				  in debug folder of test results.

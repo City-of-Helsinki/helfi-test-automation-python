@@ -17,6 +17,7 @@ Library           RobotEyes
 Library           OperatingSystem
 Library			  Collections
 
+
 *** Variables ***
 ${submitted}								false
 ${picalign} 		 						${EMPTY}
@@ -38,6 +39,7 @@ ${URL_service_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/in
 ${URL_media_page}							${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/media
 ${URL_paragraphs_page}						${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/paragraphs
 ${URL_paragraphs_add_page}					${PROTOCOL}://${BASE_URL}/fi${PREFIX}/admin/content/paragraphs/add/default
+${URL_layouts_page}							${PROTOCOL}://${BASE_URL}/en/urban-environment-and-traffic/dc-helfi-platform-test-content/dc-layouts
 		
 *** Keywords ***
 
@@ -75,7 +77,7 @@ Input Lead
 	Input Text  ${Inp_Lead}   ${lead} 
 
 Capture Screenshot For Picture Comparison
-	[Arguments]   ${locator}   ${blur}=${EMPTY}    ${redact}=${EMPTY}
+	[Arguments]   ${locator}   ${filename}=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   ${blur}=${EMPTY}    ${redact}=${EMPTY}
 	[Documentation]  See   https://github.com/jz-jess/RobotEyes
 	${wsize}=  Get Window Size
 	${width}=  Get From List   ${wsize}   0
@@ -83,9 +85,9 @@ Capture Screenshot For Picture Comparison
 	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
 	Open Eyes   SeleniumLibrary
 	IF    ${CI}
-		Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+		Capture Element   ${locator}     name=/app/helfi-test-automation-python/robotframework-reports/${filename}   blur=${blur}   redact=${redact}
 	ELSE
-		Capture Element   ${locator}   name=${REPORTS_PATH}/${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}   blur=${blur}   redact=${redact}
+		Capture Element   ${locator}   name=${REPORTS_PATH}/${filename}   blur=${blur}   redact=${redact}
 	END
 	Set Window Size   ${width}   ${height}	# LETS RESTORE THE ORIGINAL VALUE USED IN TESTING
 	
@@ -116,11 +118,20 @@ Search And Click Content From Content Pages
 Go To ${language} Translation Page
 	${language_pointer}=  Get Language Pointer   ${language}
 	Click Element   //a[contains(@href, 'translations/add/fi/${language_pointer}')]
+
+Debug If Needed
+	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
+	
+
+Debug If Needed And Close Browsers
+	Run Keyword If   (${DEBUG}) & (not(${MOBILE}))   Run Keyword If Test Failed   Debug Error
+	Run Keyword If   ${DEBUG} & ${MOBILE}  Run Keyword If Test Failed   Debug Error In Mobile
+	#Run Keyword If   ${MOBILE}  Switch Browser   1
+	Close Browser
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
 	Run Keyword If   ${MOBILE}  Switch Browser   1
-	${currenturl}=   Get Location
 	Run Keyword If   ${DEBUG}   Run Keyword If Test Failed   Debug Error
 	FOR    ${i}    IN RANGE    10
 		   Go To   ${URL_content_page}
@@ -266,6 +277,7 @@ Compared Pictures Match
 	[Arguments]	   ${pic1}   ${pic2}   ${movetolerance}=${EMPTY}
 	Open Eyes   lib=none   # SETTING LIBRARY TO NONE BECAUSE PICTURE COMPARISON DOES OTHERWISE GIVE FALSE POSITIVES
     Compare Two Images   ref=${pic1}   actual=${pic2}   output=diffimage.png   tolerance=${movetolerance}
+
      
 
 
@@ -457,6 +469,8 @@ Login And Go To Content Page
 	IF    ${CI}
 		Register Keyword To Run On Failure   NONE
 		Log-In In CI Environment
+	ELSE IF  ${MOBILE}
+		Log In With Mobile and GoTo Page   iPhone SE   ${URL_layouts_page}   
 	ELSE
 		Open Browser  ${URL_login_page}  ${BROWSER}
 		Log In
@@ -627,14 +641,18 @@ Set Shortened Suite Name
 	Set Suite Variable   ${SUITE}   ${modified}  
 
 Compare Two Pictures
-	[Arguments]   ${movetolerance}=${EMPTY}
-	IF  ${CI}   
-		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/ci/${language}_${TEST NAME}_${BROWSER}.png
-	ELSE
-		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/${language}_${TEST NAME}_${BROWSER}.png
-	END
+	[Arguments]   ${movetolerance}=${EMPTY}   ${origfilename}=${language}_${TEST NAME}_${BROWSER}   ${compfilename}=${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}
 	
-	${comparisonpic}=  Set Variable  ${BROWSER}_TESTRUN-${SUITE}-${TEST NAME}_${language}.png
+	IF    ${CI} & ${MOBILE}
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/ci/mobile/${origfilename}.png
+	ELSE IF   ${CI} & (not(${MOBILE}))
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/ci/desktop/${origfilename}.png
+	ELSE IF  (not(${CI})) & ${MOBILE}
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/mobile/${origfilename}.png
+	ELSE
+		${originalpic} =  Set Variable   ${SCREENSHOTS_PATH}/${BROWSER}/desktop/${origfilename}.png
+	END
+	${comparisonpic}=  Set Variable  ${compfilename}.png
 	Compare Pictures And Handle PictureData   ${originalpic}   ${comparisonpic}   ${movetolerance}
 	
 Compare Pictures And Handle PictureData
