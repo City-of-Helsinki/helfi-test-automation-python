@@ -62,6 +62,8 @@ ${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_m
 ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_TargetGroupLinks}						name:field_content_target_group_links_add_more
 ${Opt_Current}								name:field_content_current_add_more
+${Opt_TopNews}								name:field_content_front_page_top_news_add_more
+${Opt_LatestNews}							name:field_content_front_page_latest_news_add_more
 ${Opt_PopularServices}						name:field_content_popular_services_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
