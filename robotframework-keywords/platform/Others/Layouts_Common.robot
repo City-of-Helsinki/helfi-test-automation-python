@@ -5,56 +5,54 @@ Resource        ../Commonkeywords.robot
 
 *** Keywords ***
 
-Login And Go To Content Page
-	[Documentation]   Preparatory action for platform tests: User logs in and then navigates to Content('Sisältö')
-	...				  page.
+Setup Browsers 
+	Set Test Variable   ${MOBILE}  ${false}
 	Set Shortened Suite Name
 	IF    ${CI}
 		Register Keyword To Run On Failure   NONE
-		Log-In In CI Environment
-	ELSE IF  ${MOBILE}
-		Layouts_Common.Open Browser Instance For Device And Go To Layouts Page   iPhone SE
-		Accept Cookies In Mobile   
-	ELSE
-		Open Browser  about:blank  ${BROWSER}
-		Set Window Size   1296   696
 	END
-
-	
+		Layouts_Common.Open Browser Instance For Device And Go To Layouts Page   iPhone SE
+		Accept Cookies In Mobile
+		Seleniumlibrary.Open Browser  about:blank  ${BROWSER}   desktopchrome 
+		Set Window Size   1296   696
 
 Accept Cookies In Mobile
 	Wait Until Element Is Visible   xpath://button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']   timeout=2
 	PuppeteerLibrary.Click Button  xpath://button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']
-	  
-Log In In Mobile
-	Wait Until Keyword Succeeds  5x  200ms  Accept Cookies In Mobile
-	Wait Until Keyword Succeeds  7x  300ms  Input Credentials And Log In In Mobile
-
-Input Credentials And Log In In Mobile
-	Input Text   id:edit-name   helfi-admin
-	Input Password   id:edit-pass   Test_Automation
-	Run Keyword And Ignore Error   Accept Cookies In Mobile
-	Wait Until Keyword Succeeds  3x  600ms  Log In User In Mobile
-
-Log In User In Mobile
-	PuppeteerLibrary.Click Button   id:edit-submit
-	Wait Until Keyword Succeeds  7x  200ms  Element Should Not Be Visible   id:edit-submit	
 
 Open Browser Instance For Device And Go To Layouts Page
 	[Arguments]   ${devicename}
 	Import Library   PuppeteerLibrary
 	Set Library Search Order   PuppeteerLibrary
 	${options}=    Create Dictionary    emulate=${devicename}  
-	PuppeteerLibrary.Open Browser   ${URL_layouts_page}   options=${options}   alias=puppeteerchrome
+	PuppeteerLibrary.Open Browser   ${URL_layouts_page}   options=${options}   alias=mobilechrome
 	Set Screenshot Directory   ${REPORTS_PATH}
 
 Layout Should Not Have Changed
 	Run Keyword And Ignore Error  Accept Cookies In Mobile
 	Compare Two Pictures	
 
+Prepare Test Settings And Variables For ${devicetype} 
+	[Documentation]   Accepted Devicetype values are 'Desktop' and 'Mobile'
+	IF  '${devicetype}'=='Desktop'
+		Set Window Size   1296   696
+		SeleniumLibrary.Switch Browser   desktopchrome
+		Set Test Variable   ${MOBILE}   ${false}
+	ELSE
+		Set Test Variable   ${MOBILE}   ${true}
+	END
+
+Go To Content Page
+	[Arguments]    ${contentpath}   ${contentpage}
+	IF  ${MOBILE}
+		PuppeteerLibrary.GoTo    ${URL_layouts_page}/${contentpath}/${contentpage}
+	ELSE
+		SeleniumLibrary.GoTo   ${URL_layouts_page}/${contentpath}/${contentpage}
+	END 
+
 Take Screenshot And Compare Upper And Lower Content On Page
-	[Arguments]   ${contentpage}
-	GoTo    ${URL_layouts_page}/${unit_main_path}/${contentpage}
+	[Arguments]   ${contentpath}   ${contentpage}
+	Go To Content Page   ${contentpath}   ${contentpage}
 	IF  ${MOBILE}   
 		Capture Screenshot For Picture Comparison In Layouts Page   css=main.layout-main-wrapper   filename=${contentpage}_mobile
 		Compare Two Pictures   origfilename=${contentpage}   compfilename=${contentpage}_mobile
@@ -66,8 +64,8 @@ Take Screenshot And Compare Upper And Lower Content On Page
 	END	
 	
 Take Screenshot And Compare Main Content On Page
-	[Arguments]   ${contentpage}
-	GoTo    ${URL_layouts_page}/${unit_main_path}/${contentpage}
+	[Arguments]   ${contentpath}   ${contentpage}
+	Go To Content Page   ${contentpath}   ${contentpage}
 	IF  ${MOBILE}   
 		Capture Screenshot For Picture Comparison In Layouts Page   css=div.main-content   filename=${contentpage}_mobile
 		Compare Two Pictures   origfilename=${contentpage}   compfilename=${contentpage}_mobile
@@ -81,10 +79,10 @@ Capture Screenshot For Picture Comparison In Layouts Page
 	[Documentation]  See   https://github.com/jz-jess/RobotEyes
 	
 	IF  not(${MOBILE})
-	${wsize}=  Get Window Size
-	${width}=  Get From List   ${wsize}   0
-	${height}=  Get From List   ${wsize}   1
-	Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
+		${wsize}=  Get Window Size
+		${width}=  Get From List   ${wsize}   0
+		${height}=  Get From List   ${wsize}   1
+		Set Window Size  3840   3160    # SO THAT WHOLE ELEMENT GETS CAPTURED SUCCESFULLY
 	END
 	IF    ${CI}
 		Open Eyes   SeleniumLibrary

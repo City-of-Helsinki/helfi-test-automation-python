@@ -124,10 +124,11 @@ Debug If Needed
 	
 
 Debug If Needed And Close Browsers
+	${MOBILE}=  Convert To Boolean   ${MOBILE}
 	Run Keyword If   (${DEBUG}) & (not(${MOBILE}))   Run Keyword If Test Failed   Debug Error
 	Run Keyword If   ${DEBUG} & ${MOBILE}  Run Keyword If Test Failed   Debug Error In Mobile
-	#Run Keyword If   ${MOBILE}  Switch Browser   1
-	Close Browser
+	SeleniumLibrary.Close Browser
+	PuppeteerLibrary.Close Browser
 		
 Cleanup and Close Browser
 	[Documentation]  Deletes content created by testcases. Page , if created and picture if added.
@@ -224,7 +225,7 @@ Click Content Link From Notification Banner
 	Element Should Not Be Visible   //a[contains(@href, '/node/add')]
 
 Accept Cookies
-	Wait Until Keyword Succeeds  6x  400ms  Click Button  //button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']
+	Wait Until Keyword Succeeds  6x  400ms  SeleniumLibrary.Click Button  //button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']
 
 Open Created Content
 	Run Keyword If  '${CI}'!='true'  Open Content In Non CI Environments
@@ -485,7 +486,7 @@ Set CI Arguments And Open Browser
     Call Method    ${chrome_options}    add_argument    --ignore-certificate-errors
     Call Method    ${chrome_options}    add_argument    --disable-gpu
         
-    Open Browser    ${URL_login_page}    chrome    options=${chrome_options}
+    Open Browser    ${URL_login_page}    chrome    desktopchrome   options=${chrome_options}
 
 Log In With Mobile and GoTo Page
 	[Arguments]   ${devicename}   ${url}
