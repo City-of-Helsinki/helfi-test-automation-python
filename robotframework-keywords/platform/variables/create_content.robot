@@ -365,3 +365,12 @@ ${Inp_Event_Title}										(//input[contains(@name, 'field_event_list_title')])
 ${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
 ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
+
+#PROJECT
+${Inp_Project_Plan_StartDate}				(//input[contains(@name, 'field_project_plan_schedule')][not(contains(@name, 'end_value'))])[last()]
+${Inp_Project_Plan_EndDate}					(//input[contains(@name, 'field_project_plan_schedule')][contains(@name, 'end_value')])[last()]
+${Inp_Project_Execution_StartDate}			(//input[contains(@name, 'field_project_execution_schedule')][not(contains(@name, 'end_value'))])[last()]
+${Inp_Project_Execution_EndDate}			(//input[contains(@name, 'field_project_execution_schedule')][contains(@name, 'end_value')])[last()]
+${Inp_Project_Sidebar_AddText}  			name:field_sidebar_content_sidebar_text_add_more
+${Inp_Project_Sidebar_Text_Title}  			css:input[name*=field_sidebar_text_title]
+${Inp_Project_Text_Content}			css:textarea[name*=field_text][name*=field_content] + div >> xpath://iframe
