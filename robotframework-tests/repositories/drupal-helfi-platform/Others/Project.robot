@@ -7,11 +7,10 @@ Force Tags		PROJECT
 
 *** Test Cases ***
 Project Page
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Goes To New Project -Site
 	And User Creates Project Content Page
 	When User Submits The New Page
-	Fail
 
 	
 *** Keywords ***
