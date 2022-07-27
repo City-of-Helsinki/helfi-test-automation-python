@@ -273,6 +273,11 @@ Go To New Annoucement Site
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Announcement
 
+Go To New Project Site
+	GoTo   ${URL_content_page}
+	Click Add Content
+	Wait Until Keyword Succeeds  5x  200ms  Click Add Project
+
 Go To New Page Site
 	GoTo   ${URL_content_page}
 	Click Add Content
@@ -309,6 +314,12 @@ Click Add Landing Page
 	Wait Until Element Is Visible  //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']   timeout=3
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']
 	Element Should Not Be Visible   //a[contains(@href, '/node/add/landing_page')][@class='admin-item__link']
+
+Click Add Project
+	[Documentation]   Add Project ('Hanke') click in Add Content('Lisää sisältöä') -menu
+	Wait Until Element Is Visible  //a[contains(@href, '/node/add/project')][@class='admin-item__link']   timeout=3
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/project')][@class='admin-item__link']
+	Element Should Not Be Visible   //a[contains(@href, '/node/add/project')][@class='admin-item__link']
 
 Click Add Announcement
 	[Documentation]   Add Annoucement ('Poikkeusilmoitus') click in Add Content('Lisää sisältöä') -menu
