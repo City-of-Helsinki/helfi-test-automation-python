@@ -365,3 +365,11 @@ ${Inp_Event_Title}										(//input[contains(@name, 'field_event_list_title')])
 ${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
 ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
+
+#DISTRICT
+${Inp_District_Hero_Title}								css:input[name*=field_hero_title]
+${Inp_District_Hero_Description}						css:textarea[name*=field_hero_desc] + div >> xpath://iframe
+${Inp_District_Sidebar_AddText}  						name:field_sidebar_content_sidebar_text_add_more
+${Inp_District_Sidebar_Text_Title}  					css:input[name*=field_sidebar_text_title]
+${Inp_District_Sidebar_Text_Content}  					css:textarea[name*=field_sidebar_content] + div > div > div > iframe
+${Inp_District_Text}									css:textarea[name*=field_text][name*=subform]  + div > div > div > iframe

@@ -278,6 +278,11 @@ Go To New Page Site
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Page
 
+Go To New District Site
+	GoTo   ${URL_content_page}
+	Click Add Content
+	Wait Until Keyword Succeeds  5x  200ms  Click Add District
+
 Go To New Service Site
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Service
@@ -291,7 +296,12 @@ Click Add Content
 	[Documentation]   Add Content ('Lisää sisältöä') in Content Menu
 	Wait Until Element Is Visible   css:#block-hdbt-admin-local-actions > ul > li > a   timeout=3
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:#block-hdbt-admin-local-actions > ul > li > a
-	
+
+Click Add District
+	[Documentation]   Add District ('Alue') click in Add Content('Lisää sisältöä') -menu
+	Wait Until Element Is Visible  //a[contains(@href, '/node/add/district')][@class='admin-item__link']   timeout=3
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/district')][@class='admin-item__link']
+	Element Should Not Be Visible   //a[contains(@href, '/node/add/district')][@class='admin-item__link']	
    
 Click Add Page
 	[Documentation]   Add Page ('Sivu') click in Add Content('Lisää sisältöä') -menu
