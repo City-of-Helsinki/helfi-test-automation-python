@@ -25,7 +25,7 @@ Only Picture
 	And Picture Content Is Present
 
 Text And Picture
-	[Tags]   TODO
+	[Tags]
 	Given User Goes To New Page Site
 	And User Starts Creating a New Page With Mixed Content  
 	When User Submits The New Page

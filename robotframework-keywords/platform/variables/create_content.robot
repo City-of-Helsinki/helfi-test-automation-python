@@ -63,6 +63,7 @@ ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
+${Opt_UnitContactCard}						name:field_content_unit_contact_card_add_more
 
 
 ${Btn_File_Upload}					    	name:files[upload]
@@ -365,3 +366,16 @@ ${Inp_Event_Title}										(//input[contains(@name, 'field_event_list_title')])
 ${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
 ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
+
+# UNITCONTACTCARD
+${Inp_UnitContactCard_Title}							(//input[contains(@name, 'field_unit_contact_title')])[last()]
+${Inp_UnitContactCard_Unit}								(//input[contains(@name, 'field_unit_contact_unit')])[last()]
+# UNITCONTACTCARD ON-OFF-SWITCHES
+${Swh_UnitContactCard_Address}							(//input[contains(@name, 'field_unit_contact_use_address')])[last()]
+${Swh_UnitContactCard_Postal}							(//input[contains(@name, 'field_unit_contact_use_postal')])[last()]
+${Swh_UnitContactCard_Phone}							(//input[contains(@name, 'field_unit_contact_use_phone')])[last()]
+${Swh_UnitContactCard_Opening}							(//input[contains(@name, 'field_unit_contact_use_opening')])[last()]
+${Swh_UnitContactCard_Picture}							(//input[contains(@name, 'field_unit_contact_use_picture')])[last()]
+${Swh_UnitContactCard_UseOverride}						(//input[contains(@name, 'field_unit_contact_use_override')])[last()]
+${Swh_UnitContactCard_Details}							(//input[contains(@name, 'field_unit_contact_use_details')])[last()]
+${Swh_UnitContactCard_Link}								(//input[contains(@name, 'field_unit_contact_use_link')])[last()]
