@@ -33,8 +33,8 @@ Currently used (4/2022) versions are:
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
 
-            robot -i GALLERY -A ./environments/local.args -d robotframework-reports .
-which will run all tests with GALLERY tag. Other arguments are:
+            robot -i BANNER -A ./environments/local.args -d robotframework-reports .
+which will run all tests with BANNER tag. Other arguments are:
 - Argument file for setting up some variables related to local environment (**optional**)
 - Report folder for run logs (related to project folder root)  (**optional**)
   
