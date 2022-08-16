@@ -47,7 +47,7 @@ Open Paragraph For Edit
 	Wait Until Element Is Visible   ${Ddn_AddContent}   timeout=3
 	Run Keyword If  '${paragraphlist}'=='${EMPTY}'  Click Element	${Ddn_AddContent}
 	Run Keyword If  '${paragraphlist}'!='${EMPTY}'   Click Element	${paragraphlist}
-	Click Element   ${paragraph}
+	Wait Until Keyword Succeeds  5x  200ms 	Click Element   ${paragraph}
 	
 Input Title To Paragraph
 	[Arguments]    ${paragraph_title_locator}
