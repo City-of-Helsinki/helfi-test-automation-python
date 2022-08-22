@@ -18,7 +18,6 @@ All Pages
 
 All Pages After Modify
 	[Tags]
-	[Documentation]  Unpublished announcements should not be shown at all
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Alert Announcement to Show on All Pages
 	And User Submits The New Announcement
@@ -50,7 +49,6 @@ English Translation
 	Then Announcement Should Be Visible Only For English Language Content	
 
 Notification Layout
-	[Documentation]  Checks by using picture compariso that layout looks as it should
 	[Tags]
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Notification Announcement to Show on All Pages
@@ -59,7 +57,6 @@ Notification Layout
 
 Attention Layout
 	[Tags]
-	[Documentation]  Checks by using picture compariso that layout looks as it should
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Attention Announcement to Show on All Pages
 	And User Submits The New Announcement
@@ -67,11 +64,17 @@ Attention Layout
 	
 Alert Layout
 	[Tags]
-	[Documentation]  Checks by using picture compariso that layout looks as it should
 	Given User Goes To New Annoucement Site
 	When User Creates Finnish Published Alert Announcement to Show on All Pages
 	And User Submits The New Announcement
 	Then Announcement Layout For Alert Should Be Correct For Checked Content
+
+With Link
+	[Tags]
+	Given User Goes To New Annoucement Site
+	When User Creates New Announcement With Link
+	And User Submits The New Announcement
+	Then Link Works Correctly
 	
 *** Keywords ***
 User Goes To New Annoucement Site
@@ -81,6 +84,9 @@ User Creates ${lang_selection} ${publishstatus} ${type} Announcement to Show on 
 	Run Keyword If   ('${visibility}'=='All') & ('${publishstatus}'=='Published')  Create Announcement    Test Automation: ${SUITE}.${TEST NAME}   ${lang_selection}    ${type}
 	Run Keyword If   ('${visibility}'=='All') & ('${publishstatus}'=='Unpublished')  Create Announcement    Test Automation: ${SUITE}.${TEST NAME}   ${lang_selection}    ${type}   True   False
 	Run Keyword If   '${visibility}'=='Certain'  Create Announcement    Test Automation: ${SUITE}.${TEST NAME}   ${lang_selection}    ${type}   False
+
+User Creates New Announcement With Link
+	Create Announcement   Test Automation: ${SUITE}.${TEST NAME}   Finnish    Alert   addlink=True
 
 User Adds ${lang_selection} Translation For The Announcement
 	Add ${lang_selection} Translation For The Announcement

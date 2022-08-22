@@ -332,7 +332,7 @@ ${Inp_Announcement_Title}								name:title[0][value]
 ${Inp_Announcement_Type}								name:field_announcement_type
 ${Ddn_Announcement_Language}							name:langcode[0][value]
 ${Swh_Announcement_Visibility}							name:field_announcement_all_pages[value]
-${Inp_Announcement_Link_Url}					 	  	name:edit-field-announcement-link-0-uri
+${Inp_Announcement_Link_Url}					 	  	id:edit-field-announcement-link-0-uri
 ${Inp_Announcement_Link_Title}							name:field_announcement_link[0][title]
 
 #CHART
