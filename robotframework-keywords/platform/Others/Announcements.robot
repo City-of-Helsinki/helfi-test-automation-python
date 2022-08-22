@@ -7,7 +7,7 @@ Resource        ../Commonkeywords.robot
 
 Create Announcement
 	[Documentation]    type=notification,attention,alert , showonallpages= should announcement be shown on all pages, Is announcement published
-	[Arguments]   ${name}	${lang_selection}    ${type}    ${showonallpages}=True    ${published}=True
+	[Arguments]   ${name}	${lang_selection}    ${type}    ${showonallpages}=True    ${published}=True   ${addlink}=False
 	${language_pointer}=  Get Language Pointer   ${lang_selection}
 	Input Text   ${Inp_Announcement_Title}   ${name}
 	Run Keyword If  '${lang_selection}'!='Finnish'   Select From List By Value   ${Ddn_Announcement_Language}   ${language_pointer}
@@ -22,6 +22,7 @@ Create Announcement
 	IF    not(${published})
 		Click Element  id:edit-status-value
 	END
+	Run Keyword If  ${addlink}   Add Link To Announcement   https://www.helsinki.fi   Helsinki home page
 
 Select Content To Show The Announcement For
 	Wait Until Keyword Succeeds  5x  200ms  Input Text  css:#edit-field-announcement-content-pages-wrapper > div > span > span.selection > span > ul > li > input   Esimerkkisivu
@@ -34,6 +35,11 @@ Add Link To Announcement
 	[Arguments]   ${url}	${title}   
 	 Input Text   ${Inp_Announcement_Link_Url}   ${url}
 	 Input Text   ${Inp_Announcement_Link_Title}   ${title}
+
+Link Works Correctly
+	Click Link  Helsinki home page
+	${currenturl}=   Get Location
+	Should Contain   ${currenturl}   helsinki.fi
 
 Add ${lang_selection} Translation For The Announcement
 	${language_pointer}=   Get Language Pointer   ${lang_selection}
