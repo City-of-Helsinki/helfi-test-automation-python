@@ -52,6 +52,7 @@ ${Opt_AddBanner}   							name:field_content_banner_add_more
 ${Opt_AddAccordion}   						name:field_content_accordion_add_more
 ${Opt_AddContentCards} 						name:field_content_content_cards_add_more
 ${Opt_AddContentCards_Lower}				name:field_lower_content_content_cards_add_more
+${Opt_ListOfLinks_Lower}					name:field_lower_content_list_of_links_add_more
 ${Opt_AddLiftupWithImage}					name:field_content_liftup_with_image_add_more
 ${Opt_AddRemotevideo}						name:field_content_remote_video_add_more
 ${Opt_AddFromLibrary}						name:field_content_from_library_add_more
@@ -208,6 +209,7 @@ ${Opt_AddListOfLinks}							    name:field_content_list_of_links_add_more
 ${Inp_ListOfLinks_Design}							//select[contains(@name, 'field_list_of_links_design')]
 ${Inp_ListOfLinks_Link_Uri}							(//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'uri')])[last()]
 ${Inp_ListOfLinks_Link_Title}		    			(//input[contains(@name, 'field_list_of_links_link')][contains(@name, 'title')])[last()]
+${Inp_ListOfLinks_Title}			    			(//input[contains(@name, 'field_list_of_links_title')])[last()]
 ${Inp_ListOfLinks_Link_NewLink}						//input[contains(@name, 'field_list_of_links_links_list')]
 ${Inp_ListOfLinks_Link_Description}					(//input[contains(@name, 'field_list_of_links_desc')])[last()]
 ${Inp_ListOfLinks_Link_AddPicture}					(//input[contains(@name, 'image-media-library-open-button-field_content')])[last()]
@@ -373,3 +375,4 @@ ${Inp_District_Sidebar_AddText}  						name:field_sidebar_content_sidebar_text_a
 ${Inp_District_Sidebar_Text_Title}  					css:input[name*=field_sidebar_text_title]
 ${Inp_District_Sidebar_Text_Content}  					css:textarea[name*=field_sidebar_content] + div > div > div > iframe
 ${Inp_District_Text}									css:textarea[name*=field_text][name*=subform]  + div > div > div > iframe
+${Inp_District_ListOfLinks_Link_AddPicture}				(//input[contains(@name, 'image-media-library-open-button-field_lower_content')])[last()]
