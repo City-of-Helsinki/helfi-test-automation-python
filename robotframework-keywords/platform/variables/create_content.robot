@@ -63,6 +63,7 @@ ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
+${Opt_Phasing}								name:field_content_phasing_add_more
 
 
 ${Btn_File_Upload}					    	name:files[upload]
@@ -365,3 +366,12 @@ ${Inp_Event_Title}										(//input[contains(@name, 'field_event_list_title')])
 ${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
 ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
+
+#PHASING
+${Sel_Phasing_Title_Level}								(//select[contains(@name, 'field_phasing_title_level')])[last()]
+${Swh_Phasing_ShowPhaseNumbers}							(//input[contains(@name, 'field_show_phase_numbers]')])[last()]
+${Inp_Phasing_Title}									(//input[contains(@name, 'field_title]')])[1]
+${Inp_Phasing_Phase_Title}								(//input[contains(@name, 'field_title]')])[last()]
+${Inp_Phasing_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[1]
+${Inp_Phasing_Item_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
+${Btn_AddPhasingItem}									(//input[contains(@name, 'field_content_0_subform_field_phasing_item_phasing_item_add_more')])[last()]
