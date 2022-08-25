@@ -190,6 +190,7 @@ ${Ddn_Accordion2_Icon}						(//select[contains(@name, '[subform][field_accordion
 ${Opt_Accordion_Content_Text}				(//input[contains(@name, 'subform_field_accordion_item_content_text_add_more')])[last()]
 ${Opt_Accordion_Content_Columns}			//input[contains(@name, 'subform_field_accordion_item_content_columns_add_more')]
 ${Opt_Accordion_Content_Picture}			//input[contains(@name, 'subform_field_accordion_item_content_image_add_more')]
+${Opt_Accordion_Content_Phasing}			//input[contains(@name, 'subform_field_accordion_item_content_phasing_add_more')]
 ${Frm_Accordion_Content}					//div[contains(@id,'subform-field-accordion-items')][contains(@id,'value')] >> css:div > div > iframe
 ${Frm_Accordion_Description}				//div[contains(@id,'subform-field-accordion-description')][contains(@id,'value')] >> css:div > div > iframe
 ${Frm_Accordion2_Content}					//div[contains(@id,'subform-field-accordion-item-content')][contains(@id,'subform-field-text')] >> css:div > div > iframe	
@@ -374,4 +375,4 @@ ${Inp_Phasing_Title}									(//input[contains(@name, 'field_title]')])[1]
 ${Inp_Phasing_Phase_Title}								(//input[contains(@name, 'field_title]')])[last()]
 ${Inp_Phasing_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[1]
 ${Inp_Phasing_Item_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
-${Btn_AddPhasingItem}									(//input[contains(@name, 'field_content_0_subform_field_phasing_item_phasing_item_add_more')])[last()]
+${Btn_AddPhasingItem}									(//input[contains(@name, 'subform_field_phasing_item_phasing_item_add_more')])[last()]

@@ -49,6 +49,15 @@ Columns With Text
 	Then Layout Should Not Have Changed
 	And Accordions Text Content Works As Expected	
 
+Phasing
+	[Tags]
+	Given User Goes To New Page -Site
+	And User Creates White Accordion With h2 Heading And Phasing Content
+	And User Adds Phasing To Accordion
+	When User Submits The New Page
+	Then Layout Should Not Have Changed
+	And Accordions Phasing Content Works As Expected
+
 Two Accordions
 	[Tags]
 	Given User Goes To New Page -Site
@@ -71,6 +80,9 @@ User Adds ${content} Content to Columns Subcategory
 
 User Adds Picture To Accordion
 	Add Picture to Accordion
+
+User Adds Phasing To Accordion
+	Add Phasing To Accordion
 
 User Adds Content to Text Subcategory
 	Add Content To Text Subcategory
