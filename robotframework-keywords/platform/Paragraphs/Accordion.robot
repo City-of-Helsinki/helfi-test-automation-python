@@ -93,6 +93,8 @@ Accordions ${contenttype} Content Works As Expected
 		Picture Exists in Created Accordion
 	ELSE IF    '${contenttype}'=='Text'
 		Wait Until Keyword Succeeds  5x  200ms  Text Content Exists In Created Accordion
+	ELSE IF    '${contenttype}'=='Phasing'
+		phasing Is Present In Page
 	END   
 	
 
