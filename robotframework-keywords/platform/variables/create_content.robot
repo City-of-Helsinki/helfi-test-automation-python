@@ -64,7 +64,7 @@ ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
 ${Opt_Phasing}								name:field_content_phasing_add_more
-
+${Opt_ListofPlans}							name:field_content_list_of_plans_add_more
 
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
@@ -376,3 +376,8 @@ ${Inp_Phasing_Phase_Title}								(//input[contains(@name, 'field_title]')])[las
 ${Inp_Phasing_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[1]
 ${Inp_Phasing_Item_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Btn_AddPhasingItem}									(//input[contains(@name, 'subform_field_phasing_item_phasing_item_add_more')])[last()]
+
+#LIST-OF-PLANS
+${Inp_ListofPlans_Title}								(//input[contains(@name, 'field_list_of_plans_title')])[last()]
+${Inp_ListofPlans_Description}							(//textarea[contains(@name, 'field_list_of_plans_description')])[last()]
+
