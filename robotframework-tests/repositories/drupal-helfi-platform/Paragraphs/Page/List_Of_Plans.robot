@@ -7,7 +7,7 @@ Force Tags		PAGE   LISTOFPLANS
 *** Test Cases ***
 
 One List
-	[Tags]   TODO
+	[Tags]
 	Given User Goes To New Page -Site	
 	When User Starts Creating Page With List Of Plans Content
 	And User Submits The New Page
