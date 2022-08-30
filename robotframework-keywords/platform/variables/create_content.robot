@@ -389,8 +389,8 @@ ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last
 #TARGET GROUP LINKS
 ${Inp_TargetGroupLinks_Title}							css:input[name*=field_title]
 ${Frm_TargetGroupLinks_Description}						css:textarea[name*=field_description][name*=value] + div > div > div > iframe
-${Inp_TargetGroupLinks_Item_Title}						(//input[contains(@name, 'field_target_group_item_title')])[last()]
-${Inp_TargetGroupLinks_Item_Link}						(//input[contains(@name, 'field_target_group_item_link')])[last()]
+${Inp_TargetGroupLinks_Item_Uri}						(//input[contains(@name, 'field_target_group_item_link')][contains(@name, 'uri')])[last()]
+${Inp_TargetGroupLinks_Item_Link}						(//input[contains(@name, 'field_target_group_item_link')][contains(@name, 'title')])[last()]
 ${Inp_TargetGroupLinks_Item_Subtitle}					(//input[contains(@name, 'field_target_group_item_subtitle')])[last()]
 ${Inp_TargetGroupLinks_Item_NewItem}					css:input[name*=subform_field_target_group_item_target_group_link_item_add_more]
 

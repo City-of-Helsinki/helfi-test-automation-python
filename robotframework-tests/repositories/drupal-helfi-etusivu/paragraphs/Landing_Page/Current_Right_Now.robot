@@ -15,7 +15,7 @@ One Item
 	And There Are 1 Current Right Now Link(s) In Content
 	And All 1 Current Right Now Link(s) Work Correctly
 
-Four Item
+Four Items
 	[Tags]   CRITICAL
 	Given User Goes To New LandingPage Site
 	When User Creates 4 Current Right Now -Link(s)

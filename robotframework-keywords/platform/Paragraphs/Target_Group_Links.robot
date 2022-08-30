@@ -32,10 +32,10 @@ Click Add New Link Button
 
 Create New Link
 	[Arguments]   ${number}   ${icon}
-	Wait Until Keyword Succeeds  7x  200ms  Page Should Have Given Number Of Elements   //input[contains(@name, 'field_target_group_item_title')]  ${number}
+	Wait Until Keyword Succeeds  7x  200ms  Page Should Have Given Number Of Elements   //input[contains(@name, 'field_target_group_item_link')][contains(@name, 'uri')]  ${number}
 	Select From List By Value   (//select[contains(@name, 'field_icon')])[last()]   ${icon}
-	Input Text  ${Inp_TargetGroupLinks_Item_Title}   Target Link Main Title${number}
-	Input Text  ${Inp_TargetGroupLinks_Item_Link}   ${link_url${number}}
+	Input Text  ${Inp_TargetGroupLinks_Item_Link}   Target Link Main Title${number}
+	Input Text  ${Inp_TargetGroupLinks_Item_Uri}   ${link_url${number}}
 	Input Text	${Inp_TargetGroupLinks_Item_Subtitle}   Test Subtitle${number}
 	
 Page Contains Target Group List With Content

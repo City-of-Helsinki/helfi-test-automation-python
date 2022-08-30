@@ -40,7 +40,7 @@ Page Contains Current Right Now Links With Content
 	
 Page Should Have Correct Number Of Current Right Now Links
 	[Arguments]   ${number}
-	Page Should Have Given Number Of Elements	css:.current__link   ${number}
+	Page Should Have Given Number Of Elements	css:.link__style--highlight  ${number}
 	
 ${count} Current Right Now Links Work Correctly
 	${contentpageurl}=   Get Location
