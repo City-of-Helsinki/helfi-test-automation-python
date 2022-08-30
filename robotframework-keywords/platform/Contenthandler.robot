@@ -622,5 +622,5 @@ Input Non-paragraph Related Content
 
 ${paragraphname} Is Present In Page
 	Element Should Be Visible  css:.component.component--${paragraphname}   timeout=3
-	Element Should Be Visible  css:.component__content.${paragraphname}   timeout=3
+	Element Should Be Visible  css:.component__content.${paragraphname}   timeout=8
 	
