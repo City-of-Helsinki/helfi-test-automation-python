@@ -1,5 +1,5 @@
 if [[ ! -n "$PREFIX" ]]; then
-  PREFIX="/kaupunkiymparisto-ja-liikenne"
+  PREFIX=""
 fi
 
 if [[ ! -n "$BASE_URL" ]]; then
@@ -9,9 +9,9 @@ fi
 ADDITIONAL_ARGUMENTS=""
 if [[ "$BASE_URL" == *"etusivu"* ]]; 
 then
-  ADDITIONAL_ARGUMENTS+="-i ETUSIVU_SPECIFIC"
+  ADDITIONAL_ARGUMENTS+="-i ETUSIVU_SPESIFIC"
 else
-  ADDITIONAL_ARGUMENTS+="-e ETUSIVU_SPECIFIC"
+  ADDITIONAL_ARGUMENTS+="-e ETUSIVU_SPESIFIC"
 fi
 
 echo
