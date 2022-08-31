@@ -90,7 +90,6 @@ Page Should Have Given Number Of Elements
 	[Arguments]   ${element}   ${elemcount} 
 	Page Should Contain Element   ${element}   limit=${elemcount}
 	
-	
 Rename Reports Picture To Use Original Picture Name
 	[Documentation]   Renames File In given source folder. Full path must be given in first argument and
 	...				  only new name in second one.

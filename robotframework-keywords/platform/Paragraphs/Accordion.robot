@@ -2,6 +2,7 @@
 
 Resource        ../Contenthandler.robot
 Resource        ../Commonkeywords.robot
+Resource        Phasing.robot
 
 *** Keywords ***
 
@@ -54,7 +55,12 @@ Add Picture to Accordion
 	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
 	Click Button   ${Btn_Save}
 	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
-	
+
+Add Phasing To Accordion
+	Input Phasing Data
+	# LETS ADD MISSING DESCRIPTION FROM PHASING PARAGRAPH
+	Input Description To Paragraph   (//div[contains(@id,'cke_edit-field-content')]//iframe)[2]    
+	Create New Phase   Phase 2    Phase 2 Description Text	
 
 Add Text to Column
 	Add text to Left Column
@@ -75,6 +81,8 @@ Add SubContent To Accordion
 		Click Element   ${Opt_Accordion_Content_Columns}
 	ELSE IF  '${content}'=='Picture'
 		Click Element   ${Opt_Accordion_Content_Picture}
+	ELSE IF  '${content}'=='Phasing'
+		Click Element   ${Opt_Accordion_Content_Phasing}
 	END
 		
 Accordions ${contenttype} Content Works As Expected
@@ -85,6 +93,8 @@ Accordions ${contenttype} Content Works As Expected
 		Picture Exists in Created Accordion
 	ELSE IF    '${contenttype}'=='Text'
 		Wait Until Keyword Succeeds  5x  200ms  Text Content Exists In Created Accordion
+	ELSE IF    '${contenttype}'=='Phasing'
+		phasing Is Present In Page
 	END   
 	
 

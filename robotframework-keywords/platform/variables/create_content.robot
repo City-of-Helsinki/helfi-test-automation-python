@@ -72,6 +72,7 @@ ${Opt_Unit_Accessibility_Information}		name:field_content_unit_accessibility_inf
 ${Inp_FrontPage_Links_Url}					(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'uri')])[last()]
 ${Inp_FrontPage_Links_Title}				(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'title')])[last()]
 ${Inp_FrontPage_Links_Addmore}				name:field_news_item_links_link_add_more
+${Opt_Phasing}								name:field_content_phasing_add_more
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
 ${Inp_Pic_AltText}							css:[data-drupal-selector=edit-media-0-fields-field-media-image-0-alt]
@@ -204,6 +205,7 @@ ${Ddn_Accordion2_Icon}						(//select[contains(@name, '[subform][field_accordion
 ${Opt_Accordion_Content_Text}				(//input[contains(@name, 'subform_field_accordion_item_content_text_add_more')])[last()]
 ${Opt_Accordion_Content_Columns}			//input[contains(@name, 'subform_field_accordion_item_content_columns_add_more')]
 ${Opt_Accordion_Content_Picture}			//input[contains(@name, 'subform_field_accordion_item_content_image_add_more')]
+${Opt_Accordion_Content_Phasing}			//input[contains(@name, 'subform_field_accordion_item_content_phasing_add_more')]
 ${Frm_Accordion_Content}					//div[contains(@id,'subform-field-accordion-items')][contains(@id,'value')] >> css:div > div > iframe
 ${Frm_Accordion_Description}				//div[contains(@id,'subform-field-accordion-description')][contains(@id,'value')] >> css:div > div > iframe
 ${Frm_Accordion2_Content}					//div[contains(@id,'subform-field-accordion-item-content')][contains(@id,'subform-field-text')] >> css:div > div > iframe	
@@ -347,7 +349,7 @@ ${Inp_Announcement_Title}								name:title[0][value]
 ${Inp_Announcement_Type}								name:field_announcement_type
 ${Ddn_Announcement_Language}							name:langcode[0][value]
 ${Swh_Announcement_Visibility}							name:field_announcement_all_pages[value]
-${Inp_Announcement_Link_Url}					 	  	name:edit-field-announcement-link-0-uri
+${Inp_Announcement_Link_Url}					 	  	id:edit-field-announcement-link-0-uri
 ${Inp_Announcement_Link_Title}							name:field_announcement_link[0][title]
 
 #CHART
@@ -386,6 +388,7 @@ ${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//
 ${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
 ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
 
+
 #TARGET GROUP LINKS
 ${Inp_TargetGroupLinks_Title}							css:input[name*=field_title]
 ${Frm_TargetGroupLinks_Description}						css:textarea[name*=field_description][name*=value] + div > div > div > iframe
@@ -404,3 +407,13 @@ ${Inp_PopularServices_Title}							(//input[contains(@name, 'field_service_title
 ${Inp_PopularServices_Item_NewItem}						css:input[name*=subform_field_service_items_popular_service_item_add_more]
 ${Inp_PopularServices_Item_Title}						(//input[contains(@name, 'field_service_links')][contains(@name, 'title')])
 ${Inp_PopularServices_Item_Link}						(//input[contains(@name, 'field_service_links')][contains(@name, 'uri')])
+
+#PHASING
+${Sel_Phasing_Title_Level}								(//select[contains(@name, 'field_phasing_title_level')])[last()]
+${Swh_Phasing_ShowPhaseNumbers}							(//input[contains(@name, 'field_show_phase_numbers]')])[last()]
+${Inp_Phasing_Title}									(//input[contains(@name, 'field_title]')])[1]
+${Inp_Phasing_Phase_Title}								(//input[contains(@name, 'field_title]')])[last()]
+${Inp_Phasing_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[1]
+${Inp_Phasing_Item_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
+${Btn_AddPhasingItem}									(//input[contains(@name, 'subform_field_phasing_item_phasing_item_add_more')])[last()]
+

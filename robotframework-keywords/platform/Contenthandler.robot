@@ -47,7 +47,7 @@ Open Paragraph For Edit
 	Wait Until Element Is Visible   ${Ddn_AddContent}   timeout=3
 	Run Keyword If  '${paragraphlist}'=='${EMPTY}'  Click Element	${Ddn_AddContent}
 	Run Keyword If  '${paragraphlist}'!='${EMPTY}'   Click Element	${paragraphlist}
-	Click Element   ${paragraph}
+	Wait Until Keyword Succeeds  5x  200ms 	Click Element   ${paragraph}
 	
 Input Title To Paragraph
 	[Arguments]    ${paragraph_title_locator}
@@ -639,7 +639,7 @@ Input Non-paragraph Related Content
 
 ${paragraphname} Is Present In Page
 	Element Should Be Visible  css:.component.component--${paragraphname}   timeout=3
-	Element Should Be Visible  css:.component__content.${paragraphname}   timeout=3
+	Element Should Be Visible  css:.component__content.${paragraphname}   timeout=8
 	
 Input Etusivu Instance Spesific Content
 	[Documentation]   Part Of Content Only Exists in Etusivu(FrontPage) Instance
@@ -669,6 +669,3 @@ Input Etusivu Instance Spesific Content
 	Select From List By Label   css:#edit-field-news-groups   Vanhukset
 	Select From List By Label   css:#edit-field-news-neighbourhoods   Kluuvi
 	Select From List By Label   css:#edit-field-news-neighbourhoods   Kruununhaka
-	
-	
-	
