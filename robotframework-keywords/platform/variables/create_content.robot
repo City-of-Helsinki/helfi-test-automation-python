@@ -60,12 +60,19 @@ ${Opt_ServiceList}							name:field_content_service_list_add_more
 ${Opt_SideBarText}							name:field_sidebar_content_sidebar_text_add_more
 ${Opt_SideBarContentFromLibrary}			name:field_sidebar_content_from_library_add_more
 ${Opt_ContentLiftup}						name:field_content_content_liftup_add_more
+${Opt_TargetGroupLinks}						name:field_content_target_group_links_add_more
+${Opt_Current}								name:field_content_current_add_more
+${Opt_TopNews}								name:field_content_front_page_top_news_add_more
+${Opt_LatestNews}							name:field_content_front_page_latest_news_add_more
+${Opt_PopularServices}						name:field_content_popular_services_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
+${Opt_Unit_Accessibility_Information}		name:field_content_unit_accessibility_information_add_more
+${Inp_FrontPage_Links_Url}					(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'uri')])[last()]
+${Inp_FrontPage_Links_Title}				(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'title')])[last()]
+${Inp_FrontPage_Links_Addmore}				name:field_news_item_links_link_add_more
 ${Opt_Phasing}								name:field_content_phasing_add_more
-
-
 ${Btn_File_Upload}					    	name:files[upload]
 ${Inp_Pic_Name}								css:[data-drupal-selector=edit-media-0-fields-name-0-value]
 ${Inp_Pic_AltText}							css:[data-drupal-selector=edit-media-0-fields-field-media-image-0-alt]
@@ -93,6 +100,9 @@ ${Txt_Description}							css:div[class$="__desc"] > p
 ${Txt_Component_Description}				css:div[class$="__description"] > p
 ${Swh_TOC}									id:edit-toc-enabled-value
 ${Assistive_Technology_Title}				(//input[contains(@name, 'field_iframe_title')])[last()]
+
+#TAGS
+${Inp_Frontpage_TagsGeneral}  				css:.select2-search__field
 
 #HERO
 ${Inp_Hero_Title}							//input[contains(@id, 'edit-field-hero-0-subform')]
@@ -164,22 +174,27 @@ ${Inp_Gallery_Edit}						    //input[contains(@value, 'Edit')][contains(@id, 'fi
 # PAGE VIEW
 ${Txt_Hero_Title}								css:.hero__title
 ${Txt_Hero_Description}							css:.hero__description
-${Txt_Leadin_Content}							css:section[class$="lead-in"]
+${Txt_Leadin_Content}							css:div[class$="lead-in"]
 ${Txt_Column_Description}						xpath://p[1]
 ${Txt_Column_Content}							css:p
 ${Itm_Gallery_Slidetrack}						id:splide01-track  
 
 # BANNER
+${Frm_Banner_Description}					css:textarea[name*=field_banner_desc] + div > div > div > iframe
 ${Opt_Banner_Left}							css:[value=align-left]
 ${Opt_Banner_Left_Secondary}				css:[value=align-left-secondary]
 ${Opt_Banner_Center_Secondary}				css:[value=align-center-secondary]
 ${Inp_Banner_Title}							(//input[contains(@name, '[field_banner_title]')])[last()]
-${Inp_Banner_Link_Uri}						name:field_content[0][subform][field_banner_link][0][uri]
-${Inp_Banner_Link_Title}					name:field_content[0][subform][field_banner_link][0][title]
-${Swh_Banner_Link_OpenInNewWindow}   		name:field_content[0][subform][field_banner_link][0][options][target_new]
-${Swh_Banner_Link_LinkIsAccessable}    		name:field_content[0][subform][field_banner_link][0][options][target_check]
+${Inp_Banner_Link_Uri}						css:input[name*=field_banner_link][name*=uri]
+${Inp_Banner_Link_Title}					css:input[name*=field_banner_link][name*=title]
+${Swh_Banner_Link_OpenInNewWindow}   		css:input[name*=field_banner_link][name*=target_new]
+${Swh_Banner_Link_LinkIsAccessable}    		css:input[name*=field_banner_link][name*=target_check]
+
 #UNCATEGORIZED
 ${Btn_Picture}								(//input[contains(@name, 'field_image-media-library-open-button-field_content')])[last()]
+
+${Btn_MainImage}							name:field_main_image-media-library-open-button
+${Inp_MainImage_Caption}					css:textarea[name*=field_main_image_caption]
 ${Btn_Picture_Remove}						//input[contains(@name, 'media-library-remove-button-field_content')]
 ${Frm_Text_Content}							//div[contains(@id,'subform-field-text')][contains(@id,'value')] >> css:div > div > iframe
 
@@ -346,6 +361,8 @@ ${Btn_Chart_Url_Add}									css:form[id*=helfi-chart-add-form] > div > div > di
 ${Inp_Chart_Url_Title}									css:input[name*=field_helfi_chart_title]
 ${Frm_Chart_Url_Transcription}							//div[contains(@id,'field-helfi-chart-transcript')]//iframe
 
+
+
 # CONTACT CARD LISTING
 ${Inp_Contact_Card_Listing_Title}								css:input[name*=field_title]
 ${Inp_Contact_Card_Listing_Description}					//div[contains(@id,'cke_edit-field-content')]//iframe
@@ -362,11 +379,34 @@ ${Btn_AddSocialMediaLink}								(//input[contains(@name, 'contact_social_media_
 ${Sel_ContactCard_SocialMedia_Icon}						(//select[contains(@name, 'field_icon')])[last()]
 ${Inp_ContactCard_SocialMedia_Url}						(//input[contains(@name, 'field_social_media_link')])[last()]
 
+#UNIT ACCESSIBILITY INFORMATION
+${Inp_Unit_Accessibility_Information_Unit} 				(//input[contains(@name, 'field_unit_accessibility_unit')])[last()]
+
 #EVENTS
 ${Inp_Event_Title}										(//input[contains(@name, 'field_event_list_title')])[last()]
 ${Inp_Event_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Inp_Event_Url}										(//input[contains(@name, 'field_api_url')])[last()]
 ${Swh_Event_LoadMore}									(//input[contains(@name, 'field_load_more')])[last()]
+
+
+#TARGET GROUP LINKS
+${Inp_TargetGroupLinks_Title}							css:input[name*=field_title]
+${Frm_TargetGroupLinks_Description}						css:textarea[name*=field_description][name*=value] + div > div > div > iframe
+${Inp_TargetGroupLinks_Item_Uri}						(//input[contains(@name, 'field_target_group_item_link')][contains(@name, 'uri')])[last()]
+${Inp_TargetGroupLinks_Item_Link}						(//input[contains(@name, 'field_target_group_item_link')][contains(@name, 'title')])[last()]
+${Inp_TargetGroupLinks_Item_Subtitle}					(//input[contains(@name, 'field_target_group_item_subtitle')])[last()]
+${Inp_TargetGroupLinks_Item_NewItem}					css:input[name*=subform_field_target_group_item_target_group_link_item_add_more]
+
+#CURRENT RIGHT NOW
+${Sel_CurrentRightNow_Seasons}							css:select[name*=field_seasons]
+${Inp_CurrentRightNow_Item_Title}						(//input[contains(@name, 'field_current_links')][contains(@name, 'title')])
+${Inp_CurrentRightNow_Item_Link}						(//input[contains(@name, 'field_current_links')][contains(@name, 'uri')])
+
+#POPULAR SERVICES
+${Inp_PopularServices_Title}							(//input[contains(@name, 'field_service_title')][contains(@name, 'title')])[last()]
+${Inp_PopularServices_Item_NewItem}						css:input[name*=subform_field_service_items_popular_service_item_add_more]
+${Inp_PopularServices_Item_Title}						(//input[contains(@name, 'field_service_links')][contains(@name, 'title')])
+${Inp_PopularServices_Item_Link}						(//input[contains(@name, 'field_service_links')][contains(@name, 'uri')])
 
 #PHASING
 ${Sel_Phasing_Title_Level}								(//select[contains(@name, 'field_phasing_title_level')])[last()]
@@ -376,3 +416,4 @@ ${Inp_Phasing_Phase_Title}								(//input[contains(@name, 'field_title]')])[las
 ${Inp_Phasing_Description}								(//div[contains(@id,'cke_edit-field-content')]//iframe)[1]
 ${Inp_Phasing_Item_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Btn_AddPhasingItem}									(//input[contains(@name, 'subform_field_phasing_item_phasing_item_add_more')])[last()]
+

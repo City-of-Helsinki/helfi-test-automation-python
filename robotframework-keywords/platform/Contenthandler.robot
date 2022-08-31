@@ -227,7 +227,13 @@ Input Credentials And Log In
 	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
 	Run Keyword And Ignore Error   Accept Cookies
-	Wait Until Keyword Succeeds  3x  600ms  Log In User
+	
+	IF  '${BASE_URL}'=='helfi-etusivu.docker.so'
+		Get Admin Url
+		GoTo  ${admin_url}
+	ELSE
+		Wait Until Keyword Succeeds  3x  600ms  Log In User
+	END
 
 Log In User
 	Click Button   id:edit-submit
@@ -287,6 +293,11 @@ Go To New LandingPage Site
 	Click Add Content
 	Wait Until Keyword Succeeds  5x  200ms  Click Add Landing Page
 
+Go To New News-Item Site
+	GoTo   ${URL_content_page}
+	Click Add Content
+	Wait Until Keyword Succeeds  5x  200ms  Click Add News-Item
+
 Click Add Content
 	[Documentation]   Add Content ('Lisää sisältöä') in Content Menu
 	Wait Until Element Is Visible   css:#block-hdbt-admin-local-actions > ul > li > a   timeout=3
@@ -315,6 +326,12 @@ Click Add Announcement
 	Wait Until Element Is Visible  //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']   timeout=3
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']
 	Element Should Not Be Visible   //a[contains(@href, '/node/add/announcement')][@class='admin-item__link']
+
+Click Add News-Item
+	[Documentation]   Add News Item ('Uutinen') click in Add Content('Lisää sisältöä') -menu
+	Wait Until Element Is Visible  //a[contains(@href, '/node/add/news_item')][@class='admin-item__link']   timeout=3
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/node/add/news_item')][@class='admin-item__link']
+	Element Should Not Be Visible   //a[contains(@href, '/node/add/news_item')][@class='admin-item__link']
 
 Go To Translate Selection Page
 	[Documentation]   Goes To Translations Page for first document in the content list
@@ -624,3 +641,31 @@ ${paragraphname} Is Present In Page
 	Element Should Be Visible  css:.component.component--${paragraphname}   timeout=3
 	Element Should Be Visible  css:.component__content.${paragraphname}   timeout=8
 	
+Input Etusivu Instance Spesific Content
+	[Documentation]   Part Of Content Only Exists in Etusivu(FrontPage) Instance
+	Input Non-paragraph Related Content   Etusivu
+	Click Element   css:#edit-group-main-image > summary
+	Wait Until Keyword Succeeds  6x  300ms  Click Button  ${Btn_MainImage}
+	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/grand-canyon.jpg
+	Wait Until Keyword Succeeds  6x  300ms  Input Text    ${Inp_Pic_Name}   Grand Canyon
+	Wait Until Keyword Succeeds  6x  300ms  Input Text    ${Inp_Pic_AltText}   Hieno käyntikohde Arizonassa
+	Input Text    ${Inp_Pic_Photographer}   Testi Valokuvaaja
+	Click Button   ${Btn_Save}
+	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
+	Wait Until Keyword Succeeds  6x  300ms   Input Text  ${Inp_MainImage_Caption}   Kuvaselostusteksti
+	Click Element   css:#edit-group-news-item-links > summary
+	#LINK 1
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_FrontPage_Links_Url}   Multamäen rautatieasema
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_FrontPage_Links_Title}   Multamäen rautatieasema
+	Click Button  ${Inp_FrontPage_Links_Addmore}
+	Wait Until Keyword Succeeds  6x  300ms  Page Should Have Given Number Of Elements   css:input[name*=uri]   2
+	#LINK 2
+
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_FrontPage_Links_Url}   Liitupiippu
+	Wait Until Keyword Succeeds  5x  200ms  Input Text    ${Inp_FrontPage_Links_Title}   Liitupiippu
+	
+		
+	Select From List By Label   css:#edit-field-news-item-tags   Kaupunki ja hallinto
+	Select From List By Label   css:#edit-field-news-groups   Vanhukset
+	Select From List By Label   css:#edit-field-news-neighbourhoods   Kluuvi
+	Select From List By Label   css:#edit-field-news-neighbourhoods   Kruununhaka
