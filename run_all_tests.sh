@@ -1,18 +1,21 @@
 if [[ ! -n "$PREFIX" ]]; then
   PREFIX=""
 fi
-
 if [[ ! -n "$BASE_URL" ]]; then
   BASE_URL="varnish-helfi-kymp.docker.so"
 fi
+if [[ "$BASE_URL" != "varnish-"* ]]; then
+  BASE_URL="varnish-${BASE_URL}"
+fi
 
 ADDITIONAL_ARGUMENTS=""
-if [[ "$BASE_URL" == *"etusivu"* ]] 
-then
-  ADDITIONAL_ARGUMENTS+="-i ETUSIVU_SPESIFIC"
-else
-  ADDITIONAL_ARGUMENTS+="-e ETUSIVU_SPESIFIC"
+if [[ "$BASE_URL" == *"etusivu"* ]]; then
+  ADDITIONAL_ARGUMENTS+=" -i ETUSIVU_SPECIFIC"
 fi
+if [[ "$BASE_URL" != *"etusivu"* ]]; then
+  ADDITIONAL_ARGUMENTS+=" -e ETUSIVU_SPECIFIC"
+fi
+
 
 echo
 echo "#######################################"
