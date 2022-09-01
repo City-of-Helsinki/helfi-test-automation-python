@@ -227,13 +227,8 @@ Input Credentials And Log In
 	Input Text   id:edit-name   helfi-admin
 	Input Password   id:edit-pass   Test_Automation
 	Run Keyword And Ignore Error   Accept Cookies
-	
-	IF  '${BASE_URL}'=='helfi-etusivu.docker.so'
-		Get Admin Url
-		GoTo  ${admin_url}
-	ELSE
-		Wait Until Keyword Succeeds  3x  600ms  Log In User
-	END
+	Wait Until Keyword Succeeds  3x  600ms  Log In User
+
 
 Log In User
 	Click Button   id:edit-submit
