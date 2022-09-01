@@ -11,7 +11,7 @@ echo "#######################################"
 echo "# Running portfolio a first time      #"
 echo "#######################################"
 echo
-pabot --testlevelsplit --ordering ./environments/helfi_pabot_order_ci --processes 9 -i ETUSIVU_SPESIFIC -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@
+pabot --testlevelsplit --processes 9 -i ETUSIVU_SPESIFIC -v PREFIX:$PREFIX -v BASE_URL:$BASE_URL -v PICCOMPARE:False -v useoriginalname:False -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/ci.args -d robotframework-reports . $@
 EXIT_CODE=$?
 
 # we stop the script here if all the tests were OK
