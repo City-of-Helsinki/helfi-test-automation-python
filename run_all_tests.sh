@@ -7,7 +7,7 @@ if [[ ! -n "$BASE_URL" ]]; then
 fi
 
 ADDITIONAL_ARGUMENTS=""
-if [[ "$BASE_URL" == *"etusivu"* ]]; 
+if [[ "$BASE_URL" == *"etusivu"* ]] 
 then
   ADDITIONAL_ARGUMENTS+="-i ETUSIVU_SPESIFIC"
 else
