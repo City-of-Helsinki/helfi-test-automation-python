@@ -7,10 +7,11 @@ Force Tags		DISTRICT
 
 *** Test Cases ***
 District Page
-	[Tags]  CRITICAL   TODO
+	[Tags]  CRITICAL
 	Given User Goes To New District -Site
 	And User Creates District Content Page
 	When User Submits The New District
+	Then Content Link Works Succesfully
 
 	
 *** Keywords ***
@@ -33,8 +34,9 @@ User Creates District Content Page
 Add List Of Links To Lower Content Area
 	Click Element  ${Opt_ListOfLinks_Lower}
 	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_ListOfLinks_Title}   Title For List Of Links
-	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_ListOfLinks_Link_Title}   Title For Url
+	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_ListOfLinks_Link_Title}   Link Examples
 	Wait Until Keyword Succeeds  5x  200ms  Input Text   ${Inp_ListOfLinks_Link_Uri}   Link Examples
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  css:.linkit-result-line--title
 	Add Picture To Link   train
 	
 Add Picture To Link
@@ -57,6 +59,12 @@ Input Non-paragraph Related Content
 	${headertitle}=  Get File  ${CONTENT_PATH}/text_description_short_${language}.txt
 	${islandingpage}=  Suite Source Contains Text    Landing_Page
 
+Content Link Works Succesfully
+
+	Click Link  Link Examples
+	${currenturl}=   Get Title
+	Should Contain   ${currenturl}   Link examples 
+	
 	
 Add District Spesific Data
 	Wait Until Keyword Succeeds  5x  200ms  Input Title To Paragraph   ${Inp_District_Hero_Title}
