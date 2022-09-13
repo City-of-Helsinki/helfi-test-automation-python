@@ -67,6 +67,7 @@ ${Opt_LatestNews}							name:field_content_front_page_latest_news_add_more
 ${Opt_PopularServices}						name:field_content_popular_services_add_more
 ${Opt_AddMap}								name:field_content_map_add_more
 ${Opt_UnitSearch}							name:field_content_unit_search_add_more
+${Opt_DistrictAndUnitSearch}				name:field_content_district_and_project_search_add_more
 ${Opt_ContactCardListing}					name:field_content_contact_card_listing_add_more
 ${Opt_Unit_Accessibility_Information}		name:field_content_unit_accessibility_information_add_more
 ${Inp_FrontPage_Links_Url}					(//input[contains(@name, 'field_news_item_links_link')][contains(@name, 'uri')])[last()]
@@ -417,3 +418,6 @@ ${Inp_Phasing_Description}								(//div[contains(@id,'cke_edit-field-content')]
 ${Inp_Phasing_Item_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
 ${Btn_AddPhasingItem}									(//input[contains(@name, 'subform_field_phasing_item_phasing_item_add_more')])[last()]
 
+#DISCTRICTANDPROJECTSEARCH
+${Inp_DistrictAndProjectSearch_Title}								(//input[contains(@name, 'field_district_project_title]')])[last()]
+${Inp_DistrictAndProjectSearch_Description}							(//div[contains(@id,'cke_edit-field-content')]//iframe)[last()]
