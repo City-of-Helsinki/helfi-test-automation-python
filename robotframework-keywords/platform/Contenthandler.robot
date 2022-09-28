@@ -633,8 +633,8 @@ Input Non-paragraph Related Content
 	Run Keyword If  not(${islandingpage})   Input Content Header Title  ${headertitle}   ${pagetype}	
 
 ${paragraphname} Is Present In Page
-	Element Should Be Visible  css:.component.component--${paragraphname}
-	Element Should Be Visible  css:.component__content.${paragraphname}
+	Wait Until Keyword Succeeds  6x  200ms  Element Should Be Visible  css:.component.component--${paragraphname}
+	Wait Until Keyword Succeeds  6x  200ms  Element Should Be Visible  css:.component__content.${paragraphname}
 		
 Input Etusivu Instance Spesific Content
 	[Documentation]   Part Of Content Only Exists in Etusivu(FrontPage) Instance

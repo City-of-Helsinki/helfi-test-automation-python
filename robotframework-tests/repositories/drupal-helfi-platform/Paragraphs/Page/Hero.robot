@@ -20,14 +20,6 @@ Left Aligned
 	Then Layout Should Not Have Changed
 	And Hero Component Is Present	
 
-Center Aligned
-	[Tags] 
-	Given User Goes To New Page -Site
-	And User Starts Creating a Center Aligned Page With Hero Block
-	When User Submits The New Page
-	Then Layout Should Not Have Changed
-	And Hero Component Is Present	
-
 Left Aligned Picture
 	[Documentation]   Left Aligned Hero Block with Picture
 	[Tags]  CRITICAL
@@ -38,7 +30,7 @@ Left Aligned Picture
 	And Hero Component Is Present	
 
 Right Aligned Picture
-	[Tags]  
+	[Tags]
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Right Picture
 	When User Submits The New Page
@@ -46,23 +38,15 @@ Right Aligned Picture
 	And Hero Component Is Present
 	
 Bottom Aligned Picture
-	[Tags]      
+	[Tags]  
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Bottom Picture
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
 	And Hero Component Is Present
-	
-Background Picture
-	[Tags]
-	Given User Goes To New Page -Site
-	And User Starts Creating Hero Block Page with Background Picture
-	When User Submits The New Page
-	Then Layout Should Not Have Changed
-	And Hero Component Is Present			
 
 Diagonal Picture
-	[Tags]  
+	[Tags]
 	Given User Goes To New Page -Site
 	And User Starts Creating Hero Block Page with Diagonal Picture
 	When User Submits The New Page

@@ -94,7 +94,7 @@ Accordions ${contenttype} Content Works As Expected
 	ELSE IF    '${contenttype}'=='Text'
 		Wait Until Keyword Succeeds  5x  200ms  Text Content Exists In Created Accordion
 	ELSE IF    '${contenttype}'=='Phasing'
-		Wait Until Keyword Succeeds  5x  300ms  phasing Is Present In Page
+		phasing Is Present In Page
 	END   
 	
 

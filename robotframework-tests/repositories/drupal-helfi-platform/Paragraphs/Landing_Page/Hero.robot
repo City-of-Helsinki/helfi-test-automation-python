@@ -15,14 +15,6 @@ Landingpage-Left Aligned
 	Then Layout Should Not Have Changed
 	And Hero Component Is Present	
 
-Landingpage-Center Aligned
-	[Tags] 
-	Given User Goes To New LandingPage Site
-	And User Starts Creating a Center Aligned Page With Hero Block
-	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed
-	And Hero Component Is Present		
-
 Landingpage-Left Aligned Picture
 	[Documentation]   Left Aligned Hero Block with Picture
 	[Tags]  CRITICAL
@@ -33,7 +25,7 @@ Landingpage-Left Aligned Picture
 	And Hero Component Is Present	
 
 Landingpage-Right Aligned Picture
-	[Tags]  
+	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Right Picture
 	When New Landingpage is Submitted
@@ -41,23 +33,15 @@ Landingpage-Right Aligned Picture
 	And Hero Component Is Present	
 	
 Landingpage-Bottom Aligned Picture
-	[Tags]      
+	[Tags]    
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Bottom Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	And Hero Component Is Present	
-	
-Landingpage-Background Picture
-	[Tags]  
-	Given User Goes To New LandingPage Site
-	And User Starts Creating Hero Block Page with Background Picture
-	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed
-	And Hero Component Is Present			
 
 Landingpage-Diagonal Picture
-	[Tags]  
+	[Tags]
 	Given User Goes To New LandingPage Site
 	And User Starts Creating Hero Block Page with Diagonal Picture
 	When New Landingpage is Submitted
