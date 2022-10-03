@@ -30,7 +30,6 @@ User Accepts ${selection} Cookies
 ${consent_option} Cookies Are Created 
 		${cookies}=   Get All Currently Used Cookies
 		${agreed}=  Get From Dictionary   ${cookies}   cookie-agreed-categories
-		Log  ${consent_option}
 		${consent_option}=   Remove String   ${consent_option}   Then
 		${consent_option}=   Strip String   ${consent_option}
 		IF    '${consent_option}'=='Essential'
