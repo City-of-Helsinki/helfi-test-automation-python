@@ -14,6 +14,7 @@ Force Tags   LOGIN
 ...				kulttuuri-ja-vapaa-aika
 ...				yritykset-ja-tyo
 ...				paatoksenteko-ja-hallinto
+...				etusivu
 
 *** Test Cases ***
 
@@ -41,8 +42,10 @@ Login And Logout User
 
 Login User
 	[Arguments]    ${environment}   ${INSTANCE}
-	IF   '${environment}'=='${EMPTY}'
+	IF   ('${environment}'=='${EMPTY}')&('${INSTANCE}'!='etusivu')	# PRODUCTION URLS
 		Go To   https://www.hel.fi/fi/${environment}${INSTANCE}/user/login
+	ELSE IF   ('${environment}'=='${EMPTY}')&('${INSTANCE}'=='etusivu')		# ETUSIVU PRODUCTION URL
+		Go To   https://www.hel.fi/fi
 	ELSE
 		Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/login
 	END	
@@ -60,9 +63,12 @@ Login User
 	
 	
 Logout User
-	[Arguments]    ${environment}   ${INSTANCE}  
-	Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/logout
+	[Arguments]    ${environment}   ${INSTANCE} 
+	IF   ('${environment}'=='${EMPTY}')&('${INSTANCE}'!='etusivu')	# PRODUCTION URLS
+		Go To   https://www.hel.fi/fi/${environment}${INSTANCE}/user/logout
+	ELSE IF   ('${environment}'=='${EMPTY}')&('${INSTANCE}'=='etusivu')		# ETUSIVU PRODUCTION URL
+		Go To   https://www.hel.fi/fi/user/logout
+	ELSE
+		Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/logout
+	END	
 	Wait Until Keyword Succeeds  5x   400ms   Page Should Not Contain Link   css:a[href*="/user/logout"]
-	
-Accept Cookies
-	Wait Until Keyword Succeeds  6x  400ms  Click Button  //button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--primary']
