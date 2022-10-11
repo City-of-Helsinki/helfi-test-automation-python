@@ -3,42 +3,54 @@ Documentation   Tests login and logout process in different environments and ins
 Library           SeleniumLibrary
 Library           OperatingSystem
 Force Tags   LOGIN
-Suite Setup   Open Browser  browser=${BROWSER}
-Suite Teardown   Close Browser
+#Suite Setup   Open Browser  browser=${BROWSER}
+#Suite Teardown   Close Browser
 
 *** Variables ***
 @{INSTANCES}	kaupunkiymparisto-ja-liikenne
-#...				sosiaali-ja-terveyspalvelut
-#...				asuminen
-#...				kasvatus-ja-koulutus
-#...				kulttuuri-ja-vapaa-aika
-#...				yritykset-ja-tyo
-#...				paatoksenteko-ja-hallinto
+...				sosiaali-ja-terveyspalvelut
+...				asuminen
+...				kasvatus-ja-koulutus
+...				kulttuuri-ja-vapaa-aika
+...				yritykset-ja-tyo
+...				paatoksenteko-ja-hallinto
 
 *** Test Cases ***
-#Login With Tunnistamo In Test Environment
-#	Login User   test
-#	Logout User  
 
 Login And Logout With Tunnistamo In Stage Environment
 	Login And Logout User   staging
+
+Login And Logout With Tunnistamo In Test Environment
+	Login And Logout User   test
+
+Login And Logout With Tunnistamo In Production Environment
+	Login And Logout User
 
 *** Keywords ***
 
 Login And Logout User
 	[Documentation]   Logs in and out in every instance listed on this page.
-	[Arguments]   ${environment}
+	[Arguments]   ${environment}=${EMPTY}
 	FOR    ${INSTANCE}    IN    @{INSTANCES}
+		Open Browser  browser=${BROWSER}
 		Login User   ${environment}    ${INSTANCE}
 		Logout User   ${environment}    ${INSTANCE}
+		Close Browser
 	END
 	
 
 Login User
 	[Arguments]    ${environment}   ${INSTANCE}
-	Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/login
+	IF   '${environment}'=='${EMPTY}'
+		Go To   https://www.hel.fi/fi/${environment}${INSTANCE}/user/login
+	ELSE
+		Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/login
+	END	
+	
 	Wait Until Keyword Succeeds  5x   200ms   Click Button   css:#edit-openid-connect-client-tunnistamo-login
-	Wait Until Keyword Succeeds  5x   200ms   Input Text      css:#userNameInput   helsinki1\\test-drupal
+	Run Keyword And Ignore Error    Input Text   name:loginfmt   test-drupal@hel.fi
+	Run Keyword And Ignore Error    Click Element   css:#idSIButton9   
+	Wait Until Keyword Succeeds  10x   500ms   Input Text      css:#userNameInput   helsinki1\\test-drupal
 	Set Log Level    NONE
 	Wait Until Keyword Succeeds  5x   200ms   Input Text      css:#passwordInput   %{TUNNISTAMO_PASSWORD}   
 	Set Log Level    INFO
