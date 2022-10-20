@@ -48,7 +48,7 @@ The Search Bar Is Working Correctly
 	Wait Until Keyword Succeeds  5x  200ms  Page Should Contain Link   Otaniemen kirjasto
 
 Search Bar Metadata is Correct
-	${title}=   Get Text   css:label.hds-text-input__label
+	${title}=   Get Text   css:form.views-exposed-form > div > label.hds-text-input__label
 	Should Be Equal   ${title}   Hakuotsikko   
 	Element Attribute Value Should Be   css:input[name=unit_search]   placeholder   Oletustekstiarvo   
 	Element Attribute Value Should Be   css:input[data-drupal-selector*=edit-submit-unit-search]   value   Painiketeksti   
