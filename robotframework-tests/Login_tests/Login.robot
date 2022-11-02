@@ -7,22 +7,22 @@ Force Tags   LOGIN
 #Suite Teardown   Close Browser
 
 *** Variables ***
-@{INSTANCES}	kaupunkiymparisto-ja-liikenne
-...				sosiaali-ja-terveyspalvelut
-...				asuminen
-...				kasvatus-ja-koulutus
-...				kulttuuri-ja-vapaa-aika
-...				yritykset-ja-tyo
-...				paatoksenteko-ja-hallinto
-...				etusivu
+@{INSTANCES}	etusivu
+#...				sosiaali-ja-terveyspalvelut
+#...				asuminen
+#...				kasvatus-ja-koulutus
+#...				kulttuuri-ja-vapaa-aika
+#...				yritykset-ja-tyo
+#...				paatoksenteko-ja-hallinto
+#...				kaupunkiymparisto-ja-liikenne
 
 *** Test Cases ***
 
-#Login And Logout With Tunnistamo In Stage Environment
-#	Login And Logout User   staging
+Login And Logout With Tunnistamo In Stage Environment
+	Login And Logout User   staging
 
-#Login And Logout With Tunnistamo In Test Environment
-#	Login And Logout User   test
+Login And Logout With Tunnistamo In Test Environment
+	Login And Logout User   test
 
 Login And Logout With Tunnistamo In Production Environment
 	Login And Logout User
@@ -65,6 +65,7 @@ Login User
 	
 Logout User
 	[Arguments]    ${environment}   ${INSTANCE} 
+	${drupal_page}=   Get Location
 	IF   ('${environment}'=='${EMPTY}')&('${INSTANCE}'!='etusivu')	# PRODUCTION URLS
 		Go To   https://www.hel.fi/fi/${environment}${INSTANCE}/user/logout
 	ELSE IF   ('${environment}'=='${EMPTY}')&('${INSTANCE}'=='etusivu')		# ETUSIVU PRODUCTION URL
@@ -72,4 +73,6 @@ Logout User
 	ELSE
 		Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/logout
 	END	
+	Wait Until Keyword Succeeds  5x   200ms   Click Element  css:#tilesHolder > div > div > div
+	Go To   ${drupal_page}
 	Wait Until Keyword Succeeds  5x   400ms   Page Should Not Contain Link   css:a[href*="/user/logout"]
