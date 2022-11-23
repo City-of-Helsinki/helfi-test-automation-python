@@ -49,6 +49,7 @@ Login User
 	END	
 	
 	Wait Until Keyword Succeeds  5x   200ms   Click Button   css:#edit-openid-connect-client-tunnistamo-login
+	Run Keyword And Ignore Error   Accept Cookies
 	Run Keyword And Ignore Error    Wait Until Keyword Succeeds  2x   500ms   Input Text   name:loginfmt   test-drupal@hel.fi
 	Wait Until Keyword Succeeds  5x   400ms   Press Next -Button         
 	Wait Until Keyword Succeeds  10x   500ms   Input Text      css:#userNameInput   helsinki1\\test-drupal
@@ -62,6 +63,9 @@ Login User
 Press Next -Button
 	Run Keyword And Ignore Error    Click Element   css:#idSIButton9
 	Wait Until Keyword Succeeds  5x   400ms   Page Should Not Contain Button   css:#idSIButton9
+
+Accept Cookies
+	Wait Until Keyword Succeeds  6x  400ms  Click Button  //button[@class='agree-button eu-cookie-compliance-default-button hds-button hds-button--secondary']
 	
 Logout User
 	[Arguments]    ${environment}   ${INSTANCE} 
