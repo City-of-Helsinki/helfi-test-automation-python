@@ -20,7 +20,7 @@ Create Announcement
 	${TextFileContent}=  Get File  ${CONTENT_PATH}/text_content_short_${language}.txt
 	Wait Until Keyword Succeeds  5x  200ms  Input Text To Frame   css:#cke_1_contents > iframe   //body   ${TextFileContent}
 	IF    not(${published})
-		Click Element  id:edit-status-value
+		Click Element  name:status[value]
 	END
 	Run Keyword If  ${addlink}   Add Link To Announcement   https://www.helsinki.fi   Helsinki home page
 
