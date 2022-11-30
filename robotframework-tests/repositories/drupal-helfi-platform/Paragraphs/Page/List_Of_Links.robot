@@ -22,15 +22,6 @@ With Picture
 	When User Submits The New Page
 	Then Layout Should Not Have Changed
 	And List Of Links Should Work Correctly
-
-Without Picture And Description
-	[Tags] 
-	Given User Goes To New Page -Site
-	And User Creates List Of Links Without Picture And Description
-	And User Adds Second Link For Esimerkkisivu Content
-	When User Submits The New Page
-	Then Layout Should Not Have Changed
-	And List Of Links Should Work Correctly
 	
 *** Keywords ***
 User Creates List Of Links ${style}
