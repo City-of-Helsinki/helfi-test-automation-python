@@ -22,15 +22,6 @@ Landingpage-With Picture
 	When New Landingpage is Submitted
 	Then Layout Should Not Have Changed
 	And List Of Links Should Work Correctly
-
-Landingpage-Without Picture And Description
-	[Tags]
-	Given User Goes To New LandingPage Site
-	And User Creates List Of Links Without Picture And Description
-	And User Adds Second Link For Esimerkkisivu Content
-	When New Landingpage is Submitted
-	Then Layout Should Not Have Changed
-	And List Of Links Should Work Correctly
 	
 *** Keywords ***
 User Creates List Of Links ${style}
