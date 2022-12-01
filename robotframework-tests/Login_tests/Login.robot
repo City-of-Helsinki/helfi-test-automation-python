@@ -48,8 +48,8 @@ Login User
 		Go To   https://www.hel.fi/fi/${environment}-${INSTANCE}/user/login
 	END	
 	
-	Wait Until Keyword Succeeds  5x   200ms   Click Button   css:#edit-openid-connect-client-tunnistamo-login
 	Run Keyword And Ignore Error   Accept Cookies
+	Wait Until Keyword Succeeds  5x   200ms   Click Button   css:#edit-openid-connect-client-tunnistamo-login
 	Run Keyword And Ignore Error    Wait Until Keyword Succeeds  2x   500ms   Input Text   name:loginfmt   test-drupal@hel.fi
 	Wait Until Keyword Succeeds  5x   400ms   Press Next -Button         
 	Wait Until Keyword Succeeds  10x   500ms   Input Text      css:#userNameInput   helsinki1\\test-drupal
