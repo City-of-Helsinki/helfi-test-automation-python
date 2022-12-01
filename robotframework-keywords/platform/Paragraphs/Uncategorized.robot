@@ -33,7 +33,7 @@ Add Picture Content To Page
 	${addpicturevisible}=  Run Keyword And Return Status    Wait Until Element Is Visible  ${Opt_AddPicture}   timeout=1
 	Run Keyword If   not(${addpicturevisible})   Click Element   ${Ddn_AddContent}
 	Run Keyword If  '${language}'=='fi'  Click Element   ${Opt_AddPicture}
-	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Picture}
+	Wait Until Keyword Succeeds  5x  200ms  Open Image-Select Window	
 	Wait Until Keyword Succeeds  6x  300ms  Choose File   ${Btn_File_Upload}   ${IMAGES_PATH}/train.jpg
 	Wait Until Keyword Succeeds  6x  300ms  Set Focus To Element  ${Inp_Pic_Name}
 	Input Text    ${Inp_Pic_Name}   Juna sillalla
@@ -43,7 +43,8 @@ Add Picture Content To Page
 	Wait Until Keyword Succeeds  5x  200ms  Submit New Media
 	Wait Until Element Is Visible  ${Btn_Picture_Remove}   timeout=3
 	
-	
-		
+Open Image-Select Window
+	Wait Until Keyword Succeeds  5x  200ms  Click Element  ${Btn_Picture}	
+	Wait Until Element Is Visible  ${Btn_File_Upload}   timeout=5	
 
 
