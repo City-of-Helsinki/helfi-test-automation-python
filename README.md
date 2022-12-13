@@ -2,9 +2,9 @@
 
 In order to work with this robot framework repo locally, you need:
 
-**1)** hel-fi environment set up and running in your machine so that you can access drupal web development platform at : https://www.xxxxxx.docker.sh  
+**1)** hel-fi environment set up and running in your machine so that you can access drupal web development platform at : https://www.xxxxxx.docker.so  
       
-      For example: hel-platform.docker.sh or helfi.docker.sh
+      For example: helfi-kymp.docker.so or helfi.docker.so
   
 **2)** IDE with robot framework support.
      
