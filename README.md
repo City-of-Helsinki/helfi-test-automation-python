@@ -15,8 +15,11 @@ In order to work with this robot framework repo locally, you need:
 **4)**  [SeleniumLibrary](https://pypi.org/project/robotframework-seleniumlibrary/) Installed. 
 
     needed for running the testcases
+    
+**5)**  [Browser Drivers](https://pypi.org/project/robotframework-seleniumlibrary/#browser-drivers) for browsers you are going to run tests with.
+      Seleniumlibrary uses these drivers to control browser during test run.
 
-**5)**  [Roboteyes](https://github.com/jz-jess/RobotEyes) Installed.  
+**6)**  [Roboteyes](https://github.com/jz-jess/RobotEyes) Installed.  
 
     needed for picture compare assertions
 
