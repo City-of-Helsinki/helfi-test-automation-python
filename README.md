@@ -26,6 +26,7 @@ In order to work with this robot framework repo locally, you need:
 **6)**  [Roboteyes](https://github.com/jz-jess/RobotEyes) Installed.  
 
     needed for picture compare assertions
+    After installing you can check the installed version with command(mac users):  pip3 show robotframework-roboteyes
 
 
             
