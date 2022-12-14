@@ -64,7 +64,7 @@ In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it c
 
 
 
-# Useful information:
+# Useful information (For Windows Users):
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
             
             RMDIR /S /Q <full path to reports folder>
