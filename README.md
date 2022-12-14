@@ -11,10 +11,13 @@ In order to work with this robot framework repo locally, you need:
      For example: RIDE, Eclipse, Pycharm, VSCode or IntellijIdea.
     
 **3)**  [Robot Framework](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installation-instructions) Installed
+      
+     After installing robot framework you can check the installed version with command(mac users):  pip3 show robotframework
     
 **4)**  [SeleniumLibrary](https://pypi.org/project/robotframework-seleniumlibrary/) Installed. 
 
     needed for running the testcases
+    After installing you can check the installed version with command(mac users):  pip3 show robotframework-seleniumlibrary
     
 **5)**  [Browser Drivers](https://pypi.org/project/robotframework-seleniumlibrary/#browser-drivers) for browsers you are going to run tests with.
     
@@ -32,7 +35,7 @@ Currently used (4/2022) versions are:
 
     Robot Framework 5.0
     Seleniumlibrary 6.0.0
-    Roboteyes  1.5.0
+    Roboteyes  1.6.0
      
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
