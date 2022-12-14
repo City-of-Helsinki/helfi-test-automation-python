@@ -45,8 +45,10 @@ You can use following robotframework support at least in kymp/sote environment
 To set up robotframework tests in local environment you need to:
 
 **1)** add following line into .env -file at kymp/sote root folder under COMPOSE_PROJECT_NAME
+
       COMPOSE_PROFILES=testing
 **2)** start environment with command:
+
       make setup-robo DRUPAL_BUILD_FROM_SCRATCH=true
 After instance is up and running robot-framework should be able to log-in and run tests throughly. You can proceed to part [Usage](https://github.com/City-of-Helsinki/helfi-test-automation-python#usage)
 
