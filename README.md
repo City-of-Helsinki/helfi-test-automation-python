@@ -17,7 +17,8 @@ In order to work with this robot framework repo locally, you need:
     needed for running the testcases
     
 **5)**  [Browser Drivers](https://pypi.org/project/robotframework-seleniumlibrary/#browser-drivers) for browsers you are going to run tests with.
-      Seleniumlibrary uses these drivers to control browser during test run.
+    
+    Seleniumlibrary uses these drivers to control browser during test run.
 
 **6)**  [Roboteyes](https://github.com/jz-jess/RobotEyes) Installed.  
 
