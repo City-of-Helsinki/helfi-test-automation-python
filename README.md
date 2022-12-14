@@ -39,7 +39,25 @@ Currently used (4/2022) versions are:
     Robot Framework 5.0
     Seleniumlibrary 6.0.0
     Roboteyes  1.6.0
-     
+
+# Setting Up Local environment
+You can use following robotframework support at least in kymp/sote environment 
+To set up robotframework tests in local environment you need to:
+
+**1)** add following line into .env -file at kymp/sote root folder under COMPOSE_PROJECT_NAME
+      COMPOSE_PROFILES=testing
+**2)** start environment with command:
+      make setup-robo DRUPAL_BUILD_FROM_SCRATCH=true
+After instance is up and running robot-framework should be able to log-in and run tests throughly. You can proceed to part [Usage](https://github.com/City-of-Helsinki/helfi-test-automation-python#usage)
+
+## Running local tests in CI -like container
+Robot Framework container shell can be opened by running command 
+
+      make robo-shell
+in kymp/sote root. To run tests in similar environment than CI instane is.
+
+Testcase runs must be started from test automation folder when using robo-shell.  (app/helfi-test-automation-python)
+
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
 
@@ -54,19 +72,6 @@ Robot Framework Uses argument files to run correct settings in CI and local runs
 
 # Docker and CI
 You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform. (**dockerfile is not anymore maintained due robotframework-docker support from development environment (at least kymp)**)
-
-You can use robotframework support at least in kymp environment by starting the environment with command
-
-      make setup-robo DRUPAL_BUILD_FROM_SCRATCH=true
-after setup is finished use editor to add following line into .env -file at kymp root folder under COMPOSE_PROJECT_NAME
-
-      COMPOSE_PROFILES=testing
-then restart the containers.      
-Robot Framework container shell can be opened by running command
-
-      make robo-shell
-in environment root.     
-Testcase runs must be started from test automation folder.  (app/helfi-test-automation-python)
 
 In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
 
