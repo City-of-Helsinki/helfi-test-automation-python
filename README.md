@@ -13,6 +13,7 @@ In order to work with this robot framework repo locally, you need:
 **3)**  [Robot Framework](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installation-instructions) Installed
       
      After installing robot framework you can check the installed version with command(mac users):  pip3 show robotframework
+     IMPORTANT! Make sure python and its site-packages are added into path. Otherwise robot- might not be found as command
     
 **4)**  [SeleniumLibrary](https://pypi.org/project/robotframework-seleniumlibrary/) Installed. 
 
@@ -27,6 +28,7 @@ In order to work with this robot framework repo locally, you need:
 
     needed for picture compare assertions
     After installing you can check the installed version with command(mac users):  pip3 show robotframework-roboteyes
+
 
 
             
