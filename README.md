@@ -8,7 +8,8 @@ In order to work with this robot framework repo locally, you need:
   
 **2)** IDE with robot framework support.
      
-     For example: RIDE, Eclipse, Pycharm, VSCode or IntellijIdea.
+     For example: PhpStorm, RIDE, Eclipse, Pycharm, VSCode or IntellijIdea.
+     Remember to download suitable robot framework -plugin for your IDE. Eases navigation, readability and such a lot.
     
 **3)**  [Robot Framework](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#installation-instructions) Installed
       
