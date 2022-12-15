@@ -63,17 +63,31 @@ Testcase runs must be started from test automation folder when using robo-shell.
 # Usage:
 You can run your first testcase by running (in cloned git project folder):
 
-            robot -i BANNER -A ./environments/local.args -d robotframework-reports .
+            robot -i BANNER -e ETUSIVU_SPESIFIC -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/local.args -d robotframework-reports .
 which will run all tests with BANNER tag. Other arguments are:
 - Argument file for setting up some variables related to local environment (**optional**)
 - Report folder for run logs (related to project folder root)  (**optional**)
-  
+- **-e ETUSIVU_SPESIFIC** - excludes etusivu_testcases from this run, since it has some content-types which are not supported in kymp/sote.
+ **-v images_dir:robotframework-resources/screenshots/headlesschrome** and 
+ **-v actual_dir:robotframework-reports** are for picture comparison(RobotEyes) to work succesfully.
+
 For Full list of commands available run *robot --help* in command prompt
 ## Run profiles:
 Robot Framework Uses argument files to run correct settings in CI and local runs. These settings files can be found from environments -folder
 
+**Attention!**
+If you run robot testcases in container locally (by running robo-shell mentioned in [Running local tests in CI](https://github.com/City-of-Helsinki/helfi-test-automation-python#running-local-tests-in-ci--like-container) , you must add some additional run variables in order to run tests succesfully.
+
+      Add:
+      -v BASE_URL:varnish-helfi-kymp.docker.so       (or if some other instance, modify respectively)
+      -v PREFIX:/kaupunkiymparisto-ja-liikenne       (or if some other instance, modify respectively)(if instance-spesific path does not exist just leave prefix empty)
+     
+
+      Modify:
+      -A ./environments/local.args -> -A ./environments/**ci**.args    (since some browser run arguments are required in container run at least with chrome)
+
 # Docker and CI
-You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform. (**dockerfile is not anymore maintained due robotframework-docker support from development environment (at least kymp)**)
+You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform.
 
 In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
 
@@ -87,7 +101,7 @@ In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it c
             RMDIR /S /Q <full path to reports folder>
 and full command example is:            
             
-            RMDIR /S /Q C:\TA\helfi_python\robotframework-reports & robot -i GALLERY -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
+            RMDIR /S /Q C:\TA\helfi_python\robotframework-reports & robot -i BANNER -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
 
 If you want to clear files from the folder only, do as follows:            
 
@@ -95,7 +109,7 @@ If you want to clear files from the folder only, do as follows:
             del /S /Q <full path to reports folder>
 and full command example is:
 
-            del /S /Q C:\TA\helfi\robotframework-reports & robot -i GALLERY -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
+            del /S /Q C:\TA\helfi\robotframework-reports & robot -i BANNER -A ./environments/local.args -d C:\TA\helfi\robotframework-reports .
 
 ## Eclipse user tips:
 You can use external tools configuration feature to run command prompt command in eclipse directly. Command prompt needs /c argument to run command through it. For example:
