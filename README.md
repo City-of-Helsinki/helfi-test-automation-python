@@ -68,7 +68,7 @@ which will run all tests with BANNER tag. Other arguments are:
 - Argument file for setting up some variables related to local environment (**optional**)
 - Report folder for run logs (related to project folder root)  (**optional**)
 - **-e ETUSIVU_SPESIFIC** - excludes etusivu_testcases from this run, since it has some content-types which are not supported in kymp/sote.
- **-v images_dir:robotframework-resources/screenshots/headlesschrome** and 
+- **-v images_dir:robotframework-resources/screenshots/headlesschrome** and 
  **-v actual_dir:robotframework-reports** are for picture comparison(RobotEyes) to work succesfully.
 
 For Full list of commands available run *robot --help* in command prompt
