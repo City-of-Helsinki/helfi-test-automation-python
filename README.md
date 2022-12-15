@@ -63,6 +63,7 @@ Testcase runs must be started from test automation folder when using robo-shell.
 
 # Usage:
 Before run check *environments/local.args* for BASE_URL -variable and make sure it matches your current instance. Also check PREFIX -variable. *Commented* lines are starting with # -character so you can ignore those.
+
 You can run your first testcase by running (in cloned git project folder):
 
             robot -i BANNER -e ETUSIVU_SPESIFIC -v images_dir:robotframework-resources/screenshots/headlesschrome -v actual_dir:robotframework-reports -A ./environments/local.args -d robotframework-reports .
