@@ -111,8 +111,8 @@ and drop the -i BANNER or whatever it is. This way robot only runs testcases wit
 
 If we want to run all the cases without restrictions. We simply leave out **-i -e -t** or others spesifying the testcases.
 
-# Docker and CI
-You can use Dockerfile to create container for Robot Framework. However Dockerfile should be combined with hel-fi environment in a way that from container you can run tests against helfi web platform.
+# CI
+Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information might be a bit outdated.
 
 In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
 
