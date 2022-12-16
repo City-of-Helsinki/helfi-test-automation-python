@@ -116,6 +116,32 @@ If we want to run all the cases without restrictions. We simply leave out **-i -
 
 More information about different ways of running testcases in Robot Framework [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#selecting-test-cases)   
 
+# REPOSITORY STRUCTURE
+    
+  Environments 
+      
+      Has argument files for running ci or local testruns. Also contains run order-files for pabot, which is used in CI. Run order had to be done because announcement testcase assertions would have failed otherwise if there were multiple announcement notifications at once in one page. There might have been also some other reasons why running announcements separately was an must.
+      
+  robotframework-keywords
+  
+      Contains files common for paragraph-tests and others. Testcases usually call files in this folder as an reference.
+      
+  robotframework-resources
+      
+      Contains textfiles, images and picture comparison screenshots which are used by the testcases.
+      
+  robotframework-tests
+  
+      Contains testcases sorted by folders:
+            - drupal-helfi-etusivu   -contains etusivu-instance spesific testcases
+            - drupal-helfi-platform  -contains other testcases at the moment. Also some not really instance spesific cases like cookiecompliance tests.
+            
+  Root folder files:
+  
+      -  Dockerfile     - obsolete and not supported. could be deleted :)
+      -  run_all_etusivu_tests.sh    - runs all etusivu_spesific testcases. (tagged with ETUSIVU_SPESIFIC)
+      -  run_all_tests.sh            - runs all tests. CI process uses this in kymp/sote merge-actions.
+
 # CI
 Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text(12/22) there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information here might be a bit outdated.
 
