@@ -146,6 +146,7 @@ Folders:
 ## Project Arguments
 Arguments used in project are mostly defined in **environment** folder. *local.args* for arguments in local test runs and *ci.args* for arguments in ci-testruns.
 Here are the arguments and their explanations:
+
    BASE_URL
       
       actually meaning domain name. , like helfi-kymp.docker.so
