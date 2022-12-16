@@ -182,6 +182,9 @@ See [Open Browser]https://robotframework.org/SeleniumLibrary/SeleniumLibrary.htm
 # CI
 Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text(12/22) there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information here might be a bit outdated.
 
+# Useful -links
+[SeleniumLibrary API (latest version)](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html#library-documentation-top).
+
 # Useful information (For Windows Users):
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
             
