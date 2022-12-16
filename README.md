@@ -30,7 +30,10 @@ In order to work with this robot framework repo locally, you need:
     needed for picture compare assertions
     After installing you can check the installed version with command(mac users):  pip3 show robotframework-roboteyes
 
+**7)** (optional)  In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
 
+      Current pabot version is  2.5.2   (4/2022)
+      Example run command for pabot can be found in run_all_tests.sh -file in root folder of this repository
 
             
 You can use the latest versions of the libraries, but might need to do some small refactoring if for example same keyword would have become outdated or if some structures like classic if-else pattern is no longer supported.
@@ -112,13 +115,7 @@ and drop the -i BANNER or whatever it is. This way robot only runs testcases wit
 If we want to run all the cases without restrictions. We simply leave out **-i -e -t** or others spesifying the testcases.
 
 # CI
-Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information might be a bit outdated.
-
-In github runs also [Pabot](https://github.com/mkorpela/pabot) is used. But it can be used in local envs also. Purpose of it is to speed up running tests by parallel execution.
-
-      Current pabot version is  2.5.2   (4/2022)
-
-
+Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text(12/22) there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information here might be a bit outdated.
 
 # Useful information (For Windows Users):
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
