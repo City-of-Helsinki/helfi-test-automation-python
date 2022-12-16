@@ -90,18 +90,22 @@ If you run robot testcases in container locally (by running robo-shell mentioned
       -A ./environments/local.args -> -A ./environments/**ci**.args    (since some browser run arguments are required in container run at least with chrome)
 ## Different ways to run tests
 Above we are running the tests with tag
+
       -i BANNER
 which includes only tests with tag BANNER to testrun.
 
 If we want to include multiple tags, we can do as follows.
+
       -i bannerANDcolumns
 Note here that casing is essential. We use lower case for testtags and uppercase for operator AND. This ensures that if tag name has AND/OR , it is not interpreted as an operator instead.
 
 If we want to exclude tests with some tags, we can do for example as follows:
+
       -i BANNER -e LANDINGPAGE
 this exludes LANDINGPAGE tagged testcases when running BANNER testcases.
 
 If we want to run testcase by testcase name, we do:
+
       -t Testcase_name
 and drop the -i BANNER or whatever it is. This way robot only runs testcases with this given name.
 
