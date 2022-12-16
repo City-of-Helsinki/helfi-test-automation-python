@@ -53,8 +53,8 @@ Login User
 	Run Keyword And Ignore Error    Wait Until Keyword Succeeds  2x   500ms   Input Text   name:loginfmt   test-drupal@hel.fi
 	Wait Until Keyword Succeeds  5x   400ms   Press Next -Button         
 	Wait Until Keyword Succeeds  10x   500ms   Input Text      css:#userNameInput   helsinki1\\test-drupal
-	Set Log Level    NONE
-	Wait Until Keyword Succeeds  5x   200ms   Input Text      css:#passwordInput   %{TUNNISTAMO_PASSWORD}   
+	Set Log Level    NONE		#To make sure password is not logged we set logging level to NONE.
+	Wait Until Keyword Succeeds  5x   200ms   Input Text      css:#passwordInput   %{TUNNISTAMO_PASSWORD}   #Idea is to get password as secret var from OS.
 	Set Log Level    INFO
 	Wait Until Keyword Succeeds  5x   200ms   Click Element   css:#submitButton
 	Run Keyword And Ignore Error    Wait Until Keyword Succeeds  2x   500ms   Click Element   css:#idBtn_Back
