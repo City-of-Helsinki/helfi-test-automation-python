@@ -184,6 +184,7 @@ Testcases are run at the moment only in sote/kymp instances in event when pull r
 
 # Useful -links
 [SeleniumLibrary API](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html#library-documentation-top) (latest version)
+[Robotframework API](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html#library-documentation-top) (latest version)
 
 # Useful information (For Windows Users):
 ### For cleaning up logs and such before each run, you can chain commands and remove the robotframework-reports folder altogether before your test run as follows (in windows):
