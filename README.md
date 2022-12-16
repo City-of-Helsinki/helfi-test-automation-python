@@ -114,6 +114,8 @@ and drop the -i BANNER or whatever it is. This way robot only runs testcases wit
 
 If we want to run all the cases without restrictions. We simply leave out **-i -e -t** or others spesifying the testcases.
 
+More information about different ways of running testcases in Robot Framework [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#selecting-test-cases)   
+
 # CI
 Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text(12/22) there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information here might be a bit outdated.
 
