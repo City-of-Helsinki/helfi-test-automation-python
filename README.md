@@ -157,7 +157,7 @@ with PROTOCOL , there two are used to form base of the url path. You should modi
    BROWSER  
    
       for example:  chrome   ,for chrome browser (or headlesschrome if you want to run tests silently)
-See [Open Browser]https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html#Open%20Browser at Seleniumlibrary API for more information about different possible values for BROWSER.
+See [Open Browser](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html#Open%20Browser) at Seleniumlibrary API for more information about different possible values for BROWSER.
 
    PICCOMPARE
    
