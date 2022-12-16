@@ -116,8 +116,9 @@ If we want to run all the cases without restrictions. We simply leave out **-i -
 
 More information about different ways of running testcases in Robot Framework [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#selecting-test-cases)   
 
-# REPOSITORY STRUCTURE
-    
+# Repository structure
+Folders:    
+
   Environments 
       
       Has argument files for running ci or local testruns. Also contains run order-files for pabot, which is used in CI. Run order had to be done because announcement testcase assertions would have failed otherwise if there were multiple announcement notifications at once in one page. There might have been also some other reasons why running announcements separately was an must.
@@ -141,6 +142,42 @@ More information about different ways of running testcases in Robot Framework [U
       -  Dockerfile     - obsolete and not supported. could be deleted :)
       -  run_all_etusivu_tests.sh    - runs all etusivu_spesific testcases. (tagged with ETUSIVU_SPESIFIC)
       -  run_all_tests.sh            - runs all tests. CI process uses this in kymp/sote merge-actions.
+
+## Project Arguments
+Arguments used in project are mostly defined in **environment** folder. *local.args* for arguments in local test runs and *ci.args* for arguments in ci-testruns.
+Here are the arguments and their explanations:
+   BASE_URL
+      
+      actually meaning domain name. , like helfi-kymp.docker.so
+   PREFIX
+      
+      category -part of the url, like:  /kaupunkiymparisto-ja-liikenne
+with PROTOCOL , there two are used to form base of the url path. You should modify these to match your local instance under test respectively
+      
+   BROWSER  
+   
+      for example:  chrome   ,for chrome browser (or headlesschrome if you want to run tests silently)
+See [Open Browser]https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html#Open%20Browser at Seleniumlibrary API for more information about different possible values for BROWSER.
+
+   PICCOMPARE
+   
+      Used to toggle picture comparison support ON/OFF. Plase note that this was never fully developed and it needs comparison pictures to be added under /robotframework-resournces/screenshots/(browser-based-folder)   in order to get this to work. 
+      However please note that some Banner testcases are using picture comparison despite of this setting. This is purely developers decision and can be changed for sure.
+   CI  
+   
+      This is false in local testruns.
+   CI_LOCALTEST
+   
+      This was created to set true in case when tests are run from robot-container (started with 'make robo-shell' -command). Does some things differently in code for this case.
+   DEBUG  
+   
+      This creates debug -folder under /robotframework-reports -folder. It is used to make debugging errors easier. It creates html -file of the html page in time of error and also takes two pictures. It is recommended to set this always true.
+   USEORIGINALNAME  
+   
+      This is used with picture comparison. When screenshots of complete page content to be visually compare is created, if this setting is true, the screenshot name structure is same that is used in robotframework-resources/screenshots - where comparison pictures are. Purpose of this argument is solely to make updating comparison pictures easier.
+   ADMIN_URL     
+      
+      Is command to run uli -which gives url -to login as admin. This is however deprecated and not in use in robotframework-code anymore.    
 
 # CI
 Testcases are run at the moment only in sote/kymp instances in event when pull request in being merged into master. You can find robot runs from Actions -tab under these instances. *However* while writing this text(12/22) there is an task underway to divide robot tests under kymp,sote, kasko etc. instances instead of this one test-automation repo, thus this information here might be a bit outdated.
